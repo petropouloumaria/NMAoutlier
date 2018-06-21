@@ -26,21 +26,10 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
                           m, n, t1.label, t2.label) {
 
 
-  ##
-  ## Generate a list of length P
-  ##
-  ran <- vector("list", P)
-
-
-  ## Set the number of studies to be equal with the number of treatments
-  ## studies = n
-  ##
+  ## Set the number of studies (n) to be equal to the number of treatments
   ## Examine a large number (P) of candidate initial subsets
-  ##
-  ## Create random subsets with size equal to the number of treatments
-  ## that include all treatments
+  ## Create random subsets which include all treatments with size equal to the number of treatments
 
-  ## Set up a cluster
 
   ## Calculate the number of cores
   no_cores <- max(1, parallel::detectCores())
@@ -52,114 +41,77 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
                                            "netmeta", "TE", "seTE", "reference",
                                            "createB", "prepare",
                                            "Multi", "multiarm",
-                                           "crit1"
-  ))
-  ##
-  ## Create P initial subset with parallel computations
-  ##
-  ##
-
-  to_parallel <- function(z) {
-    ##
-    ##
-    minmax <- NA
+                                           "crit1"), envir=environment())
 
 
-    ## studies of the subset
-    ran <- Subset(m, n, t1.label, t2.label, studlab, studies)$random
+  ## create P initial subsets with parallel computations
+  paral <- parallel::parLapply(cl, 1:P, function(z) {
 
-    ## indices of the subset
-    sub <- Indices(studlab, ran)
+    ## ensuring that the network is connected
+    repeat{
+      ## getting random subset from studies
+      ran <- Subset(m, n, t1.label, t2.label, studlab, studies)$random
 
-    ## Check if the subset is a connected network
-    codit <- netconnection(treat1, treat2, studlab, subset = sub)$n.subnets == 1
+      ## indices of the subset (studlab)
+      sub <- Indices(studlab, ran)
 
-    ## Take the subset if it is a connected network
-    ##
-    if (codit) {
+      ## Check if the subset is a connected network
+      is_connected <- netconnection(treat1, treat2, studlab, subset = sub)$n.subnets == 1
 
-      ## Conduct network meta-analysis (NMA) with random effects
-      ## model, Rucker model
-      ##
-      netm <- netmeta(TE, seTE, treat1, treat2, studlab,
-                      reference.group = reference, subset = sub)
+      if(is_connected) break
+    }
 
-      B <- createB(netm$treat1.pos, netm$treat2.pos, netm$n)
-      b <- netm$TE.random[, reference]
-      st.m <- sqrt(netm$w.random) * (netm$TE - B %*% b)
+    ## Conduct network meta-analysis (NMA) with random effects model, Ruecker model
+    netm <- netmeta(TE, seTE, treat1, treat2, studlab, reference.group = reference, subset = sub)
 
-      ## multi-arm studies
-      studlb <- studlab[sub]                      # studylab of set
-      multi <- unique(studlb[duplicated(studlb)]) # studylab of multi-arm studies
+    ## create design matrix
+    B <- createB(netm$treat1.pos, netm$treat2.pos, netm$n)
 
-      ## weights of random effects model
-      wr.m <- prepare(TE[sub], seTE[sub], treat1[sub], treat2[sub],
-                      studlab[sub], netm$tau^2)$weights
+    ## summary estimate
+    b <- netm$TE.random[, reference]
 
-      ## Compute standardized residuals and log-likelihood contributions
-      ##
-      r <- Multi(studlab[sub], st.m, wr.m)
-      ##
-      ## Compute the median of the absolute standardized residuals for
-      ## each subset
-      ##,
-      if (crit1 == "R")
-        minmax <- stats::median(abs(r$res))
-      else if (crit1 == "L")
-        minmax <- stats::median(abs(r$logl))
+    ## standardized residual
+    st.m <- sqrt(netm$w.random) * (netm$TE - B %*% b)
 
-      ##
-      resul <- list(ran=ran, minmax=minmax)
-      return(resul)
-      ##
+    ## multi-arm studies
+    studlb <- studlab[sub]                      # studylab of set
+    multi <- unique(studlb[duplicated(studlb)]) # studylab of multi-arm studies
 
-    } # End if
+    ## weights of random effects model
+    wr.m <- prepare(TE[sub], seTE[sub], treat1[sub], treat2[sub], studlab[sub], netm$tau^2)$weights
 
-  }
+    ## Compute standardized residuals and log-likelihood contributions
+    r <- Multi(studlab[sub], st.m, wr.m)
 
+    ## Compute the median of the absolute standardized residuals for each subset
+    if (crit1 == "R") {
+      minmax <- stats::median(abs(r$res))
+    } else if (crit1 == "L") {
+      minmax <- stats::median(abs(r$logl))
+    }
 
-  paral <- parallel::parLapply(cl, 1:P, to_parallel )
+    result <- list(ran=ran, minmax=minmax)
+  })
 
   ## close the cluster after done
   parallel::stopCluster(cl)
 
+  ## Generate a list of length P
+  rand <- vector("list", P)
   ## Generate a vector of length P
-  mnax <- rep(NA, P)
+  mimax <- rep(NA, P)
 
+  result <- as.data.frame(do.call(rbind, paral))
+  rand <- result$ran
+  mimax <- result$minmax
 
-  if(any(sapply(paral, is.null))){
-    par <- paral[-which(sapply(paral, is.null))]
-    valid_length <- length(par)
-    to_merge <- list()
-    for(i in 1:(P-valid_length)){
-      to_merge[[i]] <- to_parallel()
-    }
-    paral <- c(par, to_merge)
-  }
-
-
-  for(j in 1:P){
-
-    ran[[j]] <- paral[[j]]$ran
-
-    mnax[j] <- paral[[j]]$minmax
-
-  }
-
-
-  ##
-  ##
   if (crit1 == "R")
-    pick <- which.min(mnax)
+    pick <- which.min(mimax)
   else if (crit1 == "L")
-    pick <- which.max(mnax)
+    pick <- which.max(mimax)
 
+  res <- list(set = rand[[pick[1]]])
 
-  res <- list(set = ran[[pick[1]]])
-
-
-  ##
   res
-
 
 }
