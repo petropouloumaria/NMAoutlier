@@ -47,23 +47,19 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
   cl <- parallel::makeCluster(no_cores)
 
   parallel::clusterExport(cl=cl, varlist=c("Subset", "m", "n", "t1.label", "t2.label", "studlab", "studies",
-                                           "Indices", "ran",
-                                           "netconnection", "treat1", "treat2", "sub",
-                                           "netmeta", "TE", "seTE", "reference",
-                                           "createB", "prepare",
-                                           "Multi", "multiarm",
-                                           "crit1"
-  ))
+                                          "Indices", "ran",
+                                          "netconnection", "treat1", "treat2", "sub",
+                                          "netmeta", "TE", "seTE", "reference",
+                                          "createB", "prepare",
+                                          "Multi", "multiarm",
+                                          "crit1"), envir=environment())
   ##
   ## Create P initial subset with parallel computations
   ##
   ##
 
-  to_parallel <- function(z) {
-    ##
-    ##
+  to_parallel <- function() {
     minmax <- NA
-
 
     ## studies of the subset
     ran <- Subset(m, n, t1.label, t2.label, studlab, studies)$random
@@ -118,7 +114,64 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
   }
 
 
-  paral <- parallel::parLapply(cl, 1:P, to_parallel )
+  paral <- parallel::parLapply(cl, 1:P, function(z) {
+    ##
+    ##
+
+    minmax <- NA
+
+
+    ## studies of the subset
+    ran <- Subset(m, n, t1.label, t2.label, studlab, studies)$random
+
+    ## indices of the subset
+    sub <- Indices(studlab, ran)
+
+    ## Check if the subset is a connected network
+    codit <- netconnection(treat1, treat2, studlab, subset = sub)$n.subnets == 1
+
+    ## Take the subset if it is a connected network
+    ##
+    if (codit) {
+
+      ## Conduct network meta-analysis (NMA) with random effects
+      ## model, Rucker model
+      ##
+      netm <- netmeta(TE, seTE, treat1, treat2, studlab,
+                      reference.group = reference, subset = sub)
+
+      B <- createB(netm$treat1.pos, netm$treat2.pos, netm$n)
+      b <- netm$TE.random[, reference]
+      st.m <- sqrt(netm$w.random) * (netm$TE - B %*% b)
+
+      ## multi-arm studies
+      studlb <- studlab[sub]                      # studylab of set
+      multi <- unique(studlb[duplicated(studlb)]) # studylab of multi-arm studies
+
+      ## weights of random effects model
+      wr.m <- prepare(TE[sub], seTE[sub], treat1[sub], treat2[sub],
+                      studlab[sub], netm$tau^2)$weights
+
+      ## Compute standardized residuals and log-likelihood contributions
+      ##
+      r <- Multi(studlab[sub], st.m, wr.m)
+      ##
+      ## Compute the median of the absolute standardized residuals for
+      ## each subset
+      ##,
+      if (crit1 == "R")
+        minmax <- stats::median(abs(r$res))
+      else if (crit1 == "L")
+        minmax <- stats::median(abs(r$logl))
+
+      ##
+      resul <- list(ran=ran, minmax=minmax)
+      return(resul)
+      ##
+
+    } # End if
+
+  })
 
   ## close the cluster after done
   parallel::stopCluster(cl)
