@@ -36,7 +36,7 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
   cl <- parallel::makeCluster(no_cores)
 
   parallel::clusterExport(cl=cl, varlist=c("Subset", "m", "n", "t1.label", "t2.label", "studlab", "studies",
-                                           "Indices", "ran",
+                                           "Indices",
                                            "netconnection", "treat1", "treat2", "sub",
                                            "netmeta", "TE", "seTE", "reference",
                                            "createB", "prepare",
