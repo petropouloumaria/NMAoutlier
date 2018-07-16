@@ -1,1 +1,8 @@
-***NMAoutlier, version 0.1.0 ***
+***NMAoutlier, version 0.1.4 ***
+
+- performance improvements for Subset
+- removed the Subset function and integrated the code to the InitialSubset file.
+
+***NMAoutlier, version 0.1.3 ***
+
+- initial release on github
