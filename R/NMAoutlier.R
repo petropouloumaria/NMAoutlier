@@ -91,32 +91,32 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     if (missing(sm))
       if (!is.null(data) && !is.null(attr(data, "sm")))
         sm <- attr(data, "sm")
-       else
+      else
         sm <- ""
-    ##
-    seTE <- eval(mf[[match("seTE", names(mf))]],
+      ##
+      seTE <- eval(mf[[match("seTE", names(mf))]],
+                   data, enclos = sys.frame(sys.parent()))
+      ##
+      treat1 <- eval(mf[[match("treat1", names(mf))]],
+                     data, enclos = sys.frame(sys.parent()))
+      ##
+      treat2 <- eval(mf[[match("treat2", names(mf))]],
+                     data, enclos = sys.frame(sys.parent()))
+      ##
+      studlab <- eval(mf[[match("studlab", names(mf))]],
+                      data, enclos = sys.frame(sys.parent()))
+      ##
+      n1 <- eval(mf[[match("n1", names(mf))]],
                  data, enclos = sys.frame(sys.parent()))
-    ##
-    treat1 <- eval(mf[[match("treat1", names(mf))]],
-                   data, enclos = sys.frame(sys.parent()))
-    ##
-    treat2 <- eval(mf[[match("treat2", names(mf))]],
-                   data, enclos = sys.frame(sys.parent()))
-    ##
-    studlab <- eval(mf[[match("studlab", names(mf))]],
-                    data, enclos = sys.frame(sys.parent()))
-    ##
-    n1 <- eval(mf[[match("n1", names(mf))]],
-               data, enclos = sys.frame(sys.parent()))
-    ##
-    n2 <- eval(mf[[match("n2", names(mf))]],
-               data, enclos = sys.frame(sys.parent()))
-    ##
-    event1 <- eval(mf[[match("event1", names(mf))]],
-                   data, enclos = sys.frame(sys.parent()))
-    ##
-    event2 <- eval(mf[[match("event2", names(mf))]],
-                   data, enclos = sys.frame(sys.parent()))
+      ##
+      n2 <- eval(mf[[match("n2", names(mf))]],
+                 data, enclos = sys.frame(sys.parent()))
+      ##
+      event1 <- eval(mf[[match("event1", names(mf))]],
+                     data, enclos = sys.frame(sys.parent()))
+      ##
+      event2 <- eval(mf[[match("event2", names(mf))]],
+                     data, enclos = sys.frame(sys.parent()))
   }
   ##
   if (is.factor(treat1))
@@ -291,11 +291,10 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     subset <- NULL
 
 
-
     ## Take the initial subset
     Isub <- InitialSubset(TE, seTE, treat1, treat2, studlab,
                           crit1, studies, P, reference,
-                          m, n, t1.label, t2.label)
+                          t1.label, t2.label)
 
     ## Define the initial basic set
     ##
@@ -351,8 +350,8 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
         ## Conduct network meta-analysis (NMA) with random effects model, Rucker model
         ##
         model <- netmeta::netmeta(TE, seTE, treat1, treat2, studlab,
-                         comb.random = TRUE, reference.group = reference,
-                         subset = ind.bs)
+                                  comb.random = TRUE, reference.group = reference,
+                                  subset = ind.bs)
         ##
         t.basic <- (model$tau) ^ 2              # heterogeneity
         e.basic <- model$TE.random[, reference] # summary estimate
@@ -377,7 +376,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
         ## weights of random effects model
         ##
         wr <- prepare(TE[c], seTE[c], treat1[c], treat2[c], studlab[c],
-                               t.basic)$weights
+                      t.basic)$weights
         ##
         ## residuals
         ##
@@ -489,15 +488,15 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
 
 
     res2 <- list(dat = dat, length.initial = length.initial,
-                index = index, basic = basic,
-                taub = taub, Qb = Qb, Qhb = Qhb, Qib = Qib,
-                estb = estb, lb = lb, ub = ub, Ratio = Ratio,
-                cook_d = cook_d, p.score = p.score,
-                dif = dif, estand = estand,
-                call = match.call())
+                 index = index, basic = basic,
+                 taub = taub, Qb = Qb, Qhb = Qhb, Qib = Qib,
+                 estb = estb, lb = lb, ub = ub, Ratio = Ratio,
+                 cook_d = cook_d, p.score = p.score,
+                 dif = dif, estand = estand,
+                 call = match.call())
 
 
-    } # end ("if" requirement to be equal the number of studies with the number of treatments)
+  } # end ("if" requirement to be equal the number of studies with the number of treatments)
 
 
   class(res2) <- "NMAoutlier"

@@ -5,7 +5,7 @@
 \title{InitialSubset}
 \usage{
 InitialSubset(TE, seTE, treat1, treat2, studlab, crit1, studies, P, reference,
-  m, n, t1.label, t2.label)
+  t1.label, t2.label)
 }
 \arguments{
 \item{TE}{Estimate of treatment effect, i.e. difference between first and second treatment (e.g. log odds ratio, mean difference, or log hazard ratio).}
@@ -28,10 +28,6 @@ The default value is the number of studies.}
 \item{P}{An optional vector specifying the number of samples for the choice of the initial subset.}
 
 \item{reference}{Reference treatment group.}
-
-\item{m}{number of pairwise comparisons (edges)}
-
-\item{n}{number of treatments (vertices)}
 
 \item{t1.label}{numbers to treatment 1 IDs.}
 

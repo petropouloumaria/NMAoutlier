@@ -13,8 +13,6 @@
 #'                The default value is the number of studies.
 #' @param P       An optional vector specifying the number of samples for the choice of the initial subset.
 #' @param reference Reference treatment group.
-#' @param m number of pairwise comparisons (edges)
-#' @param n  number of treatments (vertices)
 #' @param t1.label numbers to treatment 1 IDs.
 #' @param t2.label numbers to treatment 2 IDs.
 #' @return An initial clean subset of studies.
@@ -23,7 +21,7 @@
 
 InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
                           crit1, studies, P, reference,
-                          m, n, t1.label, t2.label) {
+                          t1.label, t2.label) {
 
 
   ## Set the number of studies (n) to be equal to the number of treatments
@@ -35,7 +33,7 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
   no_cores <- max(1, parallel::detectCores())
   cl <- parallel::makeCluster(no_cores)
 
-  parallel::clusterExport(cl=cl, varlist=c("Subset", "m", "n", "t1.label", "t2.label", "studlab", "studies",
+  parallel::clusterExport(cl=cl, varlist=c("t1.label", "t2.label", "studlab", "studies",
                                            "Indices",
                                            "netconnection", "treat1", "treat2", "sub",
                                            "netmeta", "TE", "seTE", "reference",
@@ -50,7 +48,21 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
     ## ensuring that the network is connected
     repeat{
       ## getting random subset from studies
-      ran <- Subset(m, n, t1.label, t2.label, studlab, studies)$random
+
+      ## ensuring that random subset includes studies that compare all treaments
+      repeat {
+        ## get a random subset of studies with length equal to variable studies
+        random <- sample(unique(studlab), studies, replace=FALSE)
+
+        ## indices of the random subset
+        chosen_ind <- Indices(studlab, random)
+
+        ## check if random subset includes studies that compare all treaments
+        if(all(unique(c(t1.label, t2.label)) %in% c(t1.label[chosen_ind], t2.label[chosen_ind])))
+          break
+      }
+
+      ran <- random
 
       ## indices of the subset (studlab)
       sub <- Indices(studlab, ran)
