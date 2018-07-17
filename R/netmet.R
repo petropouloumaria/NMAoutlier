@@ -16,7 +16,7 @@
 netmet <- function(TE, seTE, treat1, treat2, studlab,
                    ind.bs, reference, small.values, names.treat) {
 
-  ## Conduct network meta-analysis (NMA) with random effects model, Rucker model
+  ## Conduct network meta-analysis (NMA) with random effects model, Rücker model
   model <- netmeta(TE, seTE, treat1, treat2, studlab,
                               comb.random = TRUE, reference.group = reference,
                               subset = ind.bs)
