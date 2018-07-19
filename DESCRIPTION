@@ -1,6 +1,6 @@
 Package: NMAoutlier
 Title: Forward Search algorithm in network meta-analysis
-Version: 0.1.4
+Version: 0.1.5
 Depends: R (>= 3.0.0)
 Imports: netmeta (>= 0.9-7), plotrix(>= 3.6-6),
          grDevices (>= 3.4.1), graphics (>= 3.4.3), stats (>= 3.4.3),

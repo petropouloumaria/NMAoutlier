@@ -17,5 +17,5 @@ Multi(st.lab, ei, wr)
 the arithmetic mean of standardized and log-likelihood contributions.
 }
 \description{
-Computes the arithmetic mean of standardized and and log-likelihood contributions in the case of multi-arm trials.
+Computes the arithmetic mean of standardized and log-likelihood contributions in the case of multi-arm trials.
 }

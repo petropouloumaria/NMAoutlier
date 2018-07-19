@@ -25,5 +25,5 @@ nma(TE, seTE, treat1, treat2, studlab, reference, names.treat)
 within-study standard error, design matrix, summary estimate, heterogeneity from network meta-analysis.
 }
 \description{
-Conduct network meta-analysis (Rucker model) for the whole dataset.
+Conduct network meta-analysis (Rücker model) for the whole dataset.
 }

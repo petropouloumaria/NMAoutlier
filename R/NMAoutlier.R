@@ -302,7 +302,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     ##
     ## indices of basic set
     ##
-    ind.bs <- Indices(studlab, bs)
+    ind.bs <- which(studlab %in% bs)
     ##
     S1 <- netmet(TE, seTE, treat1, treat2, studlab,
                  ind.bs, reference, small.values, names.treat)
@@ -347,7 +347,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
         ##
         mi <- ma <- c()
         ##
-        ## Conduct network meta-analysis (NMA) with random effects model, Rucker model
+        ## Conduct network meta-analysis (NMA) with random effects model, Rücker model
         ##
         model <- netmeta::netmeta(TE, seTE, treat1, treat2, studlab,
                                   comb.random = TRUE, reference.group = reference,
@@ -411,7 +411,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
       ##
       bs <- c(bs, subset) # basic set
       ##
-      ind.bs <- Indices(studlab, bs)
+      ind.bs <- which(studlab %in% bs)
       ##
 
       ##

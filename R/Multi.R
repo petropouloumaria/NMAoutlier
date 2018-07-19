@@ -1,6 +1,6 @@
 #' Residuals and log-likelihood contributions in multi-arm trials
 #'
-#' Computes the arithmetic mean of standardized and and log-likelihood contributions in the case of multi-arm trials.
+#' Computes the arithmetic mean of standardized and log-likelihood contributions in the case of multi-arm trials.
 #' @param st.lab studylab of set of studies
 #' @param ei standardized residuals for each comparison from a set of studies
 #' @param wr weigths of random effects model
@@ -28,7 +28,7 @@ Multi <- function(st.lab, ei, wr) {
 
 
      ## Compute the arithmetic mean of the standardized residuals
-     ## which coresponding to multi-arm study
+     ## which correspond to multi-arm study
 
      for (d in 1:n.multi) {
 

@@ -34,7 +34,6 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
   cl <- parallel::makeCluster(no_cores)
 
   parallel::clusterExport(cl=cl, varlist=c("t1.label", "t2.label", "studlab", "studies",
-                                           "Indices",
                                            "netconnection", "treat1", "treat2", "sub",
                                            "netmeta", "TE", "seTE", "reference",
                                            "createB", "prepare",
@@ -55,17 +54,15 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
         random <- sample(unique(studlab), studies, replace=FALSE)
 
         ## indices of the random subset
-        chosen_ind <- Indices(studlab, random)
+        chosen_ind <- which(studlab %in% random)
 
         ## check if random subset includes studies that compare all treaments
         if(all(unique(c(t1.label, t2.label)) %in% c(t1.label[chosen_ind], t2.label[chosen_ind])))
           break
       }
 
-      ran <- random
-
       ## indices of the subset (studlab)
-      sub <- Indices(studlab, ran)
+      sub <- which(studlab %in% random)
 
       ## Check if the subset is a connected network
       is_connected <- netconnection(treat1, treat2, studlab, subset = sub)$n.subnets == 1
@@ -73,7 +70,7 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
       if(is_connected) break
     }
 
-    ## Conduct network meta-analysis (NMA) with random effects model, Ruecker model
+    ## Conduct network meta-analysis (NMA) with random effects model, Rücker model
     netm <- netmeta(TE, seTE, treat1, treat2, studlab, reference.group = reference, subset = sub)
 
     ## create design matrix
@@ -102,7 +99,7 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
       minmax <- stats::median(abs(r$logl))
     }
 
-    result <- list(ran=ran, minmax=minmax)
+    result <- list(random=random, minmax=minmax)
   })
 
   ## close the cluster after done
@@ -114,7 +111,7 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
   mimax <- rep(NA, P)
 
   result <- as.data.frame(do.call(rbind, paral))
-  rand <- result$ran
+  rand <- result$random
   mimax <- result$minmax
 
   if (crit1 == "R")

@@ -34,7 +34,7 @@ mult <- function(studlab, ind.bs, standres, model) {
      em <- m.arm <- ind <- list()
      st.res <- matrix(NA, length(unique(studlb)))
 
-     ## Compute the arithmetic mean of standardized residuals which coresponding to multi-arm study
+     ## Compute the arithmetic mean of standardized residuals which corresponding to multi-arm study
      for (d in 1:n.multi) {
 
          ## position of multi arm study

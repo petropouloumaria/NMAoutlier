@@ -1,6 +1,6 @@
 #' Network meta-analysis for a set of studies
 #'
-#' Conduct network meta-analysis (Rucker model) for a set of studies.
+#' Conduct network meta-analysis (Rücker model) for a set of studies.
 #' @param TE   Estimate of treatment effect, i.e. difference between first and second treatment (e.g. log odds ratio, mean difference, or log hazard ratio).
 #' @param seTE Standard error of treatment estimate.
 #' @param treat1 Label/Number for first treatment.

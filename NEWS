@@ -1,3 +1,10 @@
+***NMAoutlier, version 0.1.5 ***
+
+- added logo
+- added README file
+- added data (Dias 2013)
+- deleted Indices function and implemented a solution inline where needed
+
 ***NMAoutlier, version 0.1.4 ***
 
 - performance improvements for Subset

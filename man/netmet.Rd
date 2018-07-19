@@ -30,5 +30,5 @@ netmet(TE, seTE, treat1, treat2, studlab, ind.bs, reference, small.values,
 results and statistics from network meta-analysis.
 }
 \description{
-Conduct network meta-analysis (Rucker model) for a set of studies.
+Conduct network meta-analysis (Rücker model) for a set of studies.
 }
