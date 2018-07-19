@@ -17,6 +17,7 @@
 #' @param t2.label numbers to treatment 2 IDs.
 #' @return An initial clean subset of studies.
 #'
+#' @keywords internal
 
 
 InitialSubset <- function(TE, seTE, treat1, treat2, studlab,

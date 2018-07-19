@@ -7,6 +7,7 @@
 #' @param model model assigned from netmeta
 #' @return standardized residuals and arithmetic mean of standardized residuals in case of multi-arm trials.
 #'
+#' @keywords internal
 
 mult <- function(studlab, ind.bs, standres, model) {
 

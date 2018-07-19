@@ -19,3 +19,4 @@ the arithmetic mean of standardized and log-likelihood contributions.
 \description{
 Computes the arithmetic mean of standardized and log-likelihood contributions in the case of multi-arm trials.
 }
+\keyword{internal}

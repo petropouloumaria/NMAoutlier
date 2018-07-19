@@ -6,6 +6,7 @@
 #' @param wr weigths of random effects model
 #' @return the arithmetic mean of standardized and log-likelihood contributions.
 #'
+#' @keywords internal
 
 Multi <- function(st.lab, ei, wr) {
 

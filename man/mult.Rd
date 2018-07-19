@@ -21,3 +21,4 @@ standardized residuals and arithmetic mean of standardized residuals in case of 
 \description{
 Computes the arithmetic mean of standardized residuals in case of multi-arm trials.
 }
+\keyword{internal}

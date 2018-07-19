@@ -32,3 +32,4 @@ results and statistics from network meta-analysis.
 \description{
 Conduct network meta-analysis (Rücker model) for a set of studies.
 }
+\keyword{internal}

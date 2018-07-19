@@ -12,6 +12,7 @@
 #' @param names.treat names of treatments
 #' @return results and statistics from network meta-analysis.
 #'
+#' @keywords internal
 
 netmet <- function(TE, seTE, treat1, treat2, studlab,
                    ind.bs, reference, small.values, names.treat) {

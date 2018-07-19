@@ -39,3 +39,4 @@ An initial clean subset of studies.
 \description{
 Choose an initial clean (i.e. likely outlier-free) subset of studies.
 }
+\keyword{internal}

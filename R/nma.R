@@ -10,6 +10,7 @@
 #' @param names.treat names of treatments
 #' @return within-study standard error, design matrix, summary estimate, heterogeneity from network meta-analysis.
 #'
+#' @keywords internal
 
 nma <- function(TE, seTE, treat1, treat2, studlab,
                 reference, names.treat) {
