@@ -22,7 +22,8 @@
 #'
 #' # forward search algorithm
 #' FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
-#'                        studlab, data = Dias2013)
+#'                        studlab, data = Dias2013, 
+#'                        small.values = "bad")
 #'
 #' FSresult
 #'
@@ -51,8 +52,8 @@
 #' # monitoring treatment comparison A versus B
 #' fwdplot(FSresult, "nsplit", "A:B")
 #'
-#' # forward plot for standardized residuals for study 3
-#' fwdplot(FSresult, "estand", 3)
+#' # forward plot for standardized residuals for study 4
+#' fwdplot(FSresult, "estand", 4)
 #'
 #' }
 #'
@@ -93,7 +94,7 @@ fwdplot <- function (x, stat, select.st = NULL) {
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_line(aes(group=var1_factors, color=var1_factors, linetype = var1_factors), size=1, na.rm=TRUE) +
       geom_point(aes(shape=var1_factors, color=var1_factors), size=3, na.rm=TRUE) +
-      labs(title="forward plot for node-splitting (z-values)", y="Node-splitting", x="Iterations") +
+      labs(title="forward plot for difference of direct and indirect estimate (z-values)", y="Difference of direct and indirect estimate ", x="Iterations") +
       guides(colour = guide_legend("Comparisons"), shape = guide_legend("Comparisons"), linetype = guide_legend("Comparisons")) +
       scale_x_discrete(labels=1:length(factor(melt_data$Var2))) +
       scale_shape_manual(values=seq(1,length(var1_factors))) +
