@@ -7,13 +7,28 @@
 fwdplotest(x)
 }
 \arguments{
-\item{x}{object of class NMAoutlier (results of FS algorithm).}
+\item{x}{object of class NMAoutlier (mandatory).}
 }
 \value{
 forward plots of summary estimates.
 }
 \description{
 Forward plots of summary estimate with 95 percent confidence interval for each treatment.
+}
+\examples{
+\dontrun{
+data(Dias2013)
+
+# forward search algorithm
+FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
+                       studlab, data = Dias2013)
+
+# forward plot for summary estimates for each treatment
+# and their confidence intervals
+fwdplotest(FSresult)
+
+}
+
 }
 \author{
 Maria Petropoulou <mpetrop@cc.uoi.gr>

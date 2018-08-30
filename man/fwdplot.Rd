@@ -7,17 +7,64 @@
 fwdplot(x, stat, select.st = "NULL")
 }
 \arguments{
-\item{x}{an object of class NMAoutlier (results from forward search algorithm in network meta-analysis).}
+\item{x}{an object of class NMAoutlier (mandatory).}
 
-\item{stat}{measure(s) to be monitored in forward plot(s), available choices pscore, nsplit, estand, heterog, cook, ratio, Q.}
+\item{stat}{statistical measure(s) to be monitored in forward plot(s) (mandatory), available choices pscore; nsplit; estand; heterog; cook; ratio; Q.}
 
-\item{select.st}{choice to monitor seleced statistic(s) (P-scores/node-splitting z-value/standardized resiluals) for selected item(s) (treatment(s)/comparison(s)/study(studies))}
+\item{select.st}{choice to monitor seleced statistic(s) (P-scores/z-values of disagreement of direct and indirect evidence/standardized resiluals) for selected item(s) (treatment(s)/comparison(s)/study(studies))}
 }
 \value{
 forward plot(s) for selected statistic(s)/method(s).
 }
 \description{
-Forward plot(s) to monitor selected statistic(s) and/or method(s) (P-score, Node-splitting, Standardized residuals, heterogeneity, cook distance, ratio of variances, Q statistics).
+This function generates forward plot(s) to monitor selected statistic(s) and/or method(s).
+The function creates the plot of the selected statistic(s) for each iteration of forward search algorithm.
+The selected statistic(s) to be monitored can be P-score; z-values by back-calculation method to derive indirect estimates
+from direct pairwise comparisons and network estimates approach;
+standardized residuals; heterogeneity variance estimator; cook distance; ratio of variances;
+Q statistics (Overall heterogeneity / inconsistency Q statistic (\code{Q}), overall heterogeneity Q statistic (\code{Q}),
+between-designs Q statistic (\code{Q}), based on a random effects design-by-treatment interaction model).
+}
+\examples{
+\dontrun{
+data(Dias2013)
+
+# forward search algorithm
+FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
+                       studlab, data = Dias2013)
+
+FSresult
+
+# forward plot for cook distance
+fwdplot(FSresult, "cook")
+
+# forward plot for ratio of variances
+fwdplot(FSresult, "ratio")
+
+# forward plot for heterogeneity variance estimator
+fwdplot(FSresult, "heterog")
+
+# forward plot for Q statistics
+fwdplot(FSresult, "Q")
+
+# forward plot for p-scores
+fwdplot(FSresult, "pscore")
+
+# forward plot monitoring p-scores for treatment A
+fwdplot(FSresult,"pscore", "A")
+
+# forward plot for z-values of disagreement of direct and indirect evidence
+fwdplot(FSresult, "nsplit")
+
+# forward plot for z-values of disagreement of direct and indirect evidence
+# monitoring treatment comparison A versus B
+fwdplot(FSresult, "nsplit", "A:B")
+
+# forward plot for standardized residuals for study 3
+fwdplot(FSresult, "estand", 3)
+
+}
+
 }
 \author{
 Maria Petropoulou <mpetrop@cc.uoi.gr>
