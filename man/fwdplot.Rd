@@ -31,7 +31,8 @@ data(Dias2013)
 
 # forward search algorithm
 FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
-                       studlab, data = Dias2013)
+                       studlab, data = Dias2013, 
+                       small.values = "bad")
 
 FSresult
 
@@ -60,8 +61,8 @@ fwdplot(FSresult, "nsplit")
 # monitoring treatment comparison A versus B
 fwdplot(FSresult, "nsplit", "A:B")
 
-# forward plot for standardized residuals for study 3
-fwdplot(FSresult, "estand", 3)
+# forward plot for standardized residuals for study 4
+fwdplot(FSresult, "estand", 4)
 
 }
 

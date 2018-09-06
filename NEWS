@@ -1,3 +1,7 @@
+***NMAoutlier, version 0.1.7 ***
+
+- new datasets Laparoscopic and Gupta2013 added
+
 ***NMAoutlier, version 0.1.6 ***
 
 - changed matplot to ggplot2 for the graphs of fwdplot and fwdplotest

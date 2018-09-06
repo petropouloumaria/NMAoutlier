@@ -2,7 +2,7 @@
 \docType{data}
 \alias{Dias2013}
 \title{
-Network meta-analysis comparing smoking cessation counseling programs
+Network meta-analysis comparing smoking cessation counseling programs.
 }
 \description{
 Example of outlying detection in network meta-analysis comparing the relative effects of four smoking cessation counseling programs, no contact (A), self-help (B), individual counseling (C) and group counseling (D).
@@ -31,9 +31,9 @@ data(Dias2013)
 
 # Conduct forward search algorithm
 # for the network of smoking cessation
-\donttest{FSresult <- NMAoutlier(TE, seTE, treat1, treat2, studlab, data=Dias2013)}
+\donttest{FSresult <- NMAoutlier(TE, seTE, treat1, treat2, studlab, data = Dias2013)}
 
-# Draw forward plots for Cook statistic measure
+# Draw forward plot for Cook statistic measure
 \donttest{fwdplot(FSresult,"cook")}
 }
 
