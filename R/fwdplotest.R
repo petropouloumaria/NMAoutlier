@@ -14,7 +14,8 @@
 #'
 #' # forward search algorithm
 #' FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
-#'                        studlab, data = Dias2013)
+#'                        studlab, data = Dias2013
+#'                        small.values = "bad")
 #'
 #' # forward plot for summary estimates for each treatment
 #' # and their confidence intervals
