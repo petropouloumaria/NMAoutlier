@@ -1,3 +1,4 @@
+#'
 #' @title Forward plot(s) to monitor selected statistic(s)/method(s).
 #'
 #' @description This function generates forward plot(s) to monitor selected statistic(s) and/or method(s).
@@ -22,7 +23,7 @@
 #'
 #' # forward search algorithm
 #' FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
-#'                        studlab, data = Dias2013, 
+#'                        studlab, data = Dias2013,
 #'                        small.values = "bad")
 #'
 #' FSresult

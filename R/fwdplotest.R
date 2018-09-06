@@ -1,3 +1,4 @@
+#'
 #' @title Forward plots of summary estimates.
 #'
 #' @description Forward plots of summary estimate with 95 percent confidence interval for each treatment.
