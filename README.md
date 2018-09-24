@@ -1,6 +1,8 @@
 NMAoutlier: Forward Search Algorithm in Network Meta-Analysis to identify outlying and influential studies
 ================
 
+[![Build Status](https://travis-ci.org/petropouloumaria/NMAoutlier.svg?branch=master)](https://travis-ci.org/petropouloumaria/NMAoutlier)
+
 <img src="man/figures/NMAoutlier_logo.png" width=300 align="right" style="margin-left:20px; margin-right: 20px;"/>
 
 Description

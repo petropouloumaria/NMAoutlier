@@ -40,7 +40,7 @@ Multi <- function(st.lab, ei, wr) {
 
         ##
         ##
-        loglikcon <- log(wr) - (ei)^2
+        loglikcon <- - log(wr) - (ei)^2
 
         ##
         lm[[d]] <- mean(loglikcon[m.arm[[d]]])
@@ -68,7 +68,7 @@ Multi <- function(st.lab, ei, wr) {
      ## In case that there are not exist multi-arm studies
      ##
      res <- ei
-     logl <- log(wr) - (ei)^2
+     logl <- - log(wr) - (ei)^2
      ##
      ##
      study <- st.lab
