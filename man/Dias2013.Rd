@@ -33,7 +33,7 @@ data(Dias2013)
 # for the network of smoking cessation
 \donttest{FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
                                  studlab, data = Dias2013,
-                                 small.values = "bad")
+                                 small.values = "bad")}
 
 # Draw forward plot for Cook statistic measure
 \donttest{fwdplot(FSresult,"cook")}
