@@ -114,8 +114,9 @@
 #'
 #'
 #' @return An object of class \code{NMAoutlier}; a list containing the following components:
-#'    \item{data}{Matrix containing the data \code{"TE"}, \code{"seTE"}, \code{"studlab"}, \code{"treat1"}, \code{"treat2"} as defined above.}
+#'    \item{dat}{Matrix containing the data \code{"TE"}, \code{"seTE"}, \code{"studlab"}, \code{"treat1"}, \code{"treat2"} as defined above.}
 #'    \item{length.initial}{The number of studies that constitute the initial (outlying-clean) subset of studies.}
+#'    \item{index}{The number of iterations of forward search algorithm.}
 #'    \item{basic}{Studies entered into the basic set in each iteration of the search.
 #'    At the first iteration, basic set constitute the studies that are included in the basic-initial subset.
 #'    The number of studies in the first iteration is equal to length.initial.}
@@ -128,7 +129,7 @@
 #'    \item{ub}{Upper 95\% confidence interval of summary estimates for the basic set in each iteration of forward search algorithm.}
 #'    \item{Ratio}{Ratio of determinants (\code{COVRATIOj}) of variance-covariance matrix of treatment estimates at iteration j to that iteration at j-1.}
 #'    \item{cook_d}{Cook statistic (\code{Cj}) at iteration j of forward search algorithm.}
-#'    \item{p-score}{P-score for ranking each treatment for the basic set in each iteration of forward search algorithm.}
+#'    \item{p.score}{P-score for ranking each treatment for the basic set in each iteration of forward search algorithm.}
 #'    \item{dif}{Z-values for comparison between direct and indirect evidence for each iteration of forward search algorithm.
 #'     Based on back-calculation method to derive indirect estimates from direct pairwise comparisons and network estimates.}
 #'    \item{estand}{Standardised residuals for each study for the basic set in each iteration of forward search algorithm.}
