@@ -18,8 +18,8 @@ forward plot for selected statistic/method.
 }
 \description{
 This function generates forward plot(s) to monitor selected statistic(s) and/or method(s).
-The function creates the plot of the selected statistic(s) for each iteration of forward search algorithm.
-The selected statistic(s) to be monitored can be P-score; z-values by back-calculation method to derive indirect estimates
+The function creates a plot of the selected statistic through the search of forward search algorithm.
+The selected statistic to be monitored can be P-score; z-values by back-calculation method to derive indirect estimates
 from direct pairwise comparisons and network estimates approach;
 standardized residuals; heterogeneity variance estimator; cook distance; ratio of variances;
 Q statistics (Overall heterogeneity / inconsistency Q statistic (\code{Q}), overall heterogeneity Q statistic (\code{Q}),

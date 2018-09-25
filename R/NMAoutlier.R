@@ -82,7 +82,7 @@
 #' parameter estimates (summary estmates, heterogeneity estimator) and other statistics of interest (outlying and influential measures,
 #' heterogeneity and inconsistency measures, ranking measures) are monitored.
 #' For each basic set, network meta-analysis model from graph theory (Rücker (2012))
-#' is fitted (\code{netmeta} function) with R package \bold{netmeta}.
+#' is fitted (\code{netmeta} function) with R package \bold{netmeta} (Rücker et al. (2018)).
 #'
 #'
 #' Monitoring is helpful to identify outlying and/or influential studies.
@@ -136,12 +136,17 @@
 #'    \item{call}{Function call}
 #'
 #' @references
-#' Rücker G (2012),
+#' Rücker G (2012).
 #' Network meta-analysis, electrical networks and graph theory.
 #' \emph{Research Synthesis Methods},
 #' \bold{3}, 312-24.
 #'
-#' Rücker G & Schwarzer G (2015),
+#' Rücker G, Schwarzer G, Krahn U, König J (2018).
+#' netmeta: Network Meta-Analysis using Frequentist Methods.
+#' https://github.com/guido-s/netmeta http://meta-analysis-with-r.org.
+#'
+#'
+#' Rücker G & Schwarzer G (2015).
 #' Ranking treatments in frequentist network meta-analysis works
 #' without resampling methods.
 #' \emph{BMC Medical Research Methodology},
@@ -154,12 +159,12 @@
 #' König J, Krahn U, Binder H (2013). Visualizing the flow of evidence in network meta-analysis and
 #' characterizing mixed treatment comparisons. \emph{Statistics in Medicine}, \bold{32}(30), 5414-29.
 #'
-#' Krahn U, Binder H, König J (2013),
+#' Krahn U, Binder H, König J (2013).
 #' A graphical tool for locating inconsistency in network
 #' meta-analyses.
 #' \emph{BMC Medical Research Methodology}, \bold{13}, 35.
 #'
-#' Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I, Mavridis D (2018),
+#' Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I, Mavridis D (2018).
 #' A forward search algorithm for detection of extreme study effects
 #' in network meta-analysis. Manuscript.
 #'
