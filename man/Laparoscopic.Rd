@@ -2,13 +2,13 @@
 \docType{data}
 \alias{Laparoscopic}
 \title{
-Network meta-analysis comparing the effects after laparoscopic Heller myotomy (LHM).
+Network meta-analysis comparing the effects after Laparoscopic Heller myotomy (LHM).
 }
 \description{
-Example of network meta-analysis with inconsistency. The dataset comparing the effects after laparoscopic Heller myotomy (LHM).
+Example of network meta-analysis with inconsistency. The dataset comparing the effects after Laparoscopic Heller myotomy (LHM).
 The outcome is the number of individuals with successful rates at 12 months.
 These data are in contrast format with effect size odds ratio (OR) and its standard error.
-Arm-level data can be found in Schoenberg et al.(2013).
+Arm-level data can be found in Schoenberg et al. (2013).
 }
 \usage{data(Laparoscopic)}
 
@@ -30,10 +30,12 @@ Schoenberg MB, Marx S, Kersten JF, Rösch T, Belle S, Kähler G, Vassiliou MC, L
 data(Laparoscopic)
 
 # Conduct forward search algorithm
-# for the network of laparoscopic Heller myotomy
-\donttest{FSresult <- NMAoutlier(TE, seTE, treat1, treat2, studlab, data = Laparoscopic)}
+# for the network of Laparoscopic Heller myotomy
+\donttest{FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
+                                 studlab, data = Laparoscopic)}
 
-# Draw forward plot for difference of direct and indirect evidence
+# Draw forward plot for z-values
+# from difference of direct and indirect evidence
 \donttest{fwdplot(FSresult,"nsplit")}
 }
 

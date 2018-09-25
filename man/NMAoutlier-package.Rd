@@ -9,18 +9,20 @@
 \description{R package \bold{NMAoutlier} provides a diagnostic methodology of influential and outlying studies in network meta-analysis}
 
 \details{
-  R package \bold{NMAoutlier} providing the methodology by Petropoulou et al. (2018)
-  of forward search algorithm for detection on
-  oultying and influential studies by fitting it in the frequentist
-  network meta-analysis model by Rücker (2012):
+  R package \bold{NMAoutlier} providing the methodology for
+  detection of extreme study effects by Petropoulou et al. (2018).
+  The methodology based on forward search algorithm for detection on
+  oultying and influential studies fitted in the
+  network meta-analysis model from graph-theory as provided by Rücker (2012).
+  \bold{NMAoutlier} package implements the following methodological aspects:
   \itemize{
   \item forward search algorithm in network meta-analysis (function
     \code{\link{NMAoutlier}}) based on Petropoulou et al. (2018).
   \item forward plots (\code{\link{fwdplot}}) for the monitoring statistics
   in each step of forward search algorithm (a) P-scores, Rücker G & Schwarzer G (2015);
-  (b) Node-splitting, Dias (2010); (c) Standardized residuals; (d) heterogeneity; (e) cook distance;
-  (f) ratio of variances; (g) Q statistics Krahn et al. (2013).
-  \item forward plot (\code{\link{fwdplotest}}) for summary estimates and confidence intervals for each
+  (b) z-values for difference of direct and indirect evidence with back-calculation method, König (2013), Dias (2010); (c) Standardized residuals; (d) heterogeneity variance estimator; (e) cook distance;
+  (f) ratio of variances; (g) Q statistics, Krahn et al. (2013).
+  \item forward plot (\code{\link{fwdplotest}}) for summary estimates and their confidence intervals for each
   treatment in each step of forward search algorithm as provided by Petropoulou et al. (2018).
   }
 
@@ -62,6 +64,10 @@
   Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I, Mavridis D (2018),
   A forward search algorithm for detection of extreme study effects
   in network meta-analysis. Manuscript.
+
+  König J, Krahn U, Binder H (2013). Visualizing the flow of evidence in network
+  meta-analysis and characterizing mixed treatment comparisons.
+  \emph{Statistics in Medicine}, \bold{32}(30), 5414–29.
 
 }
 \author{Petropoulou Maria \email{mpetrop@cc.uoi.gr}}

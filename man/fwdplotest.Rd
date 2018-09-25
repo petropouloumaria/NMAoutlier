@@ -15,13 +15,18 @@ forward plots of summary estimates.
 \description{
 Forward plots of summary estimate with 95 percent confidence interval for each treatment.
 }
+\details{
+Plot of summary estimates and their confidence intervals for each iteration of search.
+Vertical axis provides iterations of search. Horizontal axis provides summary estimate of a treatment.
+}
 \examples{
 \dontrun{
 data(Dias2013)
 
 # forward search algorithm
 FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
-                       studlab, data = Dias2013)
+                       studlab, data = Dias2013
+                       small.values = "bad")
 
 # forward plot for summary estimates for each treatment
 # and their confidence intervals

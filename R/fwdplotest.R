@@ -7,6 +7,8 @@
 #' fwdplotest(x)
 #'
 #' @param x object of class NMAoutlier (mandatory).
+#' @details Plot of summary estimates and their confidence intervals for each iteration of search.
+#' Vertical axis provides iterations of search. Horizontal axis provides summary estimate of a treatment.
 #' @return forward plots of summary estimates.
 #'
 #' @examples

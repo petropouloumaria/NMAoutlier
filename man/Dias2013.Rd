@@ -31,7 +31,9 @@ data(Dias2013)
 
 # Conduct forward search algorithm
 # for the network of smoking cessation
-\donttest{FSresult <- NMAoutlier(TE, seTE, treat1, treat2, studlab, data = Dias2013)}
+\donttest{FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
+                                 studlab, data = Dias2013,
+                                 small.values = "bad")
 
 # Draw forward plot for Cook statistic measure
 \donttest{fwdplot(FSresult,"cook")}

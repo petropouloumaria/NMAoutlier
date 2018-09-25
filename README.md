@@ -17,7 +17,7 @@ A package that provides forward search algorithm for detecting outlying or influ
 -   Outlier and influential case diagnostics measures.
 -   Ranking measures.
 -   Heterogeneity and inconsistency measures.
--   Forward plots for summary estimates and their confidence intervals.
+-   Forward plot for summary estimates and their confidence intervals.
 -   Forward plots for monitored measures: outlier and influential case diagnostics measures, ranking measures, heterogeneity and inconsistency measures.
 
 Installation

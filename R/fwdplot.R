@@ -2,8 +2,8 @@
 #' @title Forward plot(s) to monitor selected statistic(s)/method(s).
 #'
 #' @description This function generates forward plot(s) to monitor selected statistic(s) and/or method(s).
-#' The function creates the plot of the selected statistic(s) for each iteration of forward search algorithm.
-#' The selected statistic(s) to be monitored can be P-score; z-values by back-calculation method to derive indirect estimates
+#' The function creates a plot of the selected statistic through the search of forward search algorithm.
+#' The selected statistic to be monitored can be P-score; z-values by back-calculation method to derive indirect estimates
 #' from direct pairwise comparisons and network estimates approach;
 #' standardized residuals; heterogeneity variance estimator; cook distance; ratio of variances;
 #' Q statistics (Overall heterogeneity / inconsistency Q statistic (\code{Q}), overall heterogeneity Q statistic (\code{Q}),
@@ -13,9 +13,11 @@
 #' fwdplot(x, stat, select.st = "NULL")
 #'
 #' @param x an object of class NMAoutlier (mandatory).
-#' @param stat statistical measure(s) to be monitored in forward plot(s) (mandatory), available choices pscore; nsplit; estand; heterog; cook; ratio; Q.
-#' @param select.st choice to monitor seleced statistic(s) (P-scores/z-values of disagreement of direct and indirect evidence/standardized resiluals) for selected item(s) (treatment(s)/comparison(s)/study(studies))
-#' @return forward plot(s) for selected statistic(s)/method(s).
+#' @param stat statistical measure to be monitored in forward plot(s) (mandatory), available choice is: pscore; nsplit; estand; heterog; cook; ratio; Q.
+#' @param select.st selected statistic (pscore/nsplit/estand) for selected treatment(s)/comparison(s)/study
+#' @details Plot of statistical measures for each iteration of search.
+#' Vertical axis provides iterations of search. Horizontal axis provides a monitoring statistical measure.
+#' @return forward plot for selected statistic/method.
 #'
 #' @examples
 #' \dontrun{

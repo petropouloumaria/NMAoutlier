@@ -9,12 +9,12 @@ fwdplot(x, stat, select.st = "NULL")
 \arguments{
 \item{x}{an object of class NMAoutlier (mandatory).}
 
-\item{stat}{statistical measure(s) to be monitored in forward plot(s) (mandatory), available choices pscore; nsplit; estand; heterog; cook; ratio; Q.}
+\item{stat}{statistical measure to be monitored in forward plot(s) (mandatory), available choice is: pscore; nsplit; estand; heterog; cook; ratio; Q.}
 
-\item{select.st}{choice to monitor seleced statistic(s) (P-scores/z-values of disagreement of direct and indirect evidence/standardized resiluals) for selected item(s) (treatment(s)/comparison(s)/study(studies))}
+\item{select.st}{selected statistic (pscore/nsplit/estand) for selected treatment(s)/comparison(s)/study}
 }
 \value{
-forward plot(s) for selected statistic(s)/method(s).
+forward plot for selected statistic/method.
 }
 \description{
 This function generates forward plot(s) to monitor selected statistic(s) and/or method(s).
@@ -25,13 +25,17 @@ standardized residuals; heterogeneity variance estimator; cook distance; ratio o
 Q statistics (Overall heterogeneity / inconsistency Q statistic (\code{Q}), overall heterogeneity Q statistic (\code{Q}),
 between-designs Q statistic (\code{Q}), based on a random effects design-by-treatment interaction model).
 }
+\details{
+Plot of statistical measures for each iteration of search.
+Vertical axis provides iterations of search. Horizontal axis provides a monitoring statistical measure.
+}
 \examples{
 \dontrun{
 data(Dias2013)
 
 # forward search algorithm
 FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
-                       studlab, data = Dias2013, 
+                       studlab, data = Dias2013,
                        small.values = "bad")
 
 FSresult
