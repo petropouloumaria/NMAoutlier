@@ -24,7 +24,7 @@ Arm-level data can be found in Gupta and Paquet (2013).
 
 \source{
 Gupta AK, Paquet M (2013). Network meta-analysis of the outcome “participant complete clearance” in nonimmunosuppressed participants of eight interventions for actinic keratosis: a follow-up on a Cochrane review.
-Evidence Synthesis for Decision Making 4: Inconsistency in networks of evidence based on randomized controlled trials. British Journal of Dermatology 169(2):250-9.
+Evidence Synthesis for Decision Making 4: Inconsistency in networks of evidence based on randomized controlled trials. British Journal of Dermatology \bold{169}(2), 250-9.
 }
 
 \examples{

@@ -23,7 +23,7 @@ Arm-level data can be found in Schoenberg et al. (2013).
 }
 
 \source{
-Schoenberg MB, Marx S, Kersten JF, Rösch T, Belle S, Kähler G, Vassiliou MC, Lüth S, von Renteln D (2013). Laparoscopic Heller myotomy versus endoscopic balloon dilatation for the treatment of achalasia: a network meta-analysis. Annals of Surgery 258(6):943-52.
+Schoenberg MB, Marx S, Kersten JF, Rösch T, Belle S, Kähler G, Vassiliou MC, Lüth S, von Renteln D (2013). Laparoscopic Heller myotomy versus endoscopic balloon dilatation for the treatment of achalasia: a network meta-analysis. Annals of Surgery \bold{258}(6), 943-52.
 }
 
 \examples{
