@@ -41,12 +41,12 @@
   \url{https://github.com/petropouloumaria/NMAoutlier}.
 }
 \references{
-  Rücker G (2012),
+  Rücker G (2012).
   Network meta-analysis, electrical networks and graph theory.
   \emph{Research Synthesis Methods},
   \bold{3}, 312--24.
 
-  Rücker G & Schwarzer G (2015),
+  Rücker G & Schwarzer G (2015).
   Ranking treatments in frequentist network meta-analysis works
   without resampling methods.
   \emph{BMC Medical Research Methodology},
@@ -56,12 +56,12 @@
   Checking consistency in mixed treatment comparison meta-analysis.
   \emph{Statistics in Medicine}, \bold{29}, 932--44.
 
-  Krahn U, Binder H, König J (2013),
+  Krahn U, Binder H, König J (2013).
   A graphical tool for locating inconsistency in network
   meta-analyses.
   \emph{BMC Medical Research Methodology}, \bold{13}, 35.
 
-  Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I, Mavridis D (2018),
+  Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I, Mavridis D (2018).
   A forward search algorithm for detection of extreme study effects
   in network meta-analysis. Manuscript.
 
