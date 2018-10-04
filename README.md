@@ -17,20 +17,13 @@ A package that provides forward search algorithm for detecting outlying or influ
 -   Outlier and influential case diagnostics measures.
 -   Ranking measures.
 -   Heterogeneity and inconsistency measures.
--   Forward plot for summary estimates and their confidence intervals.
+-   Forward plots for summary estimates and their confidence intervals.
 -   Forward plots for monitored measures: outlier and influential case diagnostics measures, ranking measures, heterogeneity and inconsistency measures.
 
 Installation
 ------------
 
 You can install the **NMAoutlier** package from GitHub repository as follows:
-
-Installation using R package **[ghit](https://cran.r-project.org/package=ghit)** (without [Rtools](https://cran.r-project.org/bin/windows/Rtools/) for Windows):
-
-``` r
-install.packages("ghit")
-ghit::install_github("petropouloumaria/NMAoutlier")
-```
 
 Installation using R package **[devtools](https://cran.r-project.org/package=devtools)** (with [Rtools](https://cran.r-project.org/bin/windows/Rtools/) for Windows):
 
