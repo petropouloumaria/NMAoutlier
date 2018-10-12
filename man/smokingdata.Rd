@@ -10,7 +10,7 @@ The outcome is the number of individuals with successful smoking cessation at 6 
 These data are in contrast format with effect size odds ratio (OR) and its standard error.
 Arm-level data is a part of datasets in \bold{netmeta} package; dataset name smokingcessation.
 Transformation from arm-level to contrast-level data has been conducted with function
-(\code{\link{pairwise}}) from \bold{netmeta} package.
+(\code{pairwise}) from \bold{netmeta} package.
 The data are used as an example in Dias et al. (2013).
 }
 \usage{data(smokingdata)}
