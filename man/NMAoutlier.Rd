@@ -27,7 +27,7 @@ NMAoutlier(TE, seTE, treat1, treat2, studlab, data = NULL,
 
 \item{crit2}{A character string indicating the criterion to be used for selecting the study entered from non-basic set to basic set, this criterion may be the minimum of median absolute residuals ("R") or the maximum of median absolute likelihood contributions ("L"). Default value is "R".}
 
-\item{studies}{An optional vector specifying the number of the initial subset of studies. The default value is the maximum of the number of treatments and the rounded number of 20 percent of the total number of studies.}
+\item{studies}{An optional vector specifying the number of the initial subset of studies. The default value is the maximum of the number of treatments and the 20 percent of the total number of studies.}
 
 \item{P}{An optional vector specifying the number of candidate sample of studies (with length equal to \code{studies}) for the choice of the initial subset. Default value is 100.}
 
@@ -64,7 +64,7 @@ An object of class \code{NMAoutlier}; a list containing the following components
    \item{call}{Function call}
 }
 \description{
-Conduct forward search algorithm for detection of
+Employs the forward search algorithm for detection of
 outlying and influential studies fitted in
 network meta-analysis model from graph-theory. This is a diagnostic tool for detection
 evidence of outlying and/or influential studies.
@@ -155,11 +155,11 @@ from direct pairwise comparisons and network estimates (Dias et al. (2010), Kön
 }
 \examples{
 \dontrun{
-data(Dias2013)
+data(smokingdata)
 
 # forward search algorithm
 FSresult1 <- NMAoutlier(TE, seTE, treat1, treat2,
-                        studlab, data = Dias2013,
+                        studlab, data = smokingdata,
                         small.values = "bad")
 
 FSresult1
@@ -171,7 +171,7 @@ FSresult1$basic
 # with the maximum of absolute likelihood contributions ("L")
 
 FSresult2 <- NMAoutlier(TE, seTE, treat1, treat2, studlab,
-                        data = Dias2013,
+                        data = smokingdata,
                         crit1 = "L", crit2 = "L",
                         small.values = "bad")
 

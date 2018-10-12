@@ -1,6 +1,6 @@
-\name{Dias2013}
+\name{smokingdata}
 \docType{data}
-\alias{Dias2013}
+\alias{smokingdata}
 \title{
 Network meta-analysis comparing smoking cessation counseling programs.
 }
@@ -8,9 +8,12 @@ Network meta-analysis comparing smoking cessation counseling programs.
 Example of outlying detection in network meta-analysis comparing the relative effects of four smoking cessation counseling programs, no contact (A), self-help (B), individual counseling (C) and group counseling (D).
 The outcome is the number of individuals with successful smoking cessation at 6 to 12 months.
 These data are in contrast format with effect size odds ratio (OR) and its standard error.
-Arm-level data can be found in Dias et al.(2013).
+Arm-level data is a part of datasets in \bold{netmeta} package; dataset name smokingcessation.
+Transformation from arm-level to contrast-level data has been conducted with function
+(\code{\link{pairwise}}) from \bold{netmeta} package.
+The data are used as an example in Dias et al. (2013).
 }
-\usage{data(Dias2013)}
+\usage{data(smokingdata)}
 
 \format{A data frame in contrast format with the following columns:
   \describe{
@@ -27,12 +30,12 @@ Dias S, Welton NJ, Sutton AJ, Caldwell DM, Lu G and Ades AE (2013). Evidence Syn
 }
 
 \examples{
-data(Dias2013)
+data(smokingdata)
 
 # Conduct forward search algorithm
 # for the network of smoking cessation
 \donttest{FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
-                                 studlab, data = Dias2013,
+                                 studlab, data = smokingdata,
                                  small.values = "bad")}
 
 # Draw forward plot for Cook statistic measure

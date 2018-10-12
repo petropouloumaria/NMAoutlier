@@ -1,6 +1,6 @@
-\name{Gupta2013}
+\name{keratosis}
 \docType{data}
-\alias{Gupta2013}
+\alias{keratosis}
 \title{
 Network meta-analysis comparing interventions for actinic keratosis.
 }
@@ -8,9 +8,9 @@ Network meta-analysis comparing interventions for actinic keratosis.
 Example of network meta-analysis with inconsistency. The dataset comparing the relative effects of  interventions, placebo/vehicle (including placebo-PDT)(treatment 1), diclofenac 3 percent in 2.5 percent hyaluronic acid (DCF/HA) (treatment 2), 5-fluorouracil (5-FU) 0.5 percent (treatment 3), imiquimod (IMI) 5 percent (treatment 4), methyl aminolaevulinate (MAL)-PDT (treatment 5), 5-aminolaevulinic acid (ALA)-photodynamic therapy (PDT) (treatment 6), 5-fluorouracil (5-FU) 5.0 percent (treatment 7), cryotherapy (treatment 8), ingenol mebutate (IMB) 0.015–0.05 percent (treatment 9).
 The outcome is the number of individuals with participant complete clearance or an equivalent efficacy.
 These data are in contrast format with effect size odds ratio (OR) and its standard error.
-Arm-level data can be found in Gupta and Paquet (2013).
+Arm-level data used in Gupta and Paquet (2013).
 }
-\usage{data(Gupta2013)}
+\usage{data(keratosis)}
 
 \format{A data frame in contrast format with the following columns:
   \describe{
@@ -28,12 +28,12 @@ Evidence Synthesis for Decision Making 4: Inconsistency in networks of evidence 
 }
 
 \examples{
-data(Gupta2013)
+data(keratoris)
 
 # Conduct forward search algorithm
-# for the network of smoking cessation
+# for the network of actinic keratoris
 \donttest{FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
-                                 studlab, data = Gupta2013)}
+                                 studlab, data = keratoris)}
 
 # Draw forward plot for z-values
 # from difference of direct and indirect evidence

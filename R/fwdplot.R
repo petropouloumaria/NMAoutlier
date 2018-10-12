@@ -2,9 +2,9 @@
 #' @title Forward plot(s) to monitor selected statistic(s)/method(s).
 #'
 #' @description This function generates forward plot(s) to monitor selected statistic(s) and/or method(s).
-#' The function creates a plot of the selected statistic through the search of forward search algorithm.
-#' The selected statistic to be monitored can be P-score; z-values by back-calculation method to derive indirect estimates
-#' from direct pairwise comparisons and network estimates approach;
+#' The function creates a plot of the selected statistic throughout the iterations of the forward search algorithm.
+#' Candidate statistics to be monitored can be P-score; z-values by back-calculation method to derive indirect estimates
+#' from direct pairwise comparisons and network estimates;
 #' standardized residuals; heterogeneity variance estimator; cook distance; ratio of variances;
 #' Q statistics (Overall heterogeneity / inconsistency Q statistic (\code{Q}), overall heterogeneity Q statistic (\code{Q}),
 #' between-designs Q statistic (\code{Q}), based on a random effects design-by-treatment interaction model).
@@ -21,11 +21,11 @@
 #'
 #' @examples
 #' \dontrun{
-#' data(Dias2013)
+#' data(smokingdata)
 #'
 #' # forward search algorithm
 #' FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
-#'                        studlab, data = Dias2013,
+#'                        studlab, data = smokingdata,
 #'                        small.values = "bad")
 #'
 #' FSresult
