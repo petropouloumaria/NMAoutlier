@@ -6,7 +6,11 @@ Imports: netmeta (>= 0.9-7), stats (>= 3.4.3),
          MASS (>= 7.3-47), parallel (>= 3.4.1), 
          ggplot2(>= 3.0.0), reshape2(>= 1.4.3), 
          gridExtra(>= 2.3)
-Authors@R: person("Maria", "Petropoulou", role = c("aut", "cre"), email = "mpetrop@cc.uoi.gr")
+Authors@R: c(person("Maria","Petropoulou", email = "mpetrop@cc.uoi.gr", role=c("aut","cre")),
+       person("Guido","Schwarzer", role=c("aut")),
+       person("Gerta","Rücker", role=c("aut")),
+       person("Agapios","Panos", role=c("aut")),
+       person("Dimitris","Mavridis", role=c("aut")))
 Date: 2018-9-6
 URL: https://github.com/petropouloumaria/NMAoutlier
 Description: A package that employs the forward search (FS) algorithm for detecting outlying or influential studies in network meta-analysis (NMA).
@@ -24,9 +28,4 @@ Encoding: UTF-8
 RoxygenNote: 6.0.1
 NeedsCompilation: no
 Packaged: 2018-03-20 12:33:50 UTC; marak
-Author: c(person("Maria","Petropoulou", role=c("aut","cre")),
-       person("Guido","Schwarzer", role=c("aut")),
-       person("Gerta","Rücker", role=c("aut")),
-       person("Agapios","Panos", role=c("aut")),
-       person("Dimitris","Mavridis", role=c("aut")))
 Maintainer: Maria Petropoulou <mpetrop@cc.uoi.gr>
