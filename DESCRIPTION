@@ -24,4 +24,7 @@ RoxygenNote: 6.0.1
 NeedsCompilation: no
 Packaged: 2018-03-20 12:33:50 UTC; marak
 Author: Maria Petropoulou [aut,cre],
+       Guido Schwarzer [aut],
+       Agapios Panos [aut],
+       Dimitris Mavridis [aut]
 Maintainer: Maria Petropoulou <mpetrop@cc.uoi.gr>
