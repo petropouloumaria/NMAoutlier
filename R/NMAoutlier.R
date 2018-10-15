@@ -171,14 +171,25 @@
 #'
 #' @examples
 #' \dontrun{
-#' data(smokingdata)
+#' # We use the smoking cessation dataset from netmeta package
+#'
+#' data(smokingcessation, package = "netmeta")
+#'
+#' # Transform data from arm-based format to contrast-based format
+#' # We use 'sm' argument for odds ratios.
+#' # We use function pairwise from netmeta package
+#'
+#' library(netmeta)
+#' p1 <- pairwise(list(treat1, treat2, treat3),
+#'               list(event1, event2, event3),
+#'               list(n1, n2, n3),
+#'               data=smokingcessation,
+#'               sm="OR")
+#' p1
 #'
 #' # forward search algorithm
-#' FSresult1 <- NMAoutlier(TE, seTE, treat1, treat2,
-#'                         studlab, data = smokingdata,
-#'                         small.values = "bad")
+#' FSresult1 <- NMAoutlier(p1, small.values = "bad")
 #'
-#' FSresult1
 #'
 #' # basic set for each iteration of forward search algorithm
 #' FSresult1$basic
@@ -186,9 +197,7 @@
 #' # forward search algorithm using the criteria (crit1, crit2)
 #' # with the maximum of absolute likelihood contributions ("L")
 #'
-#' FSresult2 <- NMAoutlier(TE, seTE, treat1, treat2, studlab,
-#'                         data = smokingdata,
-#'                         crit1 = "L", crit2 = "L",
+#' FSresult2 <- NMAoutlier(p1, crit1 = "L", crit2 = "L",
 #'                         small.values = "bad")
 #'
 #' FSresult2

@@ -1,6 +1,6 @@
-\name{Laparoscopic}
+\name{laparoscopic}
 \docType{data}
-\alias{Laparoscopic}
+\alias{laparoscopic}
 \title{
 Network meta-analysis comparing the effects after Laparoscopic Heller myotomy (LHM).
 }
@@ -10,7 +10,7 @@ The outcome is the number of individuals with successful rates at 12 months.
 These data are in contrast format with effect size odds ratio (OR) and its standard error.
 Arm-level data can be found in Schoenberg et al. (2013).
 }
-\usage{data(Laparoscopic)}
+\usage{data(laparoscopic)}
 
 \format{A data frame in contrast format with the following columns:
   \describe{
@@ -27,12 +27,12 @@ Schoenberg MB, Marx S, Kersten JF, Rösch T, Belle S, Kähler G, Vassiliou MC, L
 }
 
 \examples{
-data(Laparoscopic)
+data(laparoscopic)
 
 # Conduct forward search algorithm
 # for the network of Laparoscopic Heller myotomy
 \donttest{FSresult <- NMAoutlier(TE, seTE, treat1, treat2,
-                                 studlab, data = Laparoscopic)}
+                                 studlab, data = laparoscopic)}
 
 # Draw forward plot for z-values
 # from difference of direct and indirect evidence
