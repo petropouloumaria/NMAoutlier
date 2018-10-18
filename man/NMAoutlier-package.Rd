@@ -11,8 +11,8 @@
 \details{
   R package \bold{NMAoutlier} providing the methodology for
   detection of extreme study effects by Petropoulou et al. (2018).
-  We developed the methodology for using the forward search algorithm
-  in network meta-analysis models for detecting outlying and influential studies.
+  We developed the methodology for using the forward search (FS) algorithm
+  in network meta-analysis (NMA) models for detecting outlying and influential studies.
   The network meta-analysis model considered is the one developed by
   Rücker (2012) using graph-theory.
   \bold{NMAoutlier} package implements the following:
