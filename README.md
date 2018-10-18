@@ -35,16 +35,36 @@ devtools::install_github("petropouloumaria/NMAoutlier")
 Usage
 -----
 
-Example of outlying detection in network meta-analysis comparing the relative effects of four smoking cessation counseling programs, no contact (A), self-help (B), individual counseling (C) and group counseling (D). The outcome is the number of individuals with successful smoking cessation at 6 to 12 months. These data are in contrast format with effect size odds ratio (OR) and its standard error. Arm-level data can be found in Dias et al.(2013).
+Example of outlying detection in network meta-analysis comparing the relative effects of four smoking cessation counseling programs, no contact (A), self-help (B), individual counseling (C) and group counseling (D). The outcome is the number of individuals with successful smoking cessation at 6 to 12 months. The dataset used as example in Dias et al.(2013). The dataset for smoking cessation is a part of data in netmeta package.
 
 Reference: Dias S, Welton NJ, Sutton AJ, Caldwell DM, Lu G and Ades AE (2013). Evidence Synthesis for Decision Making 4: Inconsistency in networks of evidence based on randomized controlled trials. Medical Decision Making 33, 641–656.
 
-You can load the **NMAoutlier** library and the dataset and you can conduct the forward search algorithm with function **NMAoutlier** as follows:
+You can load the **NMAoutlier** library 
 
 ``` r
 library(NMAoutlier)
-data(Dias2013)
-FSresult <- NMAoutlier(TE, seTE, treat1, treat2, studlab, data = Dias2013, small.values = "bad")
+```
+
+Load the dataset smoking cessation from netmeta package. 
+``` r
+data(smokingcessation, package = "netmeta")
+```
+
+Transform data from arm-based format to contrast-based format using the function pairwise from netmeta package.
+
+``` r
+library(netmeta)
+p1 <- pairwise(list(treat1, treat2, treat3),
+              list(event1, event2, event3),
+              list(n1, n2, n3),              
+              data=smokingcessation,
+              sm="OR")
+```
+
+You can conduct the forward search algorithm with function **NMAoutlier** as follows:
+
+``` r
+FSresult <- NMAoutlier(p1, small.values = "bad")
 ```
 
 You can see the forward plots with function **fwdplot** for monitoring measures. For example, you can plot the influential diagnostic measure Cook distance as follows:
