@@ -9,7 +9,7 @@ Imports: netmeta (>= 0.9-7), stats (>= 3.4.3),
 Date: 2018-10-18
 URL: https://github.com/petropouloumaria/NMAoutlier
 Description: A set of functions providing the forward search algorithm for detecting outlier or influential studies in network meta-analysis.
-               Provides the length of the initial oultying-free clean subset for forward search algorithm.
+               Provides the length of the initial subset for forward search algorithm.
                Iterations of forward search algorithm.
                Basic set of studies in each step of forward search algorithm.
                Summary estimates and their confidence intervals in each step of forward search algorithm.
