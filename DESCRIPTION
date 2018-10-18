@@ -1,6 +1,6 @@
 Package: NMAoutlier
 Title: Forward Search Algorithm in Network Meta-analysis
-Version: 0.1.9
+Version: 0.1.10
 Depends: R (>= 3.0.0)
 Imports: netmeta (>= 0.9-7), stats (>= 3.4.3),
          MASS (>= 7.3-47), parallel (>= 3.4.1), 
