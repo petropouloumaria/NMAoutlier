@@ -25,7 +25,7 @@ Installation
 
 You can install the **NMAoutlier** package from GitHub repository as follows:
 
-Installation using R package **[devtools](https://cran.r-project.org/package=devtools)** (with [Rtools](https://cran.r-project.org/bin/windows/Rtools/) for Windows):
+Installation using R package **[devtools](https://cran.r-project.org/package=devtools)**:
 
 ``` r
 install.packages("devtools")

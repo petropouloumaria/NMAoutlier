@@ -1,23 +1,27 @@
-***NMAoutlier, version 0.1.7 ***
+*** NMAoutlier, version 0.1.7 ***
 
 - new datasets Laparoscopic and Gupta2013 added
 
-***NMAoutlier, version 0.1.6 ***
+
+*** NMAoutlier, version 0.1.6 ***
 
 - changed matplot to ggplot2 for the graphs of fwdplot and fwdplotest
 
-***NMAoutlier, version 0.1.5 ***
+
+*** NMAoutlier, version 0.1.5 ***
 
 - added logo
 - added README file
 - added data (Dias 2013)
 - deleted Indices function and implemented a solution inline where needed
 
-***NMAoutlier, version 0.1.4 ***
+
+*** NMAoutlier, version 0.1.4 ***
 
 - performance improvements for Subset
 - removed the Subset function and integrated the code to the InitialSubset file.
 
-***NMAoutlier, version 0.1.3 ***
 
-- initial release on github
+*** NMAoutlier, version 0.1.3 ***
+
+- initial release on GitHub
