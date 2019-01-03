@@ -8,7 +8,9 @@ netmet(TE, seTE, treat1, treat2, studlab, ind.bs, reference, small.values,
   names.treat)
 }
 \arguments{
-\item{TE}{Estimate of treatment effect, i.e. difference between first and second treatment (e.g. log odds ratio, mean difference, or log hazard ratio).}
+\item{TE}{Estimate of treatment effect, i.e. difference between
+first and second treatment (e.g. log odds ratio, mean difference,
+or log hazard ratio).}
 
 \item{seTE}{Standard error of treatment estimate.}
 
@@ -16,13 +18,16 @@ netmet(TE, seTE, treat1, treat2, studlab, ind.bs, reference, small.values,
 
 \item{treat2}{Label/Number for second treatment.}
 
-\item{studlab}{Study labels (important when multi arm studies are included).}
+\item{studlab}{Study labels (important when multi arm studies are
+included).}
 
 \item{ind.bs}{indices of studies in basic set}
 
 \item{reference}{Reference treatment group}
 
-\item{small.values}{small.values for P-score. A character string indicating if small values are considered bad ("bad") or good ("good").}
+\item{small.values}{small.values for P-score. A character string
+indicating if small values are considered bad ("bad") or good
+("good").}
 
 \item{names.treat}{names of treatments}
 }

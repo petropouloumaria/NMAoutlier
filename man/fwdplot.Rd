@@ -2,57 +2,78 @@
 % Please edit documentation in R/fwdplot.R
 \name{fwdplot}
 \alias{fwdplot}
-\title{Forward plot(s) to monitor selected statistic(s)/method(s).}
+\title{Forward plot(s) to monitor selected statistic(s)/method(s)}
 \usage{
 fwdplot(x, stat, select.st = "NULL")
 }
 \arguments{
 \item{x}{an object of class NMAoutlier (mandatory).}
 
-\item{stat}{statistical measure to be monitored in forward plot(s) (mandatory), available choice is: pscore; nsplit; estand; heterog; cook; ratio; Q.}
+\item{stat}{statistical measure to be monitored in forward plot(s)
+(mandatory), available choice is: pscore; nsplit; estand;
+heterog; cook; ratio; Q.}
 
-\item{select.st}{selected statistic (pscore/nsplit/estand) for selected treatment(s)/comparison(s)/study}
-}
-\value{
-forward plot for selected statistic/method.
+\item{select.st}{selected statistic (pscore/nsplit/estand) for
+selected treatment(s)/comparison(s)/study}
 }
 \description{
-This function generates forward plot(s) to monitor selected statistic(s) and/or method(s).
-The function creates a plot of the selected statistic throughout the iterations of the forward search algorithm.
-Candidate statistics to be monitored can be P-score; z-values by back-calculation method to derive indirect estimates
-from direct pairwise comparisons and network estimates;
-standardized residuals; heterogeneity variance estimator; cook distance; ratio of variances;
-Q statistics (Overall heterogeneity / inconsistency Q statistic (\code{Q}), overall heterogeneity Q statistic (\code{Q}),
-between-designs Q statistic (\code{Q}), based on a random effects design-by-treatment interaction model).
+This function generates forward plot(s) to monitor
+  selected statistic(s) and/or method(s).  The function creates a
+  plot of the selected statistic throughout the iterations of the
+  forward search algorithm.  Candidate statistics to be monitored
+  can be P-score; z-values by back-calculation method to derive
+  indirect estimates from direct pairwise comparisons and network
+  estimates; standardized residuals; heterogeneity variance
+  estimator; cook distance; ratio of variances; Q statistics
+  (Overall heterogeneity / inconsistency Q statistic (\code{Q}),
+  overall heterogeneity Q statistic (\code{Q}), between-designs Q
+  statistic (\code{Q}), based on a random effects
+  design-by-treatment interaction model).
 }
 \details{
 Plot of statistical measures for each iteration of search.
-Vertical axis provides iterations of search. Horizontal axis provides a monitoring statistical measure.
+  Vertical axis provides iterations of search. Horizontal axis
+  provides a monitoring statistical measure.
 }
 \examples{
-\dontrun{
-# We use the smoking cessation dataset from netmeta package
+data(smokingcessation, package = "netmeta")
+smokingcessation$id <- 1:nrow(smokingcessation)
 
+study35 <- subset(smokingcessation, id \%in\% 3:5)
+p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
+                        list(event1, event2, event3),
+                        list(n1, n2, n3),
+                        data = study35,
+                        sm = "OR")
+
+# Forward search algorithm
+#
+FSresult <- NMAoutlier(p1, small.values = "bad")
+
+# forward plot for Cook's distance
+fwdplot(FSresult, "cook")
+
+# forward plot for ratio of variances
+fwdplot(FSresult, "ratio")
+\dontrun{
 data(smokingcessation, package = "netmeta")
 
 # Transform data from arm-based format to contrast-based format
 # We use 'sm' argument for odds ratios.
 # We use function pairwise from netmeta package
 
-library(netmeta)
-p1 <- pairwise(list(treat1, treat2, treat3),
-              list(event1, event2, event3),
-              list(n1, n2, n3),
-              data=smokingcessation,
-              sm="OR")
-p1
+p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
+                        list(event1, event2, event3),
+                        list(n1, n2, n3),
+                        data=smokingcessation,
+                        sm="OR")
 
 # forward search algorithm
 FSresult <- NMAoutlier(p1, small.values = "bad")
 
 FSresult
 
-# forward plot for cook distance
+# forward plot for Cook's distance
 fwdplot(FSresult, "cook")
 
 # forward plot for ratio of variances
@@ -64,10 +85,10 @@ fwdplot(FSresult, "heterog")
 # forward plot for Q statistics
 fwdplot(FSresult, "Q")
 
-# forward plot for p-scores
+# forward plot for P-scores
 fwdplot(FSresult, "pscore")
 
-# forward plot monitoring p-scores for treatment A
+# forward plot monitoring P-scores for treatment A
 fwdplot(FSresult,"pscore", "A")
 
 # forward plot for z-values of disagreement of direct and indirect evidence
@@ -79,9 +100,7 @@ fwdplot(FSresult, "nsplit", "A:B")
 
 # forward plot for standardized residuals for study 4
 fwdplot(FSresult, "estand", 4)
-
 }
-
 }
 \author{
 Maria Petropoulou <mpetrop@cc.uoi.gr>

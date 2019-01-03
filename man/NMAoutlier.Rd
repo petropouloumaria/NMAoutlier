@@ -2,7 +2,7 @@
 % Please edit documentation in R/NMAoutlier.R
 \name{NMAoutlier}
 \alias{NMAoutlier}
-\title{Forward search algorithm in network meta-analysis.}
+\title{Forward search algorithm in network meta-analysis}
 \usage{
 NMAoutlier(TE, seTE, treat1, treat2, studlab, data = NULL,
            crit1 = "R", crit2 = "R",
@@ -11,7 +11,9 @@ NMAoutlier(TE, seTE, treat1, treat2, studlab, data = NULL,
            small.values = "good")
 }
 \arguments{
-\item{TE}{Estimate of treatment effect, i.e. difference between first and second treatment (e.g. log odds ratio, mean difference, or log hazard ratio).}
+\item{TE}{Estimate of treatment effect, i.e. difference between
+first and second treatment (e.g. log odds ratio, mean difference,
+or log hazard ratio).}
 
 \item{seTE}{Standard error of treatment estimate.}
 
@@ -19,17 +21,31 @@ NMAoutlier(TE, seTE, treat1, treat2, studlab, data = NULL,
 
 \item{treat2}{Label/Number for second treatment.}
 
-\item{studlab}{Study labels (important when multi arm studies are included).}
+\item{studlab}{Study labels (important when multi arm studies are
+included).}
 
 \item{data}{A data frame containing the study information.}
 
-\item{crit1}{A character string indicating the criterion to be used for selecting the initial subset, this criterion may be the minimum of median absolute residuals ("R") or the maximum of median absolute likelihood contributions ("L"). Default value is "R".}
+\item{crit1}{A character string indicating the criterion to be used
+for selecting the initial subset, this criterion may be the
+minimum of median absolute residuals ("R") or the maximum of
+median absolute likelihood contributions ("L"). Default value is
+"R".}
 
-\item{crit2}{A character string indicating the criterion to be used for selecting the study entered from non-basic set to basic set, this criterion may be the minimum of median absolute residuals ("R") or the maximum of median absolute likelihood contributions ("L"). Default value is "R".}
+\item{crit2}{A character string indicating the criterion to be used
+for selecting the study entered from non-basic set to basic set,
+this criterion may be the minimum of median absolute residuals
+("R") or the maximum of median absolute likelihood contributions
+("L"). Default value is "R".}
 
-\item{studies}{An optional vector specifying the number of the initial subset of studies. The default value is the maximum of the number of treatments and the 20 percent of the total number of studies.}
+\item{studies}{An optional vector specifying the number of the
+initial subset of studies. The default value is the maximum of
+the number of treatments and the 20 percent of the total number
+of studies.}
 
-\item{P}{An optional vector specifying the number of candidate sample of studies (with length equal to \code{studies}) for the choice of the initial subset. Default value is 100.}
+\item{P}{An optional vector specifying the number of candidate
+sample of studies (with length equal to \code{studies}) for the
+choice of the initial subset. Default value is 100.}
 
 \item{sm}{A character string indicating underlying summary measure,
 e.g., \code{"RD"}, \code{"RR"}, \code{"OR"}, \code{"ASD"},
@@ -37,8 +53,11 @@ e.g., \code{"RD"}, \code{"RR"}, \code{"OR"}, \code{"ASD"},
 
 \item{reference}{Reference treatment group.}
 
-\item{small.values}{A character string indicating if small values are considered beneficial (option:"good") or harmfull (option:"bad") on outcome.
-This is requirement for p-scores computation. The default value is considered benefial outcome ("good").}
+\item{small.values}{A character string indicating if small values
+are considered beneficial (option:"good") or harmfull
+(option:"bad") on outcome.  This is requirement for p-scores
+computation. The default value is considered benefial outcome
+("good").}
 }
 \value{
 An object of class \code{NMAoutlier}; a list containing the following components:
@@ -65,127 +84,151 @@ An object of class \code{NMAoutlier}; a list containing the following components
 }
 \description{
 Employs the forward search algorithm for detection of
-outlying and influential studies fitted in
-network meta-analysis model from graph-theory. This is a diagnostic tool for detection
-evidence of outlying and/or influential studies.
-It can also be used to detect studies that are potential sources
-for heterogeneity and inconsistency.
-Monitoring measures during the search are: outlying and influential measures
-(standardized residuals, Cook statistic, ratio of variance);
-ranking measures (P-scores);
-heterogeneity and inconsistency measures;
-((\code{Q}) statistics for overall heterogeneity / inconsistency,
-overall heterogeneity, inconsistency by design-by-treatment
-interaction model, z-values for comparison between direct and indirect evidence by back-calculation method).
-A description of the methodology can be found in Petropoulou et al. 2018.
+  outlying and influential studies fitted in network meta-analysis
+  model from graph-theory. This is a diagnostic tool for detection
+  evidence of outlying and/or influential studies.  It can also be
+  used to detect studies that are potential sources for
+  heterogeneity and inconsistency.  Monitoring measures during the
+  search are: outlying and influential measures (standardized
+  residuals, Cook statistic, ratio of variance); ranking measures
+  (P-scores); heterogeneity and inconsistency measures; ((\code{Q})
+  statistics for overall heterogeneity / inconsistency, overall
+  heterogeneity, inconsistency by design-by-treatment interaction
+  model, z-values for comparison between direct and indirect
+  evidence by back-calculation method).  A description of the
+  methodology can be found in Petropoulou et al. 2018.
 }
 \details{
-Description of methodology by fitting forward search algorithm in network meta-analysis.
-Methodology of FS algorithm fitted in NMA model from graph theory
-is described in Petropoulou et al. 2018.
+Description of methodology by fitting forward search algorithm in
+network meta-analysis. Methodology of FS algorithm fitted in NMA
+model from graph theory is described in Petropoulou et al. 2018.
 
-Let \emph{n} be the number of treatments in a network
-and let \emph{m} be the number of pairwise treatment comparisons.
-If there are only two-arm studies, \emph{m} is the number of studies.
-Let TE and seTE be the vectors of observed effects and their standard errors.
-Comparisons belonging to multi-arm studies are identified by
-identical study labels (argument \code{studlab}). It is therefore
-important to use identical study labels for all comparisons
-belonging to the same multi-arm study.
+Let \emph{n} be the number of treatments in a network and let
+\emph{m} be the number of pairwise treatment comparisons.  If there
+are only two-arm studies, \emph{m} is the number of studies.  Let
+TE and seTE be the vectors of observed effects and their standard
+errors.  Comparisons belonging to multi-arm studies are identified
+by identical study labels (argument \code{studlab}). It is
+therefore important to use identical study labels for all
+comparisons belonging to the same multi-arm study.
 
-The FS algorithm is a diagnostic iterative procedure.
-FS algorithm aparts from three steps.
-It starts with a subset of studies and it gradually adds studies until all studies entered.
-After the search, statistical measures are monitored for sharp changes.
-FS is a diagnostic method to identify outlying and influential studies.
+The FS algorithm is a diagnostic iterative procedure.  FS algorithm
+aparts from three steps.  It starts with a subset of studies and it
+gradually adds studies until all studies entered.  After the
+search, statistical measures are monitored for sharp changes.  FS
+is a diagnostic method to identify outlying and influential
+studies.
 
-FS algorithm starts with an initial subset of the dataset that is considered to be outlier-free.
-Let \emph{l} the size of the initial subset.
-Let (argument \code{P}) (eg. \emph{P} = 100) a large number of candidate subset of studies with size \emph{l}.
-The candidate subset that optimize the criterion (argument \code{crit1}) is taken as the initial subset (considered outlying-free).
-Criterion (\code{crit1}) to be used for selecting the initial subset, may be the minimum of median absolute residuals \code{"R"}
-or the maximum of median absolute likelihood contributions \code{"L"}.
-It is conventionally refer this subset as basic set,
-whereas the remaining studies constitute the non-basic set.
+FS algorithm starts with an initial subset of the dataset that is
+considered to be outlier-free.  Let \emph{l} the size of the
+initial subset.  Let (argument \code{P}) (eg. \emph{P} = 100) a
+large number of candidate subset of studies with size \emph{l}.
+The candidate subset that optimize the criterion (argument
+\code{crit1}) is taken as the initial subset (considered
+outlying-free).  Criterion (\code{crit1}) to be used for selecting
+the initial subset, may be the minimum of median absolute residuals
+\code{"R"} or the maximum of median absolute likelihood
+contributions \code{"L"}.  It is conventionally refer this subset
+as basic set, whereas the remaining studies constitute the
+non-basic set.
 
-The FS algorithm gradually adds studies from the non-basic to the basic subset
-based on how close the former studies are to the hypothesized model fit in the basic set.
-A study from non-basic set entered into the basic set if optimize the criterion (argument \code{crit2}).
-Criterion (\code{crit2}) for selecting the study from non-basic to basic set may be the minimum of median absolute residuals \code{"R"}
-or the maximum of median absolute likelihood contributions \code{"L"}.
-The algorithm order the studies according to their closeness to the basic set by
-adding the study that optimize the criterion from non-basic set to basic set.
+The FS algorithm gradually adds studies from the non-basic to the
+basic subset based on how close the former studies are to the
+hypothesized model fit in the basic set.  A study from non-basic
+set entered into the basic set if optimize the criterion (argument
+\code{crit2}).  Criterion (\code{crit2}) for selecting the study
+from non-basic to basic set may be the minimum of median absolute
+residuals \code{"R"} or the maximum of median absolute likelihood
+contributions \code{"L"}.  The algorithm order the studies
+according to their closeness to the basic set by adding the study
+that optimize the criterion from non-basic set to basic set.
 
-The process is repeated until all studies are entered in the basic set.
-The number of iterations of algorithm \emph{index} is equal to the total number of studies
-minus the number of studies entered into the initial subset.
-When all studies are included in the basic set,
-parameter estimates (summary estmates, heterogeneity estimator) and other statistics of interest (outlying and influential measures,
-heterogeneity and inconsistency measures, ranking measures) are monitored.
-For each basic set, network meta-analysis model from graph theory (Rücker (2012))
-is fitted (\code{netmeta} function) with R package \bold{netmeta} (Rücker et al. (2018)).
+The process is repeated until all studies are entered in the basic
+set.  The number of iterations of algorithm \emph{index} is equal
+to the total number of studies minus the number of studies entered
+into the initial subset.  When all studies are included in the
+basic set, parameter estimates (summary estmates, heterogeneity
+estimator) and other statistics of interest (outlying and
+influential measures, heterogeneity and inconsistency measures,
+ranking measures) are monitored.  For each basic set, network
+meta-analysis model from graph theory (Rücker, 2012) is fitted
+(\code{netmeta} function) with R package \bold{netmeta} (Rücker et
+al., 2018).
 
-
-Monitoring is helpful to identify outlying and/or influential studies.
-Monitoring statistical measures for the basic set in each FS iteration can be:
+Monitoring is helpful to identify outlying and/or influential
+studies.  Monitoring statistical measures for the basic set in each
+FS iteration can be:
 
 - \bold{Outlier and influential case diagnostics measures.}
-Standardized residuals (arithmetic mean in case of multi-arm studies);
-Cook statistic;
-Ratio of determinants of variance-covariance matrix
+Standardized residuals (arithmetic mean in case of multi-arm
+studies); Cook statistic; Ratio of determinants of
+variance-covariance matrix
 
 - \bold{Ranking measures.}
 P-scores for ranking of treatments (Rücker G & Schwarzer G (2015))
-for each basic set with implementation of (\code{netrank} function) from R package \bold{netmeta}.
+for each basic set with implementation of (\code{netrank} function)
+from R package \bold{netmeta}.
 
 - \bold{Heterogeneity and inconsistency measures.}
 Overall heterogeneity / inconsistency Q statistic (\code{Q})
-This is the design-based decomposition of Cochran Q as provided by Krahn et al.(2013);
-Overall heterogeneity Q statistic (\code{Q});
-Between-designs Q statistic (\code{Q}), based on a random effects model
-with square-root of between-study variance estimated
-embedded in a full design-by-treatment interaction model.
-Implementation with (\code{decomp.design} function) from R package \bold{netmeta};
-Z-values for comparison between direct and indirect evidence
-for each iteration of forward search algorithm.
-By monitoring difference of direct and indirect evidence, potential sources of consistency can be detected
-with the implementation of (\code{netsplit} function) from R package \bold{netmeta} for each basic set of the search.
-Based on the methodology with back-calculation method to derive indirect estimates
-from direct pairwise comparisons and network estimates (Dias et al. (2010), König et al. (2013)).
+This is the design-based decomposition of Cochran Q as provided by
+Krahn et al.(2013); Overall heterogeneity Q statistic (\code{Q});
+Between-designs Q statistic (\code{Q}), based on a random effects
+model with square-root of between-study variance estimated embedded
+in a full design-by-treatment interaction model.  Implementation
+with (\code{decomp.design} function) from R package \bold{netmeta};
+Z-values for comparison between direct and indirect evidence for
+each iteration of forward search algorithm.  By monitoring
+difference of direct and indirect evidence, potential sources of
+consistency can be detected with the implementation of
+(\code{netsplit} function) from R package \bold{netmeta} for each
+basic set of the search.  Based on the methodology with
+back-calculation method to derive indirect estimates from direct
+pairwise comparisons and network estimates (Dias et al., 2010;
+König et al., 2013).
 }
 \examples{
-\dontrun{
-# We use the smoking cessation dataset from netmeta package
+data(smokingcessation, package = "netmeta")
+smokingcessation$id <- 1:nrow(smokingcessation)
 
+study35 <- subset(smokingcessation, id \%in\% 3:5)
+p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
+                        list(event1, event2, event3),
+                        list(n1, n2, n3),
+                        data = study35,
+                        sm = "OR")
+
+# Forward search algorithm
+#
+FSresult1 <- NMAoutlier(p1, small.values = "bad")
+FSresult1
+\dontrun{
 data(smokingcessation, package = "netmeta")
 
 # Transform data from arm-based format to contrast-based format
 # We use 'sm' argument for odds ratios.
 # We use function pairwise from netmeta package
+#
+p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
+                        list(event1, event2, event3),
+                        list(n1, n2, n3),
+                        data = smokingcessation,
+                        sm = "OR")
 
-library(netmeta)
-p1 <- pairwise(list(treat1, treat2, treat3),
-              list(event1, event2, event3),
-              list(n1, n2, n3),
-              data=smokingcessation,
-              sm="OR")
-p1
-
-# forward search algorithm
+# Forward search algorithm
+#
 FSresult1 <- NMAoutlier(p1, small.values = "bad")
 
-
-# basic set for each iteration of forward search algorithm
+# Basic set for each iteration of forward search algorithm
+#
 FSresult1$basic
 
-# forward search algorithm using the criteria (crit1, crit2)
+# Forward search algorithm using the criteria (crit1, crit2)
 # with the maximum of absolute likelihood contributions ("L")
-
+#
 FSresult2 <- NMAoutlier(p1, crit1 = "L", crit2 = "L",
                         small.values = "bad")
-
 FSresult2
-
 }
 }
 \references{
@@ -198,7 +241,6 @@ Rücker G, Schwarzer G, Krahn U, König J (2018).
 netmeta: Network Meta-Analysis using Frequentist Methods.
 https://github.com/guido-s/netmeta http://meta-analysis-with-r.org.
 
-
 Rücker G & Schwarzer G (2015).
 Ranking treatments in frequentist network meta-analysis works
 without resampling methods.
@@ -209,15 +251,18 @@ Dias S, Welton NJ, Caldwell DM, Ades AE (2010).
 Checking consistency in mixed treatment comparison meta-analysis.
 \emph{Statistics in Medicine}, \bold{29}, 932-44.
 
-König J, Krahn U, Binder H (2013). Visualizing the flow of evidence in network meta-analysis and
-characterizing mixed treatment comparisons. \emph{Statistics in Medicine}, \bold{32}(30), 5414-29.
+König J, Krahn U, Binder H (2013).
+Visualizing the flow of evidence in network meta-analysis and
+characterizing mixed treatment comparisons.
+\emph{Statistics in Medicine}, \bold{32}(30), 5414-29.
 
 Krahn U, Binder H, König J (2013).
 A graphical tool for locating inconsistency in network
 meta-analyses.
 \emph{BMC Medical Research Methodology}, \bold{13}, 35.
 
-Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I, Mavridis D (2018).
+Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I,
+Mavridis D (2018).
 A forward search algorithm for detection of extreme study effects
 in network meta-analysis. Manuscript.
 }

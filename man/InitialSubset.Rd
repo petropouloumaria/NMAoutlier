@@ -4,11 +4,13 @@
 \alias{InitialSubset}
 \title{InitialSubset}
 \usage{
-InitialSubset(TE, seTE, treat1, treat2, studlab, crit1, studies, P, reference,
-  t1.label, t2.label)
+InitialSubset(TE, seTE, treat1, treat2, studlab, crit1, studies, P,
+  reference, t1.label, t2.label)
 }
 \arguments{
-\item{TE}{Estimate of treatment effect, i.e. difference between first and second treatment (e.g. log odds ratio, mean difference, or log hazard ratio).}
+\item{TE}{Estimate of treatment effect, i.e. difference between
+first and second treatment (e.g. log odds ratio, mean difference,
+or log hazard ratio).}
 
 \item{seTE}{Standard error of treatment estimate.}
 
@@ -16,16 +18,20 @@ InitialSubset(TE, seTE, treat1, treat2, studlab, crit1, studies, P, reference,
 
 \item{treat2}{Label/Number for second treatment.}
 
-\item{studlab}{Study labels (important when multi arm studies are included).}
+\item{studlab}{Study labels (important when multi arm studies are
+included).}
 
-\item{crit1}{A character string indicating the criterion to be used for selecting the initial subset,
-this criterion could be the minimum of median absolute residuals ("R") or
-the maximum of median absolute likelihood contributions ("L"). Default value is "R".}
+\item{crit1}{A character string indicating the criterion to be used
+for selecting the initial subset, this criterion could be the
+minimum of median absolute residuals ("R") or the maximum of
+median absolute likelihood contributions ("L"). Default value is
+"R".}
 
-\item{studies}{An optional vector specifying a subset of studies to be used.
-The default value is the number of studies.}
+\item{studies}{An optional vector specifying a subset of studies to
+be used.  The default value is the number of studies.}
 
-\item{P}{An optional vector specifying the number of samples for the choice of the initial subset.}
+\item{P}{An optional vector specifying the number of samples for
+the choice of the initial subset.}
 
 \item{reference}{Reference treatment group.}
 
@@ -37,6 +43,7 @@ The default value is the number of studies.}
 An initial clean subset of studies.
 }
 \description{
-Choose an initial clean (i.e. likely outlier-free) subset of studies.
+Choose an initial clean (i.e. likely outlier-free) subset of
+studies.
 }
 \keyword{internal}

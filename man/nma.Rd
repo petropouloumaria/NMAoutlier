@@ -7,7 +7,9 @@
 nma(TE, seTE, treat1, treat2, studlab, reference, names.treat)
 }
 \arguments{
-\item{TE}{Estimate of treatment effect, i.e. difference between first and second treatment (e.g. log odds ratio, mean difference, or log hazard ratio).}
+\item{TE}{Estimate of treatment effect, i.e. difference between
+first and second treatment (e.g. log odds ratio, mean difference,
+or log hazard ratio).}
 
 \item{seTE}{Standard error of treatment estimate.}
 
@@ -15,14 +17,16 @@ nma(TE, seTE, treat1, treat2, studlab, reference, names.treat)
 
 \item{treat2}{Label/Number for second treatment.}
 
-\item{studlab}{Study labels (important when multi arm studies are included).}
+\item{studlab}{Study labels (important when multi arm studies are
+included).}
 
 \item{reference}{Reference treatment group}
 
 \item{names.treat}{names of treatments}
 }
 \value{
-within-study standard error, design matrix, summary estimate, heterogeneity from network meta-analysis.
+within-study standard error, design matrix, summary
+  estimate, heterogeneity from network meta-analysis.
 }
 \description{
 Conduct network meta-analysis (Rücker model) for the whole dataset.

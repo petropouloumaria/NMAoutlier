@@ -2,52 +2,61 @@
 % Please edit documentation in R/fwdplotest.R
 \name{fwdplotest}
 \alias{fwdplotest}
-\title{Forward plots of summary estimates.}
+\title{Forward plots of summary estimates}
 \usage{
 fwdplotest(x)
 }
 \arguments{
 \item{x}{object of class NMAoutlier (mandatory).}
 }
-\value{
-forward plots of summary estimates.
-}
 \description{
-Forward plots of summary estimate with 95 percent confidence interval for each treatment.
+Forward plots of summary estimate with 95 percent
+  confidence interval for each treatment.
 }
 \details{
-Plot of summary estimates and their confidence intervals for each iteration of search.
-Vertical axis provides iterations of search. Horizontal axis provides summary estimate of a treatment.
+Plot of summary estimates and their confidence intervals
+  for each iteration of search.  Vertical axis provides iterations
+  of search. Horizontal axis provides summary estimate of a
+  treatment.
 }
 \examples{
-\dontrun{
-# We use the smoking cessation dataset from netmeta package
+data(smokingcessation, package = "netmeta")
+smokingcessation$id <- 1:nrow(smokingcessation)
 
+study35 <- subset(smokingcessation, id \%in\% 3:5)
+p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
+                        list(event1, event2, event3),
+                        list(n1, n2, n3),
+                        data = study35,
+                        sm = "OR")
+
+# Forward search algorithm
+#
+FSresult <- NMAoutlier(p1, small.values = "bad")
+
+# Forward plot for summary estimates for each treatment
+# and their confidence intervals
+fwdplotest(FSresult)
+\dontrun{
 data(smokingcessation, package = "netmeta")
 
 # Transform data from arm-based format to contrast-based format
 # We use 'sm' argument for odds ratios.
 # We use function pairwise from netmeta package
-
-library(netmeta)
-p1 <- pairwise(list(treat1, treat2, treat3),
-              list(event1, event2, event3),
-              list(n1, n2, n3),
-              data=smokingcessation,
-              sm="OR")
-p1
-
+#
+p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
+                        list(event1, event2, event3),
+                        list(n1, n2, n3),
+                        data=smokingcessation,
+                        sm="OR")
 
 # forward search algorithm
 FSresult <- NMAoutlier(p1, small.values = "bad")
 
-
-# forward plot for summary estimates for each treatment
+# Forward plot for summary estimates for each treatment
 # and their confidence intervals
 fwdplotest(FSresult)
-
 }
-
 }
 \author{
 Maria Petropoulou <mpetrop@cc.uoi.gr>

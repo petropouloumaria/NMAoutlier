@@ -1,48 +1,71 @@
+#' @title Forward plot(s) to monitor selected statistic(s)/method(s)
 #'
-#' @title Forward plot(s) to monitor selected statistic(s)/method(s).
-#'
-#' @description This function generates forward plot(s) to monitor selected statistic(s) and/or method(s).
-#' The function creates a plot of the selected statistic throughout the iterations of the forward search algorithm.
-#' Candidate statistics to be monitored can be P-score; z-values by back-calculation method to derive indirect estimates
-#' from direct pairwise comparisons and network estimates;
-#' standardized residuals; heterogeneity variance estimator; cook distance; ratio of variances;
-#' Q statistics (Overall heterogeneity / inconsistency Q statistic (\code{Q}), overall heterogeneity Q statistic (\code{Q}),
-#' between-designs Q statistic (\code{Q}), based on a random effects design-by-treatment interaction model).
+#' @description This function generates forward plot(s) to monitor
+#'   selected statistic(s) and/or method(s).  The function creates a
+#'   plot of the selected statistic throughout the iterations of the
+#'   forward search algorithm.  Candidate statistics to be monitored
+#'   can be P-score; z-values by back-calculation method to derive
+#'   indirect estimates from direct pairwise comparisons and network
+#'   estimates; standardized residuals; heterogeneity variance
+#'   estimator; cook distance; ratio of variances; Q statistics
+#'   (Overall heterogeneity / inconsistency Q statistic (\code{Q}),
+#'   overall heterogeneity Q statistic (\code{Q}), between-designs Q
+#'   statistic (\code{Q}), based on a random effects
+#'   design-by-treatment interaction model).
 #'
 #' @usage
 #' fwdplot(x, stat, select.st = "NULL")
 #'
 #' @param x an object of class NMAoutlier (mandatory).
-#' @param stat statistical measure to be monitored in forward plot(s) (mandatory), available choice is: pscore; nsplit; estand; heterog; cook; ratio; Q.
-#' @param select.st selected statistic (pscore/nsplit/estand) for selected treatment(s)/comparison(s)/study
+#' @param stat statistical measure to be monitored in forward plot(s)
+#'   (mandatory), available choice is: pscore; nsplit; estand;
+#'   heterog; cook; ratio; Q.
+#' @param select.st selected statistic (pscore/nsplit/estand) for
+#'   selected treatment(s)/comparison(s)/study
+#' 
 #' @details Plot of statistical measures for each iteration of search.
-#' Vertical axis provides iterations of search. Horizontal axis provides a monitoring statistical measure.
-#' @return forward plot for selected statistic/method.
+#'   Vertical axis provides iterations of search. Horizontal axis
+#'   provides a monitoring statistical measure.
 #'
 #' @examples
-#' \dontrun{
-#' # We use the smoking cessation dataset from netmeta package
+#' data(smokingcessation, package = "netmeta")
+#' smokingcessation$id <- 1:nrow(smokingcessation)
 #'
+#' study35 <- subset(smokingcessation, id %in% 3:5)
+#' p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
+#'                         list(event1, event2, event3),
+#'                         list(n1, n2, n3),
+#'                         data = study35,
+#'                         sm = "OR")
+#'
+#' # Forward search algorithm
+#' #
+#' FSresult <- NMAoutlier(p1, small.values = "bad")
+#'
+#' # forward plot for Cook's distance
+#' fwdplot(FSresult, "cook")
+#'
+#' # forward plot for ratio of variances
+#' fwdplot(FSresult, "ratio")
+#' \dontrun{
 #' data(smokingcessation, package = "netmeta")
 #'
 #' # Transform data from arm-based format to contrast-based format
 #' # We use 'sm' argument for odds ratios.
 #' # We use function pairwise from netmeta package
 #'
-#' library(netmeta)
-#' p1 <- pairwise(list(treat1, treat2, treat3),
-#'               list(event1, event2, event3),
-#'               list(n1, n2, n3),
-#'               data=smokingcessation,
-#'               sm="OR")
-#' p1
+#' p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
+#'                         list(event1, event2, event3),
+#'                         list(n1, n2, n3),
+#'                         data=smokingcessation,
+#'                         sm="OR")
 #'
 #' # forward search algorithm
 #' FSresult <- NMAoutlier(p1, small.values = "bad")
 #'
 #' FSresult
 #'
-#' # forward plot for cook distance
+#' # forward plot for Cook's distance
 #' fwdplot(FSresult, "cook")
 #'
 #' # forward plot for ratio of variances
@@ -54,10 +77,10 @@
 #' # forward plot for Q statistics
 #' fwdplot(FSresult, "Q")
 #'
-#' # forward plot for p-scores
+#' # forward plot for P-scores
 #' fwdplot(FSresult, "pscore")
 #'
-#' # forward plot monitoring p-scores for treatment A
+#' # forward plot monitoring P-scores for treatment A
 #' fwdplot(FSresult,"pscore", "A")
 #'
 #' # forward plot for z-values of disagreement of direct and indirect evidence
@@ -69,17 +92,17 @@
 #'
 #' # forward plot for standardized residuals for study 4
 #' fwdplot(FSresult, "estand", 4)
-#'
 #' }
-#'
 #' @export
 #'
-#' @author
-#' Maria Petropoulou <mpetrop@cc.uoi.gr>
+#' @author Maria Petropoulou <mpetrop@cc.uoi.gr>
 #'
-#' @importFrom ggplot2 ggplot aes theme element_rect element_line geom_line geom_point labs guides guide_legend scale_x_discrete scale_linetype_manual scale_shape_manual
+#' @importFrom ggplot2 ggplot aes theme element_rect element_line
+#'   geom_line geom_point labs guides guide_legend scale_x_discrete
+#'   scale_linetype_manual scale_shape_manual
 #' @importFrom reshape2 melt
 #' @importFrom gridExtra grid.arrange
+
 
 fwdplot <- function (x, stat, select.st = NULL) {
 
@@ -89,7 +112,7 @@ fwdplot <- function (x, stat, select.st = NULL) {
 
   if(stat == "pscore") {
     data<-getSelected(x$p.score, select.st)
-    melt_data <- melt(data) ## melt formats our data in a tall format which is proper for the ggplot function.
+    melt_data <- melt(data) # melt formats our data in a tall format which is proper for the ggplot function.
     var1_factors <- as.factor(melt_data$Var1)
     ggplot(data=melt_data, aes(x=melt_data$Var2, y=melt_data$value, colour=var1_factors)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
@@ -179,6 +202,7 @@ fwdplot <- function (x, stat, select.st = NULL) {
   }
 }
 
+
 getSelected <- function (dataSet, select.st) {
 
   if (!is.null(select.st)) {
@@ -199,5 +223,3 @@ getSelected <- function (dataSet, select.st) {
     return(dataSet)
   }
 }
-
-
