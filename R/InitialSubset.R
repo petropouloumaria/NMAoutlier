@@ -43,17 +43,30 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
 
 
   ## Calculate the number of cores
-  no_cores <- max(1, detectCores())
-  cl <- makeCluster(no_cores)
-
-  clusterExport(cl=cl, varlist=c("t1.label", "t2.label", "studlab", "studies",
-                                 "netconnection", "treat1", "treat2", "sub",
-                                 "netmeta", "TE", "seTE", "reference",
-                                 "createB", "prepare",
-                                 "Multi", "multiarm",
-                                 "crit1"), envir=environment())
-
-
+  ##
+  clc <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
+  ##
+  if (nzchar(clc) && clc == "TRUE") {
+    ## Use two cores for CRAN checks
+    n.cores <- 2L
+  }
+  else {
+    ## Use all available cores
+    n.cores <- max(1, detectCores())
+  }
+  ##
+  cl <- makeCluster(n.cores)
+  
+  
+  clusterExport(cl=cl,
+                varlist=c("t1.label", "t2.label", "studlab", "studies",
+                          "netconnection", "treat1", "treat2", "sub",
+                          "netmeta", "TE", "seTE", "reference",
+                          "createB", "prepare",
+                          "Multi", "multiarm",
+                          "crit1"), envir=environment())
+  
+  
   ## create P initial subsets with parallel computations
   paral <- parLapply(cl, 1:P, function(z) {
 
