@@ -1,12 +1,12 @@
 #' @title Forward search algorithm in network meta-analysis
 #'
 #' @description Employs the forward search algorithm for detection of
-#'   outlying and influential studies fitted in network meta-analysis
+#'   outlying studies (studies with extreme results) fitted in network meta-analysis
 #'   model from graph-theory. This is a diagnostic tool for detection
-#'   evidence of outlying and/or influential studies.  It can also be
+#'   evidence of outliers.  It can also be
 #'   used to detect studies that are potential sources for
 #'   heterogeneity and inconsistency.  Monitoring measures during the
-#'   search are: outlying and influential measures (standardized
+#'   search are: outlying measures (standardized
 #'   residuals, Cook statistic, ratio of variance); ranking measures
 #'   (P-scores); heterogeneity and inconsistency measures; ((\code{Q})
 #'   statistics for overall heterogeneity / inconsistency, overall
@@ -38,8 +38,8 @@
 #'   "R".
 #' @param crit2 A character string indicating the criterion to be used
 #'   for selecting the study entered from non-basic set to basic set,
-#'   this criterion may be the minimum of median absolute residuals
-#'   ("R") or the maximum of median absolute likelihood contributions
+#'   this criterion may be the minimum of absolute residuals
+#'   ("R") or the maximum of absolute likelihood contributions
 #'   ("L"). Default value is "R".
 #' @param studies An optional vector specifying the number of the
 #'   initial subset of studies. The default value is the maximum of
@@ -77,8 +77,7 @@
 #' aparts from three steps.  It starts with a subset of studies and it
 #' gradually adds studies until all studies entered.  After the
 #' search, statistical measures are monitored for sharp changes.  FS
-#' is a diagnostic method to identify outlying and influential
-#' studies.
+#' is a diagnostic method to identify outlying studies.
 #'
 #' FS algorithm starts with an initial subset of the dataset that is
 #' considered to be outlier-free.  Let \emph{l} the size of the
@@ -98,8 +97,8 @@
 #' hypothesized model fit in the basic set.  A study from non-basic
 #' set entered into the basic set if optimize the criterion (argument
 #' \code{crit2}).  Criterion (\code{crit2}) for selecting the study
-#' from non-basic to basic set may be the minimum of median absolute
-#' residuals \code{"R"} or the maximum of median absolute likelihood
+#' from non-basic to basic set may be the minimum of absolute
+#' residuals \code{"R"} or the maximum of absolute likelihood
 #' contributions \code{"L"}.  The algorithm order the studies
 #' according to their closeness to the basic set by adding the study
 #' that optimize the criterion from non-basic set to basic set.
@@ -109,18 +108,18 @@
 #' to the total number of studies minus the number of studies entered
 #' into the initial subset.  When all studies are included in the
 #' basic set, parameter estimates (summary estmates, heterogeneity
-#' estimator) and other statistics of interest (outlying and
-#' influential measures, heterogeneity and inconsistency measures,
+#' estimator) and other statistics of interest (outlying
+#' measures, heterogeneity and inconsistency measures,
 #' ranking measures) are monitored.  For each basic set, network
 #' meta-analysis model from graph theory (Rücker, 2012) is fitted
 #' (\code{netmeta} function) with R package \bold{netmeta} (Rücker et
 #' al., 2018).
 #'
-#' Monitoring is helpful to identify outlying and/or influential
-#' studies.  Monitoring statistical measures for the basic set in each
+#' Monitoring is helpful to identify outlying studies
+#' Monitoring statistical measures for the basic set in each
 #' FS iteration can be:
 #'
-#' - \bold{Outlier and influential case diagnostics measures.}
+#' - \bold{Outlying case diagnostics measures.}
 #' Standardized residuals (arithmetic mean in case of multi-arm
 #' studies); Cook statistic; Ratio of determinants of
 #' variance-covariance matrix
@@ -209,17 +208,17 @@
 #' data(smokingcessation, package = "netmeta")
 #' smokingcessation$id <- 1:nrow(smokingcessation)
 #'
-#' study35 <- subset(smokingcessation, id %in% 3:5)
+#' study912 <- subset(smokingcessation, id %in% 9:12)
 #' p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
 #'                         list(event1, event2, event3),
 #'                         list(n1, n2, n3),
-#'                         data = study35,
+#'                         data = study912,
 #'                         sm = "OR")
 #'
 #' # Forward search algorithm
 #' #
-#' FSresult1 <- NMAoutlier(p1, small.values = "bad")
-#' FSresult1
+#' FSresult <- NMAoutlier(p1, P = 1, small.values = "bad")
+#'
 #' \dontrun{
 #' data(smokingcessation, package = "netmeta")
 #'

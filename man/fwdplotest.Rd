@@ -23,16 +23,16 @@ Plot of summary estimates and their confidence intervals
 data(smokingcessation, package = "netmeta")
 smokingcessation$id <- 1:nrow(smokingcessation)
 
-study35 <- subset(smokingcessation, id \%in\% 3:5)
+study912 <- subset(smokingcessation, id \%in\% 9:12)
 p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
                         list(event1, event2, event3),
                         list(n1, n2, n3),
-                        data = study35,
+                        data = study912,
                         sm = "OR")
 
 # Forward search algorithm
 #
-FSresult <- NMAoutlier(p1, small.values = "bad")
+FSresult <- NMAoutlier(p1, P = 1, small.values = "bad")
 
 # Forward plot for summary estimates for each treatment
 # and their confidence intervals

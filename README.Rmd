@@ -1,5 +1,5 @@
 ---
-title: "NMAoutlier: Forward Search Algorithm in Network Meta-Analysis to identify outlying and influential studies"
+title: "NMAoutlier: Forward Search Algorithm in Network Meta-Analysis to identify outlying studies"
 output: github_document
 ---
 
@@ -13,17 +13,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Description
 
-A package that provides forward search algorithm for detecting outlying or influential studies in network meta-analysis.
+A package that provides forward search algorithm for detecting outlying studies in network meta-analysis.
 
 - Provides the length of the initial oultying-free clean subset for forward search algorithm.
 - Iterations of forward search algorithm.
 - Basic set of studies in each iteration of forward search algorithm.
 - Summary estimates and their confidence intervals in each iteration of forward search algorithm.
-- Outlier and influential case diagnostics measures. 
+- Outlying case diagnostics measures. 
 - Ranking measures.
 - Heterogeneity and inconsistency measures.
 - Forward plots for summary estimates and their confidence intervals.
-- Forward plots for monitored measures: outlier and influential case diagnostics measures, ranking measures, heterogeneity and inconsistency measures.
+- Forward plots for monitored measures: outlying case diagnostics measures, ranking measures, heterogeneity and inconsistency measures.
 
 ## Installation
 
@@ -79,7 +79,7 @@ FSresult <- NMAoutlier(p1, small.values = "bad")
 ```
 
 
-You can see the forward plots with function **fwdplot** for monitoring measures. For example, you can plot the influential diagnostic measure Cook distance as follows:
+You can see the forward plots with function **fwdplot** for monitoring measures. For example, you can plot the diagnostic measure Cook distance as follows:
 
 ```{r, eval=FALSE}
 fwdplot(FSresult,"cook")

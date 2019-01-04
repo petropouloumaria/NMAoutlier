@@ -41,7 +41,7 @@ print.NMAoutlier <- function(x, digits = 4) {
   ##
   ##
   cat("\n")
-  cat("Outlier and influential measures:\n")
+  cat("Outlying measures:\n")
   prmatrix(cbind(formatN(x$Ratio,digits), formatN(x$cook_d, digits)),
            rowlab = paste("it=", iteration = c(1:x$index)),
            collab = c("Ratio of variances", "Cook distance"),
