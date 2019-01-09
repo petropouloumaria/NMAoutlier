@@ -1,26 +1,26 @@
-#' @title Forward search algorithm in network meta-analysis
+#' Forward search algorithm in network meta-analysis
 #'
-#' @description Employs the forward search algorithm for detection of
-#'   outlying studies (studies with extreme results) fitted in network meta-analysis
-#'   model from graph-theory. This is a diagnostic tool for detection
-#'   evidence of outliers.  It can also be
-#'   used to detect studies that are potential sources for
-#'   heterogeneity and inconsistency.  Monitoring measures during the
-#'   search are: outlying measures (standardized
-#'   residuals, Cook statistic, ratio of variance); ranking measures
-#'   (P-scores); heterogeneity and inconsistency measures; ((\code{Q})
-#'   statistics for overall heterogeneity / inconsistency, overall
-#'   heterogeneity, inconsistency by design-by-treatment interaction
-#'   model, z-values for comparison between direct and indirect
-#'   evidence by back-calculation method).  A description of the
-#'   methodology can be found in Petropoulou et al. 2018.
+#' @description
+#' Employs the forward search algorithm for detection of outlying
+#' studies (studies with extreme results) fitted in network
+#' meta-analysis model from graph-theory. This is a diagnostic tool
+#' for detection evidence of outliers. It can also be used to detect
+#' studies that are potential sources for heterogeneity and
+#' inconsistency.
 #'
-#' @usage
-#' NMAoutlier(TE, seTE, treat1, treat2, studlab, data = NULL,
-#'            crit1 = "R", crit2 = "R",
-#'            studies = NULL, P = 100, sm,
-#'            reference = "",
-#'            small.values = "good")
+#' Monitoring measures during the search are:
+#' \itemize{
+#' \item outlying measures (standardized residuals, Cook's statistic,
+#'   ratio of variance);
+#' \item ranking measures (P-scores);
+#' \item heterogeneity and inconsistency measures (Q statistics for
+#'   overall heterogeneity / inconsistency, inconsistency by
+#'   design-by-treatment interaction model, z-values for comparison
+#'   between direct and indirect evidence by back-calculation method).
+#' }
+#' 
+#' A description of the methodology can be found in Petropoulou et
+#' al. (2018).
 #'
 #' @param TE Estimate of treatment effect, i.e. difference between
 #'   first and second treatment (e.g. log odds ratio, mean difference,
@@ -38,9 +38,9 @@
 #'   "R".
 #' @param crit2 A character string indicating the criterion to be used
 #'   for selecting the study entered from non-basic set to basic set,
-#'   this criterion may be the minimum of absolute residuals
-#'   ("R") or the maximum of absolute likelihood contributions
-#'   ("L"). Default value is "R".
+#'   this criterion may be the minimum of absolute residuals ("R") or
+#'   the maximum of absolute likelihood contributions ("L"). Default
+#'   value is "R".
 #' @param studies An optional vector specifying the number of the
 #'   initial subset of studies. The default value is the maximum of
 #'   the number of treatments and the 20 percent of the total number
@@ -59,7 +59,6 @@
 #'   ("good").
 #'
 #' @details
-#'
 #' Description of methodology by fitting forward search algorithm in
 #' network meta-analysis. Methodology of FS algorithm fitted in NMA
 #' model from graph theory is described in Petropoulou et al. 2018.
@@ -74,10 +73,10 @@
 #' comparisons belonging to the same multi-arm study.
 #'
 #' The FS algorithm is a diagnostic iterative procedure.  FS algorithm
-#' aparts from three steps.  It starts with a subset of studies and it
+#' aparts from three steps. It starts with a subset of studies and it
 #' gradually adds studies until all studies entered.  After the
-#' search, statistical measures are monitored for sharp changes.  FS
-#' is a diagnostic method to identify outlying studies.
+#' search, statistical measures are monitored for sharp changes. FS is
+#' a diagnostic method to identify outlying studies.
 #'
 #' FS algorithm starts with an initial subset of the dataset that is
 #' considered to be outlier-free.  Let \emph{l} the size of the
@@ -108,31 +107,29 @@
 #' to the total number of studies minus the number of studies entered
 #' into the initial subset.  When all studies are included in the
 #' basic set, parameter estimates (summary estmates, heterogeneity
-#' estimator) and other statistics of interest (outlying
-#' measures, heterogeneity and inconsistency measures,
-#' ranking measures) are monitored.  For each basic set, network
-#' meta-analysis model from graph theory (Rücker, 2012) is fitted
-#' (\code{netmeta} function) with R package \bold{netmeta} (Rücker et
-#' al., 2018).
+#' estimator) and other statistics of interest (outlying measures,
+#' heterogeneity and inconsistency measures, ranking measures) are
+#' monitored.  For each basic set, network meta-analysis model from
+#' graph theory (Rücker, 2012) is fitted (\code{netmeta} function)
+#' with R package \bold{netmeta} (Rücker et al., 2018).
 #'
-#' Monitoring is helpful to identify outlying studies
-#' Monitoring statistical measures for the basic set in each
-#' FS iteration can be:
+#' Monitoring is helpful to identify outlying studies Monitoring
+#' statistical measures for the basic set in each FS iteration can be:
 #'
-#' - \bold{Outlying case diagnostics measures.}
+#' \bold{Outlying case diagnostics measures:}
 #' Standardized residuals (arithmetic mean in case of multi-arm
-#' studies); Cook statistic; Ratio of determinants of
+#' studies); Cook's statistic; Ratio of determinants of
 #' variance-covariance matrix
 #'
-#' - \bold{Ranking measures.}
+#' \bold{Ranking measures:}
 #' P-scores for ranking of treatments (Rücker G & Schwarzer G (2015))
 #' for each basic set with implementation of (\code{netrank} function)
 #' from R package \bold{netmeta}.
 #'
-#' - \bold{Heterogeneity and inconsistency measures.}
-#' Overall heterogeneity / inconsistency Q statistic (\code{Q})
-#' This is the design-based decomposition of Cochran Q as provided by
-#' Krahn et al.(2013); Overall heterogeneity Q statistic (\code{Q});
+#' \bold{Heterogeneity and inconsistency measures:}
+#' Overall heterogeneity / inconsistency Q statistic (\code{Q}) This
+#' is the design-based decomposition of Cochran Q as provided by Krahn
+#' et al.(2013); Overall heterogeneity Q statistic (\code{Q});
 #' Between-designs Q statistic (\code{Q}), based on a random effects
 #' model with square-root of between-study variance estimated embedded
 #' in a full design-by-treatment interaction model.  Implementation
@@ -147,7 +144,9 @@
 #' pairwise comparisons and network estimates (Dias et al., 2010;
 #' König et al., 2013).
 #'
-#' @return An object of class \code{NMAoutlier}; a list containing the following components:
+#' @return
+#' An object of class \code{NMAoutlier}; a list containing the
+#' following components:
 #'    \item{dat}{Matrix containing the data \code{"TE"}, \code{"seTE"}, \code{"studlab"}, \code{"treat1"}, \code{"treat2"} as defined above.}
 #'    \item{length.initial}{The number of studies that constitute the initial (outlying-clean) subset of studies.}
 #'    \item{index}{The number of iterations of forward search algorithm.}
@@ -162,7 +161,7 @@
 #'    \item{lb}{Lower 95\% confidence interval of summary estimates for the basic set in each iteration of forward search algorithm.}
 #'    \item{ub}{Upper 95\% confidence interval of summary estimates for the basic set in each iteration of forward search algorithm.}
 #'    \item{Ratio}{Ratio of determinants (\code{COVRATIOj}) of variance-covariance matrix of treatment estimates at iteration j to that iteration at j-1.}
-#'    \item{cook_d}{Cook statistic (\code{Cj}) at iteration j of forward search algorithm.}
+#'    \item{cook_d}{Cook's statistic (\code{Cj}) at iteration j of forward search algorithm.}
 #'    \item{p.score}{P-score for ranking each treatment for the basic set in each iteration of forward search algorithm.}
 #'    \item{dif}{Z-values for comparison between direct and indirect evidence for each iteration of forward search algorithm.
 #'     Based on back-calculation method to derive indirect estimates from direct pairwise comparisons and network estimates.}
@@ -170,39 +169,38 @@
 #'    \item{call}{Function call}
 #'
 #' @references
-#' Rücker G (2012).
+#' Dias S, Welton NJ, Caldwell DM, Ades AE (2010):
+#' Checking consistency in mixed treatment comparison meta-analysis.
+#' \emph{Statistics in Medicine},
+#' \bold{29}, 932--44
+#' 
+#' König J, Krahn U, Binder H (2013):
+#' Visualizing the flow of evidence in network meta-analysis and
+#' characterizing mixed treatment comparisons.
+#' \emph{Statistics in Medicine},
+#' \bold{32}, 5414--29
+#' 
+#' Krahn U, Binder H, König J (2013):
+#' A graphical tool for locating inconsistency in network meta-analyses.
+#' \emph{BMC Medical Research Methodology},
+#' \bold{13}, 35
+#' 
+#' Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I,
+#' Mavridis D (2018):
+#' A forward search algorithm for detection of extreme study effects
+#' in network meta-analysis.
+#' \emph{Manuscript}
+#'
+#' Rücker G (2012):
 #' Network meta-analysis, electrical networks and graph theory.
 #' \emph{Research Synthesis Methods},
-#' \bold{3}, 312-24.
-#'
-#' Rücker G, Schwarzer G, Krahn U, König J (2018).
-#' netmeta: Network Meta-Analysis using Frequentist Methods.
-#' https://github.com/guido-s/netmeta http://meta-analysis-with-r.org.
-#'
-#' Rücker G & Schwarzer G (2015).
+#' \bold{3}, 312--24
+#' 
+#' Rücker G, Schwarzer G (2015):
 #' Ranking treatments in frequentist network meta-analysis works
 #' without resampling methods.
 #' \emph{BMC Medical Research Methodology},
-#' \bold{15}, 58, DOI:10.1186/s12874-015-0060-8.
-#'
-#' Dias S, Welton NJ, Caldwell DM, Ades AE (2010).
-#' Checking consistency in mixed treatment comparison meta-analysis.
-#' \emph{Statistics in Medicine}, \bold{29}, 932-44.
-#'
-#' König J, Krahn U, Binder H (2013).
-#' Visualizing the flow of evidence in network meta-analysis and
-#' characterizing mixed treatment comparisons.
-#' \emph{Statistics in Medicine}, \bold{32}(30), 5414-29.
-#'
-#' Krahn U, Binder H, König J (2013).
-#' A graphical tool for locating inconsistency in network
-#' meta-analyses.
-#' \emph{BMC Medical Research Methodology}, \bold{13}, 35.
-#'
-#' Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I,
-#' Mavridis D (2018).
-#' A forward search algorithm for detection of extreme study effects
-#' in network meta-analysis. Manuscript.
+#' \bold{15}, 58
 #'
 #' @examples
 #' data(smokingcessation, package = "netmeta")
@@ -247,6 +245,7 @@
 #'                         small.values = "bad")
 #' FSresult2
 #' }
+#' 
 #' @export
 #'
 #' @author Maria Petropoulou <mpetrop@cc.uoi.gr>

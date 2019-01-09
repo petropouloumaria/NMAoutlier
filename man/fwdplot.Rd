@@ -4,36 +4,35 @@
 \alias{fwdplot}
 \title{Forward plot(s) to monitor selected statistic(s)/method(s)}
 \usage{
-fwdplot(x, stat, select.st = "NULL")
+fwdplot(x, stat, select.st = NULL)
 }
 \arguments{
 \item{x}{an object of class NMAoutlier (mandatory).}
 
 \item{stat}{statistical measure to be monitored in forward plot(s)
-(mandatory), available choice is: pscore; nsplit; estand;
-heterog; cook; ratio; Q.}
+(mandatory), available choice are: "pscore", "nsplit", "estand",
+"heterog", "cook", "ratio", or "Q" (can be abbreviated).}
 
 \item{select.st}{selected statistic (pscore/nsplit/estand) for
 selected treatment(s)/comparison(s)/study}
 }
 \description{
-This function generates forward plot(s) to monitor
-  selected statistic(s) and/or method(s).  The function creates a
-  plot of the selected statistic throughout the iterations of the
-  forward search algorithm.  Candidate statistics to be monitored
-  can be P-score; z-values by back-calculation method to derive
-  indirect estimates from direct pairwise comparisons and network
-  estimates; standardized residuals; heterogeneity variance
-  estimator; cook distance; ratio of variances; Q statistics
-  (Overall heterogeneity / inconsistency Q statistic (\code{Q}),
-  overall heterogeneity Q statistic (\code{Q}), between-designs Q
-  statistic (\code{Q}), based on a random effects
-  design-by-treatment interaction model).
+This function generates forward plot(s) to monitor selected
+statistic(s) and/or method(s).  The function creates a plot of the
+selected statistic throughout the iterations of the forward search
+algorithm.  Candidate statistics to be monitored can be P-score;
+z-values by back-calculation method to derive indirect estimates
+from direct pairwise comparisons and network estimates;
+standardized residuals; heterogeneity variance estimator; Cook's
+distance; ratio of variances; Q statistics (Overall heterogeneity /
+inconsistency Q statistic (\code{Q}), overall heterogeneity Q
+statistic (\code{Q}), between-designs Q statistic (\code{Q}), based
+on a random effects design-by-treatment interaction model).
 }
 \details{
 Plot of statistical measures for each iteration of search.
-  Vertical axis provides iterations of search. Horizontal axis
-  provides a monitoring statistical measure.
+Vertical axis provides iterations of search. Horizontal axis
+provides a monitoring statistical measure.
 }
 \examples{
 data(smokingcessation, package = "netmeta")
@@ -99,7 +98,9 @@ fwdplot(FSresult, "nsplit", "A:B")
 # forward plot for standardized residuals for study 4
 fwdplot(FSresult, "estand", 4)
 }
+
 }
 \author{
 Maria Petropoulou <mpetrop@cc.uoi.gr>
 }
+\keyword{hplot}

@@ -10,14 +10,13 @@ fwdplotest(x)
 \item{x}{object of class NMAoutlier (mandatory).}
 }
 \description{
-Forward plots of summary estimate with 95 percent
-  confidence interval for each treatment.
+Forward plots of summary estimate with 95 percent confidence
+interval for each treatment.
 }
 \details{
-Plot of summary estimates and their confidence intervals
-  for each iteration of search.  Vertical axis provides iterations
-  of search. Horizontal axis provides summary estimate of a
-  treatment.
+Plot of summary estimates and their confidence intervals for each
+iteration of search.  Vertical axis provides iterations of
+search. Horizontal axis provides summary estimate of a treatment.
 }
 \examples{
 data(smokingcessation, package = "netmeta")
@@ -57,7 +56,9 @@ FSresult <- NMAoutlier(p1, small.values = "bad")
 # and their confidence intervals
 fwdplotest(FSresult)
 }
+
 }
 \author{
 Maria Petropoulou <mpetrop@cc.uoi.gr>
 }
+\keyword{hplot}

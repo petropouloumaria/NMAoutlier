@@ -1,4 +1,3 @@
-
 print.NMAoutlier <- function(x, digits = 4) {
 
   ## Check class
@@ -44,7 +43,7 @@ print.NMAoutlier <- function(x, digits = 4) {
   cat("Outlying measures:\n")
   prmatrix(cbind(formatN(x$Ratio,digits), formatN(x$cook_d, digits)),
            rowlab = paste("it=", iteration = c(1:x$index)),
-           collab = c("Ratio of variances", "Cook distance"),
+           collab = c("Ratio of variances", "Cook's distance"),
            quote = FALSE, right = TRUE)
   ##
   ##

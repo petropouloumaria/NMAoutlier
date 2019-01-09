@@ -1,31 +1,31 @@
-#' @title Forward plot(s) to monitor selected statistic(s)/method(s)
+#' Forward plot(s) to monitor selected statistic(s)/method(s)
 #'
-#' @description This function generates forward plot(s) to monitor
-#'   selected statistic(s) and/or method(s).  The function creates a
-#'   plot of the selected statistic throughout the iterations of the
-#'   forward search algorithm.  Candidate statistics to be monitored
-#'   can be P-score; z-values by back-calculation method to derive
-#'   indirect estimates from direct pairwise comparisons and network
-#'   estimates; standardized residuals; heterogeneity variance
-#'   estimator; cook distance; ratio of variances; Q statistics
-#'   (Overall heterogeneity / inconsistency Q statistic (\code{Q}),
-#'   overall heterogeneity Q statistic (\code{Q}), between-designs Q
-#'   statistic (\code{Q}), based on a random effects
-#'   design-by-treatment interaction model).
-#'
-#' @usage
-#' fwdplot(x, stat, select.st = "NULL")
+#' @description
+#' This function generates forward plot(s) to monitor selected
+#' statistic(s) and/or method(s).  The function creates a plot of the
+#' selected statistic throughout the iterations of the forward search
+#' algorithm.  Candidate statistics to be monitored can be P-score;
+#' z-values by back-calculation method to derive indirect estimates
+#' from direct pairwise comparisons and network estimates;
+#' standardized residuals; heterogeneity variance estimator; Cook's
+#' distance; ratio of variances; Q statistics (Overall heterogeneity /
+#' inconsistency Q statistic (\code{Q}), overall heterogeneity Q
+#' statistic (\code{Q}), between-designs Q statistic (\code{Q}), based
+#' on a random effects design-by-treatment interaction model).
 #'
 #' @param x an object of class NMAoutlier (mandatory).
 #' @param stat statistical measure to be monitored in forward plot(s)
-#'   (mandatory), available choice is: pscore; nsplit; estand;
-#'   heterog; cook; ratio; Q.
+#'   (mandatory), available choice are: "pscore", "nsplit", "estand",
+#'   "heterog", "cook", "ratio", or "Q" (can be abbreviated).
 #' @param select.st selected statistic (pscore/nsplit/estand) for
 #'   selected treatment(s)/comparison(s)/study
 #'
-#' @details Plot of statistical measures for each iteration of search.
-#'   Vertical axis provides iterations of search. Horizontal axis
-#'   provides a monitoring statistical measure.
+#' @details
+#' Plot of statistical measures for each iteration of search.
+#' Vertical axis provides iterations of search. Horizontal axis
+#' provides a monitoring statistical measure.
+#'
+#' @keywords hplot
 #'
 #' @examples
 #' data(smokingcessation, package = "netmeta")
@@ -91,6 +91,7 @@
 #' # forward plot for standardized residuals for study 4
 #' fwdplot(FSresult, "estand", 4)
 #' }
+#' 
 #' @export
 #'
 #' @author Maria Petropoulou <mpetrop@cc.uoi.gr>
@@ -108,7 +109,10 @@ fwdplot <- function (x, stat, select.st = NULL) {
   ##
   chkclass(x, "NMAoutlier")
 
-  if(stat == "pscore") {
+  stat <- setchar(stat, c("pscore", "nsplit", "estand", "heterog",
+                          "cook", "ratio", "q"))
+
+  if (stat == "pscore") {
     data<-getSelected(x$p.score, select.st)
     melt_data <- melt(data) # melt formats our data in a tall format which is proper for the ggplot function.
     var1_factors <- as.factor(melt_data$Var1)
@@ -116,7 +120,7 @@ fwdplot <- function (x, stat, select.st = NULL) {
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_line(aes(group=var1_factors, color=var1_factors, linetype = var1_factors), size=1, na.rm=TRUE) +
       geom_point(aes(shape=var1_factors, color=var1_factors), size=3, na.rm=TRUE) +
-      labs(title="forward plot for P-score", y="P-Score", x="Iterations") +
+      labs(title="Forward plot for P-score", y="P-Score", x="Iterations") +
       guides(colour = guide_legend("Treatments"), shape = guide_legend("Treatments"), linetype = guide_legend("Treatments")) +
       scale_x_discrete(labels=1:length(factor(melt_data$Var2))) +
       scale_shape_manual(values=seq(1,length(var1_factors))) +
@@ -130,7 +134,7 @@ fwdplot <- function (x, stat, select.st = NULL) {
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_line(aes(group=var1_factors, color=var1_factors, linetype = var1_factors), size=1, na.rm=TRUE) +
       geom_point(aes(shape=var1_factors, color=var1_factors), size=3, na.rm=TRUE) +
-      labs(title="forward plot for difference of direct and indirect estimate (z-values)", y="Difference of direct and indirect estimate ", x="Iterations") +
+      labs(title="Forward plot for difference of direct and indirect estimate (z-values)", y="Difference of direct and indirect estimate ", x="Iterations") +
       guides(colour = guide_legend("Comparisons"), shape = guide_legend("Comparisons"), linetype = guide_legend("Comparisons")) +
       scale_x_discrete(labels=1:length(factor(melt_data$Var2))) +
       scale_shape_manual(values=seq(1,length(var1_factors))) +
@@ -144,7 +148,7 @@ fwdplot <- function (x, stat, select.st = NULL) {
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_line(aes(group=var1_factors, color=var1_factors, linetype = var1_factors), size=1, na.rm=TRUE) +
       geom_point(aes(shape=var1_factors, color=var1_factors), size=3, na.rm=TRUE) +
-      labs(title="forward plot for standardized residuals", y="Standardized residuals", x="Iterations") +
+      labs(title="Forward plot for standardized residuals", y="Standardized residuals", x="Iterations") +
       guides(colour = guide_legend("Studies"), shape = guide_legend("Studies"), linetype = guide_legend("Studies")) +
       scale_x_discrete(labels=1:length(factor(melt_data$Var2))) +
       scale_shape_manual(values=seq(1,length(var1_factors))) +
@@ -156,7 +160,7 @@ fwdplot <- function (x, stat, select.st = NULL) {
     ggplot(data=melt_data, aes(x=1:length(x$tau), y=melt_data$value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color='#016FB9', size=3, na.rm=TRUE) +
-      labs(title="forward plot for heterogeneity", y="Heterogeneity", x="Iterations")
+      labs(title="Forward plot for heterogeneity", y="Heterogeneity", x="Iterations")
   }
   else if (stat == "cook") {
     data<-getSelected(x$cook_d, select.st)
@@ -164,7 +168,7 @@ fwdplot <- function (x, stat, select.st = NULL) {
     ggplot(data=melt_data, aes(x=1:length(x$cook_d), y=melt_data$value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color='#016FB9', size=3, na.rm=TRUE) +
-      labs(title="forward plot for cook distance", y="Cook distance", x="Iterations")
+      labs(title="Forward plot for Cook's distance", y="Cook's distance", x="Iterations")
   }
   else if (stat == "ratio") {
     data<-getSelected(x$Ratio, select.st)
@@ -172,7 +176,7 @@ fwdplot <- function (x, stat, select.st = NULL) {
     ggplot(data=melt_data, aes(x=1:length(x$Ratio), y=melt_data$value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color='#016FB9', size=3, na.rm=TRUE) +
-      labs(title="forward plot for ratio of variances", y="Ratio of variances", x="Iterations")
+      labs(title="Forward plot for ratio of variances", y="Ratio of variances", x="Iterations")
   }
   else if (stat == "Q") {
     data<-getSelected(x$Qb, select.st)
@@ -180,21 +184,21 @@ fwdplot <- function (x, stat, select.st = NULL) {
     p1 <- ggplot(data=melt_data1, aes(x=1:length(x$Qb), y=melt_data1$value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color='#016FB9', size=3, na.rm=TRUE) +
-      labs(title="forward plot for Qtotal", y="Qtotal", x="Iterations")
+      labs(title="Forward plot for Qtotal", y="Qtotal", x="Iterations")
 
     data2<-getSelected(x$Qhb, select.st)
     melt_data2 <- melt(data2)
     p2 <- ggplot(data=melt_data2, aes(x=1:length(x$Qhb), y=melt_data2$value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color='#016FB9', size=3, na.rm=TRUE) +
-      labs(title="forward plot for Qheterogeneity", y="Qheterogeneity", x="Iterations")
+      labs(title="Forward plot for Qheterogeneity", y="Qheterogeneity", x="Iterations")
 
     data3<-getSelected(x$Qib, select.st)
     melt_data3 <- melt(data3)
     p3 <- ggplot(data=melt_data3, aes(x=1:length(x$Qib), y=melt_data3$value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color='#016FB9', size=3, na.rm=TRUE) +
-      labs(title="forward plot for Qinconsistency", y="Qinconsistency", x="Iterations")
+      labs(title="Forward plot for Qinconsistency", y="Qinconsistency", x="Iterations")
 
     grid.arrange(p1, p2, p3, ncol=3)
   }

@@ -1,29 +1,36 @@
 Package: NMAoutlier
 Title: Detecting Outliers in Network Meta-Analysis
-Version: 0.1.11
+Version: 0.1.12
+Date: 2019-01-09
 Depends: R (>= 3.0.0)
 Imports: netmeta (>= 0.9-7),
          stats (>= 3.4.3), parallel (>= 3.4.1), MASS (>= 7.3-47),
          reshape2 (>= 1.4.3), ggplot2 (>= 3.0.0), gridExtra (>= 2.3)
-Date: 2019-01-03
+Authors@R: c(person("Maria", "Petropoulou",
+                    role = c("aut", "cre"),
+                    email = "mpetrop@cc.uoi.gr",
+                    comment = c(ORCID = "0000-0002-7147-3644")),
+             person("Guido", "Schwarzer",
+                    role = "aut",
+                    comment = c(ORCID = "0000-0001-6214-9087")),
+             person("Agapios", "Panos",
+                    role = "aut"),
+             person("Dimitris", "Mavridis",
+                    role = "aut",
+                    comment = c(ORCID = "0000-0003-1041-4592")))
 URL: https://github.com/petropouloumaria/NMAoutlier
-Description: A set of functions providing the forward search algorithm for detecting outlying studies (studies with extreme findings) in network meta-analysis.
-               Provides the length of the initial subset for forward search algorithm.
-               Iterations of forward search algorithm.
-               Basic set of studies in each step of forward search algorithm.
-               Summary estimates and their confidence intervals in each step of forward search algorithm.
-               Outlying case diagnostics measures. 
-               Ranking measures.
-               Heterogeneity and inconsistency measures.
-               Forward plot for summary estimates and their confidence intervals.
-               Forward plots for monitored measures: outlying case diagnostics measures, ranking measures, heterogeneity and inconsistency measures.
+Description: A set of functions providing the forward search algorithm for detecting outlying studies (i.e., studies with extreme findings) in network meta-analysis:
+               - provides the length of the initial subset for forward search algorithm;
+               - iterations of forward search algorithm;
+               - basic set of studies in each step of forward search algorithm;
+               - summary estimates and their confidence intervals in each step of forward search algorithm;
+               - outlying case diagnostics measures. 
+               - ranking measures;
+               - heterogeneity and inconsistency measures;
+               - forward plot for summary estimates and their confidence intervals;
+               - forward plots for monitored measures: outlying case diagnostics measures, ranking measures, heterogeneity, and inconsistency measures.
 License: GPL (>= 2)
 Encoding: UTF-8
 RoxygenNote: 6.1.1
 NeedsCompilation: no
 Packaged: 2018-10-18 12:33:50 UTC; marak
-Author: Maria Petropoulou [aut,cre],
-       Guido Schwarzer [aut],
-       Agapios Panos [aut],
-       Dimitris Mavridis [aut]
-Maintainer: Maria Petropoulou <mpetrop@cc.uoi.gr>

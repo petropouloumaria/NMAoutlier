@@ -2,3 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+*~
+*.bak
+symbols.rds
+.Rhistory
+.DS_Store
