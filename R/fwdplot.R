@@ -40,7 +40,7 @@
 #'
 #' # Forward search algorithm
 #' #
-#' FSresult <- NMAoutlier(p1, P = 1, small.values = "bad")
+#' FSresult <- NMAoutlier(p1, P = 1, small.values = "bad", n_cores = 2)
 #'
 #' # forward plot for Cook's distance
 #' fwdplot(FSresult, "cook")
@@ -91,7 +91,7 @@
 #' # forward plot for standardized residuals for study 4
 #' fwdplot(FSresult, "estand", 4)
 #' }
-#' 
+#'
 #' @export
 #'
 #' @author Maria Petropoulou <mpetrop@cc.uoi.gr>

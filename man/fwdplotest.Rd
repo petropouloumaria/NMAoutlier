@@ -31,7 +31,7 @@ p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
 
 # Forward search algorithm
 #
-FSresult <- NMAoutlier(p1, P = 1, small.values = "bad")
+FSresult <- NMAoutlier(p1, P = 1, small.values = "bad", n_cores = 2)
 
 # Forward plot for summary estimates for each treatment
 # and their confidence intervals

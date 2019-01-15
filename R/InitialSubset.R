@@ -22,6 +22,8 @@
 #' @param reference Reference treatment group.
 #' @param t1.label numbers to treatment 1 IDs.
 #' @param t2.label numbers to treatment 2 IDs.
+#' @param n_cores the number of cores that the process is running
+#'   using the parallel.
 #' @return An initial clean subset of studies.
 #'
 #' @keywords internal
@@ -33,7 +35,7 @@
 
 InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
                           crit1, studies, P, reference,
-                          t1.label, t2.label) {
+                          t1.label, t2.label, n_cores) {
 
 
   ## Set the number of studies (n) to be equal to the number of treatments
@@ -41,23 +43,14 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
   ## Create random subsets which include all treatments with size
   ## equal to the number of treatments
 
-
-  ## Calculate the number of cores
-  ##
-  clc <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
-  ##
-  if (nzchar(clc) && clc == "TRUE") {
-    ## Use two cores for CRAN checks
-    n.cores <- 2L
-  }
-  else {
+  if (is.null(n_cores)) {
     ## Use all available cores
-    n.cores <- max(1, detectCores())
+    n_cores <- max(1, detectCores())
   }
-  ##
-  cl <- makeCluster(n.cores)
-  
-  
+
+  cl <- makeCluster(n_cores)
+
+
   clusterExport(cl=cl,
                 varlist=c("t1.label", "t2.label", "studlab", "studies",
                           "netconnection", "treat1", "treat2", "sub",
@@ -65,8 +58,8 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
                           "createB", "prepare",
                           "Multi", "multiarm",
                           "crit1"), envir=environment())
-  
-  
+
+
   ## create P initial subsets with parallel computations
   paral <- parLapply(cl, 1:P, function(z) {
 

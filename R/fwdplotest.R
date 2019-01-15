@@ -26,7 +26,7 @@
 #'
 #' # Forward search algorithm
 #' #
-#' FSresult <- NMAoutlier(p1, P = 1, small.values = "bad")
+#' FSresult <- NMAoutlier(p1, P = 1, small.values = "bad", n_cores = 2)
 #'
 #' # Forward plot for summary estimates for each treatment
 #' # and their confidence intervals
@@ -51,7 +51,7 @@
 #' # and their confidence intervals
 #' fwdplotest(FSresult)
 #' }
-#' 
+#'
 #' @export
 #'
 #' @author Maria Petropoulou <mpetrop@cc.uoi.gr>

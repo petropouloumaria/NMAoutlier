@@ -5,7 +5,7 @@
 \title{InitialSubset}
 \usage{
 InitialSubset(TE, seTE, treat1, treat2, studlab, crit1, studies, P,
-  reference, t1.label, t2.label)
+  reference, t1.label, t2.label, n_cores)
 }
 \arguments{
 \item{TE}{Estimate of treatment effect, i.e. difference between
@@ -38,6 +38,9 @@ the choice of the initial subset.}
 \item{t1.label}{numbers to treatment 1 IDs.}
 
 \item{t2.label}{numbers to treatment 2 IDs.}
+
+\item{n_cores}{the number of cores that the process is running
+using the parallel.}
 }
 \value{
 An initial clean subset of studies.

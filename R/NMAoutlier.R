@@ -57,6 +57,9 @@
 #'   (option:"bad") on outcome.  This is requirement for p-scores
 #'   computation. The default value is considered benefial outcome
 #'   ("good").
+#' @param n_cores The number of cores that the process is running
+#'   using the parallel (default: NULL, the process is running
+#'   using all the available cores)
 #'
 #' @details
 #' Description of methodology by fitting forward search algorithm in
@@ -215,7 +218,7 @@
 #'
 #' # Forward search algorithm
 #' #
-#' FSresult <- NMAoutlier(p1, P = 1, small.values = "bad")
+#' FSresult <- NMAoutlier(p1, P = 1, small.values = "bad", n_cores = 2)
 #'
 #' \dontrun{
 #' data(smokingcessation, package = "netmeta")
@@ -260,7 +263,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
                        studies = NULL,
                        P = 100,
                        sm,
-                       reference = "", small.values = "good") {
+                       reference = "", small.values = "good", n_cores = NULL) {
 
 
   ## Check arguments
@@ -520,7 +523,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     ## Take the initial subset
     Isub <- InitialSubset(TE, seTE, treat1, treat2, studlab,
                           crit1, studies, P, reference,
-                          t1.label, t2.label)
+                          t1.label, t2.label, n_cores)
 
     ## Define the initial basic set
     ##

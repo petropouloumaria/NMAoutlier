@@ -6,7 +6,7 @@
 \usage{
 NMAoutlier(TE, seTE, treat1, treat2, studlab, data = NULL, crit1 = "R",
   crit2 = "R", studies = NULL, P = 100, sm, reference = "",
-  small.values = "good")
+  small.values = "good", n_cores = NULL)
 }
 \arguments{
 \item{TE}{Estimate of treatment effect, i.e. difference between
@@ -56,6 +56,10 @@ are considered beneficial (option:"good") or harmfull
 (option:"bad") on outcome.  This is requirement for p-scores
 computation. The default value is considered benefial outcome
 ("good").}
+
+\item{n_cores}{The number of cores that the process is running
+using the parallel (default: NULL, the process is running
+using all the available cores)}
 }
 \value{
 An object of class \code{NMAoutlier}; a list containing the
@@ -202,7 +206,7 @@ p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
 
 # Forward search algorithm
 #
-FSresult <- NMAoutlier(p1, P = 1, small.values = "bad")
+FSresult <- NMAoutlier(p1, P = 1, small.values = "bad", n_cores = 2)
 
 \dontrun{
 data(smokingcessation, package = "netmeta")

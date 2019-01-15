@@ -47,7 +47,7 @@ p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
 
 # Forward search algorithm
 #
-FSresult <- NMAoutlier(p1, P = 1, small.values = "bad")
+FSresult <- NMAoutlier(p1, P = 1, small.values = "bad", n_cores = 2)
 
 # forward plot for Cook's distance
 fwdplot(FSresult, "cook")
