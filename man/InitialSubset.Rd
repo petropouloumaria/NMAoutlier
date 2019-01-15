@@ -4,8 +4,8 @@
 \alias{InitialSubset}
 \title{InitialSubset}
 \usage{
-InitialSubset(TE, seTE, treat1, treat2, studlab, crit1, studies, P, reference,
-  t1.label, t2.label)
+InitialSubset(TE, seTE, treat1, treat2, studlab, crit1, studies, P,
+  reference, t1.label, t2.label)
 }
 \arguments{
 \item{TE}{Estimate of treatment effect, i.e. difference between
