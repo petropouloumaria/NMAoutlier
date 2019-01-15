@@ -10,7 +10,7 @@
 #'
 #' Monitoring measures during the search are:
 #' \itemize{
-#' \item outlying measures (standardized residuals, Cook's statistic,
+#' \item outlying measures (standardized residuals, Cook's distance,
 #'   ratio of variance);
 #' \item ranking measures (P-scores);
 #' \item heterogeneity and inconsistency measures (Q statistics for
@@ -18,9 +18,9 @@
 #'   design-by-treatment interaction model, z-values for comparison
 #'   between direct and indirect evidence by back-calculation method).
 #' }
-#' 
+#'
 #' A description of the methodology can be found in Petropoulou et
-#' al. (2018).
+#' al. (2019).
 #'
 #' @param TE Estimate of treatment effect, i.e. difference between
 #'   first and second treatment (e.g. log odds ratio, mean difference,
@@ -61,7 +61,7 @@
 #' @details
 #' Description of methodology by fitting forward search algorithm in
 #' network meta-analysis. Methodology of FS algorithm fitted in NMA
-#' model from graph theory is described in Petropoulou et al. 2018.
+#' model from graph theory is described in Petropoulou et al. 2019.
 #'
 #' Let \emph{n} be the number of treatments in a network and let
 #' \emph{m} be the number of pairwise treatment comparisons.  If there
@@ -160,12 +160,12 @@
 #'    \item{estb}{Summary estimates for each treatment for the basic set in each iteration of forward search algorithm.}
 #'    \item{lb}{Lower 95\% confidence interval of summary estimates for the basic set in each iteration of forward search algorithm.}
 #'    \item{ub}{Upper 95\% confidence interval of summary estimates for the basic set in each iteration of forward search algorithm.}
-#'    \item{Ratio}{Ratio of determinants (\code{COVRATIOj}) of variance-covariance matrix of treatment estimates at iteration j to that iteration at j-1.}
+#'    \item{Ratio}{Ratio of determinants (\code{COVRATIOj}) of variance-covariance matrix of treatment estimates at iteration j to that iteration at (j-1).}
 #'    \item{cook_d}{Cook's statistic (\code{Cj}) at iteration j of forward search algorithm.}
 #'    \item{p.score}{P-score for ranking each treatment for the basic set in each iteration of forward search algorithm.}
 #'    \item{dif}{Z-values for comparison between direct and indirect evidence for each iteration of forward search algorithm.
 #'     Based on back-calculation method to derive indirect estimates from direct pairwise comparisons and network estimates.}
-#'    \item{estand}{Standardised residuals for each study for the basic set in each iteration of forward search algorithm.}
+#'    \item{estand}{Standardized residuals for each study for the basic set in each iteration of forward search algorithm.}
 #'    \item{call}{Function call}
 #'
 #' @references
@@ -173,20 +173,20 @@
 #' Checking consistency in mixed treatment comparison meta-analysis.
 #' \emph{Statistics in Medicine},
 #' \bold{29}, 932--44
-#' 
+#'
 #' König J, Krahn U, Binder H (2013):
 #' Visualizing the flow of evidence in network meta-analysis and
 #' characterizing mixed treatment comparisons.
 #' \emph{Statistics in Medicine},
 #' \bold{32}, 5414--29
-#' 
+#'
 #' Krahn U, Binder H, König J (2013):
 #' A graphical tool for locating inconsistency in network meta-analyses.
 #' \emph{BMC Medical Research Methodology},
 #' \bold{13}, 35
-#' 
+#'
 #' Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I,
-#' Mavridis D (2018):
+#' Mavridis D (2019):
 #' A forward search algorithm for detection of extreme study effects
 #' in network meta-analysis.
 #' \emph{Manuscript}
@@ -195,7 +195,7 @@
 #' Network meta-analysis, electrical networks and graph theory.
 #' \emph{Research Synthesis Methods},
 #' \bold{3}, 312--24
-#' 
+#'
 #' Rücker G, Schwarzer G (2015):
 #' Ranking treatments in frequentist network meta-analysis works
 #' without resampling methods.
@@ -245,7 +245,7 @@
 #'                         small.values = "bad")
 #' FSresult2
 #' }
-#' 
+#'
 #' @export
 #'
 #' @author Maria Petropoulou <mpetrop@cc.uoi.gr>

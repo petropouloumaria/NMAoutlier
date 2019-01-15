@@ -24,7 +24,7 @@ Description: A set of functions providing the forward search algorithm for detec
                - iterations of forward search algorithm;
                - basic set of studies in each step of forward search algorithm;
                - summary estimates and their confidence intervals in each step of forward search algorithm;
-               - outlying case diagnostics measures. 
+               - outlying case diagnostics measures; 
                - ranking measures;
                - heterogeneity and inconsistency measures;
                - forward plot for summary estimates and their confidence intervals;
