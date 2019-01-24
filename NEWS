@@ -1,6 +1,28 @@
+*** NMAoutlier, version 0.1.13 ***
+
+- added n_cores argument to limit cores to 2 for small toy examples that run in < 5 sec for CRAN submission
+
+
+*** NMAoutlier, version 0.1.12 ***
+
+-	added maintainer to the description file
+
+
+
+*** NMAoutlier, version 0.1.11 ***
+
+- DESCRIPTION: ORCIDs added; help pages updated (fix error for keratosis);datasets renamed
+
+
+*** NMAoutlier, version 0.1.10 ***
+
+-	added small examples for CRAN submission
+
+
 *** NMAoutlier, version 0.1.7 ***
 
 - new datasets Laparoscopic and Gupta2013 added
+
 
 
 *** NMAoutlier, version 0.1.6 ***
