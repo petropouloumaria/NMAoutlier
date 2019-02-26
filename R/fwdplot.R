@@ -98,7 +98,7 @@
 #'
 #' @importFrom ggplot2 ggplot aes theme element_rect element_line
 #'   geom_line geom_point labs guides guide_legend scale_x_discrete
-#'   scale_linetype_manual scale_shape_manual
+#'   scale_linetype_manual scale_shape_manual scale_y_continuous
 #' @importFrom reshape2 melt
 #' @importFrom gridExtra grid.arrange
 
@@ -110,9 +110,9 @@ fwdplot <- function (x, stat, select.st = NULL) {
   chkclass(x, "NMAoutlier")
 
   stat <- setchar(stat, c("pscore", "nsplit", "estand", "heterog",
-                          "cook", "ratio", "q"))
+                          "cook", "ratio", "Q"))
 
-  if (stat == "pscore") {
+  if (tolower(stat) == "pscore") {
     data<-getSelected(x$p.score, select.st)
     melt_data <- melt(data) # melt formats our data in a tall format which is proper for the ggplot function.
     var1_factors <- as.factor(melt_data$Var1)
@@ -126,7 +126,7 @@ fwdplot <- function (x, stat, select.st = NULL) {
       scale_shape_manual(values=seq(1,length(var1_factors))) +
       scale_linetype_manual(values=seq(1,length(var1_factors)))
   }
-  else if (stat == "nsplit") {
+  else if (tolower(stat) == "nsplit") {
     data<-getSelected(x$dif, select.st)
     melt_data <- melt(data)
     var1_factors <- as.factor(melt_data$Var1)
@@ -140,7 +140,7 @@ fwdplot <- function (x, stat, select.st = NULL) {
       scale_shape_manual(values=seq(1,length(var1_factors))) +
       scale_linetype_manual(values=seq(1,length(var1_factors)))
   }
-  else if (stat == "estand") {
+  else if (tolower(stat) == "estand") {
     data<-getSelected(x$estand, select.st)
     melt_data <- melt(data)
     var1_factors <- as.factor(melt_data$Var1)
@@ -154,31 +154,39 @@ fwdplot <- function (x, stat, select.st = NULL) {
       scale_shape_manual(values=seq(1,length(var1_factors))) +
       scale_linetype_manual(values=seq(1,length(var1_factors)))
   }
-  else if (stat == "heterog") {
+  else if (tolower(stat) == "heterog") {
     data<-getSelected(x$tau, select.st)
     melt_data <- melt(data)
-    ggplot(data=melt_data, aes(x=1:length(x$tau), y=melt_data$value)) +
+    upper_limit <- NA
+    if (any(melt_data$value == 0)) {
+      upper_limit <- 1
+    }
+    ggplot(data=melt_data, aes(x=1:length(data), y=melt_data$value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color='#016FB9', size=3, na.rm=TRUE) +
-      labs(title="Forward plot for heterogeneity", y="Heterogeneity", x="Iterations")
+      labs(title="Forward plot for heterogeneity", y="Heterogeneity", x="Iterations") +
+      scale_x_discrete(limits = c(1:length(data))) +
+      scale_y_continuous(limits = c(0,upper_limit))
   }
-  else if (stat == "cook") {
+  else if (tolower(stat) == "cook") {
     data<-getSelected(x$cook_d, select.st)
     melt_data <- melt(data)
-    ggplot(data=melt_data, aes(x=1:length(x$cook_d), y=melt_data$value)) +
+    ggplot(data=melt_data, aes(x=2:(length(x$cook_d)+1), y=melt_data$value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color='#016FB9', size=3, na.rm=TRUE) +
-      labs(title="Forward plot for Cook's distance", y="Cook's distance", x="Iterations")
+      labs(title="Forward plot for Cook's distance", y="Cook's distance", x="Iterations") +
+      scale_x_discrete(limits = c(2:(length(x$cook_d)+1)))
   }
-  else if (stat == "ratio") {
+  else if (tolower(stat) == "ratio") {
     data<-getSelected(x$Ratio, select.st)
     melt_data <- melt(data)
-    ggplot(data=melt_data, aes(x=1:length(x$Ratio), y=melt_data$value)) +
+    ggplot(data=melt_data, aes(x=2:(length(x$Ratio)+1), y=melt_data$value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color='#016FB9', size=3, na.rm=TRUE) +
-      labs(title="Forward plot for ratio of variances", y="Ratio of variances", x="Iterations")
+      labs(title="Forward plot for ratio of variances", y="Ratio of variances", x="Iterations") +
+      scale_x_discrete(limits = c(2:(length(x$Ratio)+1)))
   }
-  else if (stat == "Q") {
+  else if (tolower(stat) == "q") {
     data<-getSelected(x$Qb, select.st)
     melt_data1 <- melt(data)
     p1 <- ggplot(data=melt_data1, aes(x=1:length(x$Qb), y=melt_data1$value)) +

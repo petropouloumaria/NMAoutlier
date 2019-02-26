@@ -11,7 +11,10 @@ NMAoutlier(TE, seTE, treat1, treat2, studlab, data = NULL, crit1 = "R",
 \arguments{
 \item{TE}{Estimate of treatment effect, i.e. difference between
 first and second treatment (e.g. log odds ratio, mean difference,
-or log hazard ratio).}
+or log hazard ratio). This can also be a pairwise object
+(i.e. the result of pairwise function of netmeta package).
+In this case, the pairwise object should include the following:
+TE, seTE, treat1, treat2, studlab}
 
 \item{seTE}{Standard error of treatment estimate.}
 

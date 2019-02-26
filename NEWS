@@ -1,3 +1,10 @@
+*** NMAoutlier, version 0.1.14 ***
+
+- problem of fwdplot() function for stat = Q fixed
+- update forward plots for Cook's statistics, ratio of variances and heterogeneity
+- update roxygen comments for function NMAoutlier
+
+
 *** NMAoutlier, version 0.1.13 ***
 
 - added n_cores argument to limit cores to 2 for small toy examples that run in < 5 sec for CRAN submission
