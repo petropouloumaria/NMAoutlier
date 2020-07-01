@@ -54,6 +54,8 @@
 #' @param sm A character string indicating underlying summary measure,
 #'   e.g., \code{"RD"}, \code{"RR"}, \code{"OR"}, \code{"ASD"},
 #'   \code{"HR"}, \code{"MD"}, \code{"SMD"}, or \code{"ROM"}.
+#' @param Isub A vector for the studies to be included in the initial subset (default: NULL, the initial subset
+#'   not specified by the user).
 #' @param reference Reference treatment group.
 #' @param small.values A character string indicating if small values
 #'   are considered beneficial (option:"good") or harmfull
@@ -266,6 +268,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
                        studies = NULL,
                        P = 100,
                        sm,
+                       Isub = NULL,
                        reference = "", small.values = "good", n_cores = NULL) {
 
 
@@ -522,15 +525,16 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     ## study that inputed from non-basic to basic set
     subset <- NULL
 
-
+    if (is.null(Isub)){
     ## Take the initial subset
-    Isub <- InitialSubset(TE, seTE, treat1, treat2, studlab,
+    Isub <- c(InitialSubset(TE, seTE, treat1, treat2, studlab,
                           crit1, studies, P, reference,
-                          t1.label, t2.label, n_cores)
+                          t1.label, t2.label, n_cores)$set)
+    }
 
     ## Define the initial basic set
     ##
-    bs <- c(Isub$set)
+    bs <- Isub
     ##
     ## indices of basic set
     ##
@@ -691,7 +695,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     ##
     ## length of the initial basic set
     ##
-    length.initial <- length(Isub$set)
+    length.initial <- length(Isub)
     int <- rep(1, length.initial)
     iteration <- c(int, 2:index)
     ##

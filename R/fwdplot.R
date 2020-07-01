@@ -171,20 +171,20 @@ fwdplot <- function (x, stat, select.st = NULL) {
   else if (tolower(stat) == "cook") {
     data<-getSelected(x$cook_d, select.st)
     melt_data <- melt(data)
-    ggplot(data=melt_data, aes(x=2:(length(x$cook_d)+1), y=melt_data$value)) +
+    ggplot(data=melt_data, aes(x=2:(length(data)+1), y=melt_data$value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color='#016FB9', size=3, na.rm=TRUE) +
       labs(title="Forward plot for Cook's distance", y="Cook's distance", x="Iterations") +
-      scale_x_discrete(limits = c(2:(length(x$cook_d)+1)))
+      scale_x_discrete(limits = c(2:(length(data)+1)))
   }
   else if (tolower(stat) == "ratio") {
     data<-getSelected(x$Ratio, select.st)
     melt_data <- melt(data)
-    ggplot(data=melt_data, aes(x=2:(length(x$Ratio)+1), y=melt_data$value)) +
+    ggplot(data=melt_data, aes(x=2:(length(data)+1), y=melt_data$value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color='#016FB9', size=3, na.rm=TRUE) +
       labs(title="Forward plot for ratio of variances", y="Ratio of variances", x="Iterations") +
-      scale_x_discrete(limits = c(2:(length(x$Ratio)+1)))
+      scale_x_discrete(limits = c(2:(length(data)+1)))
   }
   else if (tolower(stat) == "q") {
     data<-getSelected(x$Qb, select.st)
