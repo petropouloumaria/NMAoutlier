@@ -14,8 +14,8 @@
 }}
 \source{
 Gupta AK, Paquet M (2013):
-Network meta-analysis of the outcome ‘participant complete
-clearance’ in nonimmunosuppressed participants of eight
+Network meta-analysis of the outcome participant complete
+clearance in nonimmunosuppressed participants of eight
 interventions for actinic keratosis: a follow-up on a Cochrane
 review.
 \emph{British Journal of Dermatology},
@@ -40,7 +40,7 @@ The dataset compares the relative effects of nine interventions:
   (treatment 6),
 \item 5-fluorouracil (5-FU) 5.0 percent (treatment 7),
 \item cryotherapy (treatment 8),
-\item ingenol mebutate (IMB) 0.015–0.05 percent (treatment 9).
+\item ingenol mebutate (IMB) 0.015-0.05 percent (treatment 9).
 }
 
 The outcome is the number of individuals with participant complete

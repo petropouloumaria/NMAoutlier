@@ -1,7 +1,7 @@
 #' Network meta-analysis for a set of studies
 #'
 #' Conduct network meta-analysis (Rücker model) for a set of studies.
-#' 
+#'
 #' @param TE Estimate of treatment effect, i.e. difference between
 #'   first and second treatment (e.g. log odds ratio, mean difference,
 #'   or log hazard ratio).
@@ -16,7 +16,7 @@
 #'   indicating if small values are considered bad ("bad") or good
 #'   ("good").
 #' @param names.treat names of treatments
-#' 
+#'
 #' @return results and statistics from network meta-analysis.
 #'
 #' @keywords internal
@@ -91,7 +91,7 @@ netmet <- function(TE, seTE, treat1, treat2, studlab,
   ##
   Q <- model$Q                                         # overall
   Qhet <- model$Q.heterogeneity                        # within-designs
-  Qinc <- decomp.design(model)$Q.inc.random$Q # between-designs
+  Qinc <- decomp.design(model)$Q.inc.random$Q          # between-designs
   ##
   st.res <- mult(studlab, ind.bs, standres, model)
 

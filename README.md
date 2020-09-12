@@ -1,4 +1,4 @@
-NMAoutlier: Forward Search Algorithm in Network Meta-Analysis to identify outlying and influential studies
+NMAoutlier: Detecting Outliers in Network Meta-Analysis
 ================
 
 [![Build Status](https://travis-ci.org/petropouloumaria/NMAoutlier.svg?branch=master)](https://travis-ci.org/petropouloumaria/NMAoutlier)
@@ -8,17 +8,19 @@ NMAoutlier: Forward Search Algorithm in Network Meta-Analysis to identify outlyi
 Description
 -----------
 
-A package that provides forward search algorithm for detecting outlying or influential studies in network meta-analysis.
+A package that provides for detecting outlying studies in network meta-analysis.
 
--   Provides the length of the initial oultying-free clean subset for forward search algorithm.
--   Iterations of forward search algorithm.
--   Basic set of studies in each iteration of forward search algorithm.
--   Summary estimates and their confidence intervals in each iteration of forward search algorithm.
--   Outlier and influential case diagnostics measures.
--   Ranking measures.
--   Heterogeneity and inconsistency measures.
--   Forward plots for summary estimates and their confidence intervals.
--   Forward plots for monitored measures: outlier and influential case diagnostics measures, ranking measures, heterogeneity and inconsistency measures.
+-   **Several outlier detection measures provided:** Raw, Standardized, Studentized residuals; Mahalanobis distance and leverage.
+-   **Plots for outlier and influence measures:** Raw, Standardized, Studentized residuals; Mahalanobis distance and leverage.
+-   **Several outlier and influence detection measures considered deletion:** Raw, Standardized,Studentized deleted residuals; Cook distance; COVRATIO; weight “leave one out”; leverage “leave one out”; heterogeneity “leave one out”; R heterogeneity; R Qtotal; R Qheterogeneity; R Qinconsistency and DFBETAS.
+-   **Plots for outlier and influence detection measures considered deletion:** the aboved measures.
+-   **Q-Q plot for network meta-analysis.**
+-   **Forward search algorithm in network meta-analysis (FS).**
+-   **Forward plots (fwdplot) for the monitoring statistics** in each step of forward search algorithm P-scores; z-values for difference of direct and indirect evidence with back-calculation method; Standardized residuals; heterogeneity variance estimator; cook distance; ratio of variances; Q statistics.
+-   **Forward plot for summary estimates** and their confidence intervals for each treatment in each step of forward search algorithm.
+-   **Random shift variance NMA model (RVSOM NMA).**
+-   **Plots for the monitoring measures for random shift variance model.**
+-   **Plots for the for summary estimates** of random shift variance model.
 
 Installation
 ------------
@@ -35,17 +37,22 @@ devtools::install_github("petropouloumaria/NMAoutlier")
 Usage
 -----
 
-Example of outlying detection in network meta-analysis comparing the relative effects of four smoking cessation counseling programs, no contact (A), self-help (B), individual counseling (C) and group counseling (D). The outcome is the number of individuals with successful smoking cessation at 6 to 12 months. The dataset used as example in Dias et al.(2013). The dataset for smoking cessation is a part of data in netmeta package.
+Example of outlying detection in network meta-analysis comparing the relative effects of four smoking cessation counseling programs, no contact (A), self-help (B), individual counseling (C) and group counseling (D). The outcome is the number of individuals with successful smoking cessation at 6 to 12 months. These data are in contrast format with effect size odds ratio (OR) and its standard error. Arm-level data can be found in Dias et al.(2013).
 
-Reference: Dias S, Welton NJ, Sutton AJ, Caldwell DM, Lu G and Ades AE (2013). Evidence Synthesis for Decision Making 4: Inconsistency in networks of evidence based on randomized controlled trials. Medical Decision Making 33, 641–656.
+Reference:
 
-You can load the **NMAoutlier** library 
+Higgins D, Jackson JK, Barrett G, Lu G, Ades AE, and White IR. Consistency and inconsistency in network meta-analysis: concepts and models for multi-arm studies. Research Synthesis Methods 2012, 3(2): 98–110.
+
+Dias S, Welton NJ, Sutton AJ, Caldwell DM, Lu G and Ades AE (2013). Evidence Synthesis for Decision Making 4: Inconsistency in networks of evidence based on randomized controlled trials. Medical Decision Making 33, 641–656.
+
+You can load the **NMAoutlier** library
 
 ``` r
 library(NMAoutlier)
 ```
 
-Load the dataset smoking cessation from netmeta package. 
+Load the dataset smoking cessation from netmeta package.
+
 ``` r
 data(smokingcessation, package = "netmeta")
 ```
@@ -61,13 +68,67 @@ p1 <- pairwise(list(treat1, treat2, treat3),
               sm="OR")
 ```
 
+**Part 1: Simply outlier detection measures**
+
+You can calculate some simply outlier detection measures with function **NMAoutlier\_measures** as follows:
+
+``` r
+measures <- NMAoutlier_measures(p1)
+```
+
+You can see the Mahalanobis distance for each study
+
+``` r
+measures$Mahalanobis.distance
+```
+
+You can plot the Mahalanobis distance for each study with function **plot\_NMAoutlier\_measures** as follows:
+
+``` r
+plot_NMAoutlier_measures(measures, studlab, "mah")
+```
+
+You can plot the Q-Q plot for network meta-analyis with function **Qnetplot** as follows:
+
+``` r
+Qnetplot(measures)
+```
+
+**Part 2: Outlier detection measures considered deletion**
+
+You can calculate some outlier detection measures considered deletion with function **NMAoutlier\_deletion\_measures** as follows:
+
+``` r
+deletion <- NMAoutlier_deletion_measures(p1)
+```
+
+You can see the standardized deleted residuals for each study
+
+``` r
+deletion$stand.deleted
+```
+
+We can see the values of COVRATIO when considering deletion for each study
+
+``` r
+deletion$covratio
+```
+
+We can plot the R statistic for Qinconsistency with function **plot\_NMAoutlier\_deletion\_measures** as follows:
+
+``` r
+plot_NMAoutlier_deletion_measures(deletion, studlab, "rqinc")
+```
+
+**Part 3: Forward Search Algorithm - Detection Methodology**
+
 You can conduct the forward search algorithm with function **NMAoutlier** as follows:
 
 ``` r
 FSresult <- NMAoutlier(p1, small.values = "bad")
 ```
 
-You can see the forward plots with function **fwdplot** for monitoring measures. For example, you can plot the influential diagnostic measure Cook distance as follows:
+You can see the forward plots with function **fwdplot** for monitoring measures. For example, you can plot the diagnostic measure Cook distance as follows:
 
 ``` r
 fwdplot(FSresult,"cook")
@@ -98,3 +159,35 @@ fwdplotest(FSresult)
 ```
 
 <img src="man/figures/fwdplot-summary-estimates.png" style="margin-left: auto; margin-right: auto; display: block;"/>
+
+**Part 4: Shift Variance Network Meta-analysis – Detection methodology and sensitivity analysis downweighing outlier**
+
+You can conduct the random shift variance model for each study with function **NMAsvr** as follows:
+
+``` r
+SVRresult <- NMAsvr(p1, small.values = "bad")
+```
+
+You can see the the Likelihood Ratio Test (LRT) with random shift variance model of each study
+
+``` r
+SVRresult$LRT 
+```
+
+Or you can see the over-dispersion with random shift variance model of each study
+
+``` r
+SVRresult$over_disp
+```
+
+You can plot the of Likelihood Ratio Test (LRT) of random shift variance model for each study with function **svrplot** as follows:
+
+``` r
+svrplot(SVRresult, "LRT")
+```
+
+You can see the plots for summary estimates for each treatment B, C and D with function **svrplotest** as follows:
+
+``` r
+svrplotest(SVRresult)
+```

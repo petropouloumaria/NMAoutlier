@@ -24,10 +24,7 @@
 #'
 #' @param TE Estimate of treatment effect, i.e. difference between
 #'   first and second treatment (e.g. log odds ratio, mean difference,
-#'   or log hazard ratio). This can also be a pairwise object
-#'   (i.e. the result of pairwise function of netmeta package).
-#'   In this case, the pairwise object should include the following:
-#'   TE, seTE, treat1, treat2, studlab
+#'   or log hazard ratio).
 #' @param seTE Standard error of treatment estimate.
 #' @param treat1 Label/Number for first treatment.
 #' @param treat2 Label/Number for second treatment.
@@ -54,8 +51,6 @@
 #' @param sm A character string indicating underlying summary measure,
 #'   e.g., \code{"RD"}, \code{"RR"}, \code{"OR"}, \code{"ASD"},
 #'   \code{"HR"}, \code{"MD"}, \code{"SMD"}, or \code{"ROM"}.
-#' @param Isub A vector for the studies to be included in the initial subset (default: NULL, the initial subset
-#'   not specified by the user).
 #' @param reference Reference treatment group.
 #' @param small.values A character string indicating if small values
 #'   are considered beneficial (option:"good") or harmfull
@@ -70,15 +65,6 @@
 #' Description of methodology by fitting forward search algorithm in
 #' network meta-analysis. Methodology of FS algorithm fitted in NMA
 #' model from graph theory is described in Petropoulou et al. 2019.
-#'
-#' Let \emph{n} be the number of treatments in a network and let
-#' \emph{m} be the number of pairwise treatment comparisons.  If there
-#' are only two-arm studies, \emph{m} is the number of studies.  Let
-#' TE and seTE be the vectors of observed effects and their standard
-#' errors.  Comparisons belonging to multi-arm studies are identified
-#' by identical study labels (argument \code{studlab}). It is
-#' therefore important to use identical study labels for all
-#' comparisons belonging to the same multi-arm study.
 #'
 #' The FS algorithm is a diagnostic iterative procedure.  FS algorithm
 #' aparts from three steps. It starts with a subset of studies and it
@@ -268,7 +254,6 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
                        studies = NULL,
                        P = 100,
                        sm,
-                       Isub = NULL,
                        reference = "", small.values = "good", n_cores = NULL) {
 
 
@@ -525,16 +510,15 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     ## study that inputed from non-basic to basic set
     subset <- NULL
 
-    if (is.null(Isub)){
+
     ## Take the initial subset
-    Isub <- c(InitialSubset(TE, seTE, treat1, treat2, studlab,
+    Isub <- InitialSubset(TE, seTE, treat1, treat2, studlab,
                           crit1, studies, P, reference,
-                          t1.label, t2.label, n_cores)$set)
-    }
+                          t1.label, t2.label, n_cores)
 
     ## Define the initial basic set
     ##
-    bs <- Isub
+    bs <- c(Isub$set)
     ##
     ## indices of basic set
     ##
@@ -695,7 +679,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     ##
     ## length of the initial basic set
     ##
-    length.initial <- length(Isub)
+    length.initial <- length(Isub$set)
     int <- rep(1, length.initial)
     iteration <- c(int, 2:index)
     ##

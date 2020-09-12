@@ -239,7 +239,7 @@ createB <- function (pos1, pos2, ncol) {
   B
 }
 
-prepare <- function(TE, seTE, treat1, treat2, studlab, tau = 0) {
+prepare <- function(TE, seTE, treat1, treat2, studlab, tau ) {
 
   ##
   ## Ordering data set

@@ -1,3 +1,6 @@
+
+
+
 print.NMAoutlier <- function(x, digits = 4) {
 
   ## Check class
@@ -8,10 +11,11 @@ print.NMAoutlier <- function(x, digits = 4) {
   cat("Original data:\n")
   ##
   Mydata <- x$dat
-  datamatrix<-cbind(formatN(as.numeric(Mydata[,1]), digits), formatN(as.numeric(Mydata[,2]),digits),
-                    as.character(Mydata[,3]), as.character(Mydata[,4]), as.character(Mydata[,5]))
+  datamatrix <- cbind(formatN(as.numeric(Mydata[, 1]), digits), formatN(as.numeric(Mydata[, 2]), digits),
+                    as.character(Mydata[, 3]), as.character(Mydata[, 4]), as.character(Mydata[, 5]))
   ##
-  prmatrix(datamatrix, rowlab=paste(c(1:length(Mydata[,1])),""),collab = c("TE","seTE","studylab","treat1","treat2"), quote = FALSE, right = TRUE)
+  prmatrix(datamatrix, rowlab = paste(c(1:length(Mydata[, 1])), ""), collab = c("TE","seTE","studylab","treat1","treat2"),
+           quote = FALSE, right = TRUE)
   ##
   ##
   cat("\n")
@@ -55,4 +59,3 @@ print.NMAoutlier <- function(x, digits = 4) {
   invisible(NULL)
 
 }
-

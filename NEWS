@@ -1,8 +1,8 @@
-*** NMAoutlier, version 0.1.14 ***
+*** NMAoutlier, version 0.1.15 ***
+- new functions NMAoutlier_measures; NMAoutlier_deletion_measures; plot_NMAoutlier_measures; plot_NMAoutlier_deletion_measures; Qnetplot. The functions provide the calculation of several outlier and influential measures
 
-- problem of fwdplot() function for stat = Q fixed
-- update forward plots for Cook's statistics, ratio of variances and heterogeneity
-- update roxygen comments for function NMAoutlier
+*** NMAoutlier, version 0.1.14 ***
+- new functions added NMA_RVSOM and NMA_REML for outlier detection with shift variance model for NMA
 
 
 *** NMAoutlier, version 0.1.13 ***

@@ -1,38 +1,94 @@
 #' NMAoutlier: Brief overview of methodology for detection of outlying studies in network meta-analysis.
 #'
 #' @description
-#' R package \bold{NMAoutlier} provides diagnostic methods to detect
-#' outlying studies in network meta-analysis.
+#' R package \bold{NMAoutlier} provides diagnostic methods to detect outlying studies in network meta-analysis.
 #'
 #' @details
-#' R package \bold{NMAoutlier} implements the forward search (FS)
-#' algorithm for the detection of outlying studies (studies with extreme results) in
-#' network meta-analysis (NMA) by Petropoulou et al. (2019). The
-#' underlying model considered is the frequentist NMA approach based
-#' on graph theory by Rücker (2012) which is implemented in R package
+#' R package \bold{NMAoutlier} implements several outlier (studies with extreme results) detection measures
+#' as provided in Petropoulou et al. (2019a). Detection tools for outliers provided with the forward search (FS)
+#' algorithm in network meta-analysis (NMA) by Petropoulou et al. (2019b) and the Random Shift Variance model (RVSOM NMA)
+#' by Petropoulou et al. (2019c). The proposed detection measures and methodologies are given with the underlying
+#' model with the frequentist NMA approach based on graph theory by Rücker (2012) which is implemented in R package
 #' \bold{netmeta}.
 #'
 #' The \bold{NMAoutlier} package implements the following:
 #' \itemize{
+#'  \item Several outlier detection measures provided (function
+#'    (\code{\link{NMAoutlier_measures}})) based on Petropoulou et al. (2019a);
+#'  \enumerate{
+#'    \item raw residuals
+#'    \item standardized residuals
+#'    \item studentized residuals
+#'    \item Mahalanobis distance
+#'    \item leverage.
+#'   }
+#'
+#'  \item Plots of the several above outlier detection measures provided (function
+#'   (\code{\link{plot_NMAoutlier_measures}})) (Petropoulou et al. (2019a));
+#'
+#' \item Several outlier detection measures considered deletion provided
+#'  (function (\code{\link{NMAoutlier_deletion_measures}}))
+#'  based on Petropoulou et al. (2019a);
+#'  \enumerate{
+#'  \item raw deleted residuals
+#'  \item standardized deleted residuals
+#'  \item studentized deleted residuals
+#'  \item Cook's distance
+#'  \item COVRATIO
+#'  \item weight leave one out
+#'  \item leverage leave one out
+#'  \item heterogeneity leave one out
+#'  \item R heterogeneity
+#'  \item R Qtotal
+#'  \item R Qheterogeneity
+#'  \item R Qinconsistency
+#'  \item DFBETAS
+#'  }
+#' \item Plots of the several above outlier detection measures considered study deletion provided (function
+#'   (\code{\link{plot_NMAoutlier_deletion_measures}})) (Petropoulou et al. (2019a));
+#'
+#' \item Q-Q plot for network meta-analysis (function
+#'   (\code{\link{Qnetplot}})) (Petropoulou et al. (2019a));
+#'
 #' \item forward search algorithm in network meta-analysis (function
-#'   \code{\link{NMAoutlier}}) based on Petropoulou et al. (2019);
+#'   (\code{\link{NMAoutlier}})) based on Petropoulou et al. (2019b);
 #' \item forward plots (\code{\link{fwdplot}}) with monitoring
 #'   statistics in each step of the FS algorithm:
 #' \enumerate{
-#' \item P-scores (Rücker & Schwarzer, 2015),
-#' \item z-values for difference of direct and indirect evidence
-#'   with back-calculation method (König et al., 2013; Dias et al.,
-#'   2010),
-#' \item standardized residuals,
-#' \item heterogeneity variance estimator,
-#' \item Cook's distance,
-#' \item ratio of variances,
-#' \item Q statistics (Krahn et al., 2013);
+#'   \item P-scores (Rücker & Schwarzer, 2015),
+#'   \item z-values for difference of direct and indirect evidence
+#'         with back-calculation method (König et al., 2013; Dias et al.,
+#'         2010),
+#'   \item standardized residuals,
+#'   \item heterogeneity variance estimator,
+#'   \item Cook's distance,
+#'   \item ratio of variances,
+#'   \item Q statistics (Krahn et al., 2013);
 #' }
-#' \item forward plot (\code{\link{fwdplotest}}) for summary estimates
+#' \item forward plots (\code{\link{fwdplotest}}) for summary estimates
 #'   and their confidence intervals for each treatment in each step of
 #'   the FS algorithm as provided by Petropoulou et
-#'   al. (2019).
+#'   al. (2019b).
+#'
+#' \item Random shift variance NMA model (RVSOM NMA) (function
+#'   (\code{\link{NMAsvr}})) based on Petropoulou et al. (2019c):
+#' \enumerate{
+#' \item P-scores (Rücker & Schwarzer, 2015),
+#' \item z-values for difference of direct and indirect evidence
+#' with back-calculation method (König et al., 2013; Dias et al.,
+#' 2010),
+#' \item standardized residuals,
+#' \item heterogeneity variance estimator,
+#' \item Q statistics (Krahn et al., 2013),
+#' \item shift variance estimator,
+#' \item leverage,
+#' \item likelihood ratio test (LRT),
+#' \item Plots (\code{\link{svrplot}}) with monitoring the above
+#'   statistical measures fitting each study with RVSOM NMA model,
+#' \item Plots (\code{\link{svrplotest}}) for summary estimates
+#'   and their confidence intervals for each treatment for RVSOM NMA model
+#'   as provided by Petropoulou et al. (2019c).
+#'   }
 #' }
 #'
 #' Type \code{help(package = "NMAoutlier")} for a listing of R functions
@@ -54,38 +110,46 @@
 #' @author Petropoulou Maria \email{mpetrop@cc.uoi.gr}
 #'
 #' @references
-#' Dias S, Welton NJ, Caldwell DM, Ades AE (2010):
-#' Checking consistency in mixed treatment comparison meta-analysis.
-#' \emph{Statistics in Medicine},
-#' \bold{29}, 932--44
-#'
-#' König J, Krahn U, Binder H (2013):
-#' Visualizing the flow of evidence in network meta-analysis and
-#' characterizing mixed treatment comparisons.
-#' \emph{Statistics in Medicine},
-#' \bold{32}, 5414--29
-#'
-#' Krahn U, Binder H, König J (2013):
-#' A graphical tool for locating inconsistency in network meta-analyses.
-#' \emph{BMC Medical Research Methodology},
-#' \bold{13}, 35
+#' Petropoulou M (2019a):
+#' Outlier detection measures in network meta-analysis.
+#' \emph{Manuscript}.
 #'
 #' Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I,
-#' Mavridis D (2019):
+#' Mavridis D (2019b):
 #' A forward search algorithm for detection of extreme study effects
 #' in network meta-analysis.
-#' \emph{Manuscript}
+#' \emph{Manuscript}.
+#'
+#' Petropoulou M (2019c). Detecting outliers in network meta-analysis and downweighing
+#' with random shift variance model.
+#' \emph{Manuscript}.
 #'
 #' Rücker G (2012):
 #' Network meta-analysis, electrical networks and graph theory.
 #' \emph{Research Synthesis Methods},
-#' \bold{3}, 312--24
+#' \bold{3}, 312--24.
 #'
 #' Rücker G, Schwarzer G (2015):
 #' Ranking treatments in frequentist network meta-analysis works
 #' without resampling methods.
 #' \emph{BMC Medical Research Methodology},
-#' \bold{15}, 58
+#' \bold{15}, 58.
+#'
+#' Dias S, Welton NJ, Caldwell DM, Ades AE (2010):
+#' Checking consistency in mixed treatment comparison meta-analysis.
+#' \emph{Statistics in Medicine},
+#' \bold{29}, 932--44.
+#'
+#' König J, Krahn U, Binder H (2013):
+#' Visualizing the flow of evidence in network meta-analysis and
+#' characterizing mixed treatment comparisons.
+#' \emph{Statistics in Medicine},
+#' \bold{32}, 5414--29.
+#'
+#' Krahn U, Binder H, König J (2013):
+#' A graphical tool for locating inconsistency in network meta-analyses.
+#' \emph{BMC Medical Research Methodology},
+#' \bold{13}, 35.
 #'
 #' @keywords package
 

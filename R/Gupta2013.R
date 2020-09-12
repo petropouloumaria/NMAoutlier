@@ -1,5 +1,5 @@
 #' Network meta-analysis comparing interventions for actinic keratosis
-#' 
+#'
 #' @description
 #' Example of network meta-analysis with inconsistency.
 #'
@@ -16,18 +16,18 @@
 #'   (treatment 6),
 #' \item 5-fluorouracil (5-FU) 5.0 percent (treatment 7),
 #' \item cryotherapy (treatment 8),
-#' \item ingenol mebutate (IMB) 0.015–0.05 percent (treatment 9).
+#' \item ingenol mebutate (IMB) 0.015-0.05 percent (treatment 9).
 #' }
 #'
 #' The outcome is the number of individuals with participant complete
 #' clearance or an equivalent efficacy. These data are in contrast
 #' format with effect size odds ratio (OR) and its standard
 #' error. Arm-level data used in Gupta and Paquet (2013).
-#' 
+#'
 #' @name Gupta2013
-#' 
+#'
 #' @docType data
-#' 
+#'
 #' @format
 #' A data frame in contrast format with the following columns:
 #' \tabular{rl}{
@@ -37,18 +37,18 @@
 #' \bold{\emph{t1}}\tab first treatment \cr
 #' \bold{\emph{t2}}\tab second treatment
 #' }
-#' 
+#'
 #' @source
 #' Gupta AK, Paquet M (2013):
-#' Network meta-analysis of the outcome ‘participant complete
-#' clearance’ in nonimmunosuppressed participants of eight
+#' Network meta-analysis of the outcome participant complete
+#' clearance in nonimmunosuppressed participants of eight
 #' interventions for actinic keratosis: a follow-up on a Cochrane
 #' review.
 #' \emph{British Journal of Dermatology},
 #' \bold{169}, 250--9
 #'
 #' @keywords datasets
-#' 
+#'
 #' @examples
 #' data(Gupta2013)
 #' \donttest{
@@ -56,12 +56,12 @@
 #' # keratosis
 #' #
 #' FSresult <- NMAoutlier(logOR, selogOR, t1, t2, id, data = Gupta2013)
-#' 
+#'
 #' # Draw forward plot for z-values from difference of direct and
 #' # indirect evidence
 #' #
 #' fwdplot(FSresult, "nsplit")
-#' 
+#'
 #' # Draw forward plot for Q statistic
 #' #
 #' fwdplot(FSresult, "Q")
