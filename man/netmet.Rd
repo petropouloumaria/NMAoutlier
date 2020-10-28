@@ -4,8 +4,17 @@
 \alias{netmet}
 \title{Network meta-analysis for a set of studies}
 \usage{
-netmet(TE, seTE, treat1, treat2, studlab, ind.bs, reference, small.values,
-  names.treat)
+netmet(
+  TE,
+  seTE,
+  treat1,
+  treat2,
+  studlab,
+  ind.bs,
+  reference,
+  small.values,
+  names.treat
+)
 }
 \arguments{
 \item{TE}{Estimate of treatment effect, i.e. difference between

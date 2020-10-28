@@ -5,14 +5,16 @@
 \alias{Schoenberg2013}
 \title{Network meta-analysis comparing the effects after Laparoscopic
 Heller myotomy}
-\format{A data frame in contrast format with the following columns:
+\format{
+A data frame in contrast format with the following columns:
 \tabular{rl}{
 \bold{\emph{logOR}}\tab log odds ratio \cr
 \bold{\emph{selogOR}}\tab standard error of log odds ratio \cr
 \bold{\emph{id}}\tab study ID \cr
 \bold{\emph{t1}}\tab first treatment \cr
 \bold{\emph{t2}}\tab second treatment
-}}
+}
+}
 \source{
 Schoenberg MB, Marx S, Kersten JF, Rösch T, Belle S, Kähler G,
 Vassiliou MC, Lüth S, von Renteln D (2013):

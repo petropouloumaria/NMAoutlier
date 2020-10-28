@@ -4,8 +4,16 @@
 \alias{NMA_RVSOM}
 \title{Random shift variance network meta-analysis (RVSOM NMA) model.}
 \usage{
-NMA_RVSOM(TE, seTE, treat1, treat2, studlab, reference, small.values,
-  observations)
+NMA_RVSOM(
+  TE,
+  seTE,
+  treat1,
+  treat2,
+  studlab,
+  reference,
+  small.values,
+  observations
+)
 }
 \arguments{
 \item{TE}{Estimate of treatment effect, i.e. difference between

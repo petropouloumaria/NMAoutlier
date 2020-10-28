@@ -4,8 +4,16 @@
 \alias{NMAoutlier_deletion_measures}
 \title{Outlier and influential detection measures in network meta-analysis considered deletion of study.}
 \usage{
-NMAoutlier_deletion_measures(TE, seTE, treat1, treat2, studlab,
-  data = NULL, sm, reference = "")
+NMAoutlier_deletion_measures(
+  TE,
+  seTE,
+  treat1,
+  treat2,
+  studlab,
+  data = NULL,
+  sm,
+  reference = ""
+)
 }
 \arguments{
 \item{TE}{Estimate of treatment effect, i.e. difference between

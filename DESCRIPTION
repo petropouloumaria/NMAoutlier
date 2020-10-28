@@ -42,6 +42,6 @@ Description: A set of functions providing tools for detecting outlying studies (
                - Plots for summary estimates and their confidence intervals for each treatment fitting random shift variance model for each study.
 License: GPL (>= 2)
 Encoding: UTF-8
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 NeedsCompilation: no
 Packaged: 2018-10-18 12:33:50 UTC; marak

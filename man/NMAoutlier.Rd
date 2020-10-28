@@ -4,14 +4,31 @@
 \alias{NMAoutlier}
 \title{Forward search algorithm in network meta-analysis}
 \usage{
-NMAoutlier(TE, seTE, treat1, treat2, studlab, data = NULL, crit1 = "R",
-  crit2 = "R", studies = NULL, P = 100, sm, reference = "",
-  small.values = "good", n_cores = NULL)
+NMAoutlier(
+  TE,
+  seTE,
+  treat1,
+  treat2,
+  studlab,
+  data = NULL,
+  crit1 = "R",
+  crit2 = "R",
+  studies = NULL,
+  P = 100,
+  sm,
+  Isub = NULL,
+  reference = "",
+  small.values = "good",
+  n_cores = NULL
+)
 }
 \arguments{
 \item{TE}{Estimate of treatment effect, i.e. difference between
 first and second treatment (e.g. log odds ratio, mean difference,
-or log hazard ratio).}
+or log hazard ratio). This can also be a pairwise object
+(i.e. the result of pairwise function of netmeta package).
+In this case, the pairwise object should include the following:
+TE, seTE, treat1, treat2, studlab}
 
 \item{seTE}{Standard error of treatment estimate.}
 
@@ -48,6 +65,9 @@ choice of the initial subset. Default value is 100.}
 \item{sm}{A character string indicating underlying summary measure,
 e.g., \code{"RD"}, \code{"RR"}, \code{"OR"}, \code{"ASD"},
 \code{"HR"}, \code{"MD"}, \code{"SMD"}, or \code{"ROM"}.}
+
+\item{Isub}{A vector for the studies to be included in the initial subset (default: NULL, the initial subset
+not specified by the user).}
 
 \item{reference}{Reference treatment group.}
 
@@ -112,6 +132,15 @@ Description of methodology by fitting forward search algorithm in
 network meta-analysis. Methodology of FS algorithm fitted in NMA
 model from graph theory is described in Petropoulou et al. 2019.
 
+Let \emph{n} be the number of treatments in a network and let
+\emph{m} be the number of pairwise treatment comparisons.  If there
+are only two-arm studies, \emph{m} is the number of studies.  Let
+TE and seTE be the vectors of observed effects and their standard
+errors.  Comparisons belonging to multi-arm studies are identified
+by identical study labels (argument \code{studlab}). It is
+therefore important to use identical study labels for all
+comparisons belonging to the same multi-arm study.
+
 The FS algorithm is a diagnostic iterative procedure.  FS algorithm
 aparts from three steps. It starts with a subset of studies and it
 gradually adds studies until all studies entered.  After the
@@ -150,8 +179,8 @@ basic set, parameter estimates (summary estmates, heterogeneity
 estimator) and other statistics of interest (outlying measures,
 heterogeneity and inconsistency measures, ranking measures) are
 monitored.  For each basic set, network meta-analysis model from
-graph theory (Rücker, 2012) is fitted (\code{netmeta} function)
-with R package \bold{netmeta} (Rücker et al., 2018).
+graph theory (Rucker, 2012) is fitted (\code{netmeta} function)
+with R package \bold{netmeta} (Rucker et al., 2018).
 
 Monitoring is helpful to identify outlying studies Monitoring
 statistical measures for the basic set in each FS iteration can be:
@@ -162,7 +191,7 @@ studies); Cook's statistic; Ratio of determinants of
 variance-covariance matrix
 
 \bold{Ranking measures:}
-P-scores for ranking of treatments (Rücker G & Schwarzer G (2015))
+P-scores for ranking of treatments (Rucker G & Schwarzer G (2015))
 for each basic set with implementation of (\code{netrank} function)
 from R package \bold{netmeta}.
 
@@ -182,7 +211,7 @@ consistency can be detected with the implementation of
 basic set of the search.  Based on the methodology with
 back-calculation method to derive indirect estimates from direct
 pairwise comparisons and network estimates (Dias et al., 2010;
-König et al., 2013).
+Konig et al., 2013).
 }
 \examples{
 data(smokingcessation, package = "netmeta")
@@ -235,29 +264,29 @@ Checking consistency in mixed treatment comparison meta-analysis.
 \emph{Statistics in Medicine},
 \bold{29}, 932--44
 
-König J, Krahn U, Binder H (2013):
+Konig J, Krahn U, Binder H (2013):
 Visualizing the flow of evidence in network meta-analysis and
 characterizing mixed treatment comparisons.
 \emph{Statistics in Medicine},
 \bold{32}, 5414--29
 
-Krahn U, Binder H, König J (2013):
+Krahn U, Binder H, Konig J (2013):
 A graphical tool for locating inconsistency in network meta-analyses.
 \emph{BMC Medical Research Methodology},
 \bold{13}, 35
 
-Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I,
+Petropoulou M, Salanti G, Rucker G, Schwarzer G, Moustaki I,
 Mavridis D (2019):
 A forward search algorithm for detection of extreme study effects
 in network meta-analysis.
 \emph{Manuscript}
 
-Rücker G (2012):
+Rucker G (2012):
 Network meta-analysis, electrical networks and graph theory.
 \emph{Research Synthesis Methods},
 \bold{3}, 312--24
 
-Rücker G, Schwarzer G (2015):
+Rucker G, Schwarzer G (2015):
 Ranking treatments in frequentist network meta-analysis works
 without resampling methods.
 \emph{BMC Medical Research Methodology},

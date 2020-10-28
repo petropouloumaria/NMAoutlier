@@ -4,9 +4,19 @@
 \alias{NMAsvr}
 \title{Random shift variance network meta-analysis (RVSOM NMA) model.}
 \usage{
-NMAsvr(TE, seTE, treat1, treat2, studlab, data = NULL, sm,
-  reference = "", small.values = "good", study = NULL,
-  n_cores = NULL)
+NMAsvr(
+  TE,
+  seTE,
+  treat1,
+  treat2,
+  studlab,
+  data = NULL,
+  sm,
+  reference = "",
+  small.values = "good",
+  study = NULL,
+  n_cores = NULL
+)
 }
 \arguments{
 \item{TE}{Estimate of treatment effect, i.e. difference between

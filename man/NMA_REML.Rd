@@ -4,8 +4,20 @@
 \alias{NMA_REML}
 \title{Restricted Maximum log-likelihood (REML) function for NMA model.}
 \usage{
-NMA_REML(x, TE, seTE, treat1, treat2, studlab, Xdesign, tr1, tr2, nt,
-  reference, observations)
+NMA_REML(
+  x,
+  TE,
+  seTE,
+  treat1,
+  treat2,
+  studlab,
+  Xdesign,
+  tr1,
+  tr2,
+  nt,
+  reference,
+  observations
+)
 }
 \arguments{
 \item{TE}{Estimate of treatment effect, i.e. difference between

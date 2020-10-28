@@ -24,7 +24,10 @@
 #'
 #' @param TE Estimate of treatment effect, i.e. difference between
 #'   first and second treatment (e.g. log odds ratio, mean difference,
-#'   or log hazard ratio).
+#'   or log hazard ratio). This can also be a pairwise object
+#'   (i.e. the result of pairwise function of netmeta package).
+#'   In this case, the pairwise object should include the following:
+#'   TE, seTE, treat1, treat2, studlab
 #' @param seTE Standard error of treatment estimate.
 #' @param treat1 Label/Number for first treatment.
 #' @param treat2 Label/Number for second treatment.
@@ -51,6 +54,8 @@
 #' @param sm A character string indicating underlying summary measure,
 #'   e.g., \code{"RD"}, \code{"RR"}, \code{"OR"}, \code{"ASD"},
 #'   \code{"HR"}, \code{"MD"}, \code{"SMD"}, or \code{"ROM"}.
+#' @param Isub A vector for the studies to be included in the initial subset (default: NULL, the initial subset
+#'   not specified by the user).
 #' @param reference Reference treatment group.
 #' @param small.values A character string indicating if small values
 #'   are considered beneficial (option:"good") or harmfull
@@ -65,6 +70,15 @@
 #' Description of methodology by fitting forward search algorithm in
 #' network meta-analysis. Methodology of FS algorithm fitted in NMA
 #' model from graph theory is described in Petropoulou et al. 2019.
+#'
+#' Let \emph{n} be the number of treatments in a network and let
+#' \emph{m} be the number of pairwise treatment comparisons.  If there
+#' are only two-arm studies, \emph{m} is the number of studies.  Let
+#' TE and seTE be the vectors of observed effects and their standard
+#' errors.  Comparisons belonging to multi-arm studies are identified
+#' by identical study labels (argument \code{studlab}). It is
+#' therefore important to use identical study labels for all
+#' comparisons belonging to the same multi-arm study.
 #'
 #' The FS algorithm is a diagnostic iterative procedure.  FS algorithm
 #' aparts from three steps. It starts with a subset of studies and it
@@ -104,8 +118,8 @@
 #' estimator) and other statistics of interest (outlying measures,
 #' heterogeneity and inconsistency measures, ranking measures) are
 #' monitored.  For each basic set, network meta-analysis model from
-#' graph theory (Rücker, 2012) is fitted (\code{netmeta} function)
-#' with R package \bold{netmeta} (Rücker et al., 2018).
+#' graph theory (Rucker, 2012) is fitted (\code{netmeta} function)
+#' with R package \bold{netmeta} (Rucker et al., 2018).
 #'
 #' Monitoring is helpful to identify outlying studies Monitoring
 #' statistical measures for the basic set in each FS iteration can be:
@@ -116,7 +130,7 @@
 #' variance-covariance matrix
 #'
 #' \bold{Ranking measures:}
-#' P-scores for ranking of treatments (Rücker G & Schwarzer G (2015))
+#' P-scores for ranking of treatments (Rucker G & Schwarzer G (2015))
 #' for each basic set with implementation of (\code{netrank} function)
 #' from R package \bold{netmeta}.
 #'
@@ -136,7 +150,7 @@
 #' basic set of the search.  Based on the methodology with
 #' back-calculation method to derive indirect estimates from direct
 #' pairwise comparisons and network estimates (Dias et al., 2010;
-#' König et al., 2013).
+#' Konig et al., 2013).
 #'
 #' @return
 #' An object of class \code{NMAoutlier}; a list containing the
@@ -168,29 +182,29 @@
 #' \emph{Statistics in Medicine},
 #' \bold{29}, 932--44
 #'
-#' König J, Krahn U, Binder H (2013):
+#' Konig J, Krahn U, Binder H (2013):
 #' Visualizing the flow of evidence in network meta-analysis and
 #' characterizing mixed treatment comparisons.
 #' \emph{Statistics in Medicine},
 #' \bold{32}, 5414--29
 #'
-#' Krahn U, Binder H, König J (2013):
+#' Krahn U, Binder H, Konig J (2013):
 #' A graphical tool for locating inconsistency in network meta-analyses.
 #' \emph{BMC Medical Research Methodology},
 #' \bold{13}, 35
 #'
-#' Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I,
+#' Petropoulou M, Salanti G, Rucker G, Schwarzer G, Moustaki I,
 #' Mavridis D (2019):
 #' A forward search algorithm for detection of extreme study effects
 #' in network meta-analysis.
 #' \emph{Manuscript}
 #'
-#' Rücker G (2012):
+#' Rucker G (2012):
 #' Network meta-analysis, electrical networks and graph theory.
 #' \emph{Research Synthesis Methods},
 #' \bold{3}, 312--24
 #'
-#' Rücker G, Schwarzer G (2015):
+#' Rucker G, Schwarzer G (2015):
 #' Ranking treatments in frequentist network meta-analysis works
 #' without resampling methods.
 #' \emph{BMC Medical Research Methodology},
@@ -254,9 +268,10 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
                        studies = NULL,
                        P = 100,
                        sm,
+                       Isub = NULL,
                        reference = "", small.values = "good", n_cores = NULL) {
-
-
+  
+  
   ## Check arguments
   ##
   crit1 <- setchar(crit1, c("R", "L"))
@@ -347,9 +362,9 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
   ##
   if (!is.numeric(studlab))
     studlab <- as.numeric(as.factor(studlab))
-
-
-
+  
+  
+  
   ## Additional checks
   ##
   ## Check NAs and zero standard errors
@@ -431,8 +446,8 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     treat1[wo] <- treat2[wo]
     treat2[wo] <- ttreat1[wo]
   }
-
-
+  
+  
   ##
   ##
   ##
@@ -442,7 +457,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
   names.treat <- sort(unique(c(treat1, treat2))) # names of treatments
   ##
   ##
-
+  
   ## Number of studies for the initial subset (default choice)
   ##
   nullstudies <- is.null(studies)
@@ -455,13 +470,13 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
   chknumeric(studies, min = max(round(nk * 0.20), n),
              single = TRUE)
   ##
-
+  
   ## Adapt numbers to treatment IDs
   ##
   t1.label <- match(treat1, names.treat)
   t2.label <- match(treat2, names.treat)
-
-
+  
+  
   ## Names of comparisons
   ##
   ## Connection to netsplit() ?
@@ -493,32 +508,33 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     ##
     if (reference == "")
       reference <- names.treat[1]
-
-
+    
+    
     ## NMA for the whole dataset
     ##
     res <- nma(TE, seTE, treat1, treat2, studlab, reference, names.treat)
-
+    
     ## initialize lists for variance-covariance matrix of basic set
     ## for each step of FS algorithm
     ##
     liv <- list()
-
+    
     ## number of iterations of FS algorithm
     index <- 1
-
+    
     ## study that inputed from non-basic to basic set
     subset <- NULL
-
-
-    ## Take the initial subset
-    Isub <- InitialSubset(TE, seTE, treat1, treat2, studlab,
-                          crit1, studies, P, reference,
-                          t1.label, t2.label, n_cores)
-
+    
+    if (is.null(Isub)){
+      ## Take the initial subset
+      Isub <- c(InitialSubset(TE, seTE, treat1, treat2, studlab,
+                              crit1, studies, P, reference,
+                              t1.label, t2.label, n_cores)$set)
+    }
+    
     ## Define the initial basic set
     ##
-    bs <- c(Isub$set)
+    bs <- Isub
     ##
     ## indices of basic set
     ##
@@ -567,7 +583,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
         ##
         mi <- ma <- c()
         ##
-        ## Conduct network meta-analysis (NMA) with random effects model, Rücker model
+        ## Conduct network meta-analysis (NMA) with random effects model, Rucker model
         ##
         model <- netmeta(TE, seTE, treat1, treat2, studlab,
                          comb.random = TRUE, reference.group = reference,
@@ -626,14 +642,14 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
       ##
       index <- index + 1
       ##
-
+      
       ## Re-define the "basic set: D(m + index)"
       ##
       bs <- c(bs, subset) # basic set
       ##
       ind.bs <- which(studlab %in% bs)
       ##
-
+      
       ##
       Si <- netmet(TE, seTE, treat1, treat2, studlab,
                    ind.bs, reference, small.values, names.treat)
@@ -672,14 +688,14 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
       ##
       Rj <- (det(liv[[index]])) / (det(liv[[index - 1]]))
       Ratio <- c(Ratio, Rj)
-
+      
     } # End while
-
-
+    
+    
     ##
     ## length of the initial basic set
     ##
-    length.initial <- length(Isub$set)
+    length.initial <- length(Isub)
     int <- rep(1, length.initial)
     iteration <- c(int, 2:index)
     ##
@@ -703,10 +719,10 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
       excl <- is.na(dif[, j])
     ##
     ##
-
+    
     dif <- dif[which(as.numeric(!excl) == 1), ]
-
-
+    
+    
     res2 <- list(dat = dat, length.initial = length.initial,
                  index = index, basic = basic,
                  taub = taub, Qb = Qb, Qhb = Qhb, Qib = Qib,
@@ -714,13 +730,13 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
                  cook_d = cook_d, p.score = p.score,
                  dif = dif, estand = estand,
                  call = match.call())
-
-
+    
+    
   } # end ("if" requirement to be equal the number of studies with the number of treatments)
-
-
+  
+  
   class(res2) <- "NMAoutlier"
-
+  
   res2
-
+  
 } # End function

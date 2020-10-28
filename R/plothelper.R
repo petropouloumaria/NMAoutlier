@@ -151,19 +151,21 @@ plothelper <- function(x, method, stat, select.st){
 
     data <- getSelected(x$cook_d, select.st)
     melt_data <- melt(data)
-    ggplot(data = melt_data, aes(x = 1:length(x$cook_d), y = melt_data$value)) +
+    ggplot(data = melt_data, aes(x = 2:(length(data)+1), y = melt_data$value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
-      labs(title = "Forward plot for Cook's distance", y = "Cook's distance", x = xlabel)
+      labs(title = "Forward plot for Cook's distance", y = "Cook's distance", x = xlabel) +
+      scale_x_discrete(limits = c(2:(length(data)+1)))
   }
   else if (tolower(stat) == "ratio" & tolower(method) == "fs") {
 
     data <- getSelected(x$Ratio, select.st)
     melt_data <- melt(data)
-    ggplot(data = melt_data, aes(x = 1:length(x$Ratio), y = melt_data$value)) +
+    ggplot(data = melt_data, aes(x = 2:(length(data)+1), y = melt_data$value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
-      labs(title = "Forward plot for ratio of variances", y = "Ratio of variances", x = xlabel)
+      labs(title = "Forward plot for ratio of variances", y = "Ratio of variances", x = xlabel) +
+      scale_x_discrete(limits = c(2:(length(data)+1)))
   }
   else if (tolower(stat) == "over_disp" & tolower(method) == "svr") {
 

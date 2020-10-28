@@ -4,8 +4,16 @@
 \alias{NMAoutlier_measures}
 \title{Outlier and influential detection measures in network meta-analysis.}
 \usage{
-NMAoutlier_measures(TE, seTE, treat1, treat2, studlab, data = NULL, sm,
-  reference = "")
+NMAoutlier_measures(
+  TE,
+  seTE,
+  treat1,
+  treat2,
+  studlab,
+  data = NULL,
+  sm,
+  reference = ""
+)
 }
 \arguments{
 \item{TE}{Estimate of treatment effect, i.e. difference between
