@@ -29,8 +29,7 @@
 #' For  oultier and influential deletion measures available choices are: (eraw.deleted", "estand.deleted", "estud.deleted",
 #' "leverage.leaveoneout", "weight.leaveoneout", "heterog.leaveoneout", "covratio", "cook",
 #' "rheterogeneity", "restimates", "rqhet", "rqinc", "rqtotal", "dfbetas")
-#'
-#'  @param measure outlier and influential detection measures (default "influential")
+#' @param measure Outlier and influential detection measures (default: "influential")
 #'  and measures considered study deletion (measure = "deletion").
 #'
 #' @details

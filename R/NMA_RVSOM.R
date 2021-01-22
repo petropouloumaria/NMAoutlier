@@ -227,7 +227,7 @@ NMA_RVSOM <- function(TE, seTE, treat1, treat2, studlab,
       ## Take the difference between direct and indirect evidence
       ## z-values of test for disagreement (direct versus indirect)
       ##
-      dif <- netsplit(model)$compare.random$z
+      dif <- netsplit(model)$compare.random$statistic
 
 
 

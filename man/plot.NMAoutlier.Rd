@@ -14,10 +14,10 @@
 For oultier and influential measures available choices are: ("estand"/ "estud"/ "mah"/ "leverage").
 For  oultier and influential deletion measures available choices are: (eraw.deleted", "estand.deleted", "estud.deleted",
 "leverage.leaveoneout", "weight.leaveoneout", "heterog.leaveoneout", "covratio", "cook",
-"rheterogeneity", "restimates", "rqhet", "rqinc", "rqtotal", "dfbetas")
+"rheterogeneity", "restimates", "rqhet", "rqinc", "rqtotal", "dfbetas")}
 
- @param measure outlier and influential detection measures (default "influential")
- and measures considered study deletion (measure = "deletion").}
+\item{measure}{Outlier and influential detection measures (default: "influential")
+and measures considered study deletion (measure = "deletion").}
 }
 \description{
 This function generates plot(s) of the selected outlier detection measure(s)

@@ -1,6 +1,5 @@
 
 
-
 print.NMAsvr <- function(x, digits = 4) {
 
   ## Check class

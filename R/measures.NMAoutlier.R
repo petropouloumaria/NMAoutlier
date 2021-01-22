@@ -30,6 +30,8 @@
 #'   e.g., \code{"RD"}, \code{"RR"}, \code{"OR"}, \code{"ASD"},
 #'   \code{"HR"}, \code{"MD"}, \code{"SMD"}, or \code{"ROM"}.
 #' @param reference Reference treatment group.
+#' @param measure Outlier and influential detection measures (default: "influential")
+#'  and measures considered study deletion (measure = "deletion").
 #'
 #' @details
 #' Description of several outlier and influential measures are calculated for

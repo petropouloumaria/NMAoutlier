@@ -98,7 +98,7 @@ Monitoring measures during the search are:
 }
 
 A description of the methodology can be found in Petropoulou et
-al. (2019).
+al. (2020).
 }
 \details{
 Fits the RVSOM NMA model for detecting outliers.
@@ -106,7 +106,7 @@ Fits the RVSOM NMA model for detecting outliers.
 
 Description of methodology by fitting random shift variance model (RVSOM) in
 network meta-analysis. Methodology of RVSOM fitted in NMA
-model from graph theory is described in Petropoulou et al. 2019.
+model from graph theory is described in Petropoulou et al. 2020.
 
 
 NMAsvr function employs the random shift variance model (RVSOM)
@@ -180,7 +180,7 @@ RVSOMres <- NMAsvr(p1,  small.values = "bad", study = c(1) , n_cores = 2)
 #
 
 \dontrun{
-# Forward search algorithm
+# Random Shift Variance Model
 #
 RVSOMresult <- NMAsvr(p1, small.values = "bad")
 
@@ -210,7 +210,8 @@ without resampling methods.
 \emph{BMC Medical Research Methodology},
 \bold{15}, 58
 
-Petropoulou M (2020). Exploring methodological challenges in network meta-analysis models and
+Petropoulou M (2020):
+Exploring methodological challenges in network meta-analysis models and
 developing methodology for outlier detection.
 \emph{PhD dissertation}.
 

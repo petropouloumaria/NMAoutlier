@@ -37,6 +37,9 @@ e.g., \code{"RD"}, \code{"RR"}, \code{"OR"}, \code{"ASD"},
 \code{"HR"}, \code{"MD"}, \code{"SMD"}, or \code{"ROM"}.}
 
 \item{reference}{Reference treatment group.}
+
+\item{measure}{Outlier and influential detection measures (default: "influential")
+and measures considered study deletion (measure = "deletion").}
 }
 \value{
 An object of class \code{NMAoutlier_measures}; a list containing the

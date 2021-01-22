@@ -23,7 +23,7 @@
 #' }
 #'
 #' A description of the methodology can be found in Petropoulou et
-#' al. (2019).
+#' al. (2020).
 #'
 #' @param TE Estimate of treatment effect, i.e. difference between
 #'   first and second treatment (e.g. log odds ratio, mean difference,
@@ -52,7 +52,7 @@
 #' @details
 #' Description of methodology by fitting random shift variance model (RVSOM) in
 #' network meta-analysis. Methodology of RVSOM fitted in NMA
-#' model from graph theory is described in Petropoulou et al. 2019.
+#' model from graph theory is described in Petropoulou et al. 2020.
 #'
 #'
 #' NMAsvr function employs the random shift variance model (RVSOM)
@@ -148,7 +148,8 @@
 #' \emph{BMC Medical Research Methodology},
 #' \bold{15}, 58
 #'
-#' Petropoulou M (2020). Exploring methodological challenges in network meta-analysis models and
+#' Petropoulou M (2020):
+#' Exploring methodological challenges in network meta-analysis models and
 #' developing methodology for outlier detection.
 #' \emph{PhD dissertation}.
 #'
@@ -183,7 +184,7 @@
 #' #
 #'
 #' \dontrun{
-#' # Forward search algorithm
+#' # Random Shift Variance Model
 #' #
 #' RVSOMresult <- NMAsvr(p1, small.values = "bad")
 #'
@@ -540,6 +541,11 @@ NMAsvr <- function(TE, seTE, treat1, treat2, studlab,
        names.comp[k] <- paste(names.treat[i], names.treat[j], sep = ":")
      }
    }
+
+   print(l)
+   print(dif)
+   print(leverage)
+   print(p.score)
 
    ##
    dat <- noquote(cbind(TE, seTE, studlab, treat1, treat2))

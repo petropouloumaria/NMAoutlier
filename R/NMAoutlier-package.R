@@ -5,16 +5,16 @@
 #'
 #' @details
 #' R package \bold{NMAoutlier} implements several outlier (studies with extreme results) detection measures
-#' as provided in Petropoulou et al. (2019a). Detection tools for outliers provided with the forward search (FS)
-#' algorithm in network meta-analysis (NMA) by Petropoulou et al. (2019b) and the Random Shift Variance model (RVSOM NMA)
-#' by Petropoulou et al. (2019c). The proposed detection measures and methodologies are given with the underlying
+#' as provided in Petropoulou et al. (2020). Detection tools for outliers provided with the forward search (FS)
+#' algorithm in network meta-analysis (NMA) by Petropoulou et al. (2021) and the Random Shift Variance model (RVSOM NMA)
+#' by Petropoulou et al. (2020). The proposed detection measures and methodologies are given with the underlying
 #' model with the frequentist NMA approach based on graph theory by Rücker (2012) which is implemented in R package
 #' \bold{netmeta}.
 #'
 #' The \bold{NMAoutlier} package implements the following:
 #' \itemize{
 #'  \item Several outlier detection measures provided (function
-#'    (\code{\link{NMAoutlier_measures}})) based on Petropoulou et al. (2019a);
+#'    (\code{\link{measures.NMAoutlier}})) based on Petropoulou et al. (2021);
 #'  \enumerate{
 #'    \item raw residuals
 #'    \item standardized residuals
@@ -24,11 +24,11 @@
 #'   }
 #'
 #'  \item Plots of the several above outlier detection measures provided (function
-#'   (\code{\link{plot_NMAoutlier_measures}})) (Petropoulou et al. (2019a));
+#'   (\code{\link{plot.NMAoutlier}})) (Petropoulou et al. (2020));
 #'
 #' \item Several outlier detection measures considered deletion provided
-#'  (function (\code{\link{NMAoutlier_deletion_measures}}))
-#'  based on Petropoulou et al. (2019a);
+#'  (function (\code{\link{measures.NMAoutlier}}))
+#'  based on Petropoulou et al. (2020);
 #'  \enumerate{
 #'  \item raw deleted residuals
 #'  \item standardized deleted residuals
@@ -45,13 +45,13 @@
 #'  \item DFBETAS
 #'  }
 #' \item Plots of the several above outlier detection measures considered study deletion provided (function
-#'   (\code{\link{plot_NMAoutlier_deletion_measures}})) (Petropoulou et al. (2019a));
+#'   (\code{\link{plot.NMAoutlier}})) (Petropoulou et al. (20120));
 #'
 #' \item Q-Q plot for network meta-analysis (function
-#'   (\code{\link{Qnetplot}})) (Petropoulou et al. (2019a));
+#'   (\code{\link{Qnetplot}})) (Petropoulou et al. (2020));
 #'
 #' \item forward search algorithm in network meta-analysis (function
-#'   (\code{\link{NMAoutlier}})) based on Petropoulou et al. (2019b);
+#'   (\code{\link{NMAoutlier}})) based on Petropoulou et al. (2021);
 #' \item forward plots (\code{\link{fwdplot}}) with monitoring
 #'   statistics in each step of the FS algorithm:
 #' \enumerate{
@@ -68,10 +68,10 @@
 #' \item forward plots (\code{\link{fwdplotest}}) for summary estimates
 #'   and their confidence intervals for each treatment in each step of
 #'   the FS algorithm as provided by Petropoulou et
-#'   al. (2019b).
+#'   al. (2021).
 #'
 #' \item Random shift variance NMA model (RVSOM NMA) (function
-#'   (\code{\link{NMAsvr}})) based on Petropoulou et al. (2019c):
+#'   (\code{\link{NMAsvr}})) based on Petropoulou et al. (2020):
 #' \enumerate{
 #' \item P-scores (Rücker & Schwarzer, 2015),
 #' \item z-values for difference of direct and indirect evidence
@@ -87,7 +87,7 @@
 #'   statistical measures fitting each study with RVSOM NMA model,
 #' \item Plots (\code{\link{svrplotest}}) for summary estimates
 #'   and their confidence intervals for each treatment for RVSOM NMA model
-#'   as provided by Petropoulou et al. (2019c).
+#'   as provided by Petropoulou et al. (2020).
 #'   }
 #' }
 #'
@@ -98,7 +98,7 @@
 #' publications.
 #'
 #' To report problems and bugs, please send an email to Maria
-#' Petropoulou \email{mpetrop@cc.uoi.gr}.
+#' Petropoulou \email{petropoulou@imbi.uni-freiburg.de}.
 #'
 #' The development version of \bold{NMAoutlier} is available on GitHub
 #' \url{https://github.com/petropouloumaria/NMAoutlier}.
@@ -107,22 +107,19 @@
 #'
 #' @docType package
 #'
-#' @author Petropoulou Maria \email{mpetrop@cc.uoi.gr}
+#' @author Petropoulou Maria \email{petropoulou@imbi.uni-freiburg.de}.
 #'
 #' @references
-#' Petropoulou M (2019a):
-#' Outlier detection measures in network meta-analysis.
-#' \emph{Manuscript}.
 #'
 #' Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I,
-#' Mavridis D (2019b):
+#' Mavridis D (2021):
 #' A forward search algorithm for detection of extreme study effects
 #' in network meta-analysis.
 #' \emph{Manuscript}.
 #'
-#' Petropoulou M (2019c). Detecting outliers in network meta-analysis and downweighing
-#' with random shift variance model.
-#' \emph{Manuscript}.
+#' Petropoulou M (2020). Exploring methodological challenges in network meta-analysis models and
+#' developing methodology for outlier detection.
+#' \emph{PhD dissertation}.
 #'
 #' Rücker G (2012):
 #' Network meta-analysis, electrical networks and graph theory.
