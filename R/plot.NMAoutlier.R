@@ -25,8 +25,8 @@
 #' @param object an object of class measures.NMAoutlier (mandatory).
 #' @param stat selected statistical outlier and influential detection measure
 #' (mandatory),
-#' For oultier and influential measures available choices are: ("estand"/ "estud"/ "mah"/ "leverage").
-#' For  oultier and influential deletion measures available choices are: (eraw.deleted", "estand.deleted", "estud.deleted",
+#' For outlier and influential measures available choices are: ("estand"/ "estud"/ "mah"/ "leverage").
+#' For  outlier and influential deletion measures available choices are: (eraw.deleted", "estand.deleted", "estud.deleted",
 #' "leverage.leaveoneout", "weight.leaveoneout", "heterog.leaveoneout", "covratio", "cook",
 #' "rheterogeneity", "restimates", "rqhet", "rqinc", "rqtotal", "dfbetas")
 #' @param measure Outlier and influential detection measures (default: "influential")
