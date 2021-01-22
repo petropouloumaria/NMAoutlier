@@ -125,7 +125,7 @@ Monitoring measures during the search are:
 }
 
 A description of the methodology can be found in Petropoulou et
-al. (2019).
+al. (2021).
 }
 \details{
 Description of methodology by fitting forward search algorithm in
@@ -276,7 +276,7 @@ A graphical tool for locating inconsistency in network meta-analyses.
 \bold{13}, 35
 
 Petropoulou M, Salanti G, Rucker G, Schwarzer G, Moustaki I,
-Mavridis D (2019):
+Mavridis D (2021):
 A forward search algorithm for detection of extreme study effects
 in network meta-analysis.
 \emph{Manuscript}
@@ -293,5 +293,5 @@ without resampling methods.
 \bold{15}, 58
 }
 \author{
-Maria Petropoulou <mpetrop@cc.uoi.gr>
+Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 }

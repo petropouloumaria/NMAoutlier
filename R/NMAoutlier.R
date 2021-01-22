@@ -20,7 +20,7 @@
 #' }
 #'
 #' A description of the methodology can be found in Petropoulou et
-#' al. (2019).
+#' al. (2021).
 #'
 #' @param TE Estimate of treatment effect, i.e. difference between
 #'   first and second treatment (e.g. log odds ratio, mean difference,
@@ -194,7 +194,7 @@
 #' \bold{13}, 35
 #'
 #' Petropoulou M, Salanti G, Rucker G, Schwarzer G, Moustaki I,
-#' Mavridis D (2019):
+#' Mavridis D (2021):
 #' A forward search algorithm for detection of extreme study effects
 #' in network meta-analysis.
 #' \emph{Manuscript}
@@ -256,7 +256,7 @@
 #'
 #' @export
 #'
-#' @author Maria Petropoulou <mpetrop@cc.uoi.gr>
+#' @author Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 #'
 #' @importFrom netmeta netconnection netmeta
 #' @importFrom MASS ginv
@@ -270,8 +270,8 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
                        sm,
                        Isub = NULL,
                        reference = "", small.values = "good", n_cores = NULL) {
-  
-  
+
+
   ## Check arguments
   ##
   crit1 <- setchar(crit1, c("R", "L"))
@@ -362,9 +362,9 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
   ##
   if (!is.numeric(studlab))
     studlab <- as.numeric(as.factor(studlab))
-  
-  
-  
+
+
+
   ## Additional checks
   ##
   ## Check NAs and zero standard errors
@@ -446,8 +446,8 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     treat1[wo] <- treat2[wo]
     treat2[wo] <- ttreat1[wo]
   }
-  
-  
+
+
   ##
   ##
   ##
@@ -457,7 +457,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
   names.treat <- sort(unique(c(treat1, treat2))) # names of treatments
   ##
   ##
-  
+
   ## Number of studies for the initial subset (default choice)
   ##
   nullstudies <- is.null(studies)
@@ -470,16 +470,15 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
   chknumeric(studies, min = max(round(nk * 0.20), n),
              single = TRUE)
   ##
-  
+
   ## Adapt numbers to treatment IDs
   ##
   t1.label <- match(treat1, names.treat)
   t2.label <- match(treat2, names.treat)
-  
-  
+
+
   ## Names of comparisons
   ##
-  ## Connection to netsplit() ?
   ##
   names.comp <- c() # rep("", )
   k <- 0
@@ -508,30 +507,30 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     ##
     if (reference == "")
       reference <- names.treat[1]
-    
-    
+
+
     ## NMA for the whole dataset
     ##
     res <- nma(TE, seTE, treat1, treat2, studlab, reference, names.treat)
-    
+
     ## initialize lists for variance-covariance matrix of basic set
     ## for each step of FS algorithm
     ##
     liv <- list()
-    
+
     ## number of iterations of FS algorithm
     index <- 1
-    
+
     ## study that inputed from non-basic to basic set
     subset <- NULL
-    
+
     if (is.null(Isub)){
       ## Take the initial subset
       Isub <- c(InitialSubset(TE, seTE, treat1, treat2, studlab,
                               crit1, studies, P, reference,
                               t1.label, t2.label, n_cores)$set)
     }
-    
+
     ## Define the initial basic set
     ##
     bs <- Isub
@@ -642,14 +641,14 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
       ##
       index <- index + 1
       ##
-      
+
       ## Re-define the "basic set: D(m + index)"
       ##
       bs <- c(bs, subset) # basic set
       ##
       ind.bs <- which(studlab %in% bs)
       ##
-      
+
       ##
       Si <- netmet(TE, seTE, treat1, treat2, studlab,
                    ind.bs, reference, small.values, names.treat)
@@ -688,10 +687,10 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
       ##
       Rj <- (det(liv[[index]])) / (det(liv[[index - 1]]))
       Ratio <- c(Ratio, Rj)
-      
+
     } # End while
-    
-    
+
+
     ##
     ## length of the initial basic set
     ##
@@ -708,7 +707,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     rownames(dat) <- c(1:length(TE))
     ##
     colnames(estb) <- colnames(lb) <- colnames(ub) <- colnames(dif) <-
-      colnames(p.score) <- colnames(estand) <- paste("it=", 1:index)
+    colnames(p.score) <- colnames(estand) <- paste("it=", 1:index)
     ##
     rownames(dif) <- names.comp
     rownames(estand) <- paste(bs)
@@ -719,10 +718,10 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
       excl <- is.na(dif[, j])
     ##
     ##
-    
+
     dif <- dif[which(as.numeric(!excl) == 1), ]
-    
-    
+
+
     res2 <- list(dat = dat, length.initial = length.initial,
                  index = index, basic = basic,
                  taub = taub, Qb = Qb, Qhb = Qhb, Qib = Qib,
@@ -730,13 +729,13 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
                  cook_d = cook_d, p.score = p.score,
                  dif = dif, estand = estand,
                  call = match.call())
-    
-    
+
+
   } # end ("if" requirement to be equal the number of studies with the number of treatments)
-  
-  
+
+
   class(res2) <- "NMAoutlier"
-  
+
   res2
-  
+
 } # End function

@@ -70,10 +70,10 @@ p1 <- pairwise(list(treat1, treat2, treat3),
 
 **Part 1: Simply outlier detection measures**
 
-You can calculate some simply outlier detection measures with function **NMAoutlier\_measures** as follows:
+You can calculate some simply outlier detection measures with function **measures.NMAoutlier** as follows:
 
 ``` r
-measures <- NMAoutlier_measures(p1)
+measures <- measures.NMAoutlier(p1)
 ```
 
 You can see the Mahalanobis distance for each study
@@ -82,10 +82,10 @@ You can see the Mahalanobis distance for each study
 measures$Mahalanobis.distance
 ```
 
-You can plot the Mahalanobis distance for each study with function **plot\_NMAoutlier\_measures** as follows:
+You can plot the Mahalanobis distance for each study with function **plot.NMAoutlier** as follows:
 
 ``` r
-plot_NMAoutlier_measures(measures, studlab, "mah")
+plot.NMAoutlier(measures, "mah")
 ```
 
 You can plot the Q-Q plot for network meta-analyis with function **Qnetplot** as follows:
@@ -96,28 +96,28 @@ Qnetplot(measures)
 
 **Part 2: Outlier detection measures considered deletion**
 
-You can calculate some outlier detection measures considered deletion with function **NMAoutlier\_deletion\_measures** as follows:
+You can calculate some outlier detection measures considered deletion with function **measures.NMAoutlier** as follows:
 
 ``` r
-deletion <- NMAoutlier_deletion_measures(p1)
+delete <- measures.NMAoutlier(p1, measure = "deletion")
 ```
 
 You can see the standardized deleted residuals for each study
 
 ``` r
-deletion$stand.deleted
+delete$estand.deleted
 ```
 
 We can see the values of COVRATIO when considering deletion for each study
 
 ``` r
-deletion$covratio
+delete$Covratio
 ```
 
-We can plot the R statistic for Qinconsistency with function **plot\_NMAoutlier\_deletion\_measures** as follows:
+We can plot the R statistic for Qinconsistency with function **plot.NMAoutlier** as follows:
 
 ``` r
-plot_NMAoutlier_deletion_measures(deletion, studlab, "rqinc")
+plot.NMAoutlier(delete, "rqinc", measure = "deletion")
 ```
 
 **Part 3: Forward Search Algorithm - Detection Methodology**

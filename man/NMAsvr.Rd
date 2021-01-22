@@ -210,9 +210,9 @@ without resampling methods.
 \emph{BMC Medical Research Methodology},
 \bold{15}, 58
 
-Petropoulou M (2019). Detecting outliers in network meta-analysis and downweighing
-with random shift variance model.
-\emph{Manuscript}.
+Petropoulou M (2020). Exploring methodological challenges in network meta-analysis models and
+developing methodology for outlier detection.
+\emph{PhD dissertation}.
 
 Krahn U, Binder H, König J (2013):
 A graphical tool for locating inconsistency in network meta-analyses.
@@ -231,5 +231,5 @@ characterizing mixed treatment comparisons.
 \bold{32}, 5414--29
 }
 \author{
-Maria Petropoulou <mpetrop@cc.uoi.gr>
+Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 }

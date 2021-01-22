@@ -84,7 +84,7 @@ netmet <- function(TE, seTE, treat1, treat2, studlab,
   ## Take the difference between direct and indirect evidence
   ## z-values of test for disagreement (direct versus indirect)
   ##
-  diff <- netsplit(model)$compare.random$z
+  diff <- netsplit(model)$compare.random$statistic
 
 
   ## Q statistics

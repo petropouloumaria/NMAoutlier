@@ -59,6 +59,6 @@ fwdplotest(FSresult)
 
 }
 \author{
-Maria Petropoulou <mpetrop@cc.uoi.gr>
+Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 }
 \keyword{hplot}

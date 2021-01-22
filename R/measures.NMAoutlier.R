@@ -15,7 +15,7 @@
 #' }
 #'
 #' A description of the several outlier detection measures in the context of network meta-analysis
-#' can be found in Petropoulou et al. (2019).
+#' can be found in Petropoulou et al. (2020).
 #'
 #' @param TE Estimate of treatment effect, i.e. difference between
 #'   first and second treatment (e.g. log odds ratio, mean difference,
@@ -37,7 +37,7 @@
 #' fitted with (\code{netmeta} function) of R package \bold{netmeta} (Rücker et al., 2015).
 #' The researcher can choose the reference treatment \code{reference} fitted in NMA model.
 #'
-#' An overview of the several outlier detection measures is described in Petropoulou et al. 2019.
+#' An overview of the several outlier detection measures is described in Petropoulou et al. 2020.
 #'
 #' Let \emph{n} be the number of treatments in a network and let
 #' \emph{m} be the number of pairwise treatment comparisons.  If there
@@ -76,9 +76,10 @@
 #' \emph{BMC Medical Research Methodology},
 #' \bold{15}, 58
 #'
-#' Petropoulou M (2019):
-#' Outlier detection measures in network meta-analysis.
-#' \emph{Manuscript}
+#' Petropoulou M (2020):
+#' Exploring methodological challenges in network meta-analysis models and
+#' developing methodology for outlier detection.
+#' \emph{PhD dissertation}
 #'
 #' @examples
 #' data(smokingcessation, package = "netmeta")
@@ -93,10 +94,17 @@
 #'
 #'
 #' #' # outlier and influential detection measures for studies 9, 10, 11, 12
-#' measures <- NMAoutlier_measures(p1)
+#' meas <- measures.NMAoutlier(p1)
 #'
 #' # Standardized residual for each study included in the network
-#' measures$estand
+#' meas$estand
+#'
+#'
+#' # deletion measures for studies 9, 10, 11, 12.
+#' delete <- measures.NMAoutlier(p1, measure = "deletion")
+#'
+#' # Standardized deleted residual for studies 9, 10, 11, 12.
+#' delete$estand.deleted
 #'
 #'
 #' \dontrun{
@@ -113,24 +121,24 @@
 #'                         sm = "OR")
 #'
 #' # outlier and influential detection measures for each study in the network
-#' measures <- NMAoutlier_measures(p1)
+#' meas <- measures.NMAoutlier(p1, measure = "influential")
 #'
 #' # Mahalanobis distance for each study included in the network
-#' measures$Mah
+#' meas$Mah
 #' }
 #'
 #' @export
 #'
-#' @author Maria Petropoulou <mpetrop@cc.uoi.gr>
+#' @author Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 #'
 #' @importFrom netmeta netmeta
 
 
 
-NMAoutlier_measures <- function(TE, seTE, treat1, treat2, studlab,
+measures.NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
                                 data = NULL,
                                 sm,
-                                reference = ""){
+                                reference = "", measure = "influential"){
 
   ## Check arguments
   ##
@@ -333,12 +341,16 @@ NMAoutlier_measures <- function(TE, seTE, treat1, treat2, studlab,
   y.m <- model$TE
 
 
-  ## B is the design matrix, the edge-vertex incidence matrix (mxn)
-  ##
-  #B <- createB(tr1, tr2, nt)
 
-  #b <- model$TE.random[,reference]
   ##
+  dat <- noquote(cbind(TE, seTE, studlab, treat1, treat2))
+  ##
+  rownames(dat) <- c(1:length(TE))
+  ##
+
+
+  if (measure == "influential") {
+
 
   ## predicted estimate
   y.m.est <- model$TE.nma.random
@@ -364,7 +376,6 @@ NMAoutlier_measures <- function(TE, seTE, treat1, treat2, studlab,
   ##
   estand <- res_multi(studlab, standres)$res
 
-
   ##
   ## Studentized residuals for each pairwise comparison
   ##
@@ -376,40 +387,17 @@ NMAoutlier_measures <- function(TE, seTE, treat1, treat2, studlab,
   estud <- res_multi(studlab, studres)$res
 
 
-  #Qi <- t(y.m[1:3] - model$TE.nma.fixed[1:3]) %*% diag(model$w.fixed[1:3]) %*% (y.m[1:3] - model$TE.nma.fixed[1:3])
-  #t(y.m[7] - B[7,] %*% b) %*% model$w.fixed[7] %*% (y.m[7] - B[7,] %*% b)
-
-
-
-  #t(y.m[j] - model$TE.nma.fixed[j]) %*% model$w.fixed[j] %*% (y.m[j] -  model$TE.nma.fixed[j])
-
-  #j=11
- # model$TE.nma.fixed
- # model$w.fixed[j] * (y.m[j] - B[j,] %*% b)^2
-  #Qi/3
-  #model$TE.nma.fixed[j]
-  #B[j,] %*% b
-
-  ## right formula for Qi contribution
-  #model$w.fixed[j] * (y.m[j] - model$TE.nma.fixed[j])^2
-  #t(y.m[j] - model$TE.nma.fixed[j]) %*% model$w.fixed[j] %*% (y.m[j] -  model$TE.nma.fixed[j])
-
-  #model$Q.heterogeneity
-
   ## Mahalanobis distance for each pairwise comparison
   ##
   Mah <- model$Q.fixed
-  # Mahalanobis random
-  #Mah <- model$w.random * (model$TE - model$TE.nma.random)^2
 
-  ## right formula for Qi contribution
+  ## Qi contribution
   Q.pooled <- model$w.fixed * (model$TE - model$TE.nma.fixed)^2
   Q.random <- model$w.random * (model$TE - model$TE.nma.random)^2
 
   ## Mahalanobis distance for each study
   ##
   Mahalanobis.distance <- res_multi(studlab, Mah)$res
-
 
   # leverage for each pairwise comparison
   lev <- as.numeric(diag(model$H.matrix))
@@ -418,23 +406,205 @@ NMAoutlier_measures <- function(TE, seTE, treat1, treat2, studlab,
   leverage <- res_multi(studlab, lev)$res
 
 
-  ##
-  dat <- noquote(cbind(TE, seTE, studlab, treat1, treat2))
-  ##
-  rownames(dat) <- c(1:length(TE))
-  ##
+  res <- list(dat = dat,
+              eraw = eraw,
+              estand = estand,
+              estud = estud,
+              Mah = Mah,
+              Mahalanobis.distance = Mahalanobis.distance,
+              lev = lev,
+              leverage = leverage, measure = measure)
+
+  }
+  if (measure == "deletion") {
 
 
-   res <- list(dat = dat,
-               eraw = eraw,
-               estand = estand,
-               estud = estud,
-               Mah = Mah,
-               Mahalanobis.distance = Mahalanobis.distance,
-               lev = lev,
-               leverage = leverage)
+    s.m <-  model$seTE
 
-  class(res) <- "NMAoutlier_measures"
+    ## B is the design matrix, the edge-vertex incidence matrix (mxn)
+    ##
+    B <- createB(tr1, tr2, nt)
+    ##
+    t <- (model$tau)^2                   # heterogeneity
+    ##
+    b <- model$TE.random[, reference]    # summary estimate of treatment effects
+
+
+    ## Computations for variance-covariance matrix (random effects model)
+    ##
+    ind <- which(names.treat == reference) # index of reference treatment
+    t.pos1 <- rep(ind, (nt - 1))
+    t.pos2 <- setdiff(1:nt, ind)
+    ##
+    B.r <- createB(t.pos1, t.pos2, ncol = nt) # Restricted matrix B
+
+    # Laplacian matrix
+
+    L.random <- t(B) %*% diag(model$w.random) %*% B
+    Lplus.random <- solve(L.random - 1 / nt) + 1 / nt
+
+
+    # Variance-covariance matrix (random effects model)
+    Cov <- B.r %*% Lplus.random %*% t(B.r)
+
+
+    ## Q statistics
+    ##
+    Q.standard <- model$Q                                       # overall
+    Qh.standard <- model$Q.heterogeneity                        # within-designs
+    Qi.standard <- decomp.design(model)$Q.inc.random$Q          # between-designs
+
+
+    ## Outlier and influence diagnostics measures considered deletion
+
+
+    studies <- unique(studlab)
+
+
+    heterog.leaveoneout <- w.leaveoneout <- H.leaveoneout <- eraw.deleted <- estand.deleted <- estud.deleted <- Cooks.distance <- Covratio <- Rstat.heterogeneity <- RQtotal <- RQhet <- RQinc <- list()
+    DFbetas <- Rstat.estimates <- NULL
+
+    for (i in 1:length(studies)) {
+
+      # deleted study
+      deleted <- studies[i]
+      remaining <- studies[studies != deleted]
+      remaining.ind <- which(studlab %in% remaining)
+      netmeta.res <- netmeta(TE, seTE, treat1, treat2, studlab, comb.random = TRUE,
+                             reference.group = reference, subset = remaining.ind)
+
+
+      estimate <- netmeta.res$TE.random[,reference]                # summary estimates
+
+      heterog <- (netmeta.res$tau)^2                               # heterogeneity
+      heterog.leaveoneout[[i]] <- heterog
+
+
+      ## Q statistics
+      Qt <- netmeta.res$Q                                          # overall
+      Qhe <- netmeta.res$Q.heterogeneity                           # within-designs
+      Qin <- decomp.design(netmeta.res)$Q.inc.random$Q             # between-designs
+
+      # index of study deleted
+      ind.deleted <- which(studlab == deleted)
+
+      # weight
+      w.leave <- 1/(s.m[ind.deleted]^2 + heterog)
+
+      ## Standardized study deleted residuals
+      w.leaveoneout[[i]] <- res_multi(studlab[ind.deleted], w.leave)$res
+
+      # hat values
+      #
+      Bi <- B[ind.deleted,]
+      Bi.matrix <- matrix(Bi, ncol = nt)
+
+
+      # leverage "leave-one-out"
+      wi.matrix <- diag(w.leave,  nrow = length(w.leave), ncol = length(w.leave))
+      hii <- diag(Bi.matrix %*% ginv(t(Bi.matrix) %*% wi.matrix %*% Bi.matrix) %*% t(Bi.matrix) %*% wi.matrix)
+
+      H.leaveoneout[[i]] <- res_multi(studlab[ind.deleted], hii)$res
+
+      n <- netmeta.res$n                                           # number of treatments
+
+      t1 <- netmeta.res$treat1.pos                                 # treatment positions
+      t2 <- netmeta.res$treat2.pos                                 # treatment positions
+
+      ## B is the design matrix, the edge-vertex incidence matrix (mxn)
+      Brem <- createB(t1, t2, n)
+
+      ## Laplacian matrix
+      ##
+      L.r <- t(Brem) %*% diag(netmeta.res$w.random) %*% Brem
+      Lplus <- solve(L.r - 1 / n) + 1 / n
+
+
+
+      ## Computations for variance-covariance matrix (random effects model)
+      ##
+      ind <- which(names.treat == reference)    # index of reference treatment
+      t.pos1 <- rep(ind, (n - 1))
+      t.pos2 <- setdiff(1:n, ind)
+      ##
+      Br.remove <- createB(t.pos1, t.pos2, ncol = n)  # Restricted matrix B
+
+      # Variance-covariance matrix (random effects model)
+      Cov.remove <- Br.remove %*% Lplus %*% t(Br.remove)
+
+
+      ## Raw pairwise deleted residuals
+      rawres <- c(y.m[ind.deleted] - B[ind.deleted,] %*% estimate)
+
+      ## Raw study deleted residuals
+      eraw.deleted[[i]] <- res_multi(studlab[ind.deleted], rawres)$res
+
+
+      ## Standardized pairwise deleted residuals
+      standres <- sqrt(w.leave) * rawres
+
+      ## Standardized study deleted residuals
+      estand.deleted[[i]] <- res_multi(studlab[ind.deleted], standres)$res
+
+
+      ## Studentized pairwise deleted residuals
+      studres <- 1/sqrt(s.m[ind.deleted]^2 + t + hii *  w.leave) * rawres
+
+      ## Studentized study deleted residuals
+      estud.deleted[[i]] <-  res_multi(studlab[ind.deleted], studres)$res
+
+
+      ## Cook's statistic considered deletion
+      Cooks.distance[[i]] <- c(t(b[2:length(b)] - estimate[2:length(estimate)]) %*% ginv(Cov) %*% (b[2:length(b)] - estimate[2:length(estimate)]))
+
+      ## Covratio considered deletion
+
+      ## Ratio of the determinants of the variance-covariance matrix
+      Covratio[[i]] <- det(Cov.remove) / det(Cov)
+
+      ## R statistic for heterogeneity
+      Rstat.heterogeneity[[i]] <- ((t - heterog) / t) * 100
+
+      ## R statistic for summary estimates
+      Rstat.estimate <- ((b[2:length(b)] - estimate[2:length(estimate)]) / b[2:length(b)]) * 100
+      Rstat.estimates  <- cbind(Rstat.estimates, Rstat.estimate)
+
+      ## R statistic total
+      RQtotal[[i]] <- ((Q.standard - Qt) / Q.standard) * 100
+
+      ## R statistic hererogeneity
+      RQhet[[i]] <- ((Qh.standard - Qhe) / Qh.standard) * 100
+
+      ## R statistic inconsistency
+      RQinc[[i]] <- ((Qi.standard - Qin) / Qi.standard) * 100
+
+      ## DFbetas
+      DFbeta <- (b[2:length(b)] - estimate[2:length(estimate)]) * sqrt(sum(w.leave)/length(w.leave))
+      DFbetas <- cbind(DFbetas, DFbeta)
+    }
+
+
+    res <- list(dat = dat,
+                eraw.deleted = unlist(eraw.deleted),
+                estand.deleted = unlist(estand.deleted),
+                estud.deleted = unlist(estud.deleted),
+                Cooks.distance = unlist(Cooks.distance),
+                Covratio = unlist(Covratio),
+                w.leaveoneout = unlist(w.leaveoneout),
+                H.leaveoneout = unlist(H.leaveoneout),
+                heterog.leaveoneout = unlist(heterog.leaveoneout),
+                Rheterogeneity = unlist(Rstat.heterogeneity),
+                Restimates = Rstat.estimates,
+                RQtotal = unlist(RQtotal),
+                RQhet = unlist(RQhet),
+                RQinc = unlist(RQinc),
+                DFbetas = DFbetas,
+                measure = measure)
+
+  }
+
+
+  class(res) <- "measures.NMAoutlier"
 
   res
 

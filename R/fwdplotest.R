@@ -54,7 +54,7 @@
 #'
 #' @export
 #'
-#' @author Maria Petropoulou <mpetrop@cc.uoi.gr>
+#' @author Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 
 
 fwdplotest <- function(x) {

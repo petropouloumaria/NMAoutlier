@@ -46,34 +46,16 @@ NMA_RVSOM <- function(TE, seTE, treat1, treat2, studlab,
   ##
   Xdesign <- createB(tr1, tr2, nt)
 
-  ## Generalized Dersimonial and Laird heterogeneity estimator
-  tau2hat <- model$tau^2
-
-  ## starting s^2? not understand this
-  ## s^2=0.1
-
-  ## variance
-  variance <- tau2hat + 0.1
-
 
   if (is.na(observations)) {
 
-    ## transform variance to log value for starting value
-    start <- rep(log(variance), 1)
 
-    # why is missing x, what is x as argument in function REML_MA?
+    # optimize Restricted Maximum (REML) likelihood
     inference <- optimize(NMA_REML, TE = TE, seTE = seTE, treat1 = treat1,
                           treat2 = treat2, studlab = studlab, Xdesign = Xdesign,
                           tr1 = tr1, tr2 = tr2, nt = nt,
-                          reference = reference,
                           observations = observations, interval = c(-10,3))
 
-   # inferenceML <- optimize(NMA_ML, TE = TE, seTE = seTE, treat1 = treat1,
-   #                       treat2 = treat2, studlab = studlab, Xdesign = Xdesign,
-   #                       tr1 = tr1, tr2 = tr2, nt = nt,
-    #                      reference = reference,
-    #                      observations = observations, interval = c(-10,3))
-    #exp(inferenceML$minimum)
 
     ## from inference we have the REML estimator in log scale
     ## the estimate of the between-study variance
@@ -134,7 +116,7 @@ NMA_RVSOM <- function(TE, seTE, treat1, treat2, studlab,
     ## Take the difference between direct and indirect evidence
     ## z-values of test for disagreement (direct versus indirect)
     ##
-    dif <- netsplit(model)$compare.random$z
+    dif <- netsplit(model)$compare.random$statistic
 
     ## over-dispersion parameter
     over_disp <- NA
@@ -159,17 +141,20 @@ NMA_RVSOM <- function(TE, seTE, treat1, treat2, studlab,
 
   } else if (length(observations) > 0) {
 
+    ## Generalized Dersimonial and Laird heterogeneity estimator
+    tau2hat <- model$tau^2
+
+    ## variance
+    variance <- tau2hat + 0.1
+
     ## transform variance to log value for starting value
     start <- rep(log(variance), length(observations) + 1)
 
 
-
       inference <- optim(start, NMA_REML, TE = TE, seTE = seTE, treat1 = treat1,
                         treat2 = treat2, studlab = studlab,  Xdesign = Xdesign,
-                        tr1 = tr1, tr2 = tr2, nt = nt, reference = reference,
-                        observations = observations
-                        # lower = -10, upper = 3
-                        )
+                        tr1 = tr1, tr2 = tr2, nt = nt,
+                        observations = observations)
 
 
           ## find studylab of the study observation

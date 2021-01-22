@@ -15,7 +15,6 @@ NMA_REML(
   tr1,
   tr2,
   nt,
-  reference,
   observations
 )
 }
@@ -40,8 +39,6 @@ included).}
 \item{tr2}{positions for the second treatment.}
 
 \item{nt}{number of treatments.}
-
-\item{reference}{Reference treatment group.}
 
 \item{observations}{(optional) (default: NA) The study (or studies) to fit by shift its (their) variance.
 the default value is NA and shift variance model is fitted for each study.}

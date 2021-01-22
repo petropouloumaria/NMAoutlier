@@ -14,7 +14,6 @@
 #' @param tr1 positions for the first treatment.
 #' @param tr2 positions for the second treatment.
 #' @param nt number of treatments.
-#' @param reference Reference treatment group.
 #' @param observations (optional) (default: NA) The study (or studies) to fit by shift its (their) variance.
 #'   the default value is NA and shift variance model is fitted for each study.
 #' @return REML log-likelihood function.
@@ -24,7 +23,7 @@
 
 
 NMA_REML <- function(x, TE, seTE, treat1, treat2, studlab,
-                     Xdesign, tr1, tr2, nt, reference, observations)
+                     Xdesign, tr1, tr2, nt, observations)
 {
 
 
