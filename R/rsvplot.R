@@ -15,7 +15,7 @@
 #' on a random effects design-by-treatment interaction model) and
 #' likelihood ratio test (LRT).
 #'
-#' @param x an object of class NMAsvr (mandatory).
+#' @param x an object of class NMAoutlier.rsv (mandatory).
 #' @param stat statistical measure to be monitored in forward plot(s)
 #'   (mandatory), available choice are: "pscore", "nsplit", "estand",
 #'   "heterog",  "Q", "over_disp", "leverage" or "LRT" (can be abbreviated).
@@ -39,56 +39,56 @@
 #'                         sm="OR")
 #'
 #' # Random Shift Variace Model for study 1 of smoking cessation data
-#' SVRresult <- NMAsvr(p1, small.values = "bad", study = c(1), n_cores = 2)
+#' RSVresult <- NMAoutlier.rsv(p1, small.values = "bad", study = c(1), n_cores = 2)
 #'
 #' # Over dispresion for Random Shift Variace Model fitted for study 1
-#' svrplot(SVRresult, "over_disp")
+#' rsvplot(RSVresult, "over_disp")
 #'
 #' \dontrun{
 #'
 #' # Random Shift Variace Model for each study of smoking cessation data
-#' SVRresult <- NMAsvr(p1, small.values = "bad")
+#' RSVresult <- NMAoutlier.rsv(p1, small.values = "bad")
 #'
 #'
 #' # Heterogeneity variance estimator for Random Shift Variace Model
-#' svrplot(SVRresult, "heterog")
+#' rsvplot(RSVresult, "heterog")
 #'
 #' # Over dispresion for Random Shift Variace Model
-#' svrplot(SVRresult, "over_disp")
+#' rsvplot(RSVresult, "over_disp")
 #'
 #' # Q statistics for Random Shift Variace Model
-#' over_dispplot(SVRresult, "Q")
+#' over_dispplot(RSVresult, "Q")
 #'
 #' # P-scores for Random Shift Variace Model
-#' SVRplot(SVRresult, "pscore")
+#' rsvplot(RSVresult, "pscore")
 #'
 #' # z-values of disagreement of direct and indirect evidence for Random Shift Variace Model
-#' SVRplot(SVRresult, "nsplit")
+#' rsvplot(RSVresult, "nsplit")
 #'
 #' # z-values of disagreement of direct and indirect evidence
 #' # monitoring treatment comparison A versus B for Random Shift Variace Model
-#' SVRplot(SVRresult, "nsplit", "A:B")
+#' rsvplot(RSVresult, "nsplit", "A:B")
 #'
 #' # log likelihood test plot (LRT)
-#' svrplot(SVRresult, "LRT")
+#' rsvplot(RSVresult, "LRT")
 #' }
 #'
 #' @export
 #'
-#' @author Maria Petropoulou <mpetrop@cc.uoi.gr>
+#' @author Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 
 
 
-svrplot <- function(x, stat, select.st = NULL) {
+rsvplot <- function(x, stat, select.st = NULL) {
 
   ## Check class
   ##
-  chkclass(x, "NMAsvr")
+  chkclass(x, "NMAoutlier.rsv")
 
   stat <- setchar(stat, c("pscore", "nsplit", "estand", "heterog",
                            "Q", "over_disp", "leverage", "LRT"))
 
-  plothelper(x, "svr", stat, select.st)
+  plothelper(x, "rsv", stat, select.st)
 
 }
 

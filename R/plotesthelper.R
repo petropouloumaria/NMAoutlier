@@ -1,6 +1,6 @@
 #' Helper function to create the plots of summary estimates and their intervals for FS and RVSOM.
 #'
-#' @param x object of class NMAoutlier or class NMAsvr (mandatory).
+#' @param x object of class NMAoutlier or class NMAoutlier.rsv (mandatory).
 #' @param lower lower bundary of confidence interval of summary estimate.
 #' @param upper upper bundary of confidence interval of summary estimate.
 #' @param estimate summary estimate.
@@ -8,7 +8,7 @@
 #' @param xtitle title for plots in x-axis.
 #' @param method The method that was used.
 #' Select "fs" to monitor statistics during the forward search algorithm.
-#' Select "svr" to monitor statistics by fitting the data with the Shift Variance Model.
+#' Select "rsv" to monitor statistics by fitting the data with the Shift Variance Model.
 #'
 #' @details
 #' Plot of summary estimate and its confidence interval for each treatment for FS and RVSOM methodologies.
@@ -18,7 +18,7 @@
 #'
 #' @keywords internal
 #'
-#' @author Maria Petropoulou <mpetrop@cc.uoi.gr>
+#' @author Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 #'
 #' @importFrom ggplot2 ggplot aes theme element_rect element_line
 #'   geom_line geom_point geom_errorbar geom_line coord_cartesian
@@ -40,7 +40,7 @@ plotesthelper <- function(x, lower, upper, estimate, xdata, xtitle, method) {
   graphs <- vector("list", nt - 1)
 
 
-  if (tolower(method) == "svr") {
+  if (tolower(method) == "rsv") {
     if (length(x$z[-1]) == 1) {
       estimate <- as.data.frame(estimate)
       lower <- as.data.frame(lower)

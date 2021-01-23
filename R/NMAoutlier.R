@@ -69,7 +69,7 @@
 #' @details
 #' Description of methodology by fitting forward search algorithm in
 #' network meta-analysis. Methodology of FS algorithm fitted in NMA
-#' model from graph theory is described in Petropoulou et al. 2019.
+#' model from graph theory is described in Petropoulou et al. (2021).
 #'
 #' Let \emph{n} be the number of treatments in a network and let
 #' \emph{m} be the number of pairwise treatment comparisons.  If there

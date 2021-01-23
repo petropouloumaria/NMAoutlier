@@ -1,10 +1,10 @@
 
 
-print.NMAsvr <- function(x, digits = 4) {
+print.NMAoutlier.rsv <- function(x, digits = 4) {
 
   ## Check class
   ##
-  chkclass(x,"NMAsvr")
+  chkclass(x,"NMAoutlier.rsv")
 
 
   cat("Original data:\n")

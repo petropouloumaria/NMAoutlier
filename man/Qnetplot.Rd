@@ -20,7 +20,7 @@ A reference line is fitted from the cartesian points of the two measures. The no
 that are away from the reference line. This can be
 an indication that normality cannot be assumed in the data and an outlying study exist.
 
-Q-Q plot for network meta-analysis (Q-Q netplot) has been introduced by Petropoulou et al. 2020.
+Q-Q plot for network meta-analysis (Q-Q netplot) has been introduced by Petropoulou (2020).
 }
 \examples{
 data(smokingcessation, package = "netmeta")
@@ -32,7 +32,7 @@ p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
                         sm = "OR")
 
 # outlier detection measures to compute Mahalanobis distance
-measures <- measures.NMAoutlier(p1)
+measures <- NMAoutlier.measures(p1)
 
 # Mahalanobis distance values for each study in the network
 measures$Mah

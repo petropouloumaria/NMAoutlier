@@ -7,11 +7,11 @@
 plothelper(x, method, stat, select.st)
 }
 \arguments{
-\item{x}{object of class NMAoutlier or class NMAsvr (mandatory).}
+\item{x}{object of class NMAoutlier or class NMAoutlier.rsv (mandatory).}
 
 \item{method}{The method that was used.
 Select "fs" to monitor statistics during the forward search algorithm.
-Select "svr" to monitor statistics by fitting the data with the Shift Variance Model.}
+Select "rsv" to monitor statistics by fitting the data with the Shift Variance Model.}
 
 \item{stat}{The monitored statistic to generate the plot.}
 
@@ -27,6 +27,6 @@ Vertical axis provides the iterations of FS methodology or the study for RVSOM m
 Horizontal axis provides a monitoring statistical measure in the methodology.
 }
 \author{
-Maria Petropoulou <mpetrop@cc.uoi.gr>
+Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 }
 \keyword{internal}

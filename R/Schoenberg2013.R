@@ -41,7 +41,7 @@
 #' # Conduct forward search algorithm for the network of Laparoscopic
 #' # Heller myotomy
 #' #
-#' FSresult <- NMAoutlier(logOR, selogOR, t1, t2, id, data = Schoenberg2013)
+#' FSresult <- NMAoutlier(logOR, selogOR, t1, t2, id, data = Schoenberg2013, n_cores = 2)
 #' 
 #' # Draw forward plot for z-values from difference of direct and
 #' # indirect evidence

@@ -7,7 +7,7 @@
 plotesthelper(x, lower, upper, estimate, xdata, xtitle, method)
 }
 \arguments{
-\item{x}{object of class NMAoutlier or class NMAsvr (mandatory).}
+\item{x}{object of class NMAoutlier or class NMAoutlier.rsv (mandatory).}
 
 \item{lower}{lower bundary of confidence interval of summary estimate.}
 
@@ -21,7 +21,7 @@ plotesthelper(x, lower, upper, estimate, xdata, xtitle, method)
 
 \item{method}{The method that was used.
 Select "fs" to monitor statistics during the forward search algorithm.
-Select "svr" to monitor statistics by fitting the data with the Shift Variance Model.}
+Select "rsv" to monitor statistics by fitting the data with the Shift Variance Model.}
 }
 \description{
 Helper function to create the plots of summary estimates and their intervals for FS and RVSOM.
@@ -32,6 +32,6 @@ Vertical axis provides the iterations of FS methodology or the study for RVSOM m
 Horizontal axis provides a summary estimate of a treatment.
 }
 \author{
-Maria Petropoulou <mpetrop@cc.uoi.gr>
+Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 }
 \keyword{internal}

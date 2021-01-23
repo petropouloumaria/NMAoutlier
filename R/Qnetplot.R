@@ -13,7 +13,7 @@
 #' that are away from the reference line. This can be
 #' an indication that normality cannot be assumed in the data and an outlying study exist.
 #'
-#' Q-Q plot for network meta-analysis (Q-Q netplot) has been introduced by Petropoulou et al. 2020.
+#' Q-Q plot for network meta-analysis (Q-Q netplot) has been introduced by Petropoulou (2020).
 #'
 #' @references
 #' Petropoulou M (2020):
@@ -32,7 +32,7 @@
 #'                         sm = "OR")
 #'
 #' # outlier detection measures to compute Mahalanobis distance
-#' measures <- measures.NMAoutlier(p1)
+#' measures <- NMAoutlier.measures(p1)
 #'
 #' # Mahalanobis distance values for each study in the network
 #' measures$Mah
@@ -53,7 +53,7 @@
 
 Qnetplot <- function(data){
 
-  chkclass(data, "measures.NMAoutlier")
+  chkclass(data, "NMAoutlier.measures")
 
   data <- data$Mah
   data <- data[order(data)]

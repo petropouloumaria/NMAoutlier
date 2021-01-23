@@ -3,6 +3,10 @@ title: "NMAoutlier: Detecting Outliers in Network Meta-Analysis"
 output: github_document
 ---
 
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/NMAoutlier)](https://cran.r-project.org/package=NMAoutlier)
+[![CRAN_time_from_release](https://www.r-pkg.org/badges/ago/NMAoutlier)](https://cran.r-project.org/package=NMAoutlier)
+[![Monthly Downloads](http://cranlogs.r-pkg.org/badges/NMAoutlier)](http://cranlogs.r-pkg.org/badges/NMAoutlier)
+[![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/NMAoutlier)](http://cranlogs.r-pkg.org/badges/grand-total/NMAoutlier)
 [![Build Status](https://travis-ci.org/petropouloumaria/NMAoutlier.svg?branch=master)](https://travis-ci.org/petropouloumaria/NMAoutlier)
 
 <img src="man/figures/NMAoutlier_logo.png" width=300 align="right" style="margin-left:20px; margin-right: 20px;"/>
@@ -173,31 +177,31 @@ fwdplotest(FSresult)
 
 **Part 4: Shift Variance Network Meta-analysis – Detection methodology and sensitivity analysis downweighing outlier** 
 
-You can conduct the random shift variance model for each study with function **NMAsvr** as follows: 
+You can conduct the random shift variance model for each study with function **NMAoutlier.rsv** as follows: 
 ```{r, eval=FALSE}
-SVRresult <- NMAsvr(p1, small.values = "bad")
+RSVresult <- NMAoutlier.rsv(p1, small.values = "bad")
 ```
 
 
 You can see the the Likelihood Ratio Test (LRT) with random shift variance model of each study
 ```{r, eval=FALSE}
-SVRresult$LRT 
+RSVresult$LRT 
 ```
 
 Or you can see the over-dispersion with random shift variance model of each study
 ```{r, eval=FALSE}
-SVRresult$over_disp
+RSVresult$over_disp
 ```
 
 
-You can plot the of Likelihood Ratio Test (LRT) of random shift variance model for each study with function **svrplot** as follows:
+You can plot the of Likelihood Ratio Test (LRT) of random shift variance model for each study with function **rsvplot** as follows:
 ```{r, eval=FALSE}
-svrplot(SVRresult, "LRT")
+rsvplot(RSVresult, "LRT")
 ```
 
-You can see the plots for summary estimates for each treatment B, C and D with function **svrplotest**  as follows: 
+You can see the plots for summary estimates for each treatment B, C and D with function **rsvplotest**  as follows: 
 ```{r, eval=FALSE}
-svrplotest(SVRresult)
+rsvplotest(RSVresult)
 ```
 
 

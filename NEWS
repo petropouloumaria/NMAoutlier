@@ -1,8 +1,22 @@
+*** NMAoutlier, version 0.1.17 ***
+
+- code refactoring
+- added n_cores to examples to comply with CRAN limitation to 2 cores
+
+
+*** NMAoutlier, version 0.1.16 ***
+
+- added initial subset argument to NMAoutlier function
+
+
 *** NMAoutlier, version 0.1.15 ***
-- new functions NMAoutlier_measures; NMAoutlier_deletion_measures; plot_NMAoutlier_measures; plot_NMAoutlier_deletion_measures; Qnetplot. The functions provide the calculation of several outlier and influential measures
+
+- new functions added: NMAoutlier.measures, measplot, Qnetplot. The functions provide the calculation of several outlier and influential measures
+
 
 *** NMAoutlier, version 0.1.14 ***
-- new functions added NMA_RVSOM and NMA_REML for outlier detection with shift variance model for NMA
+
+- new functions added: NMA_RVSOM and NMA_REML for outlier detection with shift variance model for NMA
 
 
 *** NMAoutlier, version 0.1.13 ***
@@ -13,7 +27,6 @@
 *** NMAoutlier, version 0.1.12 ***
 
 -	added maintainer to the description file
-
 
 
 *** NMAoutlier, version 0.1.11 ***
@@ -29,7 +42,6 @@
 *** NMAoutlier, version 0.1.7 ***
 
 - new datasets Laparoscopic and Gupta2013 added
-
 
 
 *** NMAoutlier, version 0.1.6 ***

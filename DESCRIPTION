@@ -8,7 +8,7 @@ Imports: netmeta (>= 0.9-7),
          reshape2 (>= 1.4.3), ggplot2 (>= 3.0.0), gridExtra (>= 2.3)
 Authors@R: c(person("Maria", "Petropoulou",
                     role = c("aut", "cre"),
-                    email = "mpetrop@cc.uoi.gr",
+                    email = "petropoulou@imbi.uni-freiburg.de",
                     comment = c(ORCID = "0000-0002-7147-3644")),
              person("Guido", "Schwarzer",
                     role = "aut",
@@ -44,4 +44,5 @@ License: GPL (>= 2)
 Encoding: UTF-8
 RoxygenNote: 7.1.1
 NeedsCompilation: no
+LazyData: true
 Packaged: 2018-10-18 12:33:50 UTC; marak

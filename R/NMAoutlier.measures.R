@@ -15,7 +15,7 @@
 #' }
 #'
 #' A description of the several outlier detection measures in the context of network meta-analysis
-#' can be found in Petropoulou et al. (2020).
+#' can be found in Petropoulou (2020).
 #'
 #' @param TE Estimate of treatment effect, i.e. difference between
 #'   first and second treatment (e.g. log odds ratio, mean difference,
@@ -39,7 +39,7 @@
 #' fitted with (\code{netmeta} function) of R package \bold{netmeta} (Rücker et al., 2015).
 #' The researcher can choose the reference treatment \code{reference} fitted in NMA model.
 #'
-#' An overview of the several outlier detection measures is described in Petropoulou et al. 2020.
+#' An overview of the several outlier detection measures is described in Petropoulou (2020).
 #'
 #' Let \emph{n} be the number of treatments in a network and let
 #' \emph{m} be the number of pairwise treatment comparisons.  If there
@@ -96,14 +96,14 @@
 #'
 #'
 #' #' # outlier and influential detection measures for studies 9, 10, 11, 12
-#' meas <- measures.NMAoutlier(p1)
+#' meas <- NMAoutlier.measures(p1)
 #'
 #' # Standardized residual for each study included in the network
 #' meas$estand
 #'
 #'
 #' # deletion measures for studies 9, 10, 11, 12.
-#' delete <- measures.NMAoutlier(p1, measure = "deletion")
+#' delete <- NMAoutlier.measures(p1, measure = "deletion")
 #'
 #' # Standardized deleted residual for studies 9, 10, 11, 12.
 #' delete$estand.deleted
@@ -123,7 +123,7 @@
 #'                         sm = "OR")
 #'
 #' # outlier and influential detection measures for each study in the network
-#' meas <- measures.NMAoutlier(p1, measure = "influential")
+#' meas <- NMAoutlier.measures(p1, measure = "influential")
 #'
 #' # Mahalanobis distance for each study included in the network
 #' meas$Mah
@@ -137,7 +137,7 @@
 
 
 
-measures.NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
+NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
                                 data = NULL,
                                 sm,
                                 reference = "", measure = "influential"){
@@ -184,8 +184,7 @@ measures.NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     data <- TE
     ##
     TE <- TE$TE
-  }
-  else {
+  } else {
     is.pairwise <- FALSE
     if (missing(sm))
       if (!is.null(data) && !is.null(attr(data, "sm")))
@@ -353,73 +352,70 @@ measures.NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
 
   if (measure == "influential") {
 
+    ## predicted estimate
+    y.m.est <- model$TE.nma.random
 
-  ## predicted estimate
-  y.m.est <- model$TE.nma.random
+    ## Outlier and influence diagnostics measures
+    ##
+    ## Raw residuals for each pairwise comparison
+    ##
+    rawres <- y.m - y.m.est
 
-  ## Outlier and influence diagnostics measures
-  ##
-  ## Raw residuals for each pairwise comparison
-  ##
-  rawres <- y.m - y.m.est
-
-  ## Raw residuals for each study
-  ##
-  eraw <- res_multi(studlab, rawres)$res
-
-
-  ##
-  ## Standardized residuals for each pairwise comparison
-  ##
-  standres <- sqrt(model$w.random) * rawres
+    ## Raw residuals for each study
+    ##
+    eraw <- res_multi(studlab, rawres)$res
 
 
-  ## Standardized residuals for each study
-  ##
-  estand <- res_multi(studlab, standres)$res
-
-  ##
-  ## Studentized residuals for each pairwise comparison
-  ##
-  studres <- 1/sqrt(1 - diag(model$H.matrix)) * sqrt(model$w.random) * rawres
+    ##
+    ## Standardized residuals for each pairwise comparison
+    ##
+    standres <- sqrt(model$w.random) * rawres
 
 
-  ## Studentized residuals for each study
-  ##
-  estud <- res_multi(studlab, studres)$res
+    ## Standardized residuals for each study
+    ##
+    estand <- res_multi(studlab, standres)$res
+
+    ##
+    ## Studentized residuals for each pairwise comparison
+    ##
+    studres <- 1/sqrt(1 - diag(model$H.matrix)) * sqrt(model$w.random) * rawres
 
 
-  ## Mahalanobis distance for each pairwise comparison
-  ##
-  Mah <- model$Q.fixed
-
-  ## Qi contribution
-  Q.pooled <- model$w.fixed * (model$TE - model$TE.nma.fixed)^2
-  Q.random <- model$w.random * (model$TE - model$TE.nma.random)^2
-
-  ## Mahalanobis distance for each study
-  ##
-  Mahalanobis.distance <- res_multi(studlab, Mah)$res
-
-  # leverage for each pairwise comparison
-  lev <- as.numeric(diag(model$H.matrix))
-
-  # leverage for each study
-  leverage <- res_multi(studlab, lev)$res
+    ## Studentized residuals for each study
+    ##
+    estud <- res_multi(studlab, studres)$res
 
 
-  res <- list(dat = dat,
-              eraw = eraw,
-              estand = estand,
-              estud = estud,
-              Mah = Mah,
-              Mahalanobis.distance = Mahalanobis.distance,
-              lev = lev,
-              leverage = leverage, measure = measure)
+    ## Mahalanobis distance for each pairwise comparison
+    ##
+    Mah <- model$Q.fixed
 
-  }
-  if (measure == "deletion") {
+    ## Qi contribution
+    Q.pooled <- model$w.fixed * (model$TE - model$TE.nma.fixed)^2
+    Q.random <- model$w.random * (model$TE - model$TE.nma.random)^2
 
+    ## Mahalanobis distance for each study
+    ##
+    Mahalanobis.distance <- res_multi(studlab, Mah)$res
+
+    # leverage for each pairwise comparison
+    lev <- as.numeric(diag(model$H.matrix))
+
+    # leverage for each study
+    leverage <- res_multi(studlab, lev)$res
+
+
+    res <- list(dat = dat,
+                eraw = eraw,
+                estand = estand,
+                estud = estud,
+                Mah = Mah,
+                Mahalanobis.distance = Mahalanobis.distance,
+                lev = lev,
+                leverage = leverage, measure = measure)
+
+  } else if (measure == "deletion") {
 
     s.m <-  model$seTE
 
@@ -606,7 +602,7 @@ measures.NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
   }
 
 
-  class(res) <- "measures.NMAoutlier"
+  class(res) <- "NMAoutlier.measures"
 
   res
 

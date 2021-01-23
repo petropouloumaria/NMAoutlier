@@ -22,7 +22,7 @@
 #' (\code{Qhet}), R statistic for Qinconsistency (\code{Qinc}), DFbetas.
 #'
 #'
-#' @param object an object of class measures.NMAoutlier (mandatory).
+#' @param object an object of class NMAoutlier.measures (mandatory).
 #' @param stat selected statistical outlier and influential detection measure
 #' (mandatory),
 #' For outlier and influential measures available choices are: ("estand"/ "estud"/ "mah"/ "leverage").
@@ -37,7 +37,6 @@
 #' Vertical axis provides the studies in the network (or the study deleted for deletion measures). Horizontal axis
 #' provides a monitoring outlier and influential detection measure.
 #'
-
 #'
 #' @keywords hplot
 #'
@@ -53,28 +52,28 @@
 #'                         sm = "OR")
 #'
 #' # outlier and influential detection measures for each study in the network
-#' measures <- measures.NMAoutlier(p1)
+#' measures <- NMAoutlier.measures(p1)
 #'
 #' # plot of Standardized residuals for each study
-#' plot.NMAoutlier(measures, "estand")
+#' measplot(measures, "estand")
 #'
 #' # plot of Mahalanobis distance values for each study
-#' plot.NMAoutlier(measures, "mah")
+#' measplot(measures, "mah")
 #'
 #' # plot of leverage values for each study
-#' plot.NMAoutlier(measures, "leverage")
+#' measplot(measures, "leverage")
 #'
 #' # outlier detection measures considered deletion each time of an included study
-#' deletion <- measures.NMAoutlier(p1, measure = "deletion")
+#' deletion <- NMAoutlier.measures(p1, measure = "deletion")
 #'
 #' # plot for R statistic for heterogeneity estimator
-#' plot.NMAoutlier(deletion, "rheterogeneity", measure = "deletion")
+#' measplot(deletion, "rheterogeneity", measure = "deletion")
 #'
 #' # plot for R statistic for Qinconsistency
-#' plot.NMAoutlier(deletion, "rqinc", measure = "deletion")
+#' measplot(deletion, "rqinc", measure = "deletion")
 #'
 #' # plot of COVRATIO values when considering deletion for each study
-#' plot.NMAoutlier(deletion, "covratio", measure = "deletion")
+#' measplot(deletion, "covratio", measure = "deletion")
 #'
 #'
 #' @export
@@ -87,49 +86,49 @@
 
 
 
-plot.NMAoutlier <- function(object, stat, measure = "influential"){
+measplot <- function(object, stat, measure = "influential"){
 
-  chkclass(object, "measures.NMAoutlier")
-
+  chkclass(object, "NMAoutlier.measures")
 
   if (measure == "influential") {
 
-  stat <- setchar(tolower(stat), c("estand", "estud",
-                                   "mah", "leverage"))
+    stat <- setchar(tolower(stat), c("estand", "estud",
+                                    "mah", "leverage"))
 
-  stlab <- unique(object$dat[ ,3])
-  xlabel <- "study"
+    stlab <- unique(object$dat[ ,3])
+    xlabel <- "study"
 
-  if (tolower(stat) == "estand") {
+    if (tolower(stat) == "estand") {
 
-    title = "Standardized residuals plot"
-    ylabel = "Standardized residuals"
-    data <- object$estand
-    help_plot(data, stlab, title, xlabel, ylabel, "residual")
+      title = "Standardized residuals plot"
+      ylabel = "Standardized residuals"
+      data <- object$estand
+      help_plot(data, stlab, title, xlabel, ylabel, "residual")
 
-  } else if (tolower(stat) == "estud") {
+    } else if (tolower(stat) == "estud") {
 
-    title = "Studentized residuals plot"
-    ylabel = "Studentized residuals"
-    data <- object$estud
-    help_plot(data, stlab, title, xlabel, ylabel, "residual")
+      title = "Studentized residuals plot"
+      ylabel = "Studentized residuals"
+      data <- object$estud
+      help_plot(data, stlab, title, xlabel, ylabel, "residual")
 
-  } else if (tolower(stat) == "mah") {
+    } else if (tolower(stat) == "mah") {
 
-    title = "Mahalanobis plot"
-    ylabel = "Qi-Mahalanobis distance"
-    data <- object$Mahalanobis.distance
-    help_plot(data, stlab, title, xlabel, ylabel, "mah")
+      title = "Mahalanobis plot"
+      ylabel = "Qi-Mahalanobis distance"
+      data <- object$Mahalanobis.distance
+      help_plot(data, stlab, title, xlabel, ylabel, "mah")
 
-  } else if (tolower(stat) == "leverage") {
+    } else if (tolower(stat) == "leverage") {
 
-    title = "Leverage plot"
-    ylabel = "Leverage"
-    data <- object$leverage
-    help_plot(data, stlab, title, xlabel, ylabel, "leverage")
-  }
-  }
-  if (measure == "deletion") {
+      title = "Leverage plot"
+      ylabel = "Leverage"
+      data <- object$leverage
+      help_plot(data, stlab, title, xlabel, ylabel, "leverage")
+
+    }
+
+  } else if (measure == "deletion") {
 
     stat <- setchar(stat, c("eraw.deleted", "estand.deleted", "estud.deleted",
                             "leverage.leaveoneout", "weight.leaveoneout", "heterog.leaveoneout", "covratio", "cook",
@@ -224,18 +223,23 @@ plot.NMAoutlier <- function(object, stat, measure = "influential"){
       help_plot(data, stlab, title, xlabel, ylabel, "rqtotal")
 
     } else if (tolower(stat) == "dfbetas" || tolower(stat) == "restimates") {
+
       if (tolower(stat) == "dfbetas") {
+
         title = "DFbetas"
         ylabel = "BFbetas"
         obj <- object$DFbetas
         lab <- "DFbetas for treatment"
-      }
-      else if (tolower(stat) == "restimates") {
+
+      } else if (tolower(stat) == "restimates") {
+
         title = "R statistic for Qestimates leave-one-out"
         ylabel = "R statistic for Qestimates"
         obj <- object$Restimates
         lab <- "R statistic for Qestimates of treatment"
+
       }
+
       xlabels <- factor(as.character(stlab), levels = as.character(stlab)) # as factor to prevent ggplot from reordering the x labels in alphabetical order
       nt <- length(unique(c(object$dat[, 4], object$dat[, 5])))
 
@@ -275,6 +279,3 @@ plot.NMAoutlier <- function(object, stat, measure = "influential"){
   }
 
 }
-
-
-

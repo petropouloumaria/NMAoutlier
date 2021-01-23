@@ -52,10 +52,10 @@
 #' @details
 #' Description of methodology by fitting random shift variance model (RVSOM) in
 #' network meta-analysis. Methodology of RVSOM fitted in NMA
-#' model from graph theory is described in Petropoulou et al. 2020.
+#' model from graph theory is described in Petropoulou (2020).
 #'
 #'
-#' NMAsvr function employs the random shift variance model (RVSOM)
+#' NMAoutlier.rsv function employs the random shift variance model (RVSOM)
 #' for detection of outlying and influential studies fitted in network meta-analysis model
 #' from graph-theory.The random effects variance shift outlier model (RVSOM)
 #' allows inflated variances for the study j to detect if study j is an outlier.
@@ -180,13 +180,13 @@
 #'
 #' # Random Shift Variance NMA model implementation for study 1
 #' #
-#' RVSOMres <- NMAsvr(p1,  small.values = "bad", study = c(1) , n_cores = 2)
+#' RVSOMres <- NMAoutlier.rsv(p1,  small.values = "bad", study = c(1) , n_cores = 2)
 #' #
 #'
 #' \dontrun{
 #' # Random Shift Variance Model
 #' #
-#' RVSOMresult <- NMAsvr(p1, small.values = "bad")
+#' RVSOMresult <- NMAoutlier.rsv(p1, small.values = "bad")
 #'
 #' # Random shift variance estimator
 #' RVSOMresult$over-disp
@@ -209,7 +209,7 @@
 
 
 
-NMAsvr <- function(TE, seTE, treat1, treat2, studlab,
+NMAoutlier.rsv <- function(TE, seTE, treat1, treat2, studlab,
                    data = NULL,
                    sm,
                    reference = "", small.values = "good",
@@ -628,7 +628,7 @@ NMAsvr <- function(TE, seTE, treat1, treat2, studlab,
 
 
 
-   class(res) <- "NMAsvr"
+   class(res) <- "NMAoutlier.rsv"
 
    res
 

@@ -56,7 +56,7 @@ data(Gupta2013)
 # Conduct forward search algorithm for the network of actinic
 # keratosis
 #
-FSresult <- NMAoutlier(logOR, selogOR, t1, t2, id, data = Gupta2013)
+FSresult <- NMAoutlier(logOR, selogOR, t1, t2, id, data = Gupta2013, n_cores = 2)
 
 # Draw forward plot for z-values from difference of direct and
 # indirect evidence

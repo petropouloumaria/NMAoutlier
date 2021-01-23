@@ -8,7 +8,7 @@
 #' and their 95 percent confidence intervals for Random Shift Variace Model
 #' fitted for selected or all studies of a dataset
 #'
-#' @param x object of class NMAsvr (mandatory).
+#' @param x object of class NMAoutlier.rsv (mandatory).
 #'
 #' @details
 #' Plot of summary estimates and their confidence intervals for each treatment
@@ -32,12 +32,12 @@
 #'                         sm="OR")
 #'
 #' # Random Shift Variace Model for study 1 of smoking cessation data
-#' SVRresult <- NMAsvr(p1, small.values = "bad", study = c(1), n_cores = 2)
+#' RSVresult <- NMAoutlier.rsv(p1, small.values = "bad", study = c(1), n_cores = 2)
 #'
 #' # Plot for summary estimates for each treatment
 #' # and their confidence intervals for Random Shift Variace Model
 #' # fitted for study 1
-#' svrplotest(SVRresult)
+#' rsvplotest(RSVresult)
 #'
 #' \dontrun{
 #' data(smokingcessation, package = "netmeta")
@@ -53,25 +53,25 @@
 #'                         sm="OR")
 #'
 #' # Random Shift Variace Model for each study of smoking cessation data
-#' SVRresult <- NMAsvr(p1, small.values = "bad")
+#' RSVresult <- NMAoutlier.rsv(p1, small.values = "bad")
 #'
 #' # Plot for summary estimates for each treatment
 #' # and their confidence intervals for Random Shift Variace Model
 #' # fitted for each study
-#' svrplotest(SVRresult)
+#' rsvplotest(RSVresult)
 #' }
 #'
 #' @export
 #'
-#' @author Maria Petropoulou <mpetrop@cc.uoi.gr>
+#' @author Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 
 
-svrplotest <- function(x) {
+rsvplotest <- function(x) {
 
   ## Check class
   ##
-  chkclass(x, "NMAsvr")
+  chkclass(x, "NMAoutlier.rsv")
 
-  plotesthelper(x, lower = x$l, upper = x$u, estimate = x$b, xdata = x$dat, xtitle = "Study", method = "svr")
+  plotesthelper(x, lower = x$l, upper = x$u, estimate = x$b, xdata = x$dat, xtitle = "Study", method = "rsv")
 
 }

@@ -1,11 +1,11 @@
 
 
 
-print.measures.NMAoutlier <- function(x, digits = 4) {
+print.NMAoutlier.measures <- function(x, digits = 4) {
 
   ## Check class
   ##
-  chkclass(x,"measures.NMAoutlier")
+  chkclass(x,"NMAoutlier.measures")
 
   cat("Original data:\n")
   ##

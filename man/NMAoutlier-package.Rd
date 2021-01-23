@@ -9,16 +9,16 @@ R package \bold{NMAoutlier} provides diagnostic methods to detect outlying studi
 }
 \details{
 R package \bold{NMAoutlier} implements several outlier (studies with extreme results) detection measures
-as provided in Petropoulou et al. (2020). Detection tools for outliers provided with the forward search (FS)
+as provided in Petropoulou (2020). Detection tools for outliers provided with the forward search (FS)
 algorithm in network meta-analysis (NMA) by Petropoulou et al. (2021) and the Random Shift Variance model (RVSOM NMA)
-by Petropoulou et al. (2020). The proposed detection measures and methodologies are given with the underlying
+by Petropoulou (2020). The proposed detection measures and methodologies are given with the underlying
 model with the frequentist NMA approach based on graph theory by Rücker (2012) which is implemented in R package
 \bold{netmeta}.
 
 The \bold{NMAoutlier} package implements the following:
 \itemize{
  \item Several outlier detection measures provided (function
-   (\code{\link{measures.NMAoutlier}})) based on Petropoulou et al. (2021);
+   (\code{\link{NMAoutlier.measures}})) based on Petropoulou et al. (2021);
  \enumerate{
    \item raw residuals
    \item standardized residuals
@@ -28,11 +28,11 @@ The \bold{NMAoutlier} package implements the following:
   }
 
  \item Plots of the several above outlier detection measures provided (function
-  (\code{\link{plot.NMAoutlier}})) (Petropoulou et al. (2020));
+  (\code{\link{measplot}})) (Petropoulou (2020));
 
 \item Several outlier detection measures considered deletion provided
- (function (\code{\link{measures.NMAoutlier}}))
- based on Petropoulou et al. (2020);
+ (function (\code{\link{NMAoutlier.measures}}))
+ based on Petropoulou (2020);
  \enumerate{
  \item raw deleted residuals
  \item standardized deleted residuals
@@ -49,10 +49,10 @@ The \bold{NMAoutlier} package implements the following:
  \item DFBETAS
  }
 \item Plots of the several above outlier detection measures considered study deletion provided (function
-  (\code{\link{plot.NMAoutlier}})) (Petropoulou et al. (20120));
+  (\code{\link{measplot}})) (Petropoulou (2020));
 
 \item Q-Q plot for network meta-analysis (function
-  (\code{\link{Qnetplot}})) (Petropoulou et al. (2020));
+  (\code{\link{Qnetplot}})) (Petropoulou (2020));
 
 \item forward search algorithm in network meta-analysis (function
   (\code{\link{NMAoutlier}})) based on Petropoulou et al. (2021);
@@ -75,7 +75,7 @@ The \bold{NMAoutlier} package implements the following:
   al. (2021).
 
 \item Random shift variance NMA model (RVSOM NMA) (function
-  (\code{\link{NMAsvr}})) based on Petropoulou et al. (2020):
+  (\code{\link{NMAoutlier.rsv}})) based on Petropoulou (2020):
 \enumerate{
 \item P-scores (Rücker & Schwarzer, 2015),
 \item z-values for difference of direct and indirect evidence
@@ -87,11 +87,11 @@ with back-calculation method (König et al., 2013; Dias et al.,
 \item shift variance estimator,
 \item leverage,
 \item likelihood ratio test (LRT),
-\item Plots (\code{\link{svrplot}}) with monitoring the above
+\item Plots (\code{\link{rsvplot}}) with monitoring the above
   statistical measures fitting each study with RVSOM NMA model,
-\item Plots (\code{\link{svrplotest}}) for summary estimates
+\item Plots (\code{\link{rsvplotest}}) for summary estimates
   and their confidence intervals for each treatment for RVSOM NMA model
-  as provided by Petropoulou et al. (2020).
+  as provided by Petropoulou (2020).
   }
 }
 
