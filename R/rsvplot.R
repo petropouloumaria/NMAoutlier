@@ -57,7 +57,7 @@
 #' rsvplot(RSVresult, "over_disp")
 #'
 #' # Q statistics for Random Shift Variace Model
-#' over_dispplot(RSVresult, "Q")
+#' rsvplot(RSVresult, "Q")
 #'
 #' # P-scores for Random Shift Variace Model
 #' rsvplot(RSVresult, "pscore")
