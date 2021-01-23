@@ -376,12 +376,12 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
   ##
   rownames(dat) <- c(1:length(TE))
   ##
+  ## predicted estimate
+  y.m.est <- model$TE.nma.random
 
 
   if (measure == "simple") {
 
-    ## predicted estimate
-    y.m.est <- model$TE.nma.random
 
     ## Outlier and influence diagnostics measures
     ##
