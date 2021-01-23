@@ -12,9 +12,9 @@
 #' #' This function also generates plot(s) of the selected outlier detection measure(s)
 #' after the deletion of a study. The function creates a plot of the
 #' selected detection statistic considering a deletion of each study in the network.
-#' Candidate statistics to be monitored can be Raw deleted residual;
-#' Standardized deleted residual;Studentized deleted residual; Cook
-#' distance between the treatment estimates for study j and treatment estimates when study j is removed;
+#' Candidate statistics to be monitored can be  Standardized deleted residual;
+#' Studentized deleted residual; Cook distance between the treatment estimates for study j
+#' and treatment estimates when study j is removed;
 #' ratio of determinants of variances of variance-covariance matrix
 #' of treatment estimates for study j to treatment estimates when study j is removed;
 #' weight leave one out;leverage leave one out; heterogeneity estimator leave one out;
@@ -26,7 +26,7 @@
 #' @param stat selected statistical outlier and influential detection measure
 #' (mandatory),
 #' For outlier and influential measures available choices are: ("estand"/ "estud"/ "mah"/ "leverage").
-#' For  outlier and influential deletion measures available choices are: (eraw.deleted", "estand.deleted", "estud.deleted",
+#' For outlier and influential deletion measures available choices are: ("estand.deleted", "estud.deleted",
 #' "leverage.leaveoneout", "weight.leaveoneout", "heterog.leaveoneout", "covratio", "cook",
 #' "rheterogeneity", "restimates", "rqhet", "rqinc", "rqtotal", "dfbetas")
 #' @param measure Outlier and influential detection measures (default: "influential")
@@ -130,21 +130,14 @@ measplot <- function(object, stat, measure = "influential"){
 
   } else if (measure == "deletion") {
 
-    stat <- setchar(stat, c("eraw.deleted", "estand.deleted", "estud.deleted",
+    stat <- setchar(stat, c("estand.deleted", "estud.deleted",
                             "leverage.leaveoneout", "weight.leaveoneout", "heterog.leaveoneout", "covratio", "cook",
                             "rheterogeneity", "restimates", "rqhet", "rqinc", "rqtotal", "dfbetas"))
 
     stlab <- unique(object$dat[ ,3])
     xlabel <- "study deleted"
 
-    if (tolower(stat) == "eraw.deleted") {
-
-      title = "Raw study deleted residual"
-      ylabel = "Raw study deleted residual"
-      data <- object$eraw.deleted
-      help_plot(data, stlab, title, xlabel, ylabel, "residual")
-
-    } else if (tolower(stat) == "estand.deleted") {
+   if (tolower(stat) == "estand.deleted") {
 
       title = "Standardized study deleted residual"
       ylabel = "Standardized study deleted residual"
