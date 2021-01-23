@@ -61,8 +61,9 @@ plotesthelper <- function(x, lower, upper, estimate, xdata, xtitle, method) {
     local({
 
       melt_data <- melt(estimate[j, ], id.vars = 0)
+      y_values <- melt_data$value
       j <- j
-      g <- eval(substitute(ggplot(data = melt_data, aes(x = xlabels, y = value)) + # eval(substitute) is another workaround for the aforementioned problem
+      g <- eval(substitute(ggplot(data = melt_data, aes(x = xlabels, y = y_values)) + # eval(substitute) is another workaround for the aforementioned problem
                              theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
                              geom_point(color = '#016FB9', size = 2) +
                              geom_errorbar(aes(ymin = lower[j,], ymax = upper[j,]), width = .5, colour = "#8486F4") +

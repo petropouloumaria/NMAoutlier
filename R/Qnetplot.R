@@ -76,7 +76,8 @@ Qnetplot <- function(data){
   slope_line <- (yline[2] - yline[1])/(pline[2] - pline[1])
   slope_line
 
-  ggplot(data = melt_data, aes(x = qch_chi, y = value)) +
+  y_values <- melt_data$value
+  ggplot(data = melt_data, aes(x = qch_chi, y = y_values)) +
     theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
     geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
     labs(title = "Qi-Qi netplot", y = "Qi-Squared Mahalanobis distance", x = "Qi-estimated quantile") +

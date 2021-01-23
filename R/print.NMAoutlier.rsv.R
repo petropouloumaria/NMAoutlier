@@ -1,6 +1,6 @@
 #' @export
 
-print.NMAoutlier.rsv <- function(x, digits = 4) {
+print.NMAoutlier.rsv <- function(x, digits = 4, ...) {
 
   ## Check class
   ##

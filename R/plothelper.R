@@ -57,7 +57,8 @@ plothelper <- function(x, method, stat, select.st){
       var1_factors <- as.factor(rownames(melt_data))
     }
 
-    ggplot(data = melt_data, aes(x = var2_factors, y = value, colour = var1_factors)) +
+    y_values <- melt_data$value
+    ggplot(data = melt_data, aes(x = var2_factors, y = y_values, colour = var1_factors)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_line(aes(group = var1_factors, color = var1_factors, linetype = var1_factors), size = 1, na.rm = TRUE) +
       geom_point(aes(shape = var1_factors, color = var1_factors), size = 3, na.rm = TRUE) +
@@ -89,7 +90,8 @@ plothelper <- function(x, method, stat, select.st){
       var1_factors <- as.factor(rownames(melt_data))
     }
 
-    ggplot(data = melt_data, aes(x = var2_factors, y = value, colour = var1_factors)) +
+    y_values <- melt_data$value
+    ggplot(data = melt_data, aes(x = var2_factors, y = y_values, colour = var1_factors)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_line(aes(group = var1_factors, color = var1_factors, linetype = var1_factors), size = 1, na.rm = TRUE) +
       geom_point(aes(shape = var1_factors, color = var1_factors), size = 3, na.rm = TRUE) +
@@ -120,8 +122,8 @@ plothelper <- function(x, method, stat, select.st){
     if (length(var1_factors) == 0) {
       var1_factors <- as.factor(rownames(melt_data))
     }
-
-    ggplot(data = melt_data, aes(x = var2_factors, y = value, colour = var1_factors)) +
+    y_values <- melt_data$value
+    ggplot(data = melt_data, aes(x = var2_factors, y = y_values, colour = var1_factors)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_line(aes(group = var1_factors, color = var1_factors, linetype = var1_factors), size = 1, na.rm = TRUE) +
       geom_point(aes(shape = var1_factors, color = var1_factors), size = 3, na.rm = TRUE) +
@@ -142,7 +144,9 @@ plothelper <- function(x, method, stat, select.st){
 
     data <- getSelected(x$tau, select.st)
     melt_data <- melt(data)
-    ggplot(data = melt_data, aes(x = 1:length(x$tau), y = value)) +
+
+    y_values <- melt_data$value
+    ggplot(data = melt_data, aes(x = 1:length(x$tau), y = y_values)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
       labs(title = title, y = "Heterogeneity", x = xlabel)
@@ -151,7 +155,9 @@ plothelper <- function(x, method, stat, select.st){
 
     data <- getSelected(x$cook_d, select.st)
     melt_data <- melt(data)
-    ggplot(data = melt_data, aes(x = 2:(length(data)+1), y = value)) +
+
+    y_values <- melt_data$value
+    ggplot(data = melt_data, aes(x = 2:(length(data)+1), y = y_values)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
       geom_hline(yintercept = 1, linetype = "dashed") +
@@ -162,7 +168,9 @@ plothelper <- function(x, method, stat, select.st){
 
     data <- getSelected(x$Ratio, select.st)
     melt_data <- melt(data)
-    ggplot(data = melt_data, aes(x = 2:(length(data)+1), y = value)) +
+
+    y_values <- melt_data$value
+    ggplot(data = melt_data, aes(x = 2:(length(data)+1), y = y_values)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
       geom_hline(yintercept = 1, linetype = "dashed") +
@@ -173,7 +181,9 @@ plothelper <- function(x, method, stat, select.st){
 
     data <- getSelected(x$over_disp, select.st)
     melt_data <- melt(data)
-    ggplot(data = melt_data, aes(x = 1:length(x$over_disp), y = value)) +
+
+    y_values <- melt_data$value
+    ggplot(data = melt_data, aes(x = 1:length(x$over_disp), y = y_values)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
       labs(title = "Shift variance estimator for Random Shift Variance Model", y = "Shift variance estimator", x = xlabel)
@@ -182,7 +192,9 @@ plothelper <- function(x, method, stat, select.st){
 
     data <- getSelected(x$LRT, select.st)
     melt_data <- melt(data)
-    ggplot(data = melt_data, aes(x = 1:length(x$LRT), y = value)) +
+
+    y_values <- melt_data$value
+    ggplot(data = melt_data, aes(x = 1:length(x$LRT), y = y_values)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
       labs(title = "Likelihood Ratio Test (LRT)", y = "Likelihood Ratio Test (LRT)", x = xlabel)
@@ -202,7 +214,8 @@ plothelper <- function(x, method, stat, select.st){
       var1_factors <- as.factor(rownames(melt_data))
     }
 
-    ggplot(data = melt_data, aes(x = var2_factors, y = value, colour = var1_factors)) +
+    y_values <- melt_data$value
+    ggplot(data = melt_data, aes(x = var2_factors, y = y_values, colour = var1_factors)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       #geom_line(aes(group=var1_factors, color=var1_factors, linetype = var1_factors), size=1, na.rm=TRUE) +
       geom_point(aes(shape = var1_factors, color = var1_factors), size = 3, na.rm = TRUE) +
@@ -236,21 +249,24 @@ plothelper <- function(x, method, stat, select.st){
     data <- getSelected(x$Qb, select.st)
 
     melt_data1 <- melt(data)
-    p1 <- ggplot(data = melt_data1, aes(x = 1:length(x$Qb), y = melt_data1$value)) +
+    y_values1 <- melt_data1$value
+    p1 <- ggplot(data = melt_data1, aes(x = 1:length(x$Qb), y = y_values1)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
       labs(title = title1, y = "Qtotal", x = xlabel)
 
     data2 <- getSelected(x$Qhb, select.st)
     melt_data2 <- melt(data2)
-    p2 <- ggplot(data = melt_data2, aes(x = 1:length(x$Qhb), y = melt_data2$value)) +
+    y_values2 <- melt_data2$value
+    p2 <- ggplot(data = melt_data2, aes(x = 1:length(x$Qhb), y = y_values2)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
       labs(title = title2, y = "Qheterogeneity", x = xlabel)
 
     data3 <- getSelected(x$Qib, select.st)
     melt_data3 <- melt(data3)
-    p3 <- ggplot(data = melt_data3, aes(x = 1:length(x$Qib), y = melt_data3$value)) +
+    y_values3 <- melt_data3$value
+    p3 <- ggplot(data = melt_data3, aes(x = 1:length(x$Qib), y = y_values3)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
       labs(title = title3, y = "Qinconsistency", x = xlabel)

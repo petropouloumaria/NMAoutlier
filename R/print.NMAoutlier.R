@@ -1,6 +1,6 @@
 #' @export
 
-print.NMAoutlier <- function(x, digits = 4) {
+print.NMAoutlier <- function(x, digits = 4, ...) {
 
   ## Check class
   ##

@@ -106,10 +106,10 @@ p1 <- pairwise(list(treat1, treat2, treat3),
 **Part 1: Simply outlier detection measures**
 
 You can calculate some simply outlier detection measures with function
-**NMAoutlier\_measures** as follows:
+**NMAoutlier.measures** as follows:
 
 ``` r
-measures <- NMAoutlier_measures(p1)
+measures <- NMAoutlier.measures(p1)
 ```
 
 You can see the Mahalanobis distance for each study
@@ -119,13 +119,13 @@ measures$Mahalanobis.distance
 ```
 
 You can plot the Mahalanobis distance for each study with function
-**plot\_NMAoutlier\_measures** as follows:
+**measplot** as follows:
 
 ``` r
-plot_NMAoutlier_measures(measures, studlab, "mah")
+measplot(measures, "mah")
 ```
 
-You can plot the Q-Q plot for network meta-analyis with function
+You can plot the Q-Q plot for network meta-analysis with function
 **Qnetplot** as follows:
 
 ``` r
@@ -135,30 +135,30 @@ Qnetplot(measures)
 **Part 2: Outlier detection measures considered deletion**
 
 You can calculate some outlier detection measures considered deletion
-with function **NMAoutlier\_deletion\_measures** as follows:
+with function **NMAoutlier.measures** as follows:
 
 ``` r
-deletion <- NMAoutlier_deletion_measures(p1)
+deletion <- NMAoutlier.measures(p1, measure = "deletion")
 ```
 
 You can see the standardized deleted residuals for each study
 
 ``` r
-deletion$stand.deleted
+deletion$estand.deleted
 ```
 
 We can see the values of COVRATIO when considering deletion for each
 study
 
 ``` r
-deletion$covratio
+deletion$Covratio
 ```
 
 We can plot the R statistic for Qinconsistency with function
-**plot\_NMAoutlier\_deletion\_measures** as follows:
+**measplot** as follows:
 
 ``` r
-plot_NMAoutlier_deletion_measures(deletion, studlab, "rqinc")
+measplot(deletion, "rqinc", measure = "deletion")
 ```
 
 **Part 3: Forward Search Algorithm - Detection Methodology**

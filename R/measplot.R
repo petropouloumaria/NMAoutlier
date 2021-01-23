@@ -211,7 +211,7 @@ measplot <- function(object, stat, measure = "influential"){
     } else if (tolower(stat) == "rqinc") {
 
       title = "R statistic for Qinconsistency leave-one-out"
-      ylabel = "R statistic for inconsistenct"
+      ylabel = "R statistic for inconsistency"
       data <- object$RQinc
       help_plot(data, stlab, title, xlabel, ylabel, "rqinc")
 
@@ -261,8 +261,9 @@ measplot <- function(object, stat, measure = "influential"){
         local({
 
           melt_data <- melt(obj[j, ], id.vars = 0)
+          y_values <- melt_data$value
           j <- j
-          g <- eval(substitute(ggplot(data = melt_data, aes(x = xlabels, y = value)) + # eval(substitute) is another workaround for the aforementioned problem
+          g <- eval(substitute(ggplot(data = melt_data, aes(x = xlabels, y = y_values)) + # eval(substitute) is another workaround for the aforementioned problem
                                  theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
                                  coord_cartesian(ylim = c(liml,limu)) +
                                  geom_point(color = '#016FB9', size = 2) +

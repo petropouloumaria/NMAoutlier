@@ -1,6 +1,6 @@
 #' @export
 
-print.NMAoutlier.measures <- function(x, digits = 4) {
+print.NMAoutlier.measures <- function(x, digits = 4, ...) {
 
   ## Check class
   ##
