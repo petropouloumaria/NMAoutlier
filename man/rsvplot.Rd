@@ -3,7 +3,7 @@
 \name{rsvplot}
 \alias{rsvplot}
 \title{Plot(s) to monitor selected statistic(s)/method(s) for
-the random shift variance model fitted for selected/all studies.}
+the Random Shift Variance model fitted for selected/all studies.}
 \usage{
 rsvplot(x, stat, select.st = NULL)
 }
@@ -24,7 +24,7 @@ selected statistic throughout the random shift variance model fitted for selecte
 Candidate statistics to be monitored can be P-score;
 z-values by back-calculation method to derive indirect estimates
 from direct pairwise comparisons and network estimates;
-standardized residuals; heterogeneity variance estimator; over dispesion parameter;
+standardized residuals; heterogeneity variance estimator; over dispresion parameter;
 leverage; Q statistics (Overall heterogeneity /
 inconsistency Q statistic (\code{Q}), overall heterogeneity Q
 statistic (\code{Q}), between-designs Q statistic (\code{Q}), based
@@ -45,35 +45,34 @@ p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
                         data = smokingcessation,
                         sm="OR")
 
-# Random Shift Variace Model for study 1 of smoking cessation data
+# Random Shift Variance Model for study 1 of smoking cessation data
 RSVresult <- NMAoutlier.rsv(p1, small.values = "bad", study = c(1), n_cores = 2)
 
-# Over dispresion for Random Shift Variace Model fitted for study 1
+# Over dispresion for Random Shift Variance Model fitted for study 1
 rsvplot(RSVresult, "over_disp")
 
 \dontrun{
 
-# Random Shift Variace Model for each study of smoking cessation data
+# Random Shift Variance Model for each study of smoking cessation data
 RSVresult <- NMAoutlier.rsv(p1, small.values = "bad")
 
-
-# Heterogeneity variance estimator for Random Shift Variace Model
+# Heterogeneity variance estimator for Random Shift Variance Model
 rsvplot(RSVresult, "heterog")
 
-# Over dispresion for Random Shift Variace Model
+# Over dispresion for Random Shift Variance Model
 rsvplot(RSVresult, "over_disp")
 
-# Q statistics for Random Shift Variace Model
-over_dispplot(RSVresult, "Q")
+# Q statistics for Random Shift Variance Model
+rsvplot(RSVresult, "Q")
 
-# P-scores for Random Shift Variace Model
+# P-scores for Random Shift Variance Model
 rsvplot(RSVresult, "pscore")
 
-# z-values of disagreement of direct and indirect evidence for Random Shift Variace Model
+# z-values of disagreement of direct and indirect evidence for Random Shift Variance Model
 rsvplot(RSVresult, "nsplit")
 
 # z-values of disagreement of direct and indirect evidence
-# monitoring treatment comparison A versus B for Random Shift Variace Model
+# monitoring treatment comparison A versus B for Random Shift Variance Model
 rsvplot(RSVresult, "nsplit", "A:B")
 
 # log likelihood test plot (LRT)

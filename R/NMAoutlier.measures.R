@@ -1,21 +1,15 @@
 #' Outlier and influential detection measures in network meta-analysis.
 #'
 #' @description
-#' Employs the computation of several measures for detection of outlying
+#' Employs the computation of several (simple or deletion) measures for detection of outlying
 #' studies (studies with extreme results) and influential studies fitted in network
-#' meta-analysis model from graph-theory. Calculation of these measures for each study
-#' included in the network can detect evidence of outliers. It can also be used to detect
-#' studies that are potential sources for heterogeneity and
-#' inconsistency.
+#' meta-analysis model from graph-theory.
 #'
 #' Statistical outlier and influential measures are:
 #' \itemize{
 #' \item outlying and influential measures for each study (raw residuals, standardized residuals,
 #'  studentized residuals, Mahalanobis distance, leverage).
 #' }
-#'
-#' A description of the several outlier detection measures in the context of network meta-analysis
-#' can be found in Petropoulou (2020).
 #'
 #' @param TE Estimate of treatment effect, i.e. difference between
 #'   first and second treatment (e.g. log odds ratio, mean difference,
@@ -30,16 +24,17 @@
 #'   e.g., \code{"RD"}, \code{"RR"}, \code{"OR"}, \code{"ASD"},
 #'   \code{"HR"}, \code{"MD"}, \code{"SMD"}, or \code{"ROM"}.
 #' @param reference Reference treatment group.
-#' @param measure Outlier and influential detection measures (default: "influential")
+#' @param measure Outlier and influential detection measures (default: "simple")
 #'  and measures considered study deletion (measure = "deletion").
 #'
 #' @details
-#' Description of several outlier and influential measures are calculated for
-#' the network meta-analysis model from graph theory (Rücker, 2012)
+#' Several outlier and influential measures (simple or deletion) can be calculated.
+#' The network meta-analysis model from graph theory (Rücker, 2012)
 #' fitted with (\code{netmeta} function) of R package \bold{netmeta} (Rücker et al., 2015).
 #' The researcher can choose the reference treatment \code{reference} fitted in NMA model.
 #'
-#' An overview of the several outlier detection measures is described in Petropoulou (2020).
+#' A description of the several outlier detection measures in the context of network meta-analysis
+#' can be found in Petropoulou (2020).
 #'
 #' Let \emph{n} be the number of treatments in a network and let
 #' \emph{m} be the number of pairwise treatment comparisons.  If there
@@ -52,19 +47,52 @@
 #'
 #' The function calculates several outlier detection measures for each study.
 #' The statistical measures calculated are:
+#' For simple outlier and influential measures (measure = "simple"):
 #' Raw residuals, Standardized residuals, Studentized residuals, Mahalanobis distance
 #' and leverage for each study.
+#' For deletion outlier and influential measures (measure = "deletion"):
+#' Standardized deleted residual;
+#' Studentized deleted residual; Cook distance between the treatment estimates for study j
+#' and treatment estimates when study j is removed;
+#' Ratio of determinants of variance-covariance matrix of treatment estimates for study j to treatment estimates when study j is removed;
+#' Weight leave one out;leverage leave one out; heterogeneity estimator leave one out;
+#' R statistic for heterogeneity;  R statistis for estimates; R statistic for Q (\code{Qtotal}),  R statistic for  heterogeneity Q
+#' (\code{Qhet}), R statistic for Qinconsistency (\code{Qinc}), DFbetas.
+#' @param measure Outlier and influential detection measures. Simple measures (default: "simple")
+#'  and measures considered study deletion (measure = "deletion").
 #'
 #' @return
-#' An object of class \code{NMAoutlier_measures}; a list containing the
-#' following components:
+#' An object of class \code{NMAoutlier.measures};
+#' when choosing simple detection measures, a list containing the following components:
 #'    \item{dat}{Matrix containing the data \code{"TE"}, \code{"seTE"}, \code{"studlab"}, \code{"treat1"}, \code{"treat2"} as defined above.}
 #'    \item{eraw}{Raw residual for each study included in the network.}
 #'    \item{estand}{Standardized residual for each study included in the network.}
 #'    \item{estud}{Studentized residual for each study included in the network.}
 #'    \item{Mah}{Mahalanobis distance for each study included in the network.}
 #'    \item{leverage}{Leverage for each study included in the network.}
+#'    \item{measure}{type of measure used.}
 #'    \item{call}{Function call}
+#'
+#' when choosing detection measures considered deletion, a list containing the following components:
+#' following components:
+#'    \item{dat}{Matrix containing the data \code{"TE"}, \code{"seTE"}, \code{"studlab"}, \code{"treat1"}, \code{"treat2"} as defined above.}
+#'    \item{eraw.deleted}{Raw deleted residual for each study included in the network.}
+#'    \item{estand.deleted}{Standardized deleted residual for each study included in the network.}
+#'    \item{estud.deleted }{Studentized deleted residual for each study included in the network.}
+#'    \item{Cooks.distance}{Cook distance between the treatment estimates for study j and treatment estimates when study j is removed}
+#'    \item{Covratio}{Ratio of determinants of variance-covariance matrix of treatment estimates for study j to treatment estimates when study j is removed.}
+#'    \item{w.leaveoneout}{Weight leave one out.}
+#'    \item{H.leaveoneout}{Leverage leave one out.}
+#'    \item{heterog.leaveoneout}{Heterogeneity estimator leave one out.}
+#'    \item{Rheterogeneity}{R statistic for heterogeneity.}
+#'    \item{Restimates}{R statistis for estimates.}
+#'    \item{RQtotal}{R statistic for Q (\code{Qtotal}).}
+#'    \item{RQhet}{R statistic for  heterogeneity Q (\code{Qhet}).}
+#'    \item{RQinc}{R statistic for Qinconsistency (\code{Qinc}).}
+#'    \item{DFbetas}{DFbetas.}
+#'    \item{measure}{type of measure used.}
+#'    \item{call}{Function call}
+#'
 #'
 #' @references
 #' Rücker G (2012):
@@ -123,7 +151,7 @@
 #'                         sm = "OR")
 #'
 #' # outlier and influential detection measures for each study in the network
-#' meas <- NMAoutlier.measures(p1, measure = "influential")
+#' meas <- NMAoutlier.measures(p1, measure = "simple")
 #'
 #' # Mahalanobis distance for each study included in the network
 #' meas$Mah
@@ -140,7 +168,7 @@
 NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
                                 data = NULL,
                                 sm,
-                                reference = "", measure = "influential"){
+                                reference = "", measure = "simple"){
 
   ## Check arguments
   ##
@@ -350,7 +378,7 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
   ##
 
 
-  if (measure == "influential") {
+  if (measure == "simple") {
 
     ## predicted estimate
     y.m.est <- model$TE.nma.random

@@ -15,7 +15,7 @@ print.NMAoutlier.measures <- function(x, digits = 4, ...) {
   prmatrix(datamatrix, rowlab = paste(c(1:length(Mydata[, 1])), ""), collab = c("TE","seTE","studylab","treat1","treat2"),
            quote = FALSE, right = TRUE)
 
-  if (x$measure == "influential") {
+  if (x$measure == "simple") {
 
   cat("\n")
   ##
