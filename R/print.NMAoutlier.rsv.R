@@ -1,4 +1,4 @@
-
+#' @export
 
 print.NMAoutlier.rsv <- function(x, digits = 4) {
 

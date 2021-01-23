@@ -57,7 +57,7 @@ plothelper <- function(x, method, stat, select.st){
       var1_factors <- as.factor(rownames(melt_data))
     }
 
-    ggplot(data = melt_data, aes(x = var2_factors, y = melt_data$value, colour = var1_factors)) +
+    ggplot(data = melt_data, aes(x = var2_factors, y = value, colour = var1_factors)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_line(aes(group = var1_factors, color = var1_factors, linetype = var1_factors), size = 1, na.rm = TRUE) +
       geom_point(aes(shape = var1_factors, color = var1_factors), size = 3, na.rm = TRUE) +
@@ -66,8 +66,8 @@ plothelper <- function(x, method, stat, select.st){
       scale_x_discrete(labels = xlabels) +
       scale_shape_manual(values = seq(1,length(var1_factors))) +
       scale_linetype_manual(values = seq(1,length(var1_factors)))
-  }
-  else if (tolower(stat) == "nsplit") {
+
+  } else if (tolower(stat) == "nsplit") {
 
     if (tolower(method) == "fs") {
       title <- "Forward plot for difference of direct and indirect estimate (z-values)"
@@ -89,7 +89,7 @@ plothelper <- function(x, method, stat, select.st){
       var1_factors <- as.factor(rownames(melt_data))
     }
 
-    ggplot(data = melt_data, aes(x = var2_factors, y = melt_data$value, colour = var1_factors)) +
+    ggplot(data = melt_data, aes(x = var2_factors, y = value, colour = var1_factors)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_line(aes(group = var1_factors, color = var1_factors, linetype = var1_factors), size = 1, na.rm = TRUE) +
       geom_point(aes(shape = var1_factors, color = var1_factors), size = 3, na.rm = TRUE) +
@@ -98,8 +98,8 @@ plothelper <- function(x, method, stat, select.st){
       scale_x_discrete(labels = xlabels) +
       scale_shape_manual(values = seq(1,length(var1_factors))) +
       scale_linetype_manual(values = seq(1,length(var1_factors)))
-  }
-  else if (tolower(stat) == "estand") {
+
+  } else if (tolower(stat) == "estand") {
 
     if (tolower(method) == "fs") {
       title <- "Forward plot for standardized residuals"
@@ -121,7 +121,7 @@ plothelper <- function(x, method, stat, select.st){
       var1_factors <- as.factor(rownames(melt_data))
     }
 
-    ggplot(data = melt_data, aes(x = var2_factors, y = melt_data$value, colour = var1_factors)) +
+    ggplot(data = melt_data, aes(x = var2_factors, y = value, colour = var1_factors)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_line(aes(group = var1_factors, color = var1_factors, linetype = var1_factors), size = 1, na.rm = TRUE) +
       geom_point(aes(shape = var1_factors, color = var1_factors), size = 3, na.rm = TRUE) +
@@ -130,8 +130,8 @@ plothelper <- function(x, method, stat, select.st){
       scale_x_discrete(labels = xlabels) +
       scale_shape_manual(values = seq(1,length(var1_factors))) +
       scale_linetype_manual(values = seq(1,length(var1_factors)))
-  }
-  else if (tolower(stat) == "heterog") {
+
+  } else if (tolower(stat) == "heterog") {
 
     if (tolower(method) == "fs") {
       title <- "Forward plot for heterogeneity"
@@ -142,52 +142,52 @@ plothelper <- function(x, method, stat, select.st){
 
     data <- getSelected(x$tau, select.st)
     melt_data <- melt(data)
-    ggplot(data = melt_data, aes(x = 1:length(x$tau), y = melt_data$value)) +
+    ggplot(data = melt_data, aes(x = 1:length(x$tau), y = value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
       labs(title = title, y = "Heterogeneity", x = xlabel)
-  }
-  else if (tolower(stat) == "cook" & tolower(method) == "fs") {
+
+  } else if (tolower(stat) == "cook" & tolower(method) == "fs") {
 
     data <- getSelected(x$cook_d, select.st)
     melt_data <- melt(data)
-    ggplot(data = melt_data, aes(x = 2:(length(data)+1), y = melt_data$value)) +
+    ggplot(data = melt_data, aes(x = 2:(length(data)+1), y = value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
       geom_hline(yintercept = 1, linetype = "dashed") +
       labs(title = "Forward plot for Cook's distance", y = "Cook's distance", x = xlabel) +
-      scale_x_discrete(limits = c(2:(length(data)+1)))
-  }
-  else if (tolower(stat) == "ratio" & tolower(method) == "fs") {
+      scale_x_discrete(limits = as.factor(c(2:(length(data)+1))))
+
+  } else if (tolower(stat) == "ratio" & tolower(method) == "fs") {
 
     data <- getSelected(x$Ratio, select.st)
     melt_data <- melt(data)
-    ggplot(data = melt_data, aes(x = 2:(length(data)+1), y = melt_data$value)) +
+    ggplot(data = melt_data, aes(x = 2:(length(data)+1), y = value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
       geom_hline(yintercept = 1, linetype = "dashed") +
       labs(title = "Forward plot for ratio of variances", y = "Ratio of variances", x = xlabel) +
-      scale_x_discrete(limits = c(2:(length(data)+1)))
-  }
-  else if (tolower(stat) == "over_disp" & tolower(method) == "rsv") {
+      scale_x_discrete(limits = as.factor(c(2:(length(data)+1))))
+
+  } else if (tolower(stat) == "over_disp" & tolower(method) == "rsv") {
 
     data <- getSelected(x$over_disp, select.st)
     melt_data <- melt(data)
-    ggplot(data = melt_data, aes(x = 1:length(x$over_disp), y = melt_data$value)) +
+    ggplot(data = melt_data, aes(x = 1:length(x$over_disp), y = value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
       labs(title = "Shift variance estimator for Random Shift Variance Model", y = "Shift variance estimator", x = xlabel)
-  }
-  else if (tolower(stat) == "lrt" & tolower(method) == "rsv") {
+
+  } else if (tolower(stat) == "lrt" & tolower(method) == "rsv") {
 
     data <- getSelected(x$LRT, select.st)
     melt_data <- melt(data)
-    ggplot(data = melt_data, aes(x = 1:length(x$LRT), y = melt_data$value)) +
+    ggplot(data = melt_data, aes(x = 1:length(x$LRT), y = value)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
       labs(title = "Likelihood Ratio Test (LRT)", y = "Likelihood Ratio Test (LRT)", x = xlabel)
-  }
-  else if (tolower(stat) == "leverage" & tolower(method) == "rsv") {
+
+  } else if (tolower(stat) == "leverage" & tolower(method) == "rsv") {
 
     data <- getSelected(x$leverage, select.st)
     melt_data <- melt(data)
@@ -202,7 +202,7 @@ plothelper <- function(x, method, stat, select.st){
       var1_factors <- as.factor(rownames(melt_data))
     }
 
-    ggplot(data = melt_data, aes(x = var2_factors, y = melt_data$value, colour = var1_factors)) +
+    ggplot(data = melt_data, aes(x = var2_factors, y = value, colour = var1_factors)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       #geom_line(aes(group=var1_factors, color=var1_factors, linetype = var1_factors), size=1, na.rm=TRUE) +
       geom_point(aes(shape = var1_factors, color = var1_factors), size = 3, na.rm = TRUE) +
@@ -211,8 +211,8 @@ plothelper <- function(x, method, stat, select.st){
       scale_x_discrete(labels = xlabels) +
       scale_shape_manual(values = seq(1,length(var1_factors))) +
       scale_linetype_manual(values = seq(1,length(var1_factors)))
-  }
-  else if (tolower(stat) == "q") {
+
+  } else if (tolower(stat) == "q") {
 
     if (tolower(method) == "fs") {
       # FS algorithm

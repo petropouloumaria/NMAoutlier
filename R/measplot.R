@@ -262,7 +262,7 @@ measplot <- function(object, stat, measure = "influential"){
 
           melt_data <- melt(obj[j, ], id.vars = 0)
           j <- j
-          g <- eval(substitute(ggplot(data = melt_data, aes(x = xlabels, y = melt_data$value)) + # eval(substitute) is another workaround for the aforementioned problem
+          g <- eval(substitute(ggplot(data = melt_data, aes(x = xlabels, y = value)) + # eval(substitute) is another workaround for the aforementioned problem
                                  theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
                                  coord_cartesian(ylim = c(liml,limu)) +
                                  geom_point(color = '#016FB9', size = 2) +

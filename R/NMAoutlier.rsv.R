@@ -459,8 +459,6 @@ NMAoutlier.rsv <- function(TE, seTE, treat1, treat2, studlab,
        converge <- RVmodel$converge
        twiceloglik <- -1/2*RVmodel$twiceloglik
 
-       print(z)
-
        result <- list(z = z,
                      tau = tau,
                      Q = Q, Qhet = Qhet, Qinc = Qinc,
@@ -541,11 +539,6 @@ NMAoutlier.rsv <- function(TE, seTE, treat1, treat2, studlab,
        names.comp[k] <- paste(names.treat[i], names.treat[j], sep = ":")
      }
    }
-
-   print(l)
-   print(dif)
-   print(leverage)
-   print(p.score)
 
    ##
    dat <- noquote(cbind(TE, seTE, studlab, treat1, treat2))

@@ -1,5 +1,4 @@
-
-
+#' @export
 
 print.NMAoutlier.measures <- function(x, digits = 4) {
 
