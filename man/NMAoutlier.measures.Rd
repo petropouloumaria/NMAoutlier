@@ -62,8 +62,8 @@ following components:
    \item{Cooks.distance}{Cook distance between the treatment estimates for study j and treatment estimates when study j is removed}
    \item{Covratio}{Ratio of determinants of variance-covariance matrix of treatment estimates for study j to treatment estimates when study j is removed.}
    \item{w.leaveoneout}{Weight leave one out.}
-   \item{H.leaveoneout}{leverage leave one out.}
-   \item{heterog.leaveoneout}{heterogeneity estimator leave one out.}
+   \item{H.leaveoneout}{Leverage leave one out.}
+   \item{heterog.leaveoneout}{Heterogeneity estimator leave one out.}
    \item{Rheterogeneity}{R statistic for heterogeneity.}
    \item{Restimates}{R statistis for estimates.}
    \item{RQtotal}{R statistic for Q (\code{Qtotal}).}

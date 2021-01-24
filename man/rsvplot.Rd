@@ -3,7 +3,7 @@
 \name{rsvplot}
 \alias{rsvplot}
 \title{Plot(s) to monitor selected statistic(s)/method(s) for
-the Random Shift Variance model fitted for selected/all studies.}
+the Random Shift Variance Network Meta-analysis (RSV NMA) model fitted for selected/all studies.}
 \usage{
 rsvplot(x, stat, select.st = NULL)
 }
@@ -18,13 +18,11 @@ rsvplot(x, stat, select.st = NULL)
 selected treatment(s)/comparison(s)/study}
 }
 \description{
-This function generates plot(s) to monitor selected
-statistic(s) and/or method(s). The function creates a plot of the
-selected statistic throughout the random shift variance model fitted for selected/all studies
+The function creates a plot of a monitoring statistic of RSV NMA model which fitted for selected/all studies.
 Candidate statistics to be monitored can be P-score;
 z-values by back-calculation method to derive indirect estimates
 from direct pairwise comparisons and network estimates;
-standardized residuals; heterogeneity variance estimator; over dispresion parameter;
+standardized residuals; heterogeneity variance estimator; over-dispresion parameter;
 leverage; Q statistics (Overall heterogeneity /
 inconsistency Q statistic (\code{Q}), overall heterogeneity Q
 statistic (\code{Q}), between-designs Q statistic (\code{Q}), based
@@ -32,9 +30,8 @@ on a random effects design-by-treatment interaction model) and
 likelihood ratio test (LRT).
 }
 \details{
-Plot of statistical measures for Random Shift Variance Model fitted for each study.
-Vertical axis provides study. Horizontal axis
-provides a monitoring statistical measure.
+Plot of statistical measures for RSV NMA model fitted for each study.
+Vertical axis provides studies. Horizontal axis provides monitoring statistic(s) of RSV NMA model which fitted for selected/all studies.
 }
 \examples{
 data(smokingcessation, package = "netmeta")
@@ -45,34 +42,34 @@ p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
                         data = smokingcessation,
                         sm="OR")
 
-# Random Shift Variance Model for study 1 of smoking cessation data
+# Random Shift Variance model for study 1 of smoking cessation data
 RSVresult <- NMAoutlier.rsv(p1, small.values = "bad", study = c(1), n_cores = 2)
 
-# Over dispresion for Random Shift Variance Model fitted for study 1
+# Over dispresion for Random Shift Variance model fitted for study 1
 rsvplot(RSVresult, "over_disp")
 
 \dontrun{
 
-# Random Shift Variance Model for each study of smoking cessation data
+# Random Shift Variance model for each study of smoking cessation data
 RSVresult <- NMAoutlier.rsv(p1, small.values = "bad")
 
-# Heterogeneity variance estimator for Random Shift Variance Model
+# Heterogeneity variance estimator for Random Shift Variance model
 rsvplot(RSVresult, "heterog")
 
-# Over dispresion for Random Shift Variance Model
+# Over dispresion for Random Shift Variance model
 rsvplot(RSVresult, "over_disp")
 
-# Q statistics for Random Shift Variance Model
+# Q statistics for Random Shift Variance model
 rsvplot(RSVresult, "Q")
 
-# P-scores for Random Shift Variance Model
+# P-scores for Random Shift Variance model
 rsvplot(RSVresult, "pscore")
 
-# z-values of disagreement of direct and indirect evidence for Random Shift Variance Model
+# z-values of disagreement of direct and indirect evidence for Random Shift Variance model
 rsvplot(RSVresult, "nsplit")
 
 # z-values of disagreement of direct and indirect evidence
-# monitoring treatment comparison A versus B for Random Shift Variance Model
+# monitoring treatment comparison A versus B for Random Shift Variance model
 rsvplot(RSVresult, "nsplit", "A:B")
 
 # log likelihood test plot (LRT)

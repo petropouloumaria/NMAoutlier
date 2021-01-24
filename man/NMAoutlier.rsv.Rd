@@ -2,7 +2,7 @@
 % Please edit documentation in R/NMAoutlier.rsv.R
 \name{NMAoutlier.rsv}
 \alias{NMAoutlier.rsv}
-\title{Random shift variance network meta-analysis (RVSOM NMA) model.}
+\title{Random Shift Variance Network Meta-analysis (RVS NMA) model.}
 \usage{
 NMAoutlier.rsv(
   TE,
@@ -78,10 +78,9 @@ following components:
    \item{call}{Function call}
 }
 \description{
-Fits the Random Shift Variance model for detection of outlying
-studies (studies with extreme results) fitted in network
-meta-analysis model from graph-theory. This is a diagnostic tool
-for detection evidence of outliers. It can also be used to detect
+Fits the Random Shift Variance Network Meta-analysis Model for detection of outlying
+studies (studies with extreme results). This is a diagnostic tool
+for outlier detection. It can also be used to detect
 studies that are potential sources for heterogeneity and
 inconsistency.
 
@@ -101,24 +100,19 @@ A description of the methodology can be found in Petropoulou et
 al. (2020).
 }
 \details{
-Fits the RVSOM NMA model for detecting outliers.
+Fits the RVS NMA model for detecting outliers.
 
 
-Description of methodology by fitting random shift variance model (RVSOM) in
-network meta-analysis. Methodology of RVSOM fitted in NMA
-model from graph theory is described in Petropoulou (2020).
+Description of methodology by fitting Random Shift Variance Network Meta-Analysis Model (RVS NMA) in
+network meta-analysis. Methodology of RVS NMA model is described in Petropoulou (2020).
 
 
-NMAoutlier.rsv function employs the random shift variance model (RVSOM)
-for detection of outlying and influential studies fitted in network meta-analysis model
-from graph-theory.The random effects variance shift outlier model (RVSOM)
-allows inflated variances for the study j to detect if study j is an outlier.
-The RVSOM model is fitted by shifting the variance for each study
-and sharp changes in statistical measures between RVSOM and standard NMA model
-can indicate which study is an outlier. RVSOM NMA model is fitted in network meta-analysis model
+This function employs the Random Shift Variance Network Meta-analysis Model (RVS).
+The RVS model is fitted by shifting the variance for each included study in the network.
+RVS NMA model is fitted in network meta-analysis model
 from graph theory (Rücker, 2012) (\code{netmeta} function) with
-R package \bold{netmeta} (Rücker et al., 2015) using the restricted maximum likelihood
-estimation method for heterogeneity variance. The variance estimator of RVSOM NMA model
+R package \bold{netmeta} (Rücker et al., 2015) using the REstricted Maximum Likelihood (REML)
+estimation method for heterogeneity variance. The variance estimator of RVS NMA model is
 decomposed by the heterogeneity variance and the over-dispersion.
 The researcher can choose the reference treatment (\code{reference}) fitted in NMA model.
 Monitoring is helpful to identify outlying and/or influential studies.
