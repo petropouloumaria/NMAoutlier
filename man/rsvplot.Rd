@@ -22,7 +22,7 @@ The function creates a plot of a monitoring statistic of RSV NMA model which fit
 Candidate statistics to be monitored can be P-score;
 z-values by back-calculation method to derive indirect estimates
 from direct pairwise comparisons and network estimates;
-standardized residuals; heterogeneity variance estimator; over-dispresion parameter;
+standardized residuals; heterogeneity variance estimator; over-dispersion parameter;
 leverage; Q statistics (Overall heterogeneity /
 inconsistency Q statistic (\code{Q}), overall heterogeneity Q
 statistic (\code{Q}), between-designs Q statistic (\code{Q}), based

@@ -20,26 +20,24 @@ Authors@R: c(person("Maria", "Petropoulou",
                     comment = c(ORCID = "0000-0003-1041-4592")))
 Maintainer: Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 URL: https://github.com/petropouloumaria/NMAoutlier
-Description: A set of functions providing tools for detecting outlying studies (i.e., studies with extreme findings) in network meta-analysis:
-               - Several outlier detection measures provided: (a) Raw, (b) Standardized, (c) Studentized residuals; (d) Mahalanobis distance and (c) leverage.
-               - Plots for outlier and influence measures: (a) Raw, (b) Standardized, (c) Studentized residuals; (d) Mahalanobis distance and (c) leverage.
-               - Several outlier and influence detection measures considered deletion: (a) Raw (b) Standardized, (c) Studentized deleted residuals; 
+Description: A set of functions providing several outlier (i.e., studies with extreme findings) and influential delection measures and methodologies in network meta-analysis:
+               - Simply outlier and influential detection measures provided: (a) Raw, (b) Standardized, (c) Studentized residuals; (d) Mahalanobis distance and (c) leverage.
+               - Outlier and influential detection measures by considering study deletion (Shift the mean): (a) Raw (b) Standardized, (c) Studentized deleted residuals; 
                  (d) Cook distance; (e) COVRATIO; (f) weight “leave one out”; (g) leverage “leave one out”; (h) heterogeneity “leave one out”; 
                  (i) R heterogeneity; (k) R Qtotal; (l) R Qheterogeneity (m);  R Qinconsistency and (n) DFBETAS.
-               - Plots for outlier and influence detection measures considered deletion: the aboved measures (a)-(n)).
-               - Q-Q plot for network meta-analysis.
-               - Forward search algorithm in network meta-analysis. 
-               - Forward plots for the monitoring statistics in each step of forward search algorithm:
+               - Plots for outlier and influential detection simply and deletion measures (all the aboved measures) and Q-Q plot for network meta-analysis.
+               - Forward Search algorithm in network meta-analysis. 
+               - Forward plots for the monitoring statistics in each step of Forward search algorithm:
                  (a) P-scores; (b) z-values for difference of direct and indirect evidence with back-calculation method; 
                  (c) Standardized residuals; (d) heterogeneity variance estimator; (e) cook distance; (f) ratio of variances; 
                  (g) Q statistics.
-               - Forward plots for summary estimates and their confidence intervals for each treatment in each step of forward search algorithm.   
-               - Random shift variance NMA model, RVSOM NMA.
-               - Plots for the monitoring measures for random shift variance model:
+               - Forward plots for summary estimates and their confidence intervals in each step of forward search algorithm.   
+               - Random Shift Variance metwork meta-analysis (RSV NMA) model for outlier detection.
+               - Plots for the monitoring measures of RSV NMA model:
                  (a) P-scores; (b) z-values for difference of direct and indirect evidence with back-calculation method; 
                  (c) Standardized residuals; (d) heterogeneity variance estimator; (e) Q statistics; (f) shift variance estimator; 
                  (g) leverage; (h)likelihood ratio test (LRT).
-               - Plots for summary estimates and their confidence intervals for each treatment fitting random shift variance model for each study.
+               - Plots for summary treatment estimates and their confidence intervals with RSV NMA model.
 License: GPL (>= 2)
 Encoding: UTF-8
 RoxygenNote: 7.1.1

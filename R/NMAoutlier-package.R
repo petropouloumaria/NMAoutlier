@@ -1,20 +1,19 @@
-#' NMAoutlier: Brief overview of methodology for detection of outlying studies in network meta-analysis.
+#' NMAoutlier: Brief overview of measures and methodologies for detection of outlying and influential studies in network meta-analysis.
 #'
 #' @description
-#' R package \bold{NMAoutlier} provides diagnostic methods to detect outlying studies in network meta-analysis.
+#' R package \bold{NMAoutlier} provides methods and tools to detect outlier and influential studies in network meta-analysis.
 #'
 #' @details
-#' R package \bold{NMAoutlier} implements several outlier (studies with extreme results) detection measures
-#' as provided in Petropoulou (2020). Detection tools for outliers provided with the forward search (FS)
-#' algorithm in network meta-analysis (NMA) by Petropoulou et al. (2021) and the Random Shift Variance model (RVSOM NMA)
-#' by Petropoulou (2020). The proposed detection measures and methodologies are given with the underlying
-#' model with the frequentist NMA approach based on graph theory by Rücker (2012) which is implemented in R package
+#' R package \bold{NMAoutlier} is a tool to detect outliers (studies with extreme results) and influential studies in network meta-analysis
+#'  [Petropoulou (2020)].The package can calculate: Simply outlier and influential measures; Outlier and ifluential measures considered study deletion (Shift the mean);
+#'  The outlier detection methodology with Forward Search (FS) algorithm (Petropoulou et al. (2021)) and the Random Shift Variance Network Meta-analysis (RSV NMA) model [Petropoulou (2020)].
+#' All the proposed outlier and influential detection methods were fitted the frequentist NMA model by graph theory introduced by Rücker (2012) using the R package
 #' \bold{netmeta}.
 #'
 #' The \bold{NMAoutlier} package implements the following:
 #' \itemize{
-#'  \item Several outlier detection measures provided (function
-#'    (\code{\link{NMAoutlier.measures}})) based on Petropoulou et al. (2021);
+#'  \item \bold{Simply Outlier and influential detection measures} (function
+#'    (\code{\link{NMAoutlier.measures}})) [Petropoulou (2020)];
 #'  \enumerate{
 #'    \item raw residuals
 #'    \item standardized residuals
@@ -23,12 +22,8 @@
 #'    \item leverage.
 #'   }
 #'
-#'  \item Plots of the several above outlier detection measures provided (function
-#'   (\code{\link{measplot}})) (Petropoulou (2020));
-#'
-#' \item Several outlier detection measures considered deletion provided
-#'  (function (\code{\link{NMAoutlier.measures}}))
-#'  based on Petropoulou (2020);
+#' \item \bold{Outlier and influential detection measures considered study deletion (Shift the mean)}
+#'  (function (\code{\link{NMAoutlier.measures}})) [Petropoulou (2020)];
 #'  \enumerate{
 #'  \item raw deleted residuals
 #'  \item standardized deleted residuals
@@ -44,18 +39,18 @@
 #'  \item R Qinconsistency
 #'  \item DFBETAS
 #'  }
-#' \item Plots of the several above outlier detection measures considered study deletion provided (function
-#'   (\code{\link{measplot}})) (Petropoulou (2020));
+#' \item Plots of the several outlier and influential detection (simply and deletion) measures (function
+#'   (\code{\link{measplot}})) [Petropoulou (2020)];
 #'
 #' \item Q-Q plot for network meta-analysis (function
-#'   (\code{\link{Qnetplot}})) (Petropoulou (2020));
+#'   (\code{\link{Qnetplot}})) [Petropoulou (2020)];
 #'
-#' \item forward search algorithm in network meta-analysis (function
+#' \item \bold{Forward Search algorithm in network meta-analysis} (function
 #'   (\code{\link{NMAoutlier}})) based on Petropoulou et al. (2021);
 #' \item forward plots (\code{\link{fwdplot}}) with monitoring
 #'   statistics in each step of the FS algorithm:
 #' \enumerate{
-#'   \item P-scores (Rücker & Schwarzer, 2015),
+#'   \item P-scores [Rücker & Schwarzer, 2015],
 #'   \item z-values for difference of direct and indirect evidence
 #'         with back-calculation method (König et al., 2013; Dias et al.,
 #'         2010),
@@ -63,31 +58,27 @@
 #'   \item heterogeneity variance estimator,
 #'   \item Cook's distance,
 #'   \item ratio of variances,
-#'   \item Q statistics (Krahn et al., 2013);
+#'   \item Q statistics [Krahn et al., 2013];
 #' }
-#' \item forward plots (\code{\link{fwdplotest}}) for summary estimates
-#'   and their confidence intervals for each treatment in each step of
-#'   the FS algorithm as provided by Petropoulou et
-#'   al. (2021).
+#' \item forward plots (\code{\link{fwdplotest}}) for summary treatment estimates
+#'   in each iteration of the FS algorithm [Petropoulou et al. (2021)].
 #'
-#' \item Random shift variance NMA model (RVSOM NMA) (function
-#'   (\code{\link{NMAoutlier.rsv}})) based on Petropoulou (2020):
+#' \item Random Shift Variance RSV NMA model (RVSOM NMA) (function
+#'   (\code{\link{NMAoutlier.rsv}})) [Petropoulou (2020)]:
 #' \enumerate{
-#' \item P-scores (Rücker & Schwarzer, 2015),
+#' \item P-scores [Rücker & Schwarzer, 2015],
 #' \item z-values for difference of direct and indirect evidence
-#' with back-calculation method (König et al., 2013; Dias et al.,
-#' 2010),
+#' with back-calculation method [König et al., 2013; Dias et al., 2010],
 #' \item standardized residuals,
 #' \item heterogeneity variance estimator,
-#' \item Q statistics (Krahn et al., 2013),
-#' \item shift variance estimator,
+#' \item Q statistics [Krahn et al., 2013],
+#' \item shift variance estimator (over-dispersion parameter),
 #' \item leverage,
-#' \item likelihood ratio test (LRT),
-#' \item Plots (\code{\link{rsvplot}}) with monitoring the above
-#'   statistical measures fitting each study with RVSOM NMA model,
-#' \item Plots (\code{\link{rsvplotest}}) for summary estimates
-#'   and their confidence intervals for each treatment for RVSOM NMA model
-#'   as provided by Petropoulou (2020).
+#' \item Likelihood Ratio Test (LRT),
+#' \item Plots (\code{\link{rsvplot}}) for the monitoring
+#'   measures through RVSOM NMA model,
+#' \item Plots (\code{\link{rsvplotest}}) for summary treatment estimates
+#'   for RVSOM NMA model [Petropoulou (2020)].
 #'   }
 #' }
 #'
@@ -97,7 +88,7 @@
 #' Type \code{citation("NMAoutlier")} on how to cite \bold{NMAoutlier} in
 #' publications.
 #'
-#' To report problems and bugs, please send an email to Maria
+#' To report problems and bugs, please send an email to Dr. Maria
 #' Petropoulou \email{petropoulou@imbi.uni-freiburg.de}.
 #'
 #' The development version of \bold{NMAoutlier} is available on GitHub
@@ -112,12 +103,11 @@
 #' @references
 #'
 #' Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I,
-#' Mavridis D (2021):
-#' A forward search algorithm for detection of extreme study effects
+#' Mavridis D (2021): A forward search algorithm for detection of extreme study effects
 #' in network meta-analysis.
 #' \emph{Manuscript}.
 #'
-#' Petropoulou M (2020). Exploring methodological challenges in network meta-analysis models and
+#' Petropoulou M (2020): Exploring methodological challenges in network meta-analysis models and
 #' developing methodology for outlier detection.
 #' \emph{PhD dissertation}.
 #'

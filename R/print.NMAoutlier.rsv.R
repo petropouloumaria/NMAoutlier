@@ -59,7 +59,7 @@ print.NMAoutlier.rsv <- function(x, digits = 4, ...) {
   cat("\n")
   prmatrix(cbind(formatN(x$tau, digits), formatN(x$over_disp, digits)),
   rowlab = paste("study=", iteration = x$z[!is.na(x$z)]),
-  collab = c("heterogeneity", "over-dispresion"),
+  collab = c("heterogeneity", "over-dispersion"),
   quote = FALSE, right = TRUE)
 
   ##
@@ -77,7 +77,7 @@ print.NMAoutlier.rsv <- function(x, digits = 4, ...) {
   ##
   ##
   cat("\n")
-  cat("Q statistics and heterogeneity:\n")
+  #cat("Q statistics and heterogeneity:\n")
   prmatrix(cbind(formatN(x$Q), formatN(x$Qhet), formatN(x$Qinc), formatN(x$tau, digits)),
            rowlab = paste("study=", iteration = x$z[!is.na(x$z)]),
            collab = c("Qtotal", "Qheterogeneity", "Qinconsistency", "heterogeneity"),

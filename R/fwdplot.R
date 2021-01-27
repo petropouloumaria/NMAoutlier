@@ -2,9 +2,9 @@
 #'
 #' @description
 #' This function generates forward plot(s) to monitor selected
-#' statistic(s) and/or method(s).  The function creates a plot of the
-#' selected statistic throughout the iterations of the forward search
-#' algorithm.  Candidate statistics to be monitored can be P-score;
+#' statistic(s) and/or method(s). The function creates a plot of the
+#' selected monitoring measure throughout the iterations of the Forward Search
+#' algorithm. Candidate statistics to be monitored can be: P-score;
 #' z-values by back-calculation method to derive indirect estimates
 #' from direct pairwise comparisons and network estimates;
 #' standardized residuals; heterogeneity variance estimator; Cook's
@@ -15,15 +15,15 @@
 #'
 #' @param x an object of class NMAoutlier (mandatory).
 #' @param stat statistical measure to be monitored in forward plot(s)
-#'   (mandatory), available choice are: "pscore", "nsplit", "estand",
+#'   (mandatory), available choices are: "pscore", "nsplit", "estand",
 #'   "heterog", "cook", "ratio", or "Q" (can be abbreviated).
 #' @param select.st selected statistic (pscore/nsplit/estand) for
 #'   selected treatment(s)/comparison(s)/study
 #'
 #' @details
 #' Plot of statistical measures for each iteration of search.
-#' Vertical axis provides iterations of search. Horizontal axis
-#' provides a monitoring statistical measure.
+#' Vertical axis provides the FS iterations. Horizontal axis
+#' provides the values of the monitoring statistical measure.
 #'
 #' @keywords hplot
 #'
@@ -48,9 +48,9 @@
 #' \dontrun{
 #' data(smokingcessation, package = "netmeta")
 #'
-#' # Transform data from arm-based format to contrast-based format
-#' # We use 'sm' argument for odds ratios.
-#' # We use function pairwise from netmeta package
+#' # Transform data from arm-based to contrast-based format
+#' # Use 'sm' argument for odds ratios.
+#' # Use function pairwise from netmeta package
 #'
 #' p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
 #'                         list(event1, event2, event3),
@@ -58,7 +58,7 @@
 #'                         data=smokingcessation,
 #'                         sm="OR")
 #'
-#' # forward search algorithm
+#' # Forward Search algorithm
 #' FSresult <- NMAoutlier(p1, small.values = "bad")
 #'
 #' FSresult
@@ -69,7 +69,7 @@
 #' # forward plot for ratio of variances
 #' fwdplot(FSresult, "ratio")
 #'
-#' # forward plot for heterogeneity variance estimator
+#' # forward plot for heterogeneity estimator
 #' fwdplot(FSresult, "heterog")
 #'
 #' # forward plot for Q statistics
@@ -88,7 +88,7 @@
 #' # monitoring treatment comparison A versus B
 #' fwdplot(FSresult, "nsplit", "A:B")
 #'
-#' # forward plot for standardized residuals for study 4
+#' # forward plot for standardized residual for study 4
 #' fwdplot(FSresult, "estand", 4)
 #' }
 #'
