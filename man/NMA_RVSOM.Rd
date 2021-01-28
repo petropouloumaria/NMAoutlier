@@ -2,7 +2,7 @@
 % Please edit documentation in R/NMA_RVSOM.R
 \name{NMA_RVSOM}
 \alias{NMA_RVSOM}
-\title{Random shift variance network meta-analysis (RVSOM NMA) model.}
+\title{Random shift variance network meta-analysis (RSV NMA) model.}
 \usage{
 NMA_RVSOM(
   TE,
@@ -44,6 +44,6 @@ the default value is NA and shift variance model is fitted for each study.}
 A list containing the following components:
 }
 \description{
-Conduct RVSOM NMA model.
+Conduct RSV NMA model.
 }
 \keyword{internal}

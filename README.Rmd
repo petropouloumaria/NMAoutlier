@@ -117,12 +117,13 @@ You can plot the Mahalanobis distance for each study with  **measplot** function
 ```{r, eval=FALSE}
 measplot(measures, "mah")
 ```
+<img src="man/figures/Mahalanobis.png" width=450 style="margin-left: auto; margin-right: auto; display: block;"/>
 
 You can figure out the Q-Q plot for network meta-analysis with **Qnetplot** function as follows:
 ```{r, eval=FALSE}
 Qnetplot(measures)
 ```
-
+<img src="man/figures/Q-Q.png" width=450 style="margin-left: auto; margin-right: auto; display: block;"/>
 
 **Part 2: Outlier detection measures considered deletion (Shift the mean)**
 
@@ -146,6 +147,7 @@ You can plot the R statistic for Qinconsistency with function **measplot** as fo
 ```{r, eval=FALSE}
 measplot(deletion, "rqinc", measure = "deletion")
 ```
+<img src="man/figures/Qinc.png" width=450 style="margin-left: auto; margin-right: auto; display: block;"/>
 
 **Part 3: Forward Search Algorithm - (Outlier detection Methodology)**
 
@@ -208,6 +210,7 @@ You can plot the Likelihood Ratio Test (LRT) of RSV NMA model for each study wit
 ```{r, eval=FALSE}
 rsvplot(RSVresult, "LRT")
 ```
+<img src="man/figures/LRT.png" width=450 style="margin-left: auto; margin-right: auto; display: block;"/>
 
 You can see the plots for summary relative treatment estimates for B, C and D versus the reference A with **rsvplotest** function as follows: 
 ```{r, eval=FALSE}

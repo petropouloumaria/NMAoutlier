@@ -1,27 +1,23 @@
-#' Plot for summary estimates for each treatment
-#' and their confidence intervals
-#' for Random Shift Variace Model
-#' fitted for selected/all studies of a dataset.
+#' Plots for summary treatment estimates in RSV NMA model.
 #'
 #' @description
-#' Plot for summary estimates for each treatment
-#' and their 95 percent confidence intervals for Random Shift Variace Model
-#' fitted for selected or all studies of a dataset
+#' Plot for summary treatment estimates for RSV NMA model.
+
 #'
 #' @param x object of class NMAoutlier.rsv (mandatory).
 #'
 #' @details
-#' Plot of summary estimates and their confidence intervals for each treatment
-#' for Random Shift Variance Model fitted for each study.
+#' Plot of summary treatment estimates and their confidence intervals
+#'  RSV NMA model fitted for each study.
 #' Vertical axis provides study. Horizontal axis
-#' provides summary estimate of a treatment.
+#' provides summary treatment estimates.
 #'
 #' @keywords hplot
 #'
 #' @examples
 #' data(smokingcessation, package = "netmeta")
 #'
-#' # Transform data from arm-based format to contrast-based format
+#' # Transform data from arm-based to contrast-based format
 #' # We use 'sm' argument for odds ratios.
 #' # We use function pairwise from netmeta package
 #' #
@@ -31,18 +27,18 @@
 #'                         data=smokingcessation,
 #'                         sm="OR")
 #'
-#' # Random Shift Variace Model for study 1 of smoking cessation data
+#' # RSV NMA model for study 1 of smoking cessation data
 #' RSVresult <- NMAoutlier.rsv(p1, small.values = "bad", study = c(1), n_cores = 2)
 #'
-#' # Plot for summary estimates for each treatment
-#' # and their confidence intervals for Random Shift Variace Model
-#' # fitted for study 1
+#' # Plot for summary treatment estimates
+#' # and their confidence intervals with RSV NMA model
+#' # fitted for study 1 (shift the variance of study 1)
 #' rsvplotest(RSVresult)
 #'
 #' \dontrun{
 #' data(smokingcessation, package = "netmeta")
 #'
-#' # Transform data from arm-based format to contrast-based format
+#' # Transform data from arm-based to contrast-based format
 #' # We use 'sm' argument for odds ratios.
 #' # We use function pairwise from netmeta package
 #' #
@@ -52,12 +48,11 @@
 #'                         data=smokingcessation,
 #'                         sm="OR")
 #'
-#' # Random Shift Variace Model for each study of smoking cessation data
+#' # RSV NMA model for each study of smoking cessation data
 #' RSVresult <- NMAoutlier.rsv(p1, small.values = "bad")
 #'
-#' # Plot for summary estimates for each treatment
-#' # and their confidence intervals for Random Shift Variace Model
-#' # fitted for each study
+#' # Plot for summary treatment estimates and their confidence intervals
+#' # for RSV NMA model fitted for each study
 #' rsvplotest(RSVresult)
 #' }
 #'

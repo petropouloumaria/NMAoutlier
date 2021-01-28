@@ -1,4 +1,4 @@
-#' Helper function to create the plots of summary estimates and their intervals for FS and RVSOM.
+#' Helper function to create the plots of summary estimates and their intervals for FS and RSV NMA.
 #'
 #' @param x object of class NMAoutlier or class NMAoutlier.rsv (mandatory).
 #' @param lower lower bundary of confidence interval of summary estimate.
@@ -11,8 +11,8 @@
 #' Select "rsv" to monitor statistics by fitting the data with the Shift Variance Model.
 #'
 #' @details
-#' Plot of summary estimate and its confidence interval for each treatment for FS and RVSOM methodologies.
-#' Vertical axis provides the iterations of FS methodology or the study for RVSOM methodology.
+#' Plot of summary estimate and its confidence interval for each treatment for FS and RSV NMA methodologies.
+#' Vertical axis provides the iterations of FS methodology or the study for RSV NMA methodology.
 #' Horizontal axis provides a summary estimate of a treatment.
 #'
 #'

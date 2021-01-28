@@ -2,7 +2,7 @@
 % Please edit documentation in R/plothelper.R
 \name{plothelper}
 \alias{plothelper}
-\title{Helper function to create the plots for FS and RVSOM methodologies.}
+\title{Helper function to create the plots for FS and RSV NMA methodologies.}
 \usage{
 plothelper(x, method, stat, select.st)
 }
@@ -19,11 +19,11 @@ Select "rsv" to monitor statistics by fitting the data with the Shift Variance M
 selected treatment(s)/comparison(s)/study}
 }
 \description{
-Helper function to create the plots for FS and RVSOM methodologies.
+Helper function to create the plots for FS and RSV NMA methodologies.
 }
 \details{
-Plot of several monitoring measures for FS and RVSOM methodologies.
-Vertical axis provides the iterations of FS methodology or the study for RVSOM methodology.
+Plot of several monitoring measures for FS and RSV NMA methodologies.
+Vertical axis provides the iterations of FS methodology or the study for RSV NMA methodology.
 Horizontal axis provides a monitoring statistical measure in the methodology.
 }
 \author{

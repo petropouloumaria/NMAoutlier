@@ -1,6 +1,6 @@
-#' Random shift variance network meta-analysis (RVSOM NMA) model.
+#' Random shift variance network meta-analysis (RSV NMA) model.
 #'
-#' Conduct RVSOM NMA model.
+#' Conduct RSV NMA model.
 #'
 #' @param TE Estimate of treatment effect, i.e. difference between
 #'   first and second treatment (e.g. log odds ratio, mean difference,

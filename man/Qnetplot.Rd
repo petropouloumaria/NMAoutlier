@@ -7,20 +7,19 @@
 Qnetplot(data)
 }
 \arguments{
-\item{data}{object of class NMAoutlier_measures (mandatory).}
+\item{data}{object of class NMAoutlier.measures (mandatory).}
 }
 \description{
-This function generates the Q-Q plot (Q-Q net plot) for network meta-analyisis model.
+This function generates the Q-Q plot for network meta-analyisis model.
 }
 \details{
-Plot of Q-squared Mahalanobis distance for each study in the network.
-Vertical axis provides the Q-squared Mahalanobis distance for each i study included in the network.
-Horizontal axis provides the Q estimated quantile. Q estimated quantiles are the theoretical quantiles from the normal distribution.
-A reference line is fitted from the cartesian points of the two measures. The normal Q-Q netplot tool allows to detect observation(s)
-that are away from the reference line. This can be
-an indication that normality cannot be assumed in the data and an outlying study exist.
+Plot of Q-squared Mahalanobis distance for each study included in the network meta-analysis.
+Vertical axis provides the Q-squared Mahalanobis distance for each i study included in the network meta-analysis.
+Horizontal axis provides Q estimated quantiles (theoretical quantiles from the normal distribution).
+A reference line is fitted from the cartesian points of the two measures.
+The Q-Q plot can visualize studies that are away from the reference line (potiential outliers).
 
-Q-Q plot for network meta-analysis (Q-Q netplot) has been introduced by Petropoulou (2020).
+Q-Q plot for network meta-analysis has been introduced by Petropoulou (2020).
 }
 \examples{
 data(smokingcessation, package = "netmeta")
@@ -31,7 +30,7 @@ p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
                         data = smokingcessation,
                         sm = "OR")
 
-# outlier detection measures to compute Mahalanobis distance
+# Outlier and influential detection measures
 measures <- NMAoutlier.measures(p1)
 
 # Mahalanobis distance values for each study in the network

@@ -1,28 +1,23 @@
-#' Random Shift Variance Network Meta-analysis (RVS NMA) model.
-#'
-#' Fits the RVS NMA model for detecting outliers.
+#' Random Shift Variance Network Meta-analysis (RSV NMA) model.
 #'
 #' @description
-#' Fits the Random Shift Variance Network Meta-analysis Model for detection of outlying
-#' studies (studies with extreme results). This is a diagnostic tool
-#' for outlier detection. It can also be used to detect
-#' studies that are potential sources for heterogeneity and
-#' inconsistency.
+#' This function employs the Random Shift Variance Network Meta-analysis model to detect outliers
+#' and influential studies fitted in network meta-analysis model from graph-theory.
+#' This is an outlying diagnostic tool to detect outliers and studies that are potential
+#' sources for heterogeneity and inconsistency.
 #'
 #' Monitoring measures during the search are:
 #' \itemize{
-#' \item outlying measures (standardized residuals, leverage);
+#' \item outlier detection measures (standardized residuals, leverage);
 #' \item ranking measures (P-scores);
 #' \item heterogeneity and inconsistency measures (Q statistics for
 #'   overall heterogeneity / inconsistency, inconsistency by
-#'   design-by-treatment interaction model, z-values for comparison
-#'   between direct and indirect evidence by back-calculation method).
-#'  \item over dispresion parameter
-#'  \item Likelihood Ratio Test (LRT)
+#'   design-by-treatment interaction model);
+#' \item over-dispersion parameter (shift variance estimator);
+#' \item Likelihood Ratio Test (LRT)
 #' }
 #'
-#' A description of the methodology can be found in Petropoulou et
-#' al. (2020).
+#' A description of the methodology can be found in Petropoulou et al. (2020).
 #'
 #' @param TE Estimate of treatment effect, i.e. difference between
 #'   first and second treatment (e.g. log odds ratio, mean difference,
@@ -46,29 +41,21 @@
 #'   By default, the standard random effects model is fitted, value NULL.
 #' @param n_cores The number of cores that the process is running
 #'   using the parallel (default: NULL, the process is running
-#'   using all the available cores)
+#'   using all the available cores).
 #'
 #' @details
-#' Description of methodology by fitting Random Shift Variance Network Meta-Analysis Model (RVS NMA) in
-#' network meta-analysis. Methodology of RVS NMA model is described in Petropoulou (2020).
+#' Random Shift Variance Network Meta-Analysis (RSV NMA) model is in described in Petropoulou (2020).
+#'
+#' The RSV NMA model is fitted by shifting the study variance for each included study.
+#' RSV NMA model is an extension of the standard network meta-analysis model
+#' from graph theory (Rücker, 2012) (\code{netmeta} function) fitted with
+#' R package \bold{netmeta} (Rücker et al., 2015). RSV NMA model is based on the REstricted Maximum Likelihood (REML)
+#' estimation method for heterogeneity variance. The variance estimator of RSV NMA model is
+#' decomposed by the heterogeneity variance and the over-dispersion parameter.
+#' Monitoring by shifting each study variance is helpful to identify outlying and/or influential studies.
 #'
 #'
-#' This function employs the Random Shift Variance Network Meta-analysis Model (RVS).
-#' The RVS model is fitted by shifting the variance for each included study in the network.
-#' RVS NMA model is fitted in network meta-analysis model
-#' from graph theory (Rücker, 2012) (\code{netmeta} function) with
-#' R package \bold{netmeta} (Rücker et al., 2015) using the REstricted Maximum Likelihood (REML)
-#' estimation method for heterogeneity variance. The variance estimator of RVS NMA model is
-#' decomposed by the heterogeneity variance and the over-dispersion.
-#' The researcher can choose the reference treatment (\code{reference}) fitted in NMA model.
-#' Monitoring is helpful to identify outlying and/or influential studies.
-#'
-#' Monitoring statistical measures (outlying measures,
-#' heterogeneity and inconsistency measures, ranking measures)
-#' and likelihood statistics can be:
-#'
-#'
-#' Monitoring is helpful to identify outlying studies:
+#' Monitoring statistical measures for each fit can be:
 #'
 #' \bold{Likelihood statistics:}
 #' Heterogeneity estimation method is conducted under
@@ -95,38 +82,48 @@
 #' model with square-root of between-study variance estimated embedded
 #' in a full design-by-treatment interaction model. Implementation
 #' with (\code{decomp.design} function) from R package \bold{netmeta};
-#' Z-values for comparison between direct and indirect evidence for
-#' each iteration of forward search algorithm.  By monitoring
+#' Z-values (Dias et al., 2010; Konig et al., 2013) for comparison
+#' between direct and indirect evidence in
+#' each iteration of forward search algorithm. By monitoring
 #' difference of direct and indirect evidence, potential sources of
 #' consistency can be detected with the implementation of
 #' (\code{netsplit} function) from R package \bold{netmeta} for each
-#' basic set of the search.  Based on the methodology with
-#' back-calculation method to derive indirect estimates from direct
-#' pairwise comparisons and network estimates (Dias et al., 2010;
-#' König et al., 2013).
+#' iteration of the search.
 #'
 #' @return
-#' An object of class \code{NMAoutlier}; a list containing the
+#' An object of class \code{NMAoutlier.rsv}; a list containing the
 #' following components:
 #'    \item{dat}{Matrix containing the data \code{"TE"}, \code{"seTE"}, \code{"studlab"}, \code{"treat1"}, \code{"treat2"} as defined above.}
-#'    \item{length.initial}{The number of studies that constitute the initial (outlying-clean) subset of studies.}
-#'    \item{index}{The number of iterations of forward search algorithm.}
-#'    \item{basic}{Studies entered into the basic set in each iteration of the search.
-#'    At the first iteration, basic set constitute the studies that are included in the basic-initial subset.
-#'    The number of studies in the first iteration is equal to length.initial.}
-#'    \item{taub}{Heterogeneity estimator variance for basic set in each iteration of forward search algorithm.}
-#'    \item{Qb}{Overall heterogeneity - inconsistency Q statistic (\code{Q}) for the basic set in each iteration of forward search algorithm.}
-#'    \item{Qhb}{Overall heterogeneity Q statistic (\code{Q}) for the basic set in each iteration of forward search algorithm.}
-#'    \item{Qib}{Overall inconsistency Q statistic (\code{Q}) from design-by-treatment interaction model for the basic set in each iteration of forward search algorithm.}
-#'    \item{estb}{Summary estimates for each treatment for the basic set in each iteration of forward search algorithm.}
-#'    \item{lb}{Lower 95\% confidence interval of summary estimates for the basic set in each iteration of forward search algorithm.}
-#'    \item{ub}{Upper 95\% confidence interval of summary estimates for the basic set in each iteration of forward search algorithm.}
-#'    \item{Ratio}{Ratio of determinants (\code{COVRATIOj}) of variance-covariance matrix of treatment estimates at iteration j to that iteration at (j-1).}
-#'    \item{cook_d}{Cook's statistic (\code{Cj}) at iteration j of forward search algorithm.}
-#'    \item{p.score}{P-score for ranking each treatment for the basic set in each iteration of forward search algorithm.}
-#'    \item{dif}{Z-values for comparison between direct and indirect evidence for each iteration of forward search algorithm.
-#'     Based on back-calculation method to derive indirect estimates from direct pairwise comparisons and network estimates.}
-#'    \item{estand}{Standardized residuals for each study for the basic set in each iteration of forward search algorithm.}
+#'    \item{z}{Studies with shifted variance.}
+#'    \item{tau_standard}{REML heterogeneity estimator variance for standard NMA}
+#'    \item{Q_standard}{Overall heterogeneity - inconsistency Q statistic (\code{Q}) for the standard NMA.}
+#'    \item{Qhet_standard}{Overall heterogeneity Q statistic (\code{Q}) for the standard NMA.}
+#'    \item{Qinc_standard}{Overall inconsistency Q statistic (\code{Q}) from design-by-treatment interaction model for standard NMA.}
+#'    \item{b_standard}{Summary treatment estimates for standard NMA.}
+#'    \item{l_standard}{Lower 95/% confidence interval of summary treatment estimates for standard NMA.}
+#'    \item{u_standard}{Upper 95/% confidence interval of summary treatment estimates for standard NMA.}
+#'    \item{leverage_standard}{Leverage for standard NMA.}
+#'    \item{estand_standard}{Standardized residuals for each study for standard NMA.}
+#'    \item{p.score_standard}{P-score for ranking each treatment for standard NMA.}
+#'    \item{dif_standard}{z-values of test for disagreement (direct versus indirect) for standard NMA.}
+#'    \item{over_disp_standard}{over-dispersion parameter for standard NMA.}
+#'    \item{converge_standard}{onvergence diagnostic for standard NMA.}
+#'    \item{twiceloglik_standard}{twice the maximum log-likelihood for standard NMA.}
+#'    \item{tau}{REML heterogeneity estimator variance for RSV NMA}
+#'    \item{Q}{Overall heterogeneity - inconsistency Q statistic (\code{Q}) for the RSV NMA.}
+#'    \item{Qhet}{Overall heterogeneity Q statistic (\code{Q}) for the RSV NMA.}
+#'    \item{Qinc}{Overall inconsistency Q statistic (\code{Q}) from design-by-treatment interaction model for RSV NMA.}
+#'    \item{b}{Summary treatment estimates for RSV NMA.}
+#'    \item{l}{Lower 95\% confidence interval of summary treatment estimates for RSV NMA.}
+#'    \item{u}{Upper 95\% confidence interval of summary treatment estimates for RSV NMA.}
+#'    \item{leverage}{Leverage for RSV NMA.}
+#'    \item{estand}{Standardized residuals for each study for RSV NMA.}
+#'    \item{p.score}{P-score for ranking each treatment for RSV NMA.}
+#'    \item{dif}{z-values of test for disagreement (direct versus indirect) for RSV NMA.}
+#'    \item{over_disp}{over-dispersion parameter for RSV NMA.}
+#'    \item{converge}{convergence diagnostic for RSV NMA.}
+#'    \item{twiceloglik}{twice the maximum log-likelihood for RSV NMA.}
+#'    \item{LRT}{Likelihood Ration Test.}
 #'    \item{call}{Function call}
 #'
 #' @references
@@ -172,13 +169,13 @@
 #'                         data = smokingcessation,
 #'                         sm="OR")
 #'
-#' # Random Shift Variance NMA model implementation for study 1
+#' # RSV NMA model implementation for study 1
 #' #
 #' RVSOMres <- NMAoutlier.rsv(p1,  small.values = "bad", study = c(1) , n_cores = 2)
 #' #
 #'
 #' \dontrun{
-#' # Random Shift Variance Model
+#' # Random Shift Variance (RSV NMA) model
 #' #
 #' RVSOMresult <- NMAoutlier.rsv(p1, small.values = "bad")
 #'
@@ -188,7 +185,7 @@
 #' # Plot of Likelihood Ratio Test
 #' RVSOMresult$LRT
 #' #
-#' # Summary estimators and their 95% confidence intervals for each treatment
+#' # Summary treatment estimates and their 95% confidence intervals
 #' # by downweighting each study
 #' RVSOMresult$b
 #' RVSOMresult$l
@@ -402,7 +399,7 @@ NMAoutlier.rsv <- function(TE, seTE, treat1, treat2, studlab,
 
    }
 
-   ## fit RVSOM model for NMA parallel for each study of NMA
+   ## fit RSV NMA model for parallel for each study
    if (is.null(n_cores)) {
      ## Use all available cores
      n_cores <- max(1, detectCores())
@@ -422,7 +419,7 @@ NMAoutlier.rsv <- function(TE, seTE, treat1, treat2, studlab,
                    envir = environment())
 
 
-      ## fit RVSOM model for NMA parallel for each study of NMA
+      ## fit RSV NMA model for parallel for each study
       paral <- parLapply(cl, study, function(z) {
 
 
@@ -512,7 +509,7 @@ NMAoutlier.rsv <- function(TE, seTE, treat1, treat2, studlab,
 
    }
 
-   ## Loglikelihood test
+   ## Loglikelihood
    twiceloglikNULL <- twiceloglik[, 1]
    twiceloglikREST <- twiceloglik[, 2:length(twiceloglik)]
 
@@ -540,7 +537,7 @@ NMAoutlier.rsv <- function(TE, seTE, treat1, treat2, studlab,
    rownames(dat) <- c(1:length(TE))
    ##
    colnames(b) <- colnames(l) <- colnames(u) <- colnames(dif) <-
-     colnames(p.score) <- colnames(estand) <- colnames(leverage) <- paste("RVSOM:",study)
+     colnames(p.score) <- colnames(estand) <- colnames(leverage) <- paste("RSV NMA:",study)
    ##
 
 

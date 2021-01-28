@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotesthelper.R
 \name{plotesthelper}
 \alias{plotesthelper}
-\title{Helper function to create the plots of summary estimates and their intervals for FS and RVSOM.}
+\title{Helper function to create the plots of summary estimates and their intervals for FS and RSV NMA.}
 \usage{
 plotesthelper(x, lower, upper, estimate, xdata, xtitle, method)
 }
@@ -24,11 +24,11 @@ Select "fs" to monitor statistics during the forward search algorithm.
 Select "rsv" to monitor statistics by fitting the data with the Shift Variance Model.}
 }
 \description{
-Helper function to create the plots of summary estimates and their intervals for FS and RVSOM.
+Helper function to create the plots of summary estimates and their intervals for FS and RSV NMA.
 }
 \details{
-Plot of summary estimate and its confidence interval for each treatment for FS and RVSOM methodologies.
-Vertical axis provides the iterations of FS methodology or the study for RVSOM methodology.
+Plot of summary estimate and its confidence interval for each treatment for FS and RSV NMA methodologies.
+Vertical axis provides the iterations of FS methodology or the study for RSV NMA methodology.
 Horizontal axis provides a summary estimate of a treatment.
 }
 \author{

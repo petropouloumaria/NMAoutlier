@@ -63,7 +63,7 @@
 #' \item forward plots (\code{\link{fwdplotest}}) for summary treatment estimates
 #'   in each iteration of the FS algorithm [Petropoulou et al. (2021)].
 #'
-#' \item Random Shift Variance RSV NMA model (RVSOM NMA) (function
+#' \item Random Shift Variance RSV NMA model (RSVM NMA) (function
 #'   (\code{\link{NMAoutlier.rsv}})) [Petropoulou (2020)]:
 #' \enumerate{
 #' \item P-scores [Rücker & Schwarzer, 2015],
@@ -78,7 +78,7 @@
 #' \item Plots (\code{\link{rsvplot}}) for the monitoring
 #'   measures through RVSOM NMA model,
 #' \item Plots (\code{\link{rsvplotest}}) for summary treatment estimates
-#'   for RVSOM NMA model [Petropoulou (2020)].
+#'   for RSV NMA model [Petropoulou (2020)].
 #'   }
 #' }
 #'

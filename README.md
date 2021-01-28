@@ -68,18 +68,18 @@ smoking cessation counseling programs, no contact (A), self-help (B),
 individual counseling (C) and group counseling (D). The outcome is the
 number of individuals with successful smoking cessation at 6 to 12
 months. The data are in contrast format with odds ratio (OR) and its
-standard error. Arm-level data can be found in Dias et al. (2013).
+standard error. Arm-level data can be found in Dias et al. (2013).
 
 Reference:
 
-Higgins D, Jackson JK, Barrett G, Lu G, Ades AE, and White IR. (2012):
+Higgins D, Jackson JK, Barrett G, Lu G, Ades AE, and White IR.
 Consistency and inconsistency in network meta-analysis: concepts and
-models for multi-arm studies. Research Synthesis Methods 3(2):
+models for multi-arm studies. Research Synthesis Methods 2012, 3(2):
 98–110.
 
-Dias S, Welton NJ, Sutton AJ, Caldwell DM, Lu G, and Ades AE. (2013): Evidence
+Dias S, Welton NJ, Sutton AJ, Caldwell DM, Lu G, and Ades AE. Evidence
 Synthesis for Decision Making 4: Inconsistency in networks of evidence
-based on randomized controlled trials. Medical Decision Making, 33:
+based on randomized controlled trials. Medical Decision Making 2013, 33:
 641–656.
 
 You can load the **NMAoutlier** library
@@ -128,12 +128,16 @@ function as follows:
 measplot(measures, "mah")
 ```
 
+<img src="man/figures/Mahalanobis.png" width=450 style="margin-left: auto; margin-right: auto; display: block;"/>
+
 You can figure out the Q-Q plot for network meta-analysis with
 **Qnetplot** function as follows:
 
 ``` r
 Qnetplot(measures)
 ```
+
+<img src="man/figures/Q-Q.png" width=450 style="margin-left: auto; margin-right: auto; display: block;"/>
 
 **Part 2: Outlier detection measures considered deletion (Shift the
 mean)**
@@ -163,6 +167,8 @@ You can plot the R statistic for Qinconsistency with function
 ``` r
 measplot(deletion, "rqinc", measure = "deletion")
 ```
+
+<img src="man/figures/Qinc.png" width=450 style="margin-left: auto; margin-right: auto; display: block;"/>
 
 **Part 3: Forward Search Algorithm - (Outlier detection Methodology)**
 
@@ -220,15 +226,13 @@ variance for each study with **NMAoutlier.rsv** function as follows:
 RSVresult <- NMAoutlier.rsv(p1, small.values = "bad")
 ```
 
-You can see the Likelihood Ratio Test (LRT) with RSV NMA model for each
-study
+You can see the Likelihood Ratio Test (LRT) with RSV NMA model
 
 ``` r
 RSVresult$LRT 
 ```
 
-Or you can see the over-dispersion parameter of RSV NMA model for each
-study
+Or you can see the over-dispersion parameter of RSV NMA model
 
 ``` r
 RSVresult$over_disp
@@ -240,6 +244,8 @@ study with **rsvplot** function as follows:
 ``` r
 rsvplot(RSVresult, "LRT")
 ```
+
+<img src="man/figures/LRT.png" width=450 style="margin-left: auto; margin-right: auto; display: block;"/>
 
 You can see the plots for summary relative treatment estimates for B, C
 and D versus the reference A with **rsvplotest** function as follows:

@@ -2,7 +2,7 @@
 % Please edit documentation in R/fwdplotest.R
 \name{fwdplotest}
 \alias{fwdplotest}
-\title{Forward plots of summary estimates}
+\title{Forward plots of summary treatment estimates}
 \usage{
 fwdplotest(x)
 }
@@ -10,13 +10,12 @@ fwdplotest(x)
 \item{x}{object of class NMAoutlier (mandatory).}
 }
 \description{
-Forward plots of summary estimate with 95 percent confidence
-interval for each treatment.
+Forward plots of summary treatment estimates with their 95 percent confidence
+intervals.
 }
 \details{
-Plot of summary estimates and their confidence intervals for each
-iteration of search.  Vertical axis provides iterations of
-search. Horizontal axis provides summary estimate of a treatment.
+Plot of summary treatment estimates and their confidence intervals for each FS
+iteration. Vertical axis provides the FS iterations. Horizontal axis provides summary treatment estimates.
 }
 \examples{
 data(smokingcessation, package = "netmeta")
@@ -33,9 +32,9 @@ p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
 #
 FSresult <- NMAoutlier(p1, P = 1, small.values = "bad", n_cores = 2)
 
-# Forward plot for summary estimates for each treatment
-# and their confidence intervals
+# Forward plot for summary treatment estimates and their confidence intervals
 fwdplotest(FSresult)
+
 \dontrun{
 data(smokingcessation, package = "netmeta")
 
@@ -52,7 +51,7 @@ p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
 # forward search algorithm
 FSresult <- NMAoutlier(p1, small.values = "bad")
 
-# Forward plot for summary estimates for each treatment
+# Forward plot for summary treatment estimates
 # and their confidence intervals
 fwdplotest(FSresult)
 }

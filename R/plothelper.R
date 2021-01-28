@@ -1,4 +1,4 @@
-#' Helper function to create the plots for FS and RVSOM methodologies.
+#' Helper function to create the plots for FS and RSV NMA methodologies.
 #'
 #' @param x object of class NMAoutlier or class NMAoutlier.rsv (mandatory).
 #' @param method The method that was used.
@@ -9,8 +9,8 @@
 #'   selected treatment(s)/comparison(s)/study
 #'
 #' @details
-#' Plot of several monitoring measures for FS and RVSOM methodologies.
-#' Vertical axis provides the iterations of FS methodology or the study for RVSOM methodology.
+#' Plot of several monitoring measures for FS and RSV NMA methodologies.
+#' Vertical axis provides the iterations of FS methodology or the study for RSV NMA methodology.
 #' Horizontal axis provides a monitoring statistical measure in the methodology.
 #'
 #'
@@ -31,7 +31,7 @@ plothelper <- function(x, method, stat, select.st){
   if (tolower(method) == "fs") {
     xlabel <- "Iterations"
   } else {
-    # RVSOM
+    # RSV NMA
     xlabel <- "Study"
   }
 
@@ -40,8 +40,8 @@ plothelper <- function(x, method, stat, select.st){
     if (tolower(method) == "fs") {
       title <- "Forward plot for P-score"
     } else {
-      # RVSOM
-      title <- "P-score for Random Shift Variance Model"
+      # RSV NMA
+      title <- "P-score for RSV NMA model"
     }
 
     data <- getSelected(x$p.score, select.st)
@@ -68,14 +68,10 @@ plothelper <- function(x, method, stat, select.st){
       scale_shape_manual(values = seq(1,length(var1_factors))) +
       scale_linetype_manual(values = seq(1,length(var1_factors)))
 
-  } else if (tolower(stat) == "nsplit") {
+  } else if (tolower(stat) == "nsplit" & tolower(method) == "fs") {
 
-    if (tolower(method) == "fs") {
+
       title <- "Forward plot for difference of direct and indirect estimate (z-values)"
-    } else {
-      # RVSOM
-      title <- "Difference of direct and indirect estimate (z-values) for Random Shift Variance Model"
-    }
 
     data <- getSelected(x$dif, select.st)
     melt_data <- melt(data)
@@ -106,8 +102,8 @@ plothelper <- function(x, method, stat, select.st){
     if (tolower(method) == "fs") {
       title <- "Forward plot for standardized residuals"
     } else {
-      # RVSOM
-      title <- "Standardized residuals for Random Shift Variance Model"
+      # RSV NMA
+      title <- "Standardized residuals for RSV NMA model"
     }
 
     data <- getSelected(x$estand, select.st)
@@ -138,8 +134,8 @@ plothelper <- function(x, method, stat, select.st){
     if (tolower(method) == "fs") {
       title <- "Forward plot for heterogeneity"
     } else {
-      # RVSOM
-      title <- "Heterogeneity for Random Shift Variance Model"
+      # RSV NMA
+      title <- "Heterogeneity for RSV NMA model"
     }
 
     data <- getSelected(x$tau, select.st)
@@ -186,7 +182,7 @@ plothelper <- function(x, method, stat, select.st){
     ggplot(data = melt_data, aes(x = 1:length(x$over_disp), y = y_values)) +
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       geom_point(color = '#016FB9', size = 3, na.rm = TRUE) +
-      labs(title = "Shift variance estimator for Random Shift Variance Model", y = "Shift variance estimator", x = xlabel)
+      labs(title = "Shift variance estimator for RSV NMA model", y = "Shift variance estimator", x = xlabel)
 
   } else if (tolower(stat) == "lrt" & tolower(method) == "rsv") {
 
@@ -219,7 +215,7 @@ plothelper <- function(x, method, stat, select.st){
       theme(panel.background = element_rect(fill = '#fafafa'), panel.grid.major = element_line(colour = "#efefef")) +
       #geom_line(aes(group=var1_factors, color=var1_factors, linetype = var1_factors), size=1, na.rm=TRUE) +
       geom_point(aes(shape = var1_factors, color = var1_factors), size = 3, na.rm = TRUE) +
-      labs(title = "Leverage for each pairwise comparison in Shift Variance Model", y = "Leverage", x = "Study") +
+      labs(title = "Leverage for each pairwise comparison in RSV NMA model", y = "Leverage", x = "Study") +
       guides(colour = guide_legend("Studies"), shape = guide_legend("Studies"), linetype = guide_legend("Studies")) +
       scale_x_discrete(labels = xlabels) +
       scale_shape_manual(values = seq(1,length(var1_factors))) +
@@ -235,10 +231,10 @@ plothelper <- function(x, method, stat, select.st){
 
 
     } else {
-      # RVSOM
-      title1 <- "Qtotal for Random Shift Variance Model"
-      title2 <- "Qheterogeneity for Random Shift Variance Model"
-      title3 <- "Qinconsistency for Random Shift Variance Model"
+      # RSV NMA
+      title1 <- "Qtotal for RSV NMA"
+      title2 <- "Qheterogeneity for RSV NMA"
+      title3 <- "Qinconsistency for RSV NMA"
 
       x$Qb <- x$Q
       x$Qhb <- x$Qhet

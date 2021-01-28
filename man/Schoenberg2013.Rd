@@ -3,8 +3,7 @@
 \docType{data}
 \name{Schoenberg2013}
 \alias{Schoenberg2013}
-\title{Network meta-analysis comparing the effects after Laparoscopic
-Heller myotomy}
+\title{Network meta-analysis comparing the effects after Laparoscopic Heller myotomy.}
 \format{
 A data frame in contrast format with the following columns:
 \tabular{rl}{
@@ -27,13 +26,13 @@ for the treatment of achalasia: a network meta-analysis.
 Schoenberg2013
 }
 \description{
-Example of network meta-analysis with inconsistency.
+Network meta-analysis dataset comparing the effects after Laparoscopic Heller myotomy.
 }
 \details{
 The dataset compares the effects after Laparoscopic Heller
 myotomy. The outcome is the number of individuals with successful
 rates at 12 months. These data are in contrast format with effect
-size odds ratio (OR) and its standard error.  Arm-level data can be
+size odds ratio (OR) and its standard error. Arm-level data can be
 found in Schoenberg et al. (2013).
 }
 \examples{

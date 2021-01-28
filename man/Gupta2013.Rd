@@ -27,7 +27,7 @@ review.
 Gupta2013
 }
 \description{
-Example of network meta-analysis with inconsistency.
+Network meta-analysis dataset for comparing interventions for actinic keratosis.
 }
 \details{
 The dataset compares the relative effects of nine interventions:
@@ -46,24 +46,23 @@ The dataset compares the relative effects of nine interventions:
 }
 
 The outcome is the number of individuals with participant complete
-clearance or an equivalent efficacy. These data are in contrast
-format with effect size odds ratio (OR) and its standard
-error. Arm-level data used in Gupta and Paquet (2013).
+clearance or equivalent efficacy. These data are in contrast
+format with effect size the odds ratio (OR).
+The arm-level data were used in Gupta and Paquet (2013).
 }
 \examples{
 data(Gupta2013)
 \donttest{
-# Conduct forward search algorithm for the network of actinic
-# keratosis
+# Conduct forward search algorithm for the network of actinic keratosis
 #
 FSresult <- NMAoutlier(logOR, selogOR, t1, t2, id, data = Gupta2013, n_cores = 2)
 
-# Draw forward plot for z-values from difference of direct and
+# Plovide the forward plot for z-values from difference of direct and
 # indirect evidence
 #
 fwdplot(FSresult, "nsplit")
 
-# Draw forward plot for Q statistic
+# Provide forward plot for Q statistic
 #
 fwdplot(FSresult, "Q")
 }

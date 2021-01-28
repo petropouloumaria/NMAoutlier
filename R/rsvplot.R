@@ -1,12 +1,13 @@
-#' Plot(s) to monitor selected statistic(s)/method(s) for
-#' the Random Shift Variance Network Meta-analysis (RSV NMA) model fitted for selected/all studies.
+#' Plot(s) to monitor selected statistic(s) with the
+#' Random Shift Variance Network Meta-analysis (RSV NMA) model for selected/all studies.
 #'
 #' @description
-#' The function creates a plot of a monitoring statistic of RSV NMA model which fitted for selected/all studies.
-#' Candidate statistics to be monitored can be P-score;
+#' The function creates plot(s) to monitor selected
+#' statistic(s) and/or method(s) by shifting the variance for study (or for selected studies).
+#' Candidate statistics to be monitored can be: P-score;
 #' z-values by back-calculation method to derive indirect estimates
 #' from direct pairwise comparisons and network estimates;
-#' standardized residuals; heterogeneity variance estimator; over-dispersion parameter;
+#' standardized residuals; heterogeneity variance estimator; over-dispersion parameter (shift variance estimator);
 #' leverage; Q statistics (Overall heterogeneity /
 #' inconsistency Q statistic (\code{Q}), overall heterogeneity Q
 #' statistic (\code{Q}), between-designs Q statistic (\code{Q}), based
@@ -14,15 +15,15 @@
 #' likelihood ratio test (LRT).
 #'
 #' @param x an object of class NMAoutlier.rsv (mandatory).
-#' @param stat statistical measure to be monitored in forward plot(s)
-#'   (mandatory), available choice are: "pscore", "nsplit", "estand",
-#'   "heterog",  "Q", "over_disp", "leverage" or "LRT" (can be abbreviated).
-#' @param select.st selected statistic (pscore/nsplit/estand) for
+#' @param stat statistical measure to be monitored
+#'   (mandatory), available choices are: "pscore", "estand",
+#'   "heterog",  "Q", "over_disp", "leverage",  "LRT" (can be abbreviated).
+#' @param select.st selected statistic (pscore/estand) for
 #'   selected treatment(s)/comparison(s)/study
 #'
 #' @details
-#' Plot of statistical measures for RSV NMA model fitted for each study.
-#' Vertical axis provides studies. Horizontal axis provides monitoring statistic(s) of RSV NMA model which fitted for selected/all studies.
+#' Plot of monitoring measures by shifting the variance for each study (RSV NMA model).
+#' Vertical axis provides the studies. Horizontal axis provides monitoring statistic(s) for RSV NMA model.
 #'
 #' @keywords hplot
 #'
@@ -35,10 +36,10 @@
 #'                         data = smokingcessation,
 #'                         sm="OR")
 #'
-#' # Random Shift Variance model for study 1 of smoking cessation data
+#' # RSV NMA model for study 1 of smoking cessation data
 #' RSVresult <- NMAoutlier.rsv(p1, small.values = "bad", study = c(1), n_cores = 2)
 #'
-#' # Over dispresion for Random Shift Variance model fitted for study 1
+#' # Over dispresion for RSV NMA model fitted for study 1
 #' rsvplot(RSVresult, "over_disp")
 #'
 #' \dontrun{
@@ -46,26 +47,19 @@
 #' # Random Shift Variance model for each study of smoking cessation data
 #' RSVresult <- NMAoutlier.rsv(p1, small.values = "bad")
 #'
-#' # Heterogeneity variance estimator for Random Shift Variance model
+#' # Heterogeneity variance estimator for RSV NMA model
 #' rsvplot(RSVresult, "heterog")
 #'
-#' # Over dispresion for Random Shift Variance model
+#' # Over dispresion for RSV NMA model
 #' rsvplot(RSVresult, "over_disp")
 #'
-#' # Q statistics for Random Shift Variance model
+#' # Q statistics for RSV NMA model
 #' rsvplot(RSVresult, "Q")
 #'
-#' # P-scores for Random Shift Variance model
+#' # P-scores for RSV NMA model
 #' rsvplot(RSVresult, "pscore")
 #'
-#' # z-values of disagreement of direct and indirect evidence for Random Shift Variance model
-#' rsvplot(RSVresult, "nsplit")
-#'
-#' # z-values of disagreement of direct and indirect evidence
-#' # monitoring treatment comparison A versus B for Random Shift Variance model
-#' rsvplot(RSVresult, "nsplit", "A:B")
-#'
-#' # log likelihood test plot (LRT)
+#' # Likelihood Ration Test (LRT) for RSV NMA model
 #' rsvplot(RSVresult, "LRT")
 #' }
 #'
@@ -81,7 +75,7 @@ rsvplot <- function(x, stat, select.st = NULL) {
   ##
   chkclass(x, "NMAoutlier.rsv")
 
-  stat <- setchar(stat, c("pscore", "nsplit", "estand", "heterog",
+  stat <- setchar(stat, c("pscore", "estand", "heterog",
                            "Q", "over_disp", "leverage", "LRT"))
 
   plothelper(x, "rsv", stat, select.st)
