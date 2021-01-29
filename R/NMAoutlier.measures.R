@@ -33,8 +33,8 @@
 #'
 #' @details
 #' Outlier and influential detection measures (simple or deletion) for network meta-analysis.
-#' Network meta-analysis from graph-theory (Rücker, 2012) is fitted
-#' with (\code{netmeta} function) of R package \bold{netmeta} (Rücker et al., 2015).
+#' Network meta-analysis from graph-theory [Rücker, 2012] is fitted
+#' with (\code{netmeta} function) of R package \bold{netmeta} [Rücker et al., 2015].
 #'
 #' A description of the outlier and influential detection measures in the context of network meta-analysis
 #' can be found in Petropoulou (2020).
