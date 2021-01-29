@@ -21,7 +21,7 @@ Authors@R: c(person("Maria", "Petropoulou",
 Maintainer: Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 URL: https://github.com/petropouloumaria/NMAoutlier
 Description: A set of functions providing several outlier (i.e., studies with extreme findings) and influential delection measures and methodologies in network meta-analysis:
-               - Simply outlier and influential detection measures provided: (a) Raw, (b) Standardized, (c) Studentized residuals; (d) Mahalanobis distance and (c) leverage.
+               - Simple outlier and influential detection measures provided: (a) Raw, (b) Standardized, (c) Studentized residuals; (d) Mahalanobis distance and (c) leverage.
                - Outlier and influential detection measures by considering study deletion (Shift the mean): (a) Raw (b) Standardized, (c) Studentized deleted residuals; 
                  (d) Cook distance; (e) COVRATIO; (f) weight “leave one out”; (g) leverage “leave one out”; (h) heterogeneity “leave one out”; 
                  (i) R heterogeneity; (k) R Qtotal; (l) R Qheterogeneity (m);  R Qinconsistency and (n) DFBETAS.

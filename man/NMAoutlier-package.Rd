@@ -9,14 +9,14 @@ R package \bold{NMAoutlier} provides methods and tools to detect outlier and inf
 }
 \details{
 R package \bold{NMAoutlier} is a tool to detect outliers (studies with extreme results) and influential studies in network meta-analysis
- [Petropoulou (2020)].The package can calculate: Simply outlier and influential measures; Outlier and ifluential measures considered study deletion (Shift the mean);
+ [Petropoulou (2020)].The package can calculate: Simple outlier and influential measures; Outlier and ifluential measures considered study deletion (Shift the mean);
  The outlier detection methodology with Forward Search (FS) algorithm (Petropoulou et al. (2021)).
 All the proposed outlier and influential detection methods were fitted the frequentist NMA model by graph theory introduced by Rücker (2012) using the R package
 \bold{netmeta}.
 
 The \bold{NMAoutlier} package implements the following:
 \itemize{
- \item \bold{Simply Outlier and influential detection measures} (function
+ \item \bold{Simple outlier and influential detection measures} (function
    (\code{\link{NMAoutlier.measures}})) [Petropoulou (2020)];
  \enumerate{
    \item raw residuals
@@ -43,7 +43,7 @@ The \bold{NMAoutlier} package implements the following:
  \item R Qinconsistency
  \item DFBETAS
  }
-\item Plots of the several outlier and influential detection (simply and deletion) measures (function
+\item Plots of the several outlier and influential detection (simple and deletion) measures (function
   (\code{\link{measplot}})) [Petropoulou (2020)];
 
 \item Q-Q plot for network meta-analysis (function

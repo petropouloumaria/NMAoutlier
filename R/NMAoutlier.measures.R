@@ -1,8 +1,8 @@
 #' Outlier and influential detection measures in network meta-analysis.
 #'
 #' @description
-#' Employs the computation of several (simple or/and deletion) measures for detection of outlying
-#' studiesand influential studies in network meta-analysis.
+#' This function Calculates several (simple or/and deletion) measures for detection of outliers
+#' and influential studies in network meta-analysis.
 #'
 #' Outlier and influential detection measures are:
 #' \itemize{
@@ -50,7 +50,7 @@
 #' Simple outlier and influential measures (\code{measure} = "simple") are:
 #' Raw residuals, Standardized residuals, Studentized residuals, Mahalanobis distance
 #' and leverage for each study.
-#' For deletion outlier and influential measures (\code{measure} = = "deletion"):
+#' For deletion outlier and influential measures (\code{measure} = "deletion"):
 #' Standardized deleted residual; Studentized deleted residual; Cook distance between the treatment estimates for study j
 #' and treatment estimates when study j is removed;
 #' Ratio of determinants of variance-covariance matrix of treatment estimates for study j to treatment estimates when study j is removed;
@@ -72,7 +72,7 @@
 #'    \item{measure}{type of measure used.}
 #'    \item{call}{Function call}
 #'
-#' with a list containing the following components,when choosing deletion measures:
+#' a list containing the following components,when choosing deletion measures:
 #'    \item{dat}{Matrix containing the data \code{"TE"}, \code{"seTE"}, \code{"studlab"}, \code{"treat1"}, \code{"treat2"} as defined above.}
 #'    \item{eraw.deleted}{Raw deleted residual for each study included in the network.}
 #'    \item{estand.deleted}{Standardized deleted residual for each study included in the network.}

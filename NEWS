@@ -16,7 +16,7 @@
 
 *** NMAoutlier, version 0.1.14 ***
 
-- new functions added: NMA_RVSOM and NMA_REML for outlier detection with shift variance model for NMA
+- new functions added: Qnetplot. The functions provide the calculation of several outlier and influential measures
 
 
 *** NMAoutlier, version 0.1.13 ***
