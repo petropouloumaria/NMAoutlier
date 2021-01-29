@@ -1,18 +1,15 @@
-#' Helper function to create the plots of summary estimates and their intervals for FS and RSV NMA.
+#' Helper function to create the plots of summary estimates and their intervals for FS algorithm.
 #'
-#' @param x object of class NMAoutlier or class NMAoutlier.rsv (mandatory).
+#' @param x object of class NMAoutlier(mandatory).
 #' @param lower lower bundary of confidence interval of summary estimate.
 #' @param upper upper bundary of confidence interval of summary estimate.
 #' @param estimate summary estimate.
 #' @param xdata data.
 #' @param xtitle title for plots in x-axis.
-#' @param method The method that was used.
-#' Select "fs" to monitor statistics during the forward search algorithm.
-#' Select "rsv" to monitor statistics by fitting the data with the Shift Variance Model.
 #'
 #' @details
-#' Plot of summary estimate and its confidence interval for each treatment for FS and RSV NMA methodologies.
-#' Vertical axis provides the iterations of FS methodology or the study for RSV NMA methodology.
+#' Plot of summary estimate and its confidence interval for each treatment for FS and algorithm.
+#' Vertical axis provides the iterations of FS algorithm.
 #' Horizontal axis provides a summary estimate of a treatment.
 #'
 #'
@@ -28,7 +25,7 @@
 
 
 
-plotesthelper <- function(x, lower, upper, estimate, xdata, xtitle, method) {
+plotesthelper <- function(x, lower, upper, estimate, xdata, xtitle) {
 
   ## Setting the lower and upper y limit for the graphs, so that we
   ## have the same limits for all treatments' graphs
@@ -40,16 +37,8 @@ plotesthelper <- function(x, lower, upper, estimate, xdata, xtitle, method) {
   graphs <- vector("list", nt - 1)
 
 
-  if (tolower(method) == "rsv") {
-    if (length(x$z[-1]) == 1) {
-      estimate <- as.data.frame(estimate)
-      lower <- as.data.frame(lower)
-      upper <- as.data.frame(upper)
-    }
-    xlabels <- factor(as.character(x$z[-1]), levels = as.character(x$z[-1])) # as factor to prevent ggplot from reordering the x labels in alphabetical order
-  } else {
     xlabels <- factor(as.character(1:x$index), levels = as.character(1:x$index))
-  }
+
 
 
   ## Generating the plots for every treatment. We ignore treatment A (j counts from 2)

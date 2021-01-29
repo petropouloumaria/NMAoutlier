@@ -37,15 +37,6 @@ A package that provides measures and methodologies for detecting outlying and in
 -   Forward plot for summary estimates and their confidence
     intervals for each treatment in each step of forward search
     algorithm.  
--   **4) Random shift variance NMA model (RSVM NMA) (Shift the study variance).**
--    Plots for the monitoring measures for random shift variance model. 
-    Monitoring measures: P-scores; z-values for difference of for difference
-    of direct and indirect evidence with back-calculation method; 
-    Standardized residuals; heterogeneity variance estimator; over-dispersion parameter;
-    leverage; Q statistics; Likelihood Ratio Test (LRT).
--   Plots for the for summary estimates and their confidence
-    intervals for each treatment estimated with the random shift variance
-    model.
 
 
 ## Installation
@@ -185,39 +176,5 @@ fwdplotest(FSresult)
 ```
 
 <img src="man/figures/fwdplot-summary-estimates.png" style="margin-left: auto; margin-right: auto; display: block;"/>
-
-
-**Part 4: Random Shift Variance Network Meta-analysis (RSV NMA) (Shift the study variance)/Outlier detection methodology and sensitivity analysis by downweighting outlier** 
-
-You can conduct the Random Shift Variance RSV NMA model by shifting the variance for each study with **NMAoutlier.rsv** function as follows: 
-```{r, eval=FALSE}
-RSVresult <- NMAoutlier.rsv(p1, small.values = "bad")
-```
-
-
-You can see the Likelihood Ratio Test (LRT) with RSV NMA model
-```{r, eval=FALSE}
-RSVresult$LRT 
-```
-
-Or you can see the over-dispersion parameter of RSV NMA model
-```{r, eval=FALSE}
-RSVresult$over_disp
-```
-
-
-You can plot the Likelihood Ratio Test (LRT) of RSV NMA model for each study with **rsvplot** function as follows:
-```{r, eval=FALSE}
-rsvplot(RSVresult, "LRT")
-```
-<img src="man/figures/LRT.png" width=450 style="margin-left: auto; margin-right: auto; display: block;"/>
-
-You can see the plots for summary relative treatment estimates for B, C and D versus the reference A with **rsvplotest** function as follows: 
-```{r, eval=FALSE}
-rsvplotest(RSVresult)
-```
-
-
-
 
 

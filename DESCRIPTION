@@ -32,12 +32,6 @@ Description: A set of functions providing several outlier (i.e., studies with ex
                  (c) Standardized residuals; (d) heterogeneity variance estimator; (e) cook distance; (f) ratio of variances; 
                  (g) Q statistics.
                - Forward plots for summary estimates and their confidence intervals in each step of forward search algorithm.   
-               - Random Shift Variance metwork meta-analysis (RSV NMA) model for outlier detection.
-               - Plots for the monitoring measures of RSV NMA model:
-                 (a) P-scores; (b) z-values for difference of direct and indirect evidence with back-calculation method; 
-                 (c) Standardized residuals; (d) heterogeneity variance estimator; (e) Q statistics; (f) shift variance estimator; 
-                 (g) leverage; (h)likelihood ratio test (LRT).
-               - Plots for summary treatment estimates and their confidence intervals with RSV NMA model.
 License: GPL (>= 2)
 Encoding: UTF-8
 RoxygenNote: 7.1.1

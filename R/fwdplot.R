@@ -107,7 +107,7 @@ fwdplot <- function(x, stat, select.st = NULL) {
   stat <- setchar(stat, c("pscore", "nsplit", "estand", "heterog",
                           "cook", "ratio", "Q"))
 
-  plothelper(x, "fs", stat, select.st)
+  plothelper(x, stat, select.st)
 
 }
 

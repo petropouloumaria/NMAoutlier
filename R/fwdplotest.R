@@ -62,6 +62,6 @@ fwdplotest <- function(x) {
   ##
   chkclass(x, "NMAoutlier")
 
-  plotesthelper(x, lower = x$lb, upper = x$ub, estimate = x$estb, xdata = x$dat, xtitle = "Iterations", method = "fs")
+  plotesthelper(x, lower = x$lb, upper = x$ub, estimate = x$estb, xdata = x$dat, xtitle = "Iterations")
 
 }

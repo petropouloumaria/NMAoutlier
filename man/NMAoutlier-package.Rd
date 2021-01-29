@@ -10,7 +10,7 @@ R package \bold{NMAoutlier} provides methods and tools to detect outlier and inf
 \details{
 R package \bold{NMAoutlier} is a tool to detect outliers (studies with extreme results) and influential studies in network meta-analysis
  [Petropoulou (2020)].The package can calculate: Simply outlier and influential measures; Outlier and ifluential measures considered study deletion (Shift the mean);
- The outlier detection methodology with Forward Search (FS) algorithm (Petropoulou et al. (2021)) and the Random Shift Variance Network Meta-analysis (RSV NMA) model [Petropoulou (2020)].
+ The outlier detection methodology with Forward Search (FS) algorithm (Petropoulou et al. (2021)).
 All the proposed outlier and influential detection methods were fitted the frequentist NMA model by graph theory introduced by Rücker (2012) using the R package
 \bold{netmeta}.
 
@@ -66,24 +66,6 @@ The \bold{NMAoutlier} package implements the following:
 }
 \item forward plots (\code{\link{fwdplotest}}) for summary treatment estimates
   in each iteration of the FS algorithm [Petropoulou et al. (2021)].
-
-\item Random Shift Variance RSV NMA model (RSVM NMA) (function
-  (\code{\link{NMAoutlier.rsv}})) [Petropoulou (2020)]:
-\enumerate{
-\item P-scores [Rücker & Schwarzer, 2015],
-\item z-values for difference of direct and indirect evidence
-with back-calculation method [König et al., 2013; Dias et al., 2010],
-\item standardized residuals,
-\item heterogeneity variance estimator,
-\item Q statistics [Krahn et al., 2013],
-\item shift variance estimator (over-dispersion parameter),
-\item leverage,
-\item Likelihood Ratio Test (LRT),
-\item Plots (\code{\link{rsvplot}}) for the monitoring
-  measures through RVSOM NMA model,
-\item Plots (\code{\link{rsvplotest}}) for summary treatment estimates
-  for RSV NMA model [Petropoulou (2020)].
-  }
 }
 
 Type \code{help(package = "NMAoutlier")} for a listing of R functions

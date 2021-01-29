@@ -2,16 +2,12 @@
 % Please edit documentation in R/plothelper.R
 \name{plothelper}
 \alias{plothelper}
-\title{Helper function to create the plots for FS and RSV NMA methodologies.}
+\title{Helper function to create the plots for FS algorithm.}
 \usage{
-plothelper(x, method, stat, select.st)
+plothelper(x, stat, select.st)
 }
 \arguments{
-\item{x}{object of class NMAoutlier or class NMAoutlier.rsv (mandatory).}
-
-\item{method}{The method that was used.
-Select "fs" to monitor statistics during the forward search algorithm.
-Select "rsv" to monitor statistics by fitting the data with the Shift Variance Model.}
+\item{x}{object of class NMAoutlier (mandatory).}
 
 \item{stat}{The monitored statistic to generate the plot.}
 
@@ -19,11 +15,11 @@ Select "rsv" to monitor statistics by fitting the data with the Shift Variance M
 selected treatment(s)/comparison(s)/study}
 }
 \description{
-Helper function to create the plots for FS and RSV NMA methodologies.
+Helper function to create the plots for FS algorithm.
 }
 \details{
-Plot of several monitoring measures for FS and RSV NMA methodologies.
-Vertical axis provides the iterations of FS methodology or the study for RSV NMA methodology.
+Plot of several monitoring measures for FS algorithm.
+Vertical axis provides the iterations of FS algorithm.
 Horizontal axis provides a monitoring statistical measure in the methodology.
 }
 \author{
