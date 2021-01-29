@@ -1,4 +1,6 @@
+README.md
+README.Rmd
+.travis.yml
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^README
-^.travis.yml
+roxygen2.R

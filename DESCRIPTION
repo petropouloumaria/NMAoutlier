@@ -18,6 +18,10 @@ Authors@R: c(person("Maria", "Petropoulou",
              person("Dimitris", "Mavridis",
                     role = "aut",
                     comment = c(ORCID = "0000-0003-1041-4592")))         
+Author: Maria Petropoulou [aut, cre],
+  Guido Schwarzer [aut],
+  Agapios Panos [aut],
+  Dimitris Mavridis [aut]
 Maintainer: Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 URL: https://github.com/petropouloumaria/NMAoutlier
 Description: A set of functions providing several outlier (i.e., studies with extreme findings) and influential delection measures and methodologies in network meta-analysis:
@@ -36,5 +40,3 @@ License: GPL (>= 2)
 Encoding: UTF-8
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-LazyData: true
-Packaged: 2018-10-18 12:33:50 UTC; marak

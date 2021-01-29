@@ -90,10 +90,10 @@ function **pairwise** from **netmeta** package.
 ``` r
 library(netmeta)
 p1 <- pairwise(list(treat1, treat2, treat3),
-              list(event1, event2, event3),
-              list(n1, n2, n3),              
-              data=smokingcessation,
-              sm="OR")
+               list(event1, event2, event3),
+               list(n1, n2, n3),
+               data = smokingcessation,
+               sm = "OR")
 ```
 
 **Part 1: Simply outlier detection measures**
