@@ -1,7 +1,7 @@
 #' Outlier and influential detection measures in network meta-analysis.
 #'
 #' @description
-#' This function Calculates several (simple or/and deletion) measures for detection of outliers
+#' This function calculates several (simple or/and deletion) measures for detection of outliers
 #' and influential studies in network meta-analysis.
 #'
 #' Outlier and influential detection measures are:

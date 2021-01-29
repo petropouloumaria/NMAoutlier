@@ -74,7 +74,7 @@ a list containing the following components,when choosing deletion measures:
    \item{call}{Function call}
 }
 \description{
-This function Calculates several (simple or/and deletion) measures for detection of outliers
+This function calculates several (simple or/and deletion) measures for detection of outliers
 and influential studies in network meta-analysis.
 
 Outlier and influential detection measures are:
@@ -91,8 +91,8 @@ R statistic for heterogeneity;  R statistic for Q (\code{Qtotal}),  R statistic 
 }
 \details{
 Outlier and influential detection measures (simple or deletion) for network meta-analysis.
-Network meta-analysis from graph-theory (Rücker, 2012) is fitted
-with (\code{netmeta} function) of R package \bold{netmeta} (Rücker et al., 2015).
+Network meta-analysis from graph-theory [Rücker, 2012] is fitted
+with (\code{netmeta} function) of R package \bold{netmeta} [Rücker et al., 2015].
 
 A description of the outlier and influential detection measures in the context of network meta-analysis
 can be found in Petropoulou (2020).
