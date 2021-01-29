@@ -51,7 +51,7 @@ By default, the standard random effects model is fitted, value NULL.}
 
 \item{n_cores}{The number of cores that the process is running
 using the parallel (default: NULL, the process is running
-using all the available cores)}
+using all the available cores).}
 }
 \value{
 
