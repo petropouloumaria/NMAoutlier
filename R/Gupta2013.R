@@ -25,6 +25,7 @@
 #' The arm-level data were used in Gupta and Paquet (2013).
 #'
 #' @name Gupta2013
+#' @aliases Gupta2013
 #'
 #' @docType data
 #'
@@ -50,8 +51,8 @@
 #' @keywords datasets
 #'
 #' @examples
-#' data(Gupta2013)
 #' \donttest{
+#' data(Gupta2013)
 #' # Conduct forward search algorithm for the network of actinic keratosis
 #' #
 #' FSresult <- NMAoutlier(logOR, selogOR, t1, t2, id, data = Gupta2013, n_cores = 2)
@@ -67,4 +68,4 @@
 #' }
 
 
-"Gupta2013"
+NULL

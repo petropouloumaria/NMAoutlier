@@ -22,9 +22,6 @@ for the treatment of achalasia: a network meta-analysis.
 \emph{Annals of Surgery},
 \bold{258}, 943--52
 }
-\usage{
-Schoenberg2013
-}
 \description{
 Network meta-analysis dataset comparing the effects after Laparoscopic Heller myotomy.
 }
@@ -36,8 +33,8 @@ size odds ratio (OR) and its standard error. Arm-level data can be
 found in Schoenberg et al. (2013).
 }
 \examples{
-data(Schoenberg2013)
 \donttest{
+data(Schoenberg2013)
 # Conduct forward search algorithm for the network of Laparoscopic
 # Heller myotomy
 #

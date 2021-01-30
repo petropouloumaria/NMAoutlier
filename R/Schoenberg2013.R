@@ -11,6 +11,7 @@
 #' found in Schoenberg et al. (2013).
 #'
 #' @name Schoenberg2013
+#' @aliases Schoenberg2013
 #'
 #' @docType data
 #'
@@ -35,8 +36,8 @@
 #' @keywords datasets
 #'
 #' @examples
-#' data(Schoenberg2013)
 #' \donttest{
+#' data(Schoenberg2013)
 #' # Conduct forward search algorithm for the network of Laparoscopic
 #' # Heller myotomy
 #' #
@@ -49,4 +50,4 @@
 #' }
 
 
-"Schoenberg2013"
+NULL
