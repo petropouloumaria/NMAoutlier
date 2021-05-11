@@ -16,7 +16,8 @@ InitialSubset(
   reference,
   t1.label,
   t2.label,
-  n_cores
+  n_cores,
+  ...
 )
 }
 \arguments{

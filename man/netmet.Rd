@@ -13,7 +13,8 @@ netmet(
   ind.bs,
   reference,
   small.values,
-  names.treat
+  names.treat,
+  ...
 )
 }
 \arguments{
@@ -39,6 +40,9 @@ indicating if small values are considered bad ("bad") or good
 ("good").}
 
 \item{names.treat}{names of treatments}
+
+\item{\dots}{Additional arguments passed on to
+\code{\link{netmeta}}.}
 }
 \value{
 results and statistics from network meta-analysis.

@@ -16,6 +16,8 @@
 #'   indicating if small values are considered bad ("bad") or good
 #'   ("good").
 #' @param names.treat names of treatments
+#' @param \dots Additional arguments passed on to
+#'   \code{\link{netmeta}}.
 #'
 #' @return results and statistics from network meta-analysis.
 #'
@@ -26,13 +28,14 @@
 
 
 netmet <- function(TE, seTE, treat1, treat2, studlab,
-                   ind.bs, reference, small.values, names.treat) {
+                   ind.bs, reference, small.values, names.treat,
+                   ...) {
 
   ## Conduct network meta-analysis (NMA) with random effects model,
   ## Rücker model
   model <- netmeta(TE, seTE, treat1, treat2, studlab,
                    comb.random = TRUE, reference.group = reference,
-                   subset = ind.bs)
+                   subset = ind.bs, ...)
 
   nt <- model$n # number of treatments
 

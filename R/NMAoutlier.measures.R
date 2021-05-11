@@ -4,17 +4,20 @@
 #' This function calculates several (simple or/and deletion) measures for detection of outliers
 #' and influential studies in network meta-analysis.
 #'
-#' Outlier and influential detection measures are:
-#' \itemize{
-#' \item Simple outlier and influential measures for each study (Raw residuals, Standardized residuals,
-#'  Studentized residuals, Mahalanobis distance, leverage).
-#' \item Outlier and influential deletion measures for each study (Shift the mean) (Raw deleted residuals, Standardized deleted residuals,
-#'  Studentized deleted residuals, Cook distance between the treatment estimates for study j
-#' and treatment estimates when study j is removed; Ratio of determinants of variance-covariance matrix of treatment estimates for study j to treatment estimates when study j is removed;
-#' weight leave one out;leverage leave one out; heterogeneity estimator leave one out;
-#' R statistic for heterogeneity;  R statistic for Q (\code{Qtotal}),  R statistic for  heterogeneity Q
-#' (\code{Qhet}), R statistic for Qinconsistency (\code{Qinc}), DFbetas.)
-#' }
+#' Outlier and influential detection measures are: \itemize{ \item
+#' Simple outlier and influential measures for each study (Raw
+#' residuals, Standardized residuals, Studentized residuals,
+#' Mahalanobis distance, leverage).  \item Outlier and influential
+#' deletion measures for each study (Shift the mean) (Raw deleted
+#' residuals, Standardized deleted residuals, Studentized deleted
+#' residuals, Cook distance between the treatment estimates for study
+#' j and treatment estimates when study j is removed; Ratio of
+#' determinants of variance-covariance matrix of treatment estimates
+#' for study j to treatment estimates when study j is removed; weight
+#' leave one out;leverage leave one out; heterogeneity estimator leave
+#' one out; R statistic for heterogeneity; R statistic for Q
+#' (\code{Qtotal}), R statistic for heterogeneity Q (\code{Qhet}), R
+#' statistic for Qinconsistency (\code{Qinc}), DFbetas.)  }
 #' @param TE Estimate of treatment effect, i.e. difference between
 #'   first and second treatment (e.g. log odds ratio, mean difference,
 #'   or log hazard ratio).
@@ -28,8 +31,11 @@
 #'   e.g., \code{"RD"}, \code{"RR"}, \code{"OR"}, \code{"ASD"},
 #'   \code{"HR"}, \code{"MD"}, \code{"SMD"}, or \code{"ROM"}.
 #' @param reference Reference treatment group.
-#' @param measure Outlier and influential detection measures, simple measures (default: "simple")
-#'  or outlier and influential detection measures considered study deletion (measure = "deletion").
+#' @param measure Outlier and influential detection measures, simple
+#'   measures (default: "simple") or outlier and influential detection
+#'   measures considered study deletion (measure = "deletion").
+#' @param \dots Additional arguments passed on to
+#'   \code{\link{netmeta}}.
 #'
 #' @details
 #' Outlier and influential detection measures (simple or deletion) for network meta-analysis.
@@ -165,7 +171,8 @@
 NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
                                 data = NULL,
                                 sm,
-                                reference = "", measure = "simple"){
+                                reference = "", measure = "simple",
+                                ...){
 
   ## Check arguments
   ##
@@ -349,7 +356,7 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
   ## Conduct network meta-analysis (NMA) with random effects model,
   ## Rücker model
   model <- netmeta(TE, seTE, treat1, treat2, studlab,
-                   comb.random = TRUE, reference.group = reference)
+                   comb.random = TRUE, reference.group = reference, ...)
 
 
   ## Model objects
@@ -494,7 +501,7 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
       remaining <- studies[studies != deleted]
       remaining.ind <- which(studlab %in% remaining)
       netmeta.res <- netmeta(TE, seTE, treat1, treat2, studlab, comb.random = TRUE,
-                             reference.group = reference, subset = remaining.ind)
+                             reference.group = reference, subset = remaining.ind, ...)
 
 
       estimate <- netmeta.res$TE.random[,reference]                # summary estimates

@@ -23,9 +23,9 @@
 #' @param TE Estimate of treatment effect, i.e. difference between
 #'   first and second treatment (e.g. log odds ratio, mean difference,
 #'   or log hazard ratio). This can also be a pairwise object
-#'   (i.e. the result of pairwise function of netmeta package).
-#'   In this case, the pairwise object should include the following:
-#'   TE, seTE, treat1, treat2, studlab
+#'   (i.e. the result of pairwise function of netmeta package).  In
+#'   this case, the pairwise object should include the following: TE,
+#'   seTE, treat1, treat2, studlab
 #' @param seTE Standard error of treatment estimate.
 #' @param treat1 Label/Number for first treatment.
 #' @param treat2 Label/Number for second treatment.
@@ -52,8 +52,9 @@
 #' @param sm A character string indicating underlying summary measure,
 #'   e.g., \code{"RD"}, \code{"RR"}, \code{"OR"}, \code{"ASD"},
 #'   \code{"HR"}, \code{"MD"}, \code{"SMD"}, or \code{"ROM"}.
-#' @param Isub A vector for the studies to be included in the initial subset (default: NULL, the initial subset
-#'   not specified by the user).
+#' @param Isub A vector for the studies to be included in the initial
+#'   subset (default: NULL, the initial subset not specified by the
+#'   user).
 #' @param reference Reference treatment group.
 #' @param small.values A character string indicating if small values
 #'   are considered beneficial (option:"good") or harmfull
@@ -61,8 +62,10 @@
 #'   computation. The default value is considered benefial outcome
 #'   ("good").
 #' @param n_cores The number of cores that the process is running
-#'   using the parallel (default: NULL, the process is running
-#'   using all the available cores)
+#'   using the parallel (default: NULL, the process is running using
+#'   all the available cores)
+#' @param \dots Additional arguments passed on to
+#'   \code{\link{netmeta}}.
 #'
 #' @details
 #' FS algorithm for network meta-analysis
@@ -259,7 +262,8 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
                        P = 100,
                        sm,
                        Isub = NULL,
-                       reference = "", small.values = "good", n_cores = NULL) {
+                       reference = "", small.values = "good", n_cores = NULL,
+                       ...) {
 
 
   ## Check arguments
@@ -501,7 +505,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
 
     ## NMA for the whole dataset
     ##
-    res <- nma(TE, seTE, treat1, treat2, studlab, reference, names.treat)
+    res <- nma(TE, seTE, treat1, treat2, studlab, reference, names.treat, ...)
 
     ## initialize lists for variance-covariance matrix of basic set
     ## for each step of FS algorithm
@@ -518,7 +522,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
       ## Take the initial subset
       Isub <- c(InitialSubset(TE, seTE, treat1, treat2, studlab,
                               crit1, studies, P, reference,
-                              t1.label, t2.label, n_cores)$set)
+                              t1.label, t2.label, n_cores, ...)$set)
     }
 
     ## Define the initial basic set
@@ -530,7 +534,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
     ind.bs <- which(studlab %in% bs)
     ##
     S1 <- netmet(TE, seTE, treat1, treat2, studlab,
-                 ind.bs, reference, small.values, names.treat)
+                 ind.bs, reference, small.values, names.treat, ...)
     ##
     ## Initial basic set
     ##
@@ -576,7 +580,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
         ##
         model <- netmeta(TE, seTE, treat1, treat2, studlab,
                          comb.random = TRUE, reference.group = reference,
-                         subset = ind.bs)
+                         subset = ind.bs, ...)
         ##
         t.basic <- (model$tau) ^ 2              # heterogeneity
         e.basic <- model$TE.random[, reference] # summary estimate
@@ -641,7 +645,7 @@ NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,
 
       ##
       Si <- netmet(TE, seTE, treat1, treat2, studlab,
-                   ind.bs, reference, small.values, names.treat)
+                   ind.bs, reference, small.values, names.treat, ...)
       ##
       ## Basic set
       ##
