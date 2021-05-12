@@ -19,16 +19,17 @@ NMAoutlier(
   Isub = NULL,
   reference = "",
   small.values = "good",
-  n_cores = NULL
+  n_cores = NULL,
+  ...
 )
 }
 \arguments{
 \item{TE}{Estimate of treatment effect, i.e. difference between
 first and second treatment (e.g. log odds ratio, mean difference,
 or log hazard ratio). This can also be a pairwise object
-(i.e. the result of pairwise function of netmeta package).
-In this case, the pairwise object should include the following:
-TE, seTE, treat1, treat2, studlab}
+(i.e. the result of pairwise function of netmeta package).  In
+this case, the pairwise object should include the following: TE,
+seTE, treat1, treat2, studlab}
 
 \item{seTE}{Standard error of treatment estimate.}
 
@@ -66,8 +67,9 @@ choice of the initial subset. Default value is 100.}
 e.g., \code{"RD"}, \code{"RR"}, \code{"OR"}, \code{"ASD"},
 \code{"HR"}, \code{"MD"}, \code{"SMD"}, or \code{"ROM"}.}
 
-\item{Isub}{A vector for the studies to be included in the initial subset (default: NULL, the initial subset
-not specified by the user).}
+\item{Isub}{A vector for the studies to be included in the initial
+subset (default: NULL, the initial subset not specified by the
+user).}
 
 \item{reference}{Reference treatment group.}
 
@@ -78,8 +80,11 @@ computation. The default value is considered benefial outcome
 ("good").}
 
 \item{n_cores}{The number of cores that the process is running
-using the parallel (default: NULL, the process is running
-using all the available cores)}
+using the parallel (default: NULL, the process is running using
+all the available cores)}
+
+\item{\dots}{Additional arguments passed on to
+\code{\link{netmeta}}.}
 }
 \value{
 An object of class \code{NMAoutlier}; a list containing the

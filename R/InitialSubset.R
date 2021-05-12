@@ -35,7 +35,7 @@
 
 InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
                           crit1, studies, P, reference,
-                          t1.label, t2.label, n_cores) {
+                          t1.label, t2.label, n_cores, ...) {
 
 
   ## Set the number of studies (n) to be equal to the number of treatments
@@ -90,7 +90,7 @@ InitialSubset <- function(TE, seTE, treat1, treat2, studlab,
     }
 
     ## Conduct network meta-analysis (NMA) with random effects model, Rücker model
-    netm <- netmeta(TE, seTE, treat1, treat2, studlab, reference.group = reference, subset = sub)
+    netm <- netmeta(TE, seTE, treat1, treat2, studlab, reference.group = reference, subset = sub, ...)
 
     ## create design matrix
     B <- createB(netm$treat1.pos, netm$treat2.pos, netm$n)

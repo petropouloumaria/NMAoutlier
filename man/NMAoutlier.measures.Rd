@@ -13,7 +13,8 @@ NMAoutlier.measures(
   data = NULL,
   sm,
   reference = "",
-  measure = "simple"
+  measure = "simple",
+  ...
 )
 }
 \arguments{
@@ -38,8 +39,12 @@ e.g., \code{"RD"}, \code{"RR"}, \code{"OR"}, \code{"ASD"},
 
 \item{reference}{Reference treatment group.}
 
-\item{measure}{Outlier and influential detection measures, simple measures (default: "simple")
-or outlier and influential detection measures considered study deletion (measure = "deletion").}
+\item{measure}{Outlier and influential detection measures, simple
+measures (default: "simple") or outlier and influential detection
+measures considered study deletion (measure = "deletion").}
+
+\item{\dots}{Additional arguments passed on to
+\code{\link{netmeta}}.}
 }
 \value{
 An object of class \code{NMAoutlier.measures};
@@ -77,17 +82,20 @@ a list containing the following components,when choosing deletion measures:
 This function calculates several (simple or/and deletion) measures for detection of outliers
 and influential studies in network meta-analysis.
 
-Outlier and influential detection measures are:
-\itemize{
-\item Simple outlier and influential measures for each study (Raw residuals, Standardized residuals,
- Studentized residuals, Mahalanobis distance, leverage).
-\item Outlier and influential deletion measures for each study (Shift the mean) (Raw deleted residuals, Standardized deleted residuals,
- Studentized deleted residuals, Cook distance between the treatment estimates for study j
-and treatment estimates when study j is removed; Ratio of determinants of variance-covariance matrix of treatment estimates for study j to treatment estimates when study j is removed;
-weight leave one out;leverage leave one out; heterogeneity estimator leave one out;
-R statistic for heterogeneity;  R statistic for Q (\code{Qtotal}),  R statistic for  heterogeneity Q
-(\code{Qhet}), R statistic for Qinconsistency (\code{Qinc}), DFbetas.)
-}
+Outlier and influential detection measures are: \itemize{ \item
+Simple outlier and influential measures for each study (Raw
+residuals, Standardized residuals, Studentized residuals,
+Mahalanobis distance, leverage).  \item Outlier and influential
+deletion measures for each study (Shift the mean) (Raw deleted
+residuals, Standardized deleted residuals, Studentized deleted
+residuals, Cook distance between the treatment estimates for study
+j and treatment estimates when study j is removed; Ratio of
+determinants of variance-covariance matrix of treatment estimates
+for study j to treatment estimates when study j is removed; weight
+leave one out;leverage leave one out; heterogeneity estimator leave
+one out; R statistic for heterogeneity; R statistic for Q
+(\code{Qtotal}), R statistic for heterogeneity Q (\code{Qhet}), R
+statistic for Qinconsistency (\code{Qinc}), DFbetas.)  }
 }
 \details{
 Outlier and influential detection measures (simple or deletion) for network meta-analysis.

@@ -4,7 +4,7 @@
 \alias{nma}
 \title{Network meta-analysis for the whole dataset.}
 \usage{
-nma(TE, seTE, treat1, treat2, studlab, reference, names.treat)
+nma(TE, seTE, treat1, treat2, studlab, reference, names.treat, ...)
 }
 \arguments{
 \item{TE}{Estimate of treatment effect, i.e. difference between

@@ -21,13 +21,13 @@
 
 
 nma <- function(TE, seTE, treat1, treat2, studlab,
-                reference, names.treat) {
+                reference, names.treat, ...) {
 
   ## NMA for the whole dataset
   ##
   met <- netmeta(TE, seTE, treat1, treat2,
                             studlab, comb.random = TRUE,
-                            reference.group = reference)
+                            reference.group = reference, ...)
 
   ## check if multi-arm studies exist
   ##
