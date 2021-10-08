@@ -16,10 +16,10 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: windows-latest
     strategy:
       matrix:
-        r-version: [3.5, 3.6]
+        r-version: [release]
 
     steps:
       - uses: actions/checkout@v2
