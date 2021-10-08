@@ -79,8 +79,9 @@ a list containing the following components,when choosing deletion measures:
    \item{call}{Function call}
 }
 \description{
-This function calculates several (simple or/and deletion) measures for detection of outliers
-and influential studies in network meta-analysis.
+This function calculates several (simple or/and deletion) measures
+for detection of outliers and influential studies in network
+meta-analysis.
 
 Outlier and influential detection measures are: \itemize{ \item
 Simple outlier and influential measures for each study (Raw

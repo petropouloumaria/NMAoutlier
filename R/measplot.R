@@ -1,35 +1,44 @@
-
 #' Plot(s) to monitor selected outlier and influential measure(s).
 #'
 #' @description
-#' This function generates plot(s) of the selected outlier detection measure(s)
-#' for each study included in the network. Candidate statistics to be monitored are: Standardized residual;
-#' Studentized residual; Mahalanobis distance and leverage.
+#' This function generates plot(s) of the selected outlier detection
+#' measure(s) for each study included in the network. Candidate
+#' statistics to be monitored are: Standardized residual; Studentized
+#' residual; Mahalanobis distance and leverage.
 #'
-#' The  function also generates plot(s) of the selected outlier detection measure(s)
-#' considering a deletion of each study included in the network (Shift the mean measures).
-#' Candidate statistics to be monitored are: Standardized deleted residual;
-#' Studentized deleted residual; Cook distance between the treatment estimates for study j
-#' and treatment estimates when study j is removed;
-#' Ratio of determinants of variance-covariance matrix of treatment estimates for study j to treatment estimates when study j is removed;
-#' weight leave one out;leverage leave one out; heterogeneity estimator leave one out;
-#' R statistic for heterogeneity;  R statistic for Q (\code{Qtotal}),  R statistic for  heterogeneity Q
-#' (\code{Qhet}), R statistic for Qinconsistency (\code{Qinc}), DFbetas.
+#' The function also generates plot(s) of the selected outlier
+#' detection measure(s) considering a deletion of each study included
+#' in the network (Shift the mean measures).  Candidate statistics to
+#' be monitored are: Standardized deleted residual; Studentized
+#' deleted residual; Cook distance between the treatment estimates for
+#' study j and treatment estimates when study j is removed; Ratio of
+#' determinants of variance-covariance matrix of treatment estimates
+#' for study j to treatment estimates when study j is removed; weight
+#' leave one out;leverage leave one out; heterogeneity estimator leave
+#' one out; R statistic for heterogeneity; R statistic for Q
+#' (\code{Qtotal}), R statistic for heterogeneity Q (\code{Qhet}), R
+#' statistic for Qinconsistency (\code{Qinc}), DFbetas.
 #'
 #'
 #' @param object an object of class NMAoutlier.measures (mandatory).
-#' @param stat selected statistical outlier and influential detection measure (mandatory),
-#' For simply outlier and influential measures available choices are: ("estand"/ "estud"/ "mah"/ "leverage").
-#' For outlier and influential deletion measures available choices are: ("estand.deleted", "estud.deleted",
-#' "leverage.leaveoneout", "weight.leaveoneout", "heterog.leaveoneout", "covratio", "cook",
-#' "rheterogeneity", "restimates", "rqhet", "rqinc", "rqtotal", "dfbetas")
-#' @param measure Outlier and influential detection measures. Simple measures (default: "simple")
-#'  and measures considered study deletion (measure = "deletion").
+#' @param stat selected statistical outlier and influential detection
+#'   measure (mandatory), For simply outlier and influential measures
+#'   available choices are: ("estand"/ "estud"/ "mah"/ "leverage").
+#'   For outlier and influential deletion measures available choices
+#'   are: ("estand.deleted", "estud.deleted", "leverage.leaveoneout",
+#'   "weight.leaveoneout", "heterog.leaveoneout", "covratio", "cook",
+#'   "rheterogeneity", "restimates", "rqhet", "rqinc", "rqtotal",
+#'   "dfbetas")
+#' @param measure Outlier and influential detection measures. Simple
+#'   measures (default: "simple") and measures considered study
+#'   deletion (measure = "deletion").
 #'
 #' @details
-#' Plot of outlier and influential (simple or/and deletion) detection measures for each study included in the network.
-#' Vertical axis provides each study included in the network (or the study deleted for outlier deletion measures). Horizontal axis
-#' provides a monitoring outlier and influential detection measure.
+#' Plot of outlier and influential (simple or/and deletion) detection
+#' measures for each study included in the network.  Vertical axis
+#' provides each study included in the network (or the study deleted
+#' for outlier deletion measures). Horizontal axis provides a
+#' monitoring outlier and influential detection measure.
 #'
 #'
 #' @keywords hplot
@@ -117,7 +126,10 @@ measplot <- function(object, stat, measure = "simple"){
 
       title = "Leverage plot"
       ylabel = "Leverage"
-      data <- object$leverage
+      if (!is.null(object$leverage))
+        data <- object$leverage
+      else
+        data <- object$leverage.fixed
       help_plot(data, stlab, title, xlabel, ylabel, "leverage")
 
     }

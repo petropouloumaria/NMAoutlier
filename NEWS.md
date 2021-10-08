@@ -1,9 +1,16 @@
-## NMAoutlier, version 0.1.18
+## NMAoutlier, version 0.1.18 (2021-10-08)
 
-* add argument '...' to provide additional arguments to internal calls
+* Use hat matrix from random effects model (if available) to calculate
+  leverages
+
+* Extended check whether first argument of NMAoutlier() or
+  NMAoutlier.measures() is R object created with pairwise() from R
+  package **netmeta**
+
+* Add argument '...' to provide additional arguments to internal calls
   of netmeta()
 
-* use Markdown for NEWS
+* Use Markdown for NEWS
 
 
 ## NMAoutlier, version 0.1.17
