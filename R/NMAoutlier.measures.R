@@ -1,8 +1,9 @@
 #' Outlier and influential detection measures in network meta-analysis.
 #'
 #' @description
-#' This function calculates several (simple or/and deletion) measures for detection of outliers
-#' and influential studies in network meta-analysis.
+#' This function calculates several (simple or/and deletion) measures
+#' for detection of outliers and influential studies in network
+#' meta-analysis.
 #'
 #' Outlier and influential detection measures are: \itemize{ \item
 #' Simple outlier and influential measures for each study (Raw
@@ -194,7 +195,8 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
   TE <- eval(mf[[match("TE", names(mf))]],
              data, enclos = sys.frame(sys.parent()))
   ##
-  if (inherits(TE, "pairwise")) {
+  if (inherits(TE, "pairwise") ||
+      is.data.frame(TE) & !is.null(attr(TE, "pairwise"))) {
     sm <- attr(TE, "sm")
     ##
     seTE <- TE$seTE
@@ -411,7 +413,11 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
     ##
     ## Studentized residuals for each pairwise comparison
     ##
-    studres <- 1/sqrt(1 - diag(model$H.matrix)) * sqrt(model$w.random) * rawres
+    if (!is.null(model$H.matrix.random))
+      H.matrix <- model$H.matrix.random
+    else
+      H.matrix <- model$H.matrix
+    studres <- 1/sqrt(1 - diag(H.matrix)) * sqrt(model$w.random) * rawres
 
 
     ## Studentized residuals for each study
@@ -432,7 +438,7 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
     Mahalanobis.distance <- res_multi(studlab, Mah)$res
 
     # leverage for each pairwise comparison
-    lev <- as.numeric(diag(model$H.matrix))
+    lev <- as.numeric(diag(H.matrix))
 
     # leverage for each study
     leverage <- res_multi(studlab, lev)$res
