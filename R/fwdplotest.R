@@ -1,18 +1,20 @@
 #' Forward plots of summary treatment estimates
 #'
 #' @description
-#' Forward plots of summary treatment estimates with their 95 percent confidence
-#' intervals.
+#' Forward plots of summary treatment estimates with their 95 percent
+#' confidence intervals.
 #'
 #' @param x object of class NMAoutlier (mandatory).
 #'
 #' @details
-#' Plot of summary treatment estimates and their confidence intervals for each FS
-#' iteration. Vertical axis provides the FS iterations. Horizontal axis provides summary treatment estimates.
+#' Plot of summary treatment estimates and their confidence intervals
+#' for each FS iteration. Vertical axis provides the FS
+#' iterations. Horizontal axis provides summary treatment estimates.
 #'
 #' @keywords hplot
 #'
 #' @examples
+#' \dontrun{
 #' data(smokingcessation, package = "netmeta")
 #' smokingcessation$id <- 1:nrow(smokingcessation)
 #'
@@ -27,10 +29,11 @@
 #' #
 #' FSresult <- NMAoutlier(p1, P = 1, small.values = "bad", n_cores = 2)
 #'
-#' # Forward plot for summary treatment estimates and their confidence intervals
+#' # Forward plot for summary treatment estimates and their confidence
+#' # intervals
+#' #
 #' fwdplotest(FSresult)
 #'
-#' \dontrun{
 #' data(smokingcessation, package = "netmeta")
 #'
 #' # Transform data from arm-based format to contrast-based format

@@ -1,4 +1,4 @@
-## NMAoutlier, version 0.1.18 (2021-10-08)
+## NMAoutlier, version 0.1.18 (2021-10-11)
 
 * Use hat matrix from random effects model (if available) to calculate
   leverages

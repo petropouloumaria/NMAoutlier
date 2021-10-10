@@ -115,7 +115,7 @@
 #' parameter estimates (summary estmates, heterogeneity estimator) and
 #' other statistics of interest (outlying measures, heterogeneity and
 #' inconsistency measures, ranking measures) are monitored. In each
-#' iteration, network meta-analysis model from graph theory (Rucker,
+#' iteration, network meta-analysis model from graph theory (Rücker,
 #' 2012) is fitted (\code{netmeta} function) with R package
 #' \bold{netmeta}.
 #'
@@ -127,19 +127,19 @@
 #' variance-covariance matrix
 #'
 #' \bold{Ranking measures:}
-#' P-scores for ranking of treatments [Rucker G & Schwarzer G (2015)]
+#' P-scores for ranking of treatments (Rücker G & Schwarzer G, 2015)
 #' for each basic set with implementation of (\code{netrank} function)
 #' from R package \bold{netmeta}.
 #'
 #' \bold{Heterogeneity and inconsistency measures:}
 #' Overall heterogeneity / inconsistency Q statistic (\code{Q}) This
 #' is the design-based decomposition of Cochran Q as provided by Krahn
-#' et al.(2013); Overall heterogeneity Q statistic (\code{Q});
+#' et al. (2013); Overall heterogeneity Q statistic (\code{Q});
 #' Between-designs Q statistic (\code{Q}), based on a random effects
 #' model with square-root of between-study variance estimated embedded
 #' in a full design-by-treatment interaction model.  Implementation
 #' with (\code{decomp.design} function) from R package \bold{netmeta};
-#' Z-values [Dias et al., 2010; Konig et al., 2013] for comparison
+#' Z-values (Dias et al., 2010; König et al., 2013) for comparison
 #' between direct and indirect evidence in
 #' each iteration of forward search algorithm.  By monitoring
 #' difference of direct and indirect evidence, potential sources of
@@ -177,35 +177,36 @@
 #' \emph{Statistics in Medicine},
 #' \bold{29}, 932--44
 #'
-#' Konig J, Krahn U, Binder H (2013):
+#' König J, Krahn U, Binder H (2013):
 #' Visualizing the flow of evidence in network meta-analysis and
 #' characterizing mixed treatment comparisons.
 #' \emph{Statistics in Medicine},
 #' \bold{32}, 5414--29
 #'
-#' Krahn U, Binder H, Konig J (2013):
+#' Krahn U, Binder H, König J (2013):
 #' A graphical tool for locating inconsistency in network meta-analyses.
 #' \emph{BMC Medical Research Methodology},
 #' \bold{13}, 35
 #'
-#' Petropoulou M, Salanti G, Rucker G, Schwarzer G, Moustaki I,
+#' Petropoulou M, Salanti G, Rücker G, Schwarzer G, Moustaki I,
 #' Mavridis D (2021):
-#' A forward search algorithm for detection of extreme study effects
-#' in network meta-analysis.
-#' \emph{Manuscript}
+#' A forward search algorithm for detecting extreme study effects in
+#' network meta-analysis.
+#' \emph{Statistics in Medicine}
 #'
-#' Rucker G (2012):
+#' Rücker G (2012):
 #' Network meta-analysis, electrical networks and graph theory.
 #' \emph{Research Synthesis Methods},
 #' \bold{3}, 312--24
 #'
-#' Rucker G, Schwarzer G (2015):
+#' Rücker G, Schwarzer G (2015):
 #' Ranking treatments in frequentist network meta-analysis works
 #' without resampling methods.
 #' \emph{BMC Medical Research Methodology},
 #' \bold{15}, 58
 #'
 #' @examples
+#' \dontrun{
 #' data(smokingcessation, package = "netmeta")
 #' smokingcessation$id <- 1:nrow(smokingcessation)
 #'
@@ -219,8 +220,8 @@
 #' # Forward search algorithm
 #' #
 #' FSresult <- NMAoutlier(p1, P = 1, small.values = "bad", n_cores = 2)
-#'
-#' \dontrun{
+#' FSresult
+#' 
 #' data(smokingcessation, package = "netmeta")
 #'
 #' # Transform data from arm-based to contrast-based format

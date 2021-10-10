@@ -35,6 +35,7 @@ Vertical axis provides the FS iterations. Horizontal axis
 provides the values of the monitoring statistical measure.
 }
 \examples{
+\dontrun{
 data(smokingcessation, package = "netmeta")
 smokingcessation$id <- 1:nrow(smokingcessation)
 
@@ -52,7 +53,6 @@ FSresult <- NMAoutlier(p1, P = 1, small.values = "bad", n_cores = 2)
 # forward plot for Cook's distance
 fwdplot(FSresult, "cook")
 
-\dontrun{
 data(smokingcessation, package = "netmeta")
 
 # Transform data from arm-based to contrast-based format
@@ -67,7 +67,6 @@ p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
 
 # Forward Search algorithm
 FSresult <- NMAoutlier(p1, small.values = "bad")
-
 FSresult
 
 # forward plot for Cook's distance
