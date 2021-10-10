@@ -54,19 +54,22 @@
 #'                         data = study912,
 #'                         sm = "OR")
 #'
-#' # outlier and influential detection measures for each study in the network
+#' # Outlier and influential detection measures for each study in the
+#' # network
 #' measures <- NMAoutlier.measures(p1)
 #'
 #' # plot of standardized residuals for each study
 #' measplot(measures, "estand")
-#'
+#' 
 #' # plot of Mahalanobis distance values for each study
 #' measplot(measures, "mah")
 #'
 #' # plot of leverage values for each study
 #' measplot(measures, "leverage")
 #'
-#' # outlier detection measures considered deletion each time of an included study
+#' \dontrun{
+#' # Outlier detection measures considered deletion each time of an
+#' # included study
 #' deletion <- NMAoutlier.measures(p1, measure = "deletion")
 #'
 #' # plot for R statistic for heterogeneity estimator
@@ -77,7 +80,7 @@
 #'
 #' # plot of COVRATIO values when considering deletion for each study
 #' measplot(deletion, "covratio", measure = "deletion")
-#'
+#' }
 #'
 #' @export
 #'

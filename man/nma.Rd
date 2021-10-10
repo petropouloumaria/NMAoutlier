@@ -25,8 +25,8 @@ included).}
 \item{names.treat}{names of treatments}
 }
 \value{
-within-study standard error, design matrix, summary
-  estimate, heterogeneity from network meta-analysis.
+Within-study standard error, design matrix, summary estimate,
+heterogeneity from network meta-analysis.
 }
 \description{
 Conduct network meta-analysis (Rücker model) for the whole dataset.

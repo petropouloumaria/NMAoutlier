@@ -1,9 +1,9 @@
 Package: NMAoutlier
 Title: Detecting Outliers in Network Meta-Analysis
 Version: 0.1.18
-Date: 2020-10-08
+Date: 2021-10-11
 Depends: R (>= 3.0.0)
-Imports: netmeta (>= 0.9-7),
+Imports: netmeta (>= 0.9-7), meta (>= 4.19-1),
          stats (>= 3.4.3), parallel (>= 3.4.1), MASS (>= 7.3-47),
          reshape2 (>= 1.4.3), ggplot2 (>= 3.0.0), gridExtra (>= 2.3)
 Authors@R: c(person("Maria", "Petropoulou",
@@ -18,24 +18,20 @@ Authors@R: c(person("Maria", "Petropoulou",
              person("Dimitris", "Mavridis",
                     role = "aut",
                     comment = c(ORCID = "0000-0003-1041-4592")))         
-Author: Maria Petropoulou [aut, cre],
-  Guido Schwarzer [aut],
+Author: Maria Petropoulou [aut, cre] (<https://orcid.org/0000-0002-7147-3644>),
+  Guido Schwarzer [aut] (<https://orcid.org/0000-0001-6214-9087>),
   Agapios Panos [aut],
-  Dimitris Mavridis [aut]
+  Dimitris Mavridis [aut] (<https://orcid.org/0000-0003-1041-4592>)
 Maintainer: Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
 URL: https://github.com/petropouloumaria/NMAoutlier
-Description: A set of functions providing several outlier (i.e., studies with extreme findings) and influential delection measures and methodologies in network meta-analysis:
-               - Simple outlier and influential detection measures provided: (a) Raw, (b) Standardized, (c) Studentized residuals; (d) Mahalanobis distance and (c) leverage.
-               - Outlier and influential detection measures by considering study deletion (Shift the mean): (a) Raw (b) Standardized, (c) Studentized deleted residuals; 
-                 (d) Cook distance; (e) COVRATIO; (f) weight “leave one out”; (g) leverage “leave one out”; (h) heterogeneity “leave one out”; 
-                 (i) R heterogeneity; (k) R Qtotal; (l) R Qheterogeneity (m);  R Qinconsistency and (n) DFBETAS.
-               - Plots for outlier and influential detection simply and deletion measures (all the aboved measures) and Q-Q plot for network meta-analysis.
+Description: A set of functions providing several outlier (i.e., studies with extreme findings) and influential detection measures and methodologies in network meta-analysis :
+               - simple outlier and influential detection measures
+               - outlier and influential detection measures by considering study deletion (shift the mean)
+               - plots for outlier and influential detection measures
+	       - Q-Q plot for network meta-analysis
                - Forward Search algorithm in network meta-analysis. 
-               - Forward plots for the monitoring statistics in each step of Forward search algorithm:
-                 (a) P-scores; (b) z-values for difference of direct and indirect evidence with back-calculation method; 
-                 (c) Standardized residuals; (d) heterogeneity variance estimator; (e) cook distance; (f) ratio of variances; 
-                 (g) Q statistics.
-               - Forward plots for summary estimates and their confidence intervals in each step of forward search algorithm.   
+               - forward plots to monitor statistics in each step of the forward search algorithm
+               - forward plots for summary estimates and their confidence intervals in each step of forward search algorithm.   
 License: GPL (>= 2)
 Encoding: UTF-8
 RoxygenNote: 7.1.2

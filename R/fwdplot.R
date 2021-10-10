@@ -28,6 +28,7 @@
 #' @keywords hplot
 #'
 #' @examples
+#' \dontrun{
 #' data(smokingcessation, package = "netmeta")
 #' smokingcessation$id <- 1:nrow(smokingcessation)
 #'
@@ -45,7 +46,6 @@
 #' # forward plot for Cook's distance
 #' fwdplot(FSresult, "cook")
 #'
-#' \dontrun{
 #' data(smokingcessation, package = "netmeta")
 #'
 #' # Transform data from arm-based to contrast-based format
@@ -60,7 +60,6 @@
 #'
 #' # Forward Search algorithm
 #' FSresult <- NMAoutlier(p1, small.values = "bad")
-#'
 #' FSresult
 #'
 #' # forward plot for Cook's distance

@@ -143,14 +143,13 @@ meas <- NMAoutlier.measures(p1)
 # Standardized residual for each study included in the network
 meas$estand
 
+\dontrun{
 # Outlier and influential deletion measures for studies 9, 10, 11, 12.
 delete <- NMAoutlier.measures(p1, measure = "deletion")
 
 # Standardized deleted residual for studies 9, 10, 11, 12.
 delete$estand.deleted
 
-
-\dontrun{
 data(smokingcessation, package = "netmeta")
 
 # Transform data from arm-based to contrast-based format

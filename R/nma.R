@@ -12,8 +12,10 @@
 #'   included).
 #' @param reference Reference treatment group
 #' @param names.treat names of treatments
-#' @return within-study standard error, design matrix, summary
-#'   estimate, heterogeneity from network meta-analysis.
+#' 
+#' @return
+#' Within-study standard error, design matrix, summary estimate,
+#' heterogeneity from network meta-analysis.
 #'
 #' @keywords internal
 #'
@@ -22,38 +24,30 @@
 
 nma <- function(TE, seTE, treat1, treat2, studlab,
                 reference, names.treat, ...) {
-
+  
   ## NMA for the whole dataset
   ##
-  met <- netmeta(TE, seTE, treat1, treat2,
-                            studlab, comb.random = TRUE,
-                            reference.group = reference, ...)
-
-  ## check if multi-arm studies exist
+  met <- netmeta(TE, seTE, treat1, treat2, studlab,
+                 reference.group = reference, ...)
+  
+  ## Use adjusted standard errors from random effects model for
+  ## multi-arm studies
   ##
-  n.multi <- length(unique(studlab[duplicated(studlab)]))
-
-
-  ## In case of multi-arm studies
-  ##
-  if (n.multi >= 1) {
-     within.se <- met$seTE.adj
-  }else{
-     within.se <- met$seTE
-  }
-
+  if (!is.null(met$seTE.adj.random))
+    within.se <- met$seTE.adj.random
+  else
+    within.se <- met$seTE.adj
+  
   ## X is the design matrix, the edge-vertex incidence matrix (mxn)
   ##
   X <- createB(met$treat1.pos, met$treat2.pos, met$n)
   colnames(X) <- names.treat
   rownames(X) <- studlab
-
+  
+  ## Summary estimates of treatment effects
   ##
-  est <- met$TE.random[, reference]                       # summary estimate of treatment effects
-  het <- (met$tau)^2                                      # heterogeneity
-
-
-
+  est <- met$TE.random[, reference]
+  het <- met$tau^2
+  
   list(within.se = within.se, X = X, est = est, het = het)
-
 }
