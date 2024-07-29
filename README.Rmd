@@ -43,11 +43,11 @@ A package that provides measures and methodologies for detecting outlying and in
 
 You can install the **NMAoutlier** package from GitHub repository as follows:
 
-Installation using R package **[devtools](https://cran.r-project.org/package=devtools)**:
+Installation using R package **[remotes](https://cran.r-project.org/package=remotes)**:
 
 ```{r, eval=FALSE}
-install.packages("devtools")
-devtools::install_github("petropouloumaria/NMAoutlier")
+install.packages("remotes")
+remotes::install_github("petropouloumaria/NMAoutlier")
 ```
 
 ## Usage
