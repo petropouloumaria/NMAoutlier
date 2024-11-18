@@ -44,15 +44,14 @@
 #' @keywords hplot
 #'
 #' @examples
-#' data(smokingcessation, package = "netmeta")
+#' library("netmeta")
+#' data(smokingcessation)
 #' smokingcessation$id <- 1:nrow(smokingcessation)
 #'
 #' study912 <- subset(smokingcessation, id %in% 9:12)
-#' p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
-#'                         list(event1, event2, event3),
-#'                         list(n1, n2, n3),
-#'                         data = study912,
-#'                         sm = "OR")
+#' p1 <- pairwise(list(treat1, treat2, treat3),
+#'   list(event1, event2, event3), list(n1, n2, n3),
+#'   data = study912, sm = "OR")
 #'
 #' # Outlier and influential detection measures for each study in the
 #' # network
@@ -60,7 +59,7 @@
 #'
 #' # plot of standardized residuals for each study
 #' measplot(measures, "estand")
-#' 
+#'
 #' # plot of Mahalanobis distance values for each study
 #' measplot(measures, "mah")
 #'
@@ -84,12 +83,7 @@
 #'
 #' @export
 #'
-#' @author Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
-#'
-#' @importFrom ggplot2 ggplot aes theme element_rect element_line
-#'   geom_point labs
-#' @importFrom reshape2 melt
-
+#' @author Maria Petropoulou <maria.petropoulou@uniklinik-freiburg.de>
 
 
 measplot <- function(object, stat, measure = "simple"){

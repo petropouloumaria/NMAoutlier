@@ -15,14 +15,7 @@
 #'
 #' @keywords internal
 #'
-#' @author Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
-#'
-#' @importFrom ggplot2 ggplot aes theme element_rect element_line
-#'   geom_line geom_point geom_errorbar geom_line coord_cartesian
-#'   geom_hline labs
-#' @importFrom reshape2 melt
-#' @importFrom gridExtra grid.arrange
-
+#' @author Maria Petropoulou <maria.petropoulou@uniklinik-freiburg.de>
 
 
 plotesthelper <- function(x, lower, upper, estimate, xdata, xtitle) {

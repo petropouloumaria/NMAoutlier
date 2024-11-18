@@ -27,10 +27,6 @@
 #' @return An initial clean subset of studies.
 #'
 #' @keywords internal
-#'
-#' @importFrom netmeta netconnection netmeta
-#' @importFrom stats median
-#' @importFrom parallel clusterExport detectCores makeCluster parLapply stopCluster
 
 
 InitialSubset <- function(TE, seTE, treat1, treat2, studlab,

@@ -22,9 +22,6 @@
 #' @return results and statistics from network meta-analysis.
 #'
 #' @keywords internal
-#'
-#' @importFrom netmeta decomp.design netmeta netrank netsplit
-
 
 
 netmet <- function(TE, seTE, treat1, treat2, studlab,
