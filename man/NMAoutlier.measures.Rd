@@ -44,7 +44,7 @@ measures (default: "simple") or outlier and influential detection
 measures considered study deletion (measure = "deletion").}
 
 \item{\dots}{Additional arguments passed on to
-\code{\link{netmeta}}.}
+\code{\link[netmeta]{netmeta}}.}
 }
 \value{
 An object of class \code{NMAoutlier.measures};

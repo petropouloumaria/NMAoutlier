@@ -84,7 +84,7 @@ using the parallel (default: NULL, the process is running using
 all the available cores)}
 
 \item{\dots}{Additional arguments passed on to
-\code{\link{netmeta}}.}
+\code{\link[netmeta]{netmeta}}.}
 }
 \value{
 An object of class \code{NMAoutlier}; a list containing the

@@ -36,7 +36,7 @@
 #'   measures (default: "simple") or outlier and influential detection
 #'   measures considered study deletion (measure = "deletion").
 #' @param \dots Additional arguments passed on to
-#'   \code{\link{netmeta}}.
+#'   \code{\link[netmeta]{netmeta}}.
 #'
 #' @details
 #' Outlier and influential detection measures (simple or deletion) for network meta-analysis.

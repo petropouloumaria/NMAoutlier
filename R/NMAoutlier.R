@@ -66,7 +66,7 @@
 #'   using the parallel (default: NULL, the process is running using
 #'   all the available cores)
 #' @param \dots Additional arguments passed on to
-#'   \code{\link{netmeta}}.
+#'   \code{\link[netmeta]{netmeta}}.
 #'
 #' @details
 #' FS algorithm for network meta-analysis model from graph theory is

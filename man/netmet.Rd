@@ -42,7 +42,7 @@ indicating if small values are considered bad ("bad") or good
 \item{names.treat}{names of treatments}
 
 \item{\dots}{Additional arguments passed on to
-\code{\link{netmeta}}.}
+\code{\link[netmeta]{netmeta}}.}
 }
 \value{
 results and statistics from network meta-analysis.

@@ -17,7 +17,7 @@
 #'   ("good").
 #' @param names.treat names of treatments
 #' @param \dots Additional arguments passed on to
-#'   \code{\link{netmeta}}.
+#'   \code{\link[netmeta]{netmeta}}.
 #'
 #' @return results and statistics from network meta-analysis.
 #'
