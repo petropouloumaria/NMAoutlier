@@ -1,8 +1,8 @@
 ## Auxiliary functions to conduct network meta-analysis
 ##
 ## Package: netmeta
-## Authors: Gerta Rücker <ruecker@imbi.uni-freiburg.de>,
-##          Guido Schwarzer <sc@imbi.uni-freiburg.de>
+## Authors: Gerta Rücker <ruecker@uniklinik-freiburg.de>,
+##          Guido Schwarzer <guido.schwarzer@uniklinik-freiburg.de>
 ## License: GPL (>= 2)
 ##
 createB <- function(pos1, pos2, ncol, aggr = FALSE) {

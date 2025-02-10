@@ -36,15 +36,14 @@ provides the values of the monitoring statistical measure.
 }
 \examples{
 \dontrun{
-data(smokingcessation, package = "netmeta")
+library("netmeta")
+data(smokingcessation)
 smokingcessation$id <- 1:nrow(smokingcessation)
 
 study912 <- subset(smokingcessation, id \%in\% 9:12)
-p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
-                        list(event1, event2, event3),
-                        list(n1, n2, n3),
-                        data = study912,
-                        sm = "OR")
+p1 <- pairwise(list(treat1, treat2, treat3),
+  list(event1, event2, event3), list(n1, n2, n3),
+  data = study912, sm = "OR")
 
 # Forward search algorithm
 #
@@ -53,17 +52,15 @@ FSresult <- NMAoutlier(p1, P = 1, small.values = "bad", n_cores = 2)
 # forward plot for Cook's distance
 fwdplot(FSresult, "cook")
 
-data(smokingcessation, package = "netmeta")
+data(smokingcessation)
 
 # Transform data from arm-based to contrast-based format
 # Use 'sm' argument for odds ratios.
 # Use function pairwise from netmeta package
 
-p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
-                        list(event1, event2, event3),
-                        list(n1, n2, n3),
-                        data=smokingcessation,
-                        sm="OR")
+p1 <- pairwise(list(treat1, treat2, treat3),
+  list(event1, event2, event3), list(n1, n2, n3),
+  data = smokingcessation, sm = "OR")
 
 # Forward Search algorithm
 FSresult <- NMAoutlier(p1, small.values = "bad")
@@ -100,6 +97,6 @@ fwdplot(FSresult, "estand", 4)
 
 }
 \author{
-Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
+Maria Petropoulou <maria.petropoulou@uniklinik-freiburg.de>
 }
 \keyword{hplot}

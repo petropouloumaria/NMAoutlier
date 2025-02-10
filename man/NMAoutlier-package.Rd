@@ -85,7 +85,7 @@ Type \code{citation("NMAoutlier")} on how to cite \bold{NMAoutlier}
 in publications.
 
 To report problems and bugs, please send an email to Dr. Maria
-Petropoulou \email{petropoulou@imbi.uni-freiburg.de}.
+Petropoulou \email{maria.petropoulou@uniklinik-freiburg.de}.
 
 The development version of \bold{NMAoutlier} is available on GitHub
 \url{https://github.com/petropouloumaria/NMAoutlier}.
@@ -129,7 +129,13 @@ without resampling methods.
 \emph{BMC Medical Research Methodology},
 \bold{15}, 58
 }
-\author{
-Petropoulou Maria \email{petropoulou@imbi.uni-freiburg.de}.
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/petropouloumaria/NMAoutlier}
 }
-\keyword{package}
+
+}
+\author{
+Petropoulou Maria \email{maria.petropoulou@uniklinik-freiburg.de}.
+}

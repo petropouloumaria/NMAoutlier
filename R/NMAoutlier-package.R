@@ -81,7 +81,7 @@
 #' in publications.
 #'
 #' To report problems and bugs, please send an email to Dr. Maria
-#' Petropoulou \email{petropoulou@imbi.uni-freiburg.de}.
+#' Petropoulou \email{maria.petropoulou@uniklinik-freiburg.de}.
 #'
 #' The development version of \bold{NMAoutlier} is available on GitHub
 #' \url{https://github.com/petropouloumaria/NMAoutlier}.
@@ -90,7 +90,7 @@
 #'
 #' @docType package
 #'
-#' @author Petropoulou Maria \email{petropoulou@imbi.uni-freiburg.de}.
+#' @author Petropoulou Maria \email{maria.petropoulou@uniklinik-freiburg.de}.
 #'
 #' @references
 #' Dias S, Welton NJ, Caldwell DM, Ades AE (2010):
@@ -131,9 +131,25 @@
 #' \emph{BMC Medical Research Methodology},
 #' \bold{15}, 58
 #'
-#' @keywords package
+#' @importFrom MASS ginv
+#' @importFrom ggplot2 ggplot aes theme element_rect element_line
+#'   geom_line geom_point geom_point geom_abline geom_errorbar
+#'   coord_cartesian labs guides guide_legend
+#'   scale_x_discrete scale_linetype_manual scale_shape_manual
+#' @importFrom gridExtra grid.arrange
+#' @importFrom meta gs pairwise
+#' @importFrom netmeta netmeta decomp.design netrank netsplit
+#'   netconnection
+#' @importFrom parallel clusterExport detectCores makeCluster parLapply
+#'   stopCluster
+#' @importFrom reshape2 melt
+#' @importFrom stats median qchisq quantile
 #'
-#' @importFrom meta gs
+#' @importFrom ggplot2 ggplot aes theme element_rect element_line
+#'   geom_hline labs
+#' @importFrom reshape2 melt
+#' @importFrom gridExtra grid.arrange
 
+"_PACKAGE"
 
 NULL

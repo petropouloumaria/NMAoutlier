@@ -13,13 +13,7 @@
 #'
 #' @keywords internal
 #'
-#' @author Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
-#'
-#' @importFrom ggplot2 ggplot aes theme element_rect element_line
-#'   geom_line geom_point labs guides guide_legend scale_x_discrete
-#'   scale_linetype_manual scale_shape_manual
-#' @importFrom reshape2 melt
-#' @importFrom gridExtra grid.arrange
+#' @author Maria Petropoulou <maria.petropoulou@uniklinik-freiburg.de>
 
 
 

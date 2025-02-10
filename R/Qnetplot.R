@@ -22,13 +22,12 @@
 #'
 #'
 #' @examples
-#' data(smokingcessation, package = "netmeta")
+#' library("netmeta")
+#' data(smokingcessation)
 #'
-#' p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
-#'                         list(event1, event2, event3),
-#'                         list(n1, n2, n3),
-#'                         data = smokingcessation,
-#'                         sm = "OR")
+#' p1 <- pairwise(list(treat1, treat2, treat3),
+#'   list(event1, event2, event3), list(n1, n2, n3),
+#'   data = smokingcessation, sm = "OR")
 #'
 #' # Outlier and influential detection measures
 #' measures <- NMAoutlier.measures(p1)
@@ -43,12 +42,8 @@
 #'
 #' @export
 #'
-#' @author Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
-#'
-#' @importFrom ggplot2 ggplot aes theme element_rect element_line
-#'   geom_point geom_abline labs
-#' @importFrom reshape2 melt
-#' @importFrom stats qchisq quantile
+#' @author Maria Petropoulou <maria.petropoulou@uniklinik-freiburg.de>
+
 
 Qnetplot <- function(data){
 

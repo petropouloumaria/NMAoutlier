@@ -66,7 +66,7 @@
 #'   using the parallel (default: NULL, the process is running using
 #'   all the available cores)
 #' @param \dots Additional arguments passed on to
-#'   \code{\link{netmeta}}.
+#'   \code{\link[netmeta]{netmeta}}.
 #'
 #' @details
 #' FS algorithm for network meta-analysis model from graph theory is
@@ -207,11 +207,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' data(smokingcessation, package = "netmeta")
+#' library("netmeta")
+#' data(smokingcessation)
 #' smokingcessation$id <- 1:nrow(smokingcessation)
 #'
 #' study912 <- subset(smokingcessation, id %in% 9:12)
-#' p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
+#' p1 <- pairwise(list(treat1, treat2, treat3),
 #'                         list(event1, event2, event3),
 #'                         list(n1, n2, n3),
 #'                         data = study912,
@@ -221,14 +222,14 @@
 #' #
 #' FSresult <- NMAoutlier(p1, P = 1, small.values = "bad", n_cores = 2)
 #' FSresult
-#' 
-#' data(smokingcessation, package = "netmeta")
+#'
+#' data(smokingcessation)
 #'
 #' # Transform data from arm-based to contrast-based format
 #' # We use 'sm' argument for odds ratios.
 #' # We use function pairwise from netmeta package
 #' #
-#' p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
+#' p1 <- pairwise(list(treat1, treat2, treat3),
 #'                         list(event1, event2, event3),
 #'                         list(n1, n2, n3),
 #'                         data = smokingcessation,
@@ -252,10 +253,7 @@
 #'
 #' @export
 #'
-#' @author Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
-#'
-#' @importFrom netmeta netconnection netmeta
-#' @importFrom MASS ginv
+#' @author Maria Petropoulou <maria.petropoulou@uniklinik-freiburg.de>
 
 
 NMAoutlier <- function(TE, seTE, treat1, treat2, studlab,

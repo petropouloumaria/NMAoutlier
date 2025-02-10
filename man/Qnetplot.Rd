@@ -22,13 +22,12 @@ The Q-Q plot can visualize studies that are away from the reference line (potien
 Q-Q plot for network meta-analysis has been introduced by Petropoulou (2020).
 }
 \examples{
-data(smokingcessation, package = "netmeta")
+library("netmeta")
+data(smokingcessation)
 
-p1 <- netmeta::pairwise(list(treat1, treat2, treat3),
-                        list(event1, event2, event3),
-                        list(n1, n2, n3),
-                        data = smokingcessation,
-                        sm = "OR")
+p1 <- pairwise(list(treat1, treat2, treat3),
+  list(event1, event2, event3), list(n1, n2, n3),
+  data = smokingcessation, sm = "OR")
 
 # Outlier and influential detection measures
 measures <- NMAoutlier.measures(p1)
@@ -47,6 +46,6 @@ developing methodology for outlier detection.
 \emph{PhD dissertation}
 }
 \author{
-Maria Petropoulou <petropoulou@imbi.uni-freiburg.de>
+Maria Petropoulou <maria.petropoulou@uniklinik-freiburg.de>
 }
 \keyword{hplot}
