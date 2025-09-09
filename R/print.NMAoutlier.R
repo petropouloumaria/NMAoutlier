@@ -16,11 +16,12 @@ print.NMAoutlier <- function(x, digits = 4, ...) {
                       formatN(as.numeric(Mydata[, 2]), digits),
                       as.character(Mydata[, 3]),
                       as.character(Mydata[, 4]),
-                      as.character(Mydata[, 5]))
+                      as.character(Mydata[, 5]),
+                      as.character(Mydata[, 6]))
   ##
   prmatrix(datamatrix,
            rowlab = paste(c(1:length(Mydata[, 1])), ""),
-           collab = c("TE", "seTE", "studylab", "treat1", "treat2"),
+           collab = c("TE", "seTE", "studylab.orig", "studylab", "treat1", "treat2"),
            quote = FALSE, right = TRUE)
   ##
   cat("\n")
@@ -55,14 +56,14 @@ print.NMAoutlier <- function(x, digits = 4, ...) {
   cat("Outlying measures:\n")
   prmatrix(cbind(formatN(x$Ratio,digits),
                  formatN(x$cook_d, digits)),
-           rowlab = paste("it=", iteration = c(1:x$index)),
+           rowlab = paste("it=", iteration = c(2:x$index)),
            collab = c("Ratio of variances", "Cook's distance"),
            quote = FALSE, right = TRUE)
   ##
   cat("\n")
   cat("Ranking measures, P-score for each treatment:\n")
   prmatrix((formatN(x$p.score, digits)), quote = FALSE, right = TRUE)
-  
+
   invisible(NULL)
 
 }

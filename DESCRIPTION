@@ -1,7 +1,7 @@
 Package: NMAoutlier
 Title: Detecting Outliers in Network Meta-Analysis
-Version: 0.2.0
-Date: 2025-01-21
+Version: 0.2.1
+Date: 2025-09-9
 Depends: R (>= 3.0.0)
 Imports: netmeta (>= 0.9-7), meta (>= 8.0-1),
          stats (>= 3.4.3), parallel (>= 3.4.1), MASS (>= 7.3-47),

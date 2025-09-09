@@ -10,8 +10,8 @@ print.NMAoutlier.measures <- function(x, digits = 4, details = FALSE, ...) {
   chklogical(details)
   ##
   Mydata <- x$dat
-  
-  
+
+
   if (details) {
     cat("Original data:\n")
     ##
@@ -19,15 +19,16 @@ print.NMAoutlier.measures <- function(x, digits = 4, details = FALSE, ...) {
                         formatN(as.numeric(Mydata[, 2]), digits),
                         as.character(Mydata[, 3]),
                         as.character(Mydata[, 4]),
-                        as.character(Mydata[, 5]))
+                        as.character(Mydata[, 5]),
+                        as.character(Mydata[, 6]))
     ##
     prmatrix(datamatrix,
              rowlab = paste(c(1:length(Mydata[, 1])), ""),
-             collab = c("TE", "seTE", "studylab", "treat1", "treat2"),
+             collab = c("TE", "seTE", "studylab.orig", "studylab", "treat1", "treat2"),
              quote = FALSE, right = TRUE)
   }
-  
-  
+
+
   if (x$measure == "simple") {
     ##
     cat("\n")
