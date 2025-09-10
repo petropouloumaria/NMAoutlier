@@ -69,7 +69,7 @@
 #' @return
 #' An object of class \code{NMAoutlier.measures};
 #' with a list containing the following components when choosing simple measures:
-#'    \item{dat}{Matrix containing the data \code{"TE"}, \code{"seTE"}, \code{"studlab"}, \code{"treat1"}, \code{"treat2"} as defined above.}
+#'    \item{dat}{Matrix containing the data \code{"TE"}, \code{"seTE"}, \code{"studlab.orig"}, \code{"studlab"}, \code{"treat1"}, \code{"treat2"} as defined above.}
 #'    \item{eraw}{Raw residual for each study included in the network.}
 #'    \item{estand}{Standardized residual for each study included in the network.}
 #'    \item{estud}{Studentized residual for each study included in the network.}
@@ -376,7 +376,6 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
 
   ##
   dat <-  noquote(cbind(TE, seTE, studlab.orig, studlab, treat1, treat2))
-  print(dat)
   ##
   rownames(dat) <- c(1:length(TE))
   ##
