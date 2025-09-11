@@ -407,6 +407,8 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
     ##
     estand <- res_multi(studlab, standres)$res
 
+    stud_id <- res_multi(studlab, standres)$study
+
     ##
     ## Studentized residuals for each pairwise comparison
     ##
@@ -421,6 +423,8 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
     ##
     estud <- res_multi(studlab, studres)$res
 
+    print(estud)
+    print(stud_id)
 
     ## Mahalanobis distance for each pairwise comparison
     ##
@@ -442,6 +446,7 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
 
 
     res <- list(dat = dat,
+                stud_id = stud_id,
                 eraw = eraw,
                 estand = estand,
                 estud = estud,
@@ -618,6 +623,7 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
 
 
     res <- list(dat = dat,
+                index = index,
                 eraw.deleted = unlist(eraw.deleted),
                 estand.deleted = unlist(estand.deleted),
                 estud.deleted = unlist(estud.deleted),

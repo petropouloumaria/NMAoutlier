@@ -69,7 +69,7 @@ res_multi <- function(st.lab, ei) {
 
   } #end if
 
-  result <- list(res = res)
+  result <- list(res = res, study = study)
 
   result
 }
