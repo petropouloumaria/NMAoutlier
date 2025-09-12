@@ -35,9 +35,8 @@ print.NMAoutlier.measures <- function(x, digits = 4, details = TRUE, ...) {
 
   dfu <- data.frame(id = ids, lab = labs, stringsAsFactors = FALSE)
   dfu <- dfu[!duplicated(dfu$id), ]   # unique per study id
+
   labs_in_order <- dfu$lab[ match(x$stud_id, dfu$id) ]
-
-
 
 
   if (x$measure == "simple") {
@@ -69,8 +68,8 @@ print.NMAoutlier.measures <- function(x, digits = 4, details = TRUE, ...) {
     cat(paste("Raw, standardized, Studentized deleted residuals for",
               "each included study in the network:\n"))
     cat("\n")
-    prmatrix(cbind(x$stud_id,
-                  formatN(x$eraw.deleted, digits),
+    prmatrix(cbind(c(x$stud_id),
+                   formatN(x$eraw.deleted, digits),
                    formatN(x$estand.deleted, digits),
                    formatN(x$estud.deleted, digits)),
              collab = c("studylab", "Raw deleted residual",
@@ -83,7 +82,7 @@ print.NMAoutlier.measures <- function(x, digits = 4, details = TRUE, ...) {
     cat(paste("'Leave one out' measures for each included study",
               "in the network:\n"))
     cat("\n")
-    prmatrix(cbind(x$stud_id,
+    prmatrix(cbind(c(x$stud_id),
                    formatN(x$w.leaveoneout, digits),
                    formatN(x$H.leaveoneout, digits),
                    formatN(x$heterog.leaveoneout, digits)),
@@ -97,7 +96,7 @@ print.NMAoutlier.measures <- function(x, digits = 4, details = TRUE, ...) {
     cat(paste("Cook's distance and COVRATIO considered deletion of",
               "study in the network:\n"))
     cat("\n")
-    prmatrix(cbind(x$stud_id,
+    prmatrix(cbind(c(x$stud_id),
                    formatN(x$Cooks.distance, digits),
                    formatN(x$Covratio, digits)),
              collab = c("studylab", "Cook's distance", "COVRATIO"),
@@ -107,7 +106,7 @@ print.NMAoutlier.measures <- function(x, digits = 4, details = TRUE, ...) {
     cat("\n")
     cat("R statistics considered deletion of study in the network:\n")
     cat("\n")
-    prmatrix(cbind(x$stud_id,
+    prmatrix(cbind(c(x$stud_id),
                    formatN(x$Rheterogeneity, digits),
                    formatN(x$RQtotal, digits),
                    formatN(x$RQhet, digits),

@@ -423,9 +423,6 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
     ##
     estud <- res_multi(studlab, studres)$res
 
-    print(estud)
-    print(stud_id)
-
     ## Mahalanobis distance for each pairwise comparison
     ##
     Mah <- model$Q.fixed
@@ -498,9 +495,9 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
 
     studies <- unique(studlab)
 
-
     heterog.leaveoneout <- w.leaveoneout <- H.leaveoneout <- eraw.deleted <- estand.deleted <- estud.deleted <- Cooks.distance <- Covratio <- Rstat.heterogeneity <- RQtotal <- RQhet <- RQinc <- list()
     DFbetas <- Rstat.estimates <- NULL
+    stud_id <- NULL
 
     for (i in 1:length(studies)) {
 
@@ -570,7 +567,6 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
       # Variance-covariance matrix (random effects model)
       Cov.remove <- Br.remove %*% Lplus %*% t(Br.remove)
 
-
       ## Raw pairwise deleted residuals
       rawres <- c(y.m[ind.deleted] - B[ind.deleted,] %*% estimate)
 
@@ -591,6 +587,11 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
       ## Studentized study deleted residuals
       estud.deleted[[i]] <-  res_multi(studlab[ind.deleted], studres)$res
 
+      index <- res_multi(studlab[ind.deleted], studres)$study
+      stud_id <- cbind(stud_id, index)
+
+
+      print(stud_id)
 
       ## Cook's statistic considered deletion
       Cooks.distance[[i]] <- c(t(b[2:length(b)] - estimate[2:length(estimate)]) %*% ginv(Cov) %*% (b[2:length(b)] - estimate[2:length(estimate)]))
@@ -623,7 +624,7 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
 
 
     res <- list(dat = dat,
-                index = index,
+                stud_id = stud_id,
                 eraw.deleted = unlist(eraw.deleted),
                 estand.deleted = unlist(estand.deleted),
                 estud.deleted = unlist(estud.deleted),
