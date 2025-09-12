@@ -137,7 +137,7 @@ measplot <- function(object, stat, measure = "simple"){
                             "leverage.leaveoneout", "weight.leaveoneout", "heterog.leaveoneout", "covratio", "cook",
                             "rheterogeneity", "restimates", "rqhet", "rqinc", "rqtotal", "dfbetas"))
 
-    stlab <- unique(object$stud_id)
+    stlab <- unique(c(object$stud_id))
     xlabel <- "study deleted"
 
    if (tolower(stat) == "estand.deleted") {

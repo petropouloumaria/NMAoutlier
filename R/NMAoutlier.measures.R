@@ -590,9 +590,6 @@ NMAoutlier.measures <- function(TE, seTE, treat1, treat2, studlab,
       index <- res_multi(studlab[ind.deleted], studres)$study
       stud_id <- cbind(stud_id, index)
 
-
-      print(stud_id)
-
       ## Cook's statistic considered deletion
       Cooks.distance[[i]] <- c(t(b[2:length(b)] - estimate[2:length(estimate)]) %*% ginv(Cov) %*% (b[2:length(b)] - estimate[2:length(estimate)]))
 
